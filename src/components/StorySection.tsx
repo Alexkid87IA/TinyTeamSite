@@ -102,12 +102,12 @@ const TeamMemberCard = ({ member, index }) => (
       zIndex: 100,
       transition: { duration: 0.4, type: "spring", stiffness: 200 }
     }}
-    className="group relative"
+    className="group relative mx-auto max-w-[280px] sm:max-w-none"
     style={{ zIndex: member.zIndex }}
   >
     <div className="absolute -inset-6 rounded-3xl bg-gradient-to-r from-pink-500/20 via-purple-500/20 to-blue-500/20 blur-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
     
-    <div className="relative w-80 h-[500px] rounded-3xl overflow-hidden glass-card group-hover:ring-2 group-hover:ring-white/30 transition-all duration-500">
+    <div className="relative w-full sm:w-72 lg:w-64 xl:w-80 h-[400px] sm:h-[450px] lg:h-[500px] rounded-3xl overflow-hidden glass-card group-hover:ring-2 group-hover:ring-white/30 transition-all duration-500">
       <div className="absolute inset-0">
         <img
           src={member.image}
@@ -118,19 +118,19 @@ const TeamMemberCard = ({ member, index }) => (
         <div className={`absolute inset-0 bg-gradient-to-t ${member.gradient} mix-blend-overlay opacity-0 group-hover:opacity-60 transition-opacity duration-500`} />
       </div>
 
-      <div className="absolute bottom-0 left-0 right-0 p-8">
+      <div className="absolute bottom-0 left-0 right-0 p-6 sm:p-8">
         <div className="space-y-3">
           <div>
-            <h3 className="text-2xl font-bold text-white group-hover:text-glow transition-all duration-300">
+            <h3 className="text-xl sm:text-2xl font-bold text-white group-hover:text-glow transition-all duration-300">
               {member.name}
             </h3>
-            <h4 className="text-xl font-semibold text-white/90 group-hover:text-white transition-colors duration-300">
+            <h4 className="text-lg sm:text-xl font-semibold text-white/90 group-hover:text-white transition-colors duration-300">
               {member.lastName}
             </h4>
           </div>
           
-          <div className="inline-block px-4 py-2 rounded-full bg-white/10 backdrop-blur-sm border border-white/20 group-hover:border-white/40 group-hover:bg-white/20 transition-all duration-300">
-            <span className="text-sm text-white/90 group-hover:text-white transition-colors duration-300 font-medium">
+          <div className="inline-block px-3 sm:px-4 py-1.5 sm:py-2 rounded-full bg-white/10 backdrop-blur-sm border border-white/20 group-hover:border-white/40 group-hover:bg-white/20 transition-all duration-300">
+            <span className="text-xs sm:text-sm text-white/90 group-hover:text-white transition-colors duration-300 font-medium">
               {member.role}
             </span>
           </div>
