@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { ArrowRight, Star, Heart, Mic, Film, Lightbulb, PenTool, Shield, Rocket } from 'lucide-react';
+import { ArrowRight, Mic, Film, Lightbulb, PenTool, Shield, Rocket } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 const teamMembers = [
@@ -102,12 +102,12 @@ const TeamMemberCard = ({ member, index }) => (
       zIndex: 100,
       transition: { duration: 0.4, type: "spring", stiffness: 200 }
     }}
-    className="group relative mx-auto max-w-[280px] sm:max-w-none"
+    className="group relative"
     style={{ zIndex: member.zIndex }}
   >
     <div className="absolute -inset-6 rounded-3xl bg-gradient-to-r from-pink-500/20 via-purple-500/20 to-blue-500/20 blur-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
     
-    <div className="relative w-full sm:w-72 lg:w-64 xl:w-80 h-[400px] sm:h-[450px] lg:h-[500px] rounded-3xl overflow-hidden glass-card group-hover:ring-2 group-hover:ring-white/30 transition-all duration-500">
+    <div className="relative w-full max-w-[320px] mx-auto sm:max-w-none sm:w-72 md:w-64 lg:w-72 xl:w-80 h-[450px] sm:h-[480px] lg:h-[500px] rounded-3xl overflow-hidden glass-card group-hover:ring-2 group-hover:ring-white/30 transition-all duration-500">
       <div className="absolute inset-0">
         <img
           src={member.image}
@@ -118,19 +118,19 @@ const TeamMemberCard = ({ member, index }) => (
         <div className={`absolute inset-0 bg-gradient-to-t ${member.gradient} mix-blend-overlay opacity-0 group-hover:opacity-60 transition-opacity duration-500`} />
       </div>
 
-      <div className="absolute bottom-0 left-0 right-0 p-6 sm:p-8">
+      <div className="absolute bottom-0 left-0 right-0 p-8">
         <div className="space-y-3">
           <div>
-            <h3 className="text-xl sm:text-2xl font-bold text-white group-hover:text-glow transition-all duration-300">
+            <h3 className="text-2xl font-bold text-white group-hover:text-glow transition-all duration-300">
               {member.name}
             </h3>
-            <h4 className="text-lg sm:text-xl font-semibold text-white/90 group-hover:text-white transition-colors duration-300">
+            <h4 className="text-xl font-semibold text-white/90 group-hover:text-white transition-colors duration-300">
               {member.lastName}
             </h4>
           </div>
           
-          <div className="inline-block px-3 sm:px-4 py-1.5 sm:py-2 rounded-full bg-white/10 backdrop-blur-sm border border-white/20 group-hover:border-white/40 group-hover:bg-white/20 transition-all duration-300">
-            <span className="text-xs sm:text-sm text-white/90 group-hover:text-white transition-colors duration-300 font-medium">
+          <div className="inline-block px-4 py-2 rounded-full bg-white/10 backdrop-blur-sm border border-white/20 group-hover:border-white/40 group-hover:bg-white/20 transition-all duration-300">
+            <span className="text-sm text-white/90 group-hover:text-white transition-colors duration-300 font-medium">
               {member.role}
             </span>
           </div>
@@ -267,12 +267,22 @@ export const StorySection = () => {
             </p>
           </motion.div>
 
-          {/* Team Cards - Overlapping Layout */}
-          <div className="flex justify-center items-center overflow-x-auto pb-8">
-            <div className="flex -space-x-16 px-8">
+          {/* Team Cards - Responsive Overlapping Layout */}
+          <div className="flex flex-col items-center lg:block">
+            {/* Mobile: Single Column, Tablet: 2 columns */}
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:hidden gap-8 w-full max-w-2xl">
               {teamMembers.map((member, index) => (
                 <TeamMemberCard key={member.name} member={member} index={index} />
               ))}
+            </div>
+            
+            {/* Desktop: Overlapping Layout */}
+            <div className="hidden lg:flex justify-center items-center overflow-x-auto pb-8">
+              <div className="flex -space-x-16 px-8">
+                {teamMembers.map((member, index) => (
+                  <TeamMemberCard key={member.name} member={member} index={index} />
+                ))}
+              </div>
             </div>
           </div>
         </div>
@@ -317,45 +327,13 @@ export const StorySection = () => {
             Prêt à écrire votre succès avec nous ?
           </h4>
           
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-6">
-            <Link
-              to="#contact"
-              className="group relative inline-flex items-center gap-3 px-10 py-5 rounded-full overflow-hidden"
-            >
-              <motion.div
-                className="absolute inset-0"
-                animate={{
-                  background: [
-                    "linear-gradient(45deg, #ec4899, #8b5cf6, #3b82f6, #10b981, #f59e0b, #ec4899)",
-                    "linear-gradient(225deg, #ec4899, #8b5cf6, #3b82f6, #10b981, #f59e0b, #ec4899)",
-                    "linear-gradient(45deg, #ec4899, #8b5cf6, #3b82f6, #10b981, #f59e0b, #ec4899)"
-                  ]
-                }}
-                transition={{
-                  duration: 3,
-                  repeat: Infinity,
-                  ease: "linear"
-                }}
-              />
-              <div className="absolute inset-0 bg-gradient-to-r from-pink-500/50 via-transparent to-blue-500/50 rounded-full blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-              
-              <span className="relative font-bold text-white text-lg">Commencer l'aventure</span>
-              <motion.div
-                className="relative"
-                animate={{ x: [0, 4, 0] }}
-                transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-              >
-                <ArrowRight className="w-6 h-6 text-white" />
-              </motion.div>
-            </Link>
-            
+          <div className="flex justify-center">
             <Link
               to="/equipe"
-              className="group inline-flex items-center gap-3 px-10 py-5 rounded-full glass-card hover:bg-white/10 transition-all duration-300"
+              className="group inline-flex items-center gap-2 px-8 py-4 rounded-full bg-gradient-to-r from-pink-500 to-purple-500 text-white font-semibold hover:from-pink-600 hover:to-purple-600 transition-all duration-300 hover:shadow-2xl hover:shadow-purple-500/25"
             >
-              <Heart className="w-6 h-6 text-pink-400 group-hover:text-pink-300 transition-colors duration-300" />
-              <span className="font-semibold text-white group-hover:text-glow transition-all duration-300">En savoir plus sur nous</span>
-              <ArrowRight className="w-5 h-5 text-white/70 group-hover:text-white group-hover:translate-x-1 transition-all duration-300" />
+              <span>En savoir plus sur nous</span>
+              <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" />
             </Link>
           </div>
         </motion.div>
