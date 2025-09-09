@@ -3,62 +3,57 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { Navigation } from '../components/Navigation';
 import { Footer } from '../components/Footer';
-import { ArrowDown, ArrowRight, Star, Heart, Coffee, Book, Palette, Linkedin, Mail, Shield, Rocket, Layout, Globe, Users, Sparkles } from 'lucide-react';
+import { ArrowDown, ArrowRight, Star, Heart, Coffee, Book, Palette, Mail, Shield, Rocket, Layout, Globe, Users, Sparkles } from 'lucide-react';
 
 const teamMembers = [
   {
     name: "Bénédicte Lecoq",
     role: "Fondatrice",
-    description: "Visionnaire et passionnée, Bénédicte a créé Tiny Team avec la conviction que chaque artiste mérite un accompagnement aussi unique que son talent.",
+    description: "Passionnée et visionnaire, Bénédicte fait ses armes dans les grandes maisons du spectacle vivant entre Paris et Marseille. Convaincue que chaque artiste mérite un accompagnement aussi unique que son talent, elle crée Tiny Team pour offrir cette proximité essentielle. Cette véritable « girl boss » manage et fédère son équipe autour de deux valeurs fondamentales : liberté et confiance.",
     skills: ["Direction stratégique", "Production artistique", "Développement de talents"],
-    image: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&q=80&w=1024",
+    image: "https://26.staticbtf.eno.do/v1/51-default/f5464f128894d97aa54f8b509c878258/media.jpg",
     contact: {
-      linkedin: "benedicte-lecoq",
       email: "benedicte@tinyteam.fr"
     }
   },
   {
     name: "Isabelle Sabatier",
     role: "Responsable Diffusion",
-    description: "Experte en diffusion artistique, Isabelle transforme les spectacles en succès nationaux grâce à sa connaissance approfondie du secteur.",
+    description: "Animée par une passion profonde pour le spectacle vivant, Isabelle développe depuis toujours de multiples compétences : planification de tournées, structuration artistique, stratégie de développement personnalisée. Authenticité, proximité et professionnalisme sont les valeurs qui la guident pour promouvoir efficacement les artistes et mener à bien des projets d'excellence.",
     skills: ["Programmation culturelle", "Gestion de tournées", "Relations publiques"],
-    image: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?auto=format&fit=crop&q=80&w=1024",
+    image: "https://26.staticbtf.eno.do/v1/50-default/72327cba31187ae50845f74005e56b82/media.jpg",
     contact: {
-      linkedin: "isabelle-sabatier",
-      email: "isabelle@tinyteam.fr"
+      email: "booking@tinyteam.fr"
     }
   },
   {
     name: "Elodie Biffi",
     role: "Responsable Administrative",
-    description: "Gardienne de l'excellence opérationnelle, Elodie assure une gestion irréprochable permettant aux artistes de se concentrer sur leur art.",
+    description: "Gardienne de l'excellence opérationnelle, Elodie assure une gestion irréprochable permettant aux artistes de se concentrer sur leur art. Son expertise administrative garantit la fluidité et la sérénité de tous les projets.",
     skills: ["Gestion administrative", "Optimisation des process", "Veille juridique"],
-    image: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=1024",
+    image: "https://i.imgur.com/VIvzDfN.png",
     contact: {
-      linkedin: "elodie-biffi",
-      email: "elodie@tinyteam.fr"
+      email: "administratif@tinyteam.fr"
     }
   },
   {
     name: "Jérémy Dravigny",
     role: "Responsable Communication",
-    description: "Stratège digital, Jérémy crée des narratifs percutants qui connectent les artistes à leur public de manière authentique et innovante.",
+    description: "Fort de 20 ans dans le spectacle, Jérémy apporte une vision globale unique. Créateur d'un festival en 2006, tour à tour producteur, artiste et diffuseur, il cultive l'art de « faire les choses sérieusement sans se prendre au sérieux ». Passionné et toujours de bonne humeur, il trouve des solutions créatives pour connecter les artistes à leur public depuis 2 ans chez Tiny Team.",
     skills: ["Communication digitale", "Marketing artistique", "Relations presse"],
-    image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=1024",
+    image: "https://i.imgur.com/VwHcPJF.png",
     contact: {
-      linkedin: "jeremy-dravigny",
-      email: "jeremy@tinyteam.fr"
+      email: "tourmanager@tinyteam.fr"
     }
   },
   {
     name: "Margaux Morel",
     role: "Chargée de Production",
-    description: "Créative et méthodique, Margaux donne vie aux projets les plus ambitieux en conjuguant vision artistique et excellence opérationnelle.",
+    description: "Nouvelle recrue dynamique de l'équipe, Margaux apporte fraîcheur et créativité. Forte de plus de 10 ans d'expérience dans l'événementiel, elle enrichit Tiny Team de sa sensibilité organisationnelle et de son enthousiasme communicatif pour donner vie aux projets les plus ambitieux.",
     skills: ["Production artistique", "Direction technique", "Gestion de projet"],
-    image: "https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&q=80&w=1024",
+    image: "https://i.imgur.com/IKLr6Zq.png",
     contact: {
-      linkedin: "margaux-morel",
-      email: "margaux@tinyteam.fr"
+      email: "diffusion@tinyteam.fr"
     }
   }
 ];
@@ -257,15 +252,6 @@ const TeamMemberSection = ({ member, index, setCurrentIndex }) => {
             <div>
               <h3 className="text-white/90 font-semibold mb-4">Contact</h3>
               <div className="flex flex-wrap gap-4">
-                <a
-                  href={`https://linkedin.com/in/${member.contact.linkedin}`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass-effect text-white/70 hover:text-white transition-colors duration-300"
-                >
-                  <Linkedin className="w-4 h-4 md:w-5 md:h-5" />
-                  <span className="text-sm md:text-base">LinkedIn</span>
-                </a>
                 <a
                   href={`mailto:${member.contact.email}`}
                   className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass-effect text-white/70 hover:text-white transition-colors duration-300"

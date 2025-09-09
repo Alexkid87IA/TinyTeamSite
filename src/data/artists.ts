@@ -3,9 +3,9 @@ export const artists = [
     id: "urbain",
     name: "Urbain",
     type: "Stand-up",
-    tagline: "L'énergie brute du stand-up",
-    description: "Urbain, c'est l'énergie brute du stand-up. Avec son regard acéré sur le monde et son style libre, il capte la vérité du moment sans artifice.",
-    longDescription: "Urbain incarne une nouvelle génération de comédiens qui n'ont pas peur de dire les choses. Son style direct et sans filtre fait mouche à chaque fois. Il transforme les situations du quotidien en moments d'anthologie, avec une sincérité désarmante qui fait rire autant qu'elle fait réfléchir.",
+    tagline: "Le gars contradictoire qui assume ses paradoxes",
+    description: "À 37 ans, Urbain incarne cette génération tiraillée entre l'envie de rester rock'n'roll et celle de se ranger. Un tournant s'impose, mais lequel choisir ?",
+    longDescription: "Urbain parcourt la France avec ses nouvelles blagues, parce qu'il en a marre de ne les faire que pour des vapoteurs parisiens à trottinettes. Ce type contradictoire qui aime se mettre deux mines par semaine mais fait quand même le Dry January, qui rêve de coucher avec la terre entière mais est en couple depuis 14 ans, qui tente de faire du sport uniquement après s'être enfilé un matelas de fromage.",
     image: "https://static.eno.do/x/fs-200359-default/9fb343deaad6dbe750cd731b4c0564b8/media.jpg",
     posterImage: "https://static.eno.do/x/fs-200359-default/9fb343deaad6dbe750cd731b4c0564b8/media.jpg",
     social: {
@@ -13,49 +13,18 @@ export const artists = [
       tiktok: "@urbain_official",
       youtube: "@UrbainComedy"
     },
-    showName: "Urbain - Sans Filtre",
-    showDescription: "Un spectacle où l'authenticité rencontre l'humour. Urbain nous livre sa vision du monde sans concession, avec une énergie communicative qui transforme chaque représentation en moment unique.",
-    videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ",
-    dates: [
-      {
-        date: "15 Mars 2024",
-        time: "20:30",
-        venue: "Théâtre du Rire",
-        location: "Paris",
-        status: "Bientôt complet",
-        price: "À partir de 25€",
-        link: "/billetterie/urbain-15-mars"
-      }
-    ],
-    socialContent: [
-      {
-        type: "video",
-        thumbnail: "https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?w=400&h=300&fit=crop",
-        platform: "TikTok",
-        views: "2.3M"
-      },
-      {
-        type: "video",
-        thumbnail: "https://images.unsplash.com/photo-1598300042247-d088f8ab3a91?w=400&h=300&fit=crop",
-        platform: "Instagram",
-        views: "850K"
-      }
-    ],
+    showName: "En rodage",
+    showDescription: "Une véritable dramaturgie moderne où Urbain pèse le pour et le contre avec vous pendant une heure. Va-t-il rester le gars rock'n'roll qu'il aime être ou se ranger définitivement et l'assumer ?",
+    videoUrl: "https://www.youtube.com/embed/MMsKyi6Tm_c",
+    websiteUrl: "https://urbainstandup.com/",
+    dates: [],
+    socialContent: [],
     achievements: [
-      "Révélation Stand-up 2023",
-      "Plus de 100 représentations en France",
-      "2M+ de vues sur les réseaux sociaux"
+      "Vu sur Clique et au Festival de Montreux",
+      "Animateur des Comedy Club parisiens",
+      "Plus de 1200 épisodes de podcasts"
     ],
-    reviews: [
-      {
-        author: "Le Figaro",
-        quote: "Urbain maîtrise l'art de l'observation avec une justesse remarquable."
-      },
-      {
-        author: "Télérama",
-        quote: "Un talent brut qui ne laisse personne indifférent."
-      }
-    ],
+    reviews: [],
     stats: {
       shows: 120,
       cities: 45,
@@ -66,9 +35,9 @@ export const artists = [
     id: "marc-antoine",
     name: "Marc-Antoine Le Bret",
     type: "Imitateur",
-    tagline: "Mille voix, une sensibilité rare",
-    description: "Marc-Antoine Le Bret, c'est mille voix et une sensibilité rare. Ses imitations ne sont pas que des performances techniques : elles racontent une époque.",
-    longDescription: "Marc-Antoine Le Bret transcende l'art de l'imitation. Chaque voix qu'il emprunte devient un personnage à part entière, avec ses nuances et sa profondeur. Il ne se contente pas de reproduire, il réinvente et nous fait découvrir des facettes insoupçonnées de nos personnalités préférées.",
+    tagline: "L'original des copies",
+    description: "Toujours seul sur scène, mais avec une centaine de voix et de nouveaux sketchs. Le spectacle d'après la fin du monde, avant la fin du monde !",
+    longDescription: "Marc-Antoine Le Bret revient avec SOLO, un spectacle où vous découvrirez ce qui pourrait arriver si le monde tournait à l'envers. Peut-être est-il un imitateur, mais quitte à aller voir une copie, autant aller voir l'original ! Avec sa centaine de voix et ses nouveaux sketchs, il nous offre une vision décalée et hilarante de notre époque.",
     image: "https://static.eno.do/x/fs-200360-default/a0c4d924ae52585a517dd76531300e5b/media.jpg",
     posterImage: "https://static.eno.do/x/fs-200360-default/a0c4d924ae52585a517dd76531300e5b/media.jpg",
     social: {
@@ -76,49 +45,18 @@ export const artists = [
       tiktok: "@malebret_officiel",
       youtube: "@MarcAntoineLeBret"
     },
-    showName: "Marc-Antoine Le Bret - Mille Voix",
-    showDescription: "Un voyage à travers les voix qui ont marqué notre époque. Marc-Antoine nous emmène dans un tourbillon d'imitations où chaque personnage prend vie avec une précision saisissante.",
-    videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ",
-    dates: [
-      {
-        date: "22 Mars 2024",
-        time: "20:30",
-        venue: "Le Point Virgule",
-        location: "Paris",
-        status: "Disponible",
-        price: "À partir de 28€",
-        link: "/billetterie/marc-antoine-22-mars"
-      }
-    ],
-    socialContent: [
-      {
-        type: "video",
-        thumbnail: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=300&fit=crop",
-        platform: "YouTube",
-        views: "1.8M"
-      },
-      {
-        type: "video",
-        thumbnail: "https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?w=400&h=300&fit=crop",
-        platform: "Instagram",
-        views: "920K"
-      }
-    ],
+    showName: "SOLO",
+    showDescription: "Un petit aperçu de ce qui pourrait arriver si le monde tournait à l'envers. C'est le spectacle d'après la fin du monde, avant la fin du monde ! En bien plus drôle !",
+    videoUrl: "https://www.youtube.com/embed/jTtXa-09G50",
+    websiteUrl: "https://www.marcantoinelebret.fr/",
+    dates: [],
+    socialContent: [],
     achievements: [
-      "Meilleur Imitateur 2022",
-      "Tournée nationale sold-out",
-      "Collaborations avec France Inter"
+      "Maître incontesté de l'imitation",
+      "Des centaines de voix maîtrisées",
+      "Tournées sold-out dans toute la France"
     ],
-    reviews: [
-      {
-        author: "France Info",
-        quote: "Marc-Antoine Le Bret élève l'imitation au rang d'art véritable."
-      },
-      {
-        author: "L'Obs",
-        quote: "Une technique époustouflante au service d'un humour intelligent."
-      }
-    ],
+    reviews: [],
     stats: {
       shows: 200,
       cities: 60,
@@ -129,59 +67,28 @@ export const artists = [
     id: "adel",
     name: "Adel Fugazi",
     type: "Stand-up",
-    tagline: "Une bulle d'oxygène dans un monde pressé",
-    description: "Adel Fugazi est une bulle d'oxygène dans un monde trop pressé. Avec son flegme unique et son humour qui fuse sans forcer.",
-    longDescription: "Adel Fugazi a ce don rare de transformer la simplicité en génie comique. Son approche décontractée cache une intelligence aiguë qui décortique notre société avec une justesse désarmante. Il nous fait rire de nous-mêmes avec une tendresse qui fait du bien.",
+    tagline: "Une pause dans le brouhaha",
+    description: "Dans ce spectacle mêlant absurde et originalité, Adel vous offre une pause. Une pause à tout ce brouhaha extérieur, avec un point de vue nouveau et rafraîchissant.",
+    longDescription: "Adel aborde des sujets légers et universels avec un regard à contre-courant de la tendance actuelle. Et ça fait du bien ! Après avoir fait ses preuves au Festival de Montreux et intégré la Troupe du Jamel Comedy Club, il sort grand gagnant du Festival d'Humour de Paris. En 2024, il atteint la finale de Comedy Class avec Éric et Ramzy.",
     image: "https://static.eno.do/x/fs-200361-default/ce4d47f8d131e7971b4f3fc0de45b470/media.jpg",
     posterImage: "https://static.eno.do/x/fs-200361-default/ce4d47f8d131e7971b4f3fc0de45b470/media.jpg",
     social: {
       instagram: "@adelfugazi",
       tiktok: "@adel_fugazi",
-      youtube: "@AdelFugaziComedy"
+      youtube: "@adelfugazi"
     },
-    showName: "Adel Fugazi - Tranquille",
-    showDescription: "Un spectacle où la décontraction rencontre l'excellence. Adel nous invite dans son univers décalé où chaque observation devient une pépite d'humour.",
-    videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ",
-    dates: [
-      {
-        date: "30 Mars 2024",
-        time: "20:30",
-        venue: "La Comédie",
-        location: "Lyon",
-        status: "Disponible",
-        price: "À partir de 28€",
-        link: "/billetterie/adel-30-mars"
-      }
-    ],
-    socialContent: [
-      {
-        type: "video",
-        thumbnail: "https://images.unsplash.com/photo-1598300042247-d088f8ab3a91?w=400&h=300&fit=crop",
-        platform: "TikTok",
-        views: "1.5M"
-      },
-      {
-        type: "video",
-        thumbnail: "https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?w=400&h=300&fit=crop",
-        platform: "Instagram",
-        views: "680K"
-      }
-    ],
+    showName: "Pause",
+    showDescription: "Adel est prêt à vous accueillir dans son univers. Mais vous, êtes-vous prêt à y entrer ? Un spectacle qui offre une vraie respiration dans notre monde agité.",
+    videoUrl: "https://www.youtube.com/embed/Vy_aejwStXk",
+    websiteUrl: "https://www.youtube.com/@adelfugazi",
+    dates: [],
+    socialContent: [],
     achievements: [
-      "Coup de cœur du Festival d'Avignon",
-      "Chroniqueur sur France Inter",
-      "1.5M+ de vues sur TikTok"
+      "Troupe du Jamel Comedy Club",
+      "Gagnant du Festival d'Humour de Paris",
+      "Finaliste Comedy Class avec Éric et Ramzy"
     ],
-    reviews: [
-      {
-        author: "Les Inrocks",
-        quote: "Adel Fugazi maîtrise l'art du timing comme personne."
-      },
-      {
-        author: "Libération",
-        quote: "Un humour intelligent qui fait mouche à chaque fois."
-      }
-    ],
+    reviews: [],
     stats: {
       shows: 95,
       cities: 35,
@@ -192,9 +99,9 @@ export const artists = [
     id: "djal",
     name: "D'Jal",
     type: "Humoriste",
-    tagline: "Une explosion d'amour et de rires",
-    description: "D'Jal est une explosion d'amour et de rires. Chaque spectacle est une déclaration d'énergie pure, où l'on rit de tout, ensemble, sans barrières.",
-    longDescription: "D'Jal incarne la joie de vivre sur scène. Son énergie débordante et sa générosité naturelle créent une communion unique avec le public. Il transforme chaque représentation en fête collective où les rires fusent dans une atmosphère de pure bienveillance.",
+    tagline: "Votre dose d'humour et d'amour",
+    description: "Après deux shows à guichets fermés et plus de 200 représentations, D'jal revient avec des personnages toujours plus dingues et des situations encore plus folles.",
+    longDescription: "D'jal est de retour avec un nouveau spectacle après avoir conquis des milliers de spectateurs. L'occasion de s'amuser tout en prenant votre dose d'humour et d'amour. Ses personnages dingues et ses situations folles créent une communion unique avec le public, transformant chaque représentation en moment de pure joie collective.",
     image: "https://static.eno.do/x/fs-200362-default/0743597244e1da871493bfbf5d13b7f7/media.jpg",
     posterImage: "https://static.eno.do/x/fs-200362-default/0743597244e1da871493bfbf5d13b7f7/media.jpg",
     social: {
@@ -202,49 +109,18 @@ export const artists = [
       tiktok: "@djal_comedy",
       youtube: "@DjalHumour"
     },
-    showName: "D'Jal - Énergie Pure",
-    showDescription: "Un spectacle qui réchauffe le cœur et fait du bien à l'âme. D'Jal nous embarque dans son univers coloré où l'humour rime avec humanité.",
-    videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ",
-    dates: [
-      {
-        date: "5 Avril 2024",
-        time: "20:30",
-        venue: "Théâtre de la Ville",
-        location: "Marseille",
-        status: "Disponible",
-        price: "À partir de 30€",
-        link: "/billetterie/djal-5-avril"
-      }
-    ],
-    socialContent: [
-      {
-        type: "video",
-        thumbnail: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=300&fit=crop",
-        platform: "Instagram",
-        views: "1.2M"
-      },
-      {
-        type: "video",
-        thumbnail: "https://images.unsplash.com/photo-1598300042247-d088f8ab3a91?w=400&h=300&fit=crop",
-        platform: "TikTok",
-        views: "890K"
-      }
-    ],
+    showName: "À Cœur Ouvert",
+    showDescription: "Un nouveau spectacle mêlant personnages toujours plus dingues et situations encore plus folles ! L'occasion de s'amuser tout en prenant votre dose d'humour et d'amour.",
+    videoUrl: "https://www.youtube.com/embed/p0ByHxfPx1k",
+    websiteUrl: "https://djal.fr/",
+    dates: [],
+    socialContent: [],
     achievements: [
-      "Artiste le plus aimé du public 2023",
-      "Tournée européenne complète",
-      "Parrain d'associations caritatives"
+      "Deux shows à guichets fermés",
+      "Plus de 200 représentations",
+      "Des milliers de spectateurs conquis"
     ],
-    reviews: [
-      {
-        author: "Le Parisien",
-        quote: "D'Jal rayonne d'une énergie communicative exceptionnelle."
-      },
-      {
-        author: "20 Minutes",
-        quote: "Un spectacle qui fait du bien et qui rassemble."
-      }
-    ],
+    reviews: [],
     stats: {
       shows: 150,
       cities: 50,
@@ -252,62 +128,31 @@ export const artists = [
     }
   },
   {
-    id: "nash",
-    name: "Nash",
+    id: "morgane",
+    name: "Morgane Berling",
     type: "Stand-up",
-    tagline: "La puissance douce",
-    description: "Nash, c'est la puissance douce. Elle monte sur scène avec la grâce de celles qui savent qu'elles n'ont rien à prouver, juste à être.",
-    longDescription: "Nash possède cette élégance naturelle qui impose le respect dès les premiers mots. Son humour subtil et sa présence magnétique créent une atmosphère unique où chaque phrase porte. Elle aborde les sujets les plus délicats avec une finesse remarquable.",
-    image: "https://static.eno.do/x/fs-200363-default/d71c4d77228d3718029f4f81a43190b6/media.jpg",
-    posterImage: "https://static.eno.do/x/fs-200363-default/d71c4d77228d3718029f4f81a43190b6/media.jpg",
+    tagline: "Entre marché du dimanche et soirées du samedi",
+    description: "À 24 ans, Morgane jette un regard corrosif sur ses ainés sans épargner sa génération. Un humour impertinent qui questionne sa place dans cette société.",
+    longDescription: "Morgane Berling fait le bilan de sa jeune vie avec un humour impertinent et décapant. Partagée entre les soirées du samedi soir et le marché du dimanche matin, elle ne sait plus dans quelle case de la société elle se place. Un seule en scène interprété à la première personne où interviennent toute une galerie de personnages, écrit à quatre mains et deux générations.",
+    image: "https://i.imgur.com/munE7s3.jpeg",
+    posterImage: "https://i.imgur.com/munE7s3.jpeg",
     social: {
-      instagram: "@nash_comedy",
-      tiktok: "@nash_standup",
-      youtube: "@NashComedy"
+      instagram: "@morgane.brlg",
+      tiktok: "@morganeberling",
+      youtube: "@MorganeBerling"
     },
-    showName: "Nash - Grâce et Puissance",
-    showDescription: "Un spectacle d'une élégance rare où chaque mot compte. Nash nous livre sa vision du monde avec une justesse et une profondeur qui marquent les esprits.",
-    videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ",
-    dates: [
-      {
-        date: "12 Avril 2024",
-        time: "20:30",
-        venue: "L'Européen",
-        location: "Paris",
-        status: "Disponible",
-        price: "À partir de 25€",
-        link: "/billetterie/nash-12-avril"
-      }
-    ],
-    socialContent: [
-      {
-        type: "video",
-        thumbnail: "https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?w=400&h=300&fit=crop",
-        platform: "YouTube",
-        views: "750K"
-      },
-      {
-        type: "video",
-        thumbnail: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=300&fit=crop",
-        platform: "Instagram",
-        views: "520K"
-      }
-    ],
+    showName: "La Vingtaine",
+    showDescription: "Ce spectacle permet à toute la famille de se retrouver autour de souvenirs ou de projections : la vingtaine ! Un regard neuf et corrosif sur notre époque.",
+    videoUrl: "https://www.youtube.com/embed/XQ_NpQwHtvI",
+    websiteUrl: "https://morganeberling.bbproduction.fr/",
+    dates: [],
+    socialContent: [],
     achievements: [
-      "Prix de la critique féminine 2023",
-      "Première partie de grands noms",
-      "Chroniqueuse sur Canal+"
+      "Prix du jury - Festival Les Cadet Roussel du Rire",
+      "Prix du Public - Festival Drôlement Bien de Besançon",
+      "Présente au Festival Off d'Avignon 2024 et 2025"
     ],
-    reviews: [
-      {
-        author: "Elle",
-        quote: "Nash redéfinit l'humour féminin avec une intelligence rare."
-      },
-      {
-        author: "Marie Claire",
-        quote: "Une artiste complète qui marque son époque."
-      }
-    ],
+    reviews: [],
     stats: {
       shows: 80,
       cities: 30,
@@ -318,9 +163,9 @@ export const artists = [
     id: "thomas",
     name: "Thomas Angelvy",
     type: "Humoriste",
-    tagline: "La nostalgie transformée en rires",
-    description: "Thomas Angelvy a l'art de transformer la nostalgie en moteur d'éclats de rire. Entre références pop et souvenirs communs.",
-    longDescription: "Thomas Angelvy est le maître de la nostalgie positive. Il puise dans nos souvenirs collectifs pour créer des moments de complicité unique avec son public. Ses références pop culture et son regard tendre sur le passé créent une atmosphère chaleureuse et familière.",
+    tagline: "Le tiramisu aux Oréos et les cassettes VHS",
+    description: "Thomas a une spontanéité incroyable et fait le tiramisu aux Oréos comme personne. Mais certaines preuves de son passé valent mieux être effacées...",
+    longDescription: "Pour te convaincre de venir, Thomas pourrait te dire qu'il est trop drôle, qu'il a une spontanéité incroyable, ou même qu'il fait le tiramisu aux Oréos comme personne ! Mais la vérité, c'est qu'il est presque sûr que tu ne crois que ce que tu vois. Face à une cassette VHS de son passé, il vaut mieux que certaines preuves soient effacées...",
     image: "https://static.eno.do/x/fs-200364-default/2cf3c8b262adfc3c6e72e95639c39cf8/media.jpg",
     posterImage: "https://static.eno.do/x/fs-200364-default/2cf3c8b262adfc3c6e72e95639c39cf8/media.jpg",
     social: {
@@ -328,49 +173,18 @@ export const artists = [
       tiktok: "@thomasangelvy",
       youtube: "@ThomasAngelvy"
     },
-    showName: "Thomas Angelvy - Retour vers le Rire",
-    showDescription: "Un voyage dans le temps où chaque époque devient prétexte à rire. Thomas nous fait redécouvrir notre passé avec un regard plein d'humour et de tendresse.",
-    videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ",
-    dates: [
-      {
-        date: "19 Avril 2024",
-        time: "20:30",
-        venue: "La Nouvelle Seine",
-        location: "Paris",
-        status: "Disponible",
-        price: "À partir de 22€",
-        link: "/billetterie/thomas-19-avril"
-      }
-    ],
-    socialContent: [
-      {
-        type: "video",
-        thumbnail: "https://images.unsplash.com/photo-1598300042247-d088f8ab3a91?w=400&h=300&fit=crop",
-        platform: "TikTok",
-        views: "1.1M"
-      },
-      {
-        type: "video",
-        thumbnail: "https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?w=400&h=300&fit=crop",
-        platform: "YouTube",
-        views: "650K"
-      }
-    ],
+    showName: "Première Fois",
+    showDescription: "Retrouve Thomas sur scène et viens constater par toi-même ! Il te touchera deux mots de cette histoire de cassette VHS quand tu seras devant lui.",
+    videoUrl: "https://www.youtube.com/embed/0GpPaZ7yyhc",
+    websiteUrl: "https://www.thomasangelvy.com/",
+    dates: [],
+    socialContent: [],
     achievements: [
+      "Humour générationnel qui cartonne",
       "Viral sur les réseaux sociaux",
-      "Collaboration avec Konbini",
       "Plus de 50 dates en France"
     ],
-    reviews: [
-      {
-        author: "Konbini",
-        quote: "Thomas Angelvy maîtrise l'art de la référence comme personne."
-      },
-      {
-        author: "Madmoizelle",
-        quote: "Un humour générationnel qui fait mouche."
-      }
-    ],
+    reviews: [],
     stats: {
       shows: 65,
       cities: 25,
@@ -381,9 +195,9 @@ export const artists = [
     id: "lucie",
     name: "Lucie Carbone",
     type: "Stand-up",
-    tagline: "Un feu follet poétique",
-    description: "Lucie Carbone, c'est un feu follet poétique. Avec son regard doux-amer sur le quotidien et son énergie pétillante.",
-    longDescription: "Lucie Carbone transforme les petits riens du quotidien en moments de pure poésie comique. Son regard unique sur le monde et sa capacité à trouver l'extraordinaire dans l'ordinaire font d'elle une artiste à part, touchante et drôle à la fois.",
+    tagline: "Aussi chaleureux qu'une raclette en plein mois d'août",
+    description: "C'est l'histoire d'un nouveau spectacle qui parle de la vie, cette coquine, et de toutes les cases qu'on est censés cocher pour la réussir.",
+    longDescription: "Grosso modum, Lucie te promet un moment aussi chaleureux qu'une raclette en plein mois d'août, aussi doux qu'un agneau ignorant Pâques, aussi léger qu'une plume sous hélium et surtout : la joie de se rencontrer en chair et en os ! Elle décortique avec humour et tendresse toutes les cases qu'on est censés cocher pour réussir sa vie.",
     image: "https://static.eno.do/x/fs-200365-default/cda1d9f46d486a0ba2357daa5a79f6bd/media.jpg",
     posterImage: "https://static.eno.do/x/fs-200365-default/cda1d9f46d486a0ba2357daa5a79f6bd/media.jpg",
     social: {
@@ -391,49 +205,18 @@ export const artists = [
       tiktok: "@luciecarbone_",
       youtube: "@LucieCarboneComedy"
     },
-    showName: "Lucie Carbone - Étincelles",
-    showDescription: "Un spectacle pétillant où la poésie rencontre l'humour. Lucie nous emmène dans son univers tendre et décalé avec une fraîcheur communicative.",
-    videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ",
-    dates: [
-      {
-        date: "26 Avril 2024",
-        time: "20:30",
-        venue: "Le Point Virgule",
-        location: "Paris",
-        status: "Disponible",
-        price: "À partir de 22€",
-        link: "/billetterie/lucie-26-avril"
-      }
-    ],
-    socialContent: [
-      {
-        type: "video",
-        thumbnail: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=300&fit=crop",
-        platform: "Instagram",
-        views: "480K"
-      },
-      {
-        type: "video",
-        thumbnail: "https://images.unsplash.com/photo-1598300042247-d088f8ab3a91?w=400&h=300&fit=crop",
-        platform: "TikTok",
-        views: "720K"
-      }
-    ],
+    showName: "Jour de Fête",
+    showDescription: "Un spectacle qui parle de la vie et de toutes les cases qu'on est censés cocher pour la réussir. Un moment de pure légèreté et de joie partagée.",
+    videoUrl: "https://www.youtube.com/embed/I9EO2OzuIyc",
+    websiteUrl: "https://www.luciecarbone.com/",
+    dates: [],
+    socialContent: [],
     achievements: [
-      "Révélation féminine 2023",
-      "Résidence au Théâtre du Rond-Point",
-      "Podcast à succès sur Spotify"
+      "Révélation féminine de l'année",
+      "Spectacle plébiscité par le public",
+      "Humour tendre et décalé"
     ],
-    reviews: [
-      {
-        author: "Télérama",
-        quote: "Lucie Carbone apporte une fraîcheur bienvenue au stand-up français."
-      },
-      {
-        author: "Les Inrocks",
-        quote: "Une sensibilité rare au service d'un humour intelligent."
-      }
-    ],
+    reviews: [],
     stats: {
       shows: 45,
       cities: 20,
@@ -444,9 +227,9 @@ export const artists = [
     id: "edouard",
     name: "Edouard Deloignon",
     type: "Humoriste",
-    tagline: "La tendresse du sale gosse",
-    description: "Edouard Deloignon, c'est la tendresse du sale gosse qui n'a pas envie de devenir sérieux. Il réinvente l'ordinaire avec humour.",
-    longDescription: "Edouard Deloignon cultive l'art de rester un grand enfant sans jamais tomber dans la puérilité. Son humour espiègle et sa capacité à voir le monde avec des yeux neufs créent une complicité immédiate avec son public. Il nous rappelle que grandir ne signifie pas perdre sa capacité d'émerveillement.",
+    tagline: "Et si on ne prenait pas les choses au sérieux ?",
+    description: "J'ai toujours eu cette sensation d'être un peu décalé par rapport aux autres. Plus j'avance dans la vie et plus ça se vérifie. J'ai décidé que c'était ok.",
+    longDescription: "Edouard a toujours eu cette sensation d'être un peu décalé par rapport aux autres. Plus il avance dans la vie et plus ça se vérifie. Mais vous savez quoi ? Il a décidé que c'était ok. Avec son énergie, son talent et sa répartie, il vous propose une expérience unique : 1h30 de lâcher prise, pour rire ensemble !",
     image: "https://static.eno.do/x/fs-200366-default/cdc3aba992ae1735c4a9b7a3fd8befc4/media.jpg",
     posterImage: "https://static.eno.do/x/fs-200366-default/cdc3aba992ae1735c4a9b7a3fd8befc4/media.jpg",
     social: {
@@ -454,49 +237,18 @@ export const artists = [
       tiktok: "@edouarddeloignon",
       youtube: "@EdouardDeloignon"
     },
-    showName: "Edouard Deloignon - Éternellement Jeune",
-    showDescription: "Un spectacle qui célèbre l'enfant qui sommeille en nous. Edouard nous invite à redécouvrir le monde avec un regard neuf et plein d'humour.",
-    videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ",
-    dates: [
-      {
-        date: "3 Mai 2024",
-        time: "20:30",
-        venue: "Théâtre du Marais",
-        location: "Paris",
-        status: "Disponible",
-        price: "À partir de 25€",
-        link: "/billetterie/edouard-3-mai"
-      }
-    ],
-    socialContent: [
-      {
-        type: "video",
-        thumbnail: "https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?w=400&h=300&fit=crop",
-        platform: "YouTube",
-        views: "580K"
-      },
-      {
-        type: "video",
-        thumbnail: "https://images.unsplash.com/photo-1598300042247-d088f8ab3a91?w=400&h=300&fit=crop",
-        platform: "Instagram",
-        views: "420K"
-      }
-    ],
+    showName: "Grandira Plus Tard",
+    showDescription: "Et si on ne prenait pas les choses au sérieux ? 1h30 de lâcher prise, pour rire ensemble ! Une expérience unique avec la nouvelle star de l'humour.",
+    videoUrl: "https://www.youtube.com/embed/NNt_K6yYJQY",
+    websiteUrl: "https://edouarddeloignon.com/",
+    dates: [],
+    socialContent: [],
     achievements: [
-      "Finaliste du concours Montreux Comedy",
-      "Chroniqueur sur Fun Radio",
-      "Spectacle adapté en podcast"
+      "Plus de 150 millions de vues",
+      "LA nouvelle star de l'humour",
+      "Spectacle phénomène"
     ],
-    reviews: [
-      {
-        author: "Fun Radio",
-        quote: "Edouard Deloignon garde son âme d'enfant avec un talent d'adulte."
-      },
-      {
-        author: "Rire & Chansons",
-        quote: "Un humour frais qui fait du bien."
-      }
-    ],
+    reviews: [],
     stats: {
       shows: 70,
       cities: 28,
@@ -507,9 +259,9 @@ export const artists = [
     id: "julien-santini",
     name: "Julien Santini",
     type: "Humoriste",
-    tagline: "L'humour du Sud qui fait mouche",
-    description: "Julien Santini incarne l'humour méditerranéen avec un charisme naturel. Son accent du Sud et ses histoires savoureuses créent une atmosphère chaleureuse et conviviale.",
-    longDescription: "Julien Santini puise dans ses origines méditerranéennes pour créer un humour authentique et généreux. Ses anecdotes familiales et ses observations sur la vie du Sud de la France résonnent avec un large public. Il a ce don de transformer les situations les plus banales en moments d'anthologie.",
+    tagline: "Sur scène, tout est possible !",
+    description: "Entre Stand-up et humour décalé, Santini jongle entre poésie et audace. Un show inclassable et phénoménal !",
+    longDescription: "Entrer dans l'univers de Santini, c'est découvrir que sur scène tout est possible ! Entre Stand-up et humour décalé, le comédien nous fait part de ses observations et de son parcours, jonglant tout le long du spectacle entre poésie et audace. Ce show est inclassable et phénoménal ! PS : Santini tient à préciser qu'il n'est pas l'auteur de ce pitch.",
     image: "https://26.staticbtf.eno.do/v1/29-default/caa1da7f867fc1ad334621eba4d80b76/media.jpg",
     posterImage: "https://26.staticbtf.eno.do/v1/29-default/caa1da7f867fc1ad334621eba4d80b76/media.jpg",
     social: {
@@ -517,49 +269,18 @@ export const artists = [
       tiktok: "@juliensantini",
       youtube: "@JulienSantiniComedy"
     },
-    showName: "Julien Santini - Accent du Bonheur",
-    showDescription: "Un spectacle qui sent bon le Sud et la bonne humeur. Julien nous emmène dans son univers méditerranéen avec des histoires qui réchauffent le cœur.",
-    videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ",
-    dates: [
-      {
-        date: "15 Mai 2024",
-        time: "20:30",
-        venue: "Théâtre du Gymnase",
-        location: "Marseille",
-        status: "Disponible",
-        price: "À partir de 28€",
-        link: "/billetterie/julien-15-mai"
-      }
-    ],
-    socialContent: [
-      {
-        type: "video",
-        thumbnail: "https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?w=400&h=300&fit=crop",
-        platform: "Instagram",
-        views: "650K"
-      },
-      {
-        type: "video",
-        thumbnail: "https://images.unsplash.com/photo-1598300042247-d088f8ab3a91?w=400&h=300&fit=crop",
-        platform: "TikTok",
-        views: "890K"
-      }
-    ],
+    showName: "Santini",
+    showDescription: "Un spectacle où tout est possible ! Entre poésie et audace, Santini nous offre un show inclassable et phénoménal.",
+    videoUrl: "https://www.youtube.com/embed/H2KONBv6280",
+    websiteUrl: "https://santinicomedy.com/",
+    dates: [],
+    socialContent: [],
     achievements: [
-      "Révélation du Festival d'Avignon",
-      "Tournée dans le Sud de la France",
-      "Chroniqueur sur France Bleu Provence"
+      "Show inclassable et phénoménal",
+      "Entre stand-up et humour décalé",
+      "Mélange unique de poésie et d'audace"
     ],
-    reviews: [
-      {
-        author: "La Provence",
-        quote: "Julien Santini incarne l'art de vivre méditerranéen avec un talent fou."
-      },
-      {
-        author: "Nice-Matin",
-        quote: "Un humour généreux qui fait du bien à l'âme."
-      }
-    ],
+    reviews: [],
     stats: {
       shows: 75,
       cities: 30,
@@ -571,63 +292,63 @@ export const artists = [
     name: "Djamel Comedy Club",
     type: "Collectif d'Humoristes",
     tagline: "La nouvelle génération de l'humour",
-    description: "Djamel Comedy Club représente la nouvelle vague de l'humour français. Un collectif d'artistes talentueux qui renouvellent les codes du stand-up avec fraîcheur et modernité.",
-    longDescription: "Le Djamel Comedy Club est devenu une référence incontournable de la scène humoristique française. Ce collectif rassemble des talents émergents qui apportent un regard neuf sur notre société. Leur approche moderne et décomplexée de l'humour séduit une nouvelle génération de spectateurs.",
+    description: "Le Djamel Comedy Club représente la nouvelle vague de l'humour français. Un collectif d'artistes talentueux qui renouvellent les codes du stand-up.",
+    longDescription: "Le Djamel Comedy Club est devenu une référence incontournable de la scène humoristique française. Ce collectif rassemble des talents émergents qui apportent un regard neuf sur notre société. Leur approche moderne et décomplexée de l'humour séduit une nouvelle génération de spectateurs avec fraîcheur et modernité.",
     image: "https://26.staticbtf.eno.do/v1/30-default/975e3fdd1700df5c9bd53662949e3fda/media.jpg",
     posterImage: "https://26.staticbtf.eno.do/v1/30-default/975e3fdd1700df5c9bd53662949e3fda/media.jpg",
     social: {
-      instagram: "@djamelcomedyclub",
-      tiktok: "@djamelcomedy",
-      youtube: "@DjamelComedyClub"
+      instagram: "jamelcomedyclub",
+      tiktok: "jamelcomedyclub",
+      youtube: "jamelcomedyclub"
     },
     showName: "Djamel Comedy Club - Nouvelle Génération",
     showDescription: "Un spectacle collectif qui présente les talents de demain. Une soirée dynamique où se succèdent les artistes les plus prometteurs de la scène française.",
-    videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ",
-    dates: [
-      {
-        date: "25 Mai 2024",
-        time: "20:00",
-        venue: "Djamel Comedy Club",
-        location: "Paris",
-        status: "Disponible",
-        price: "À partir de 35€",
-        link: "/billetterie/djamel-25-mai"
-      }
-    ],
-    socialContent: [
-      {
-        type: "video",
-        thumbnail: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=300&fit=crop",
-        platform: "YouTube",
-        views: "2.1M"
-      },
-      {
-        type: "video",
-        thumbnail: "https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?w=400&h=300&fit=crop",
-        platform: "Instagram",
-        views: "1.3M"
-      }
-    ],
+    videoUrl: "https://www.youtube.com/embed/UExwlmZ-WYM",
+    websiteUrl: "https://lecomedyclub.com/",
+    dates: [],
+    socialContent: [],
     achievements: [
       "Tremplin de nombreux talents",
       "Plus de 500 spectacles par an",
       "Partenaire de Canal+ et France TV"
     ],
-    reviews: [
-      {
-        author: "Le Parisien",
-        quote: "Le Djamel Comedy Club continue de révéler les talents de demain."
-      },
-      {
-        author: "Télérama",
-        quote: "Un laboratoire créatif qui renouvelle constamment la scène humoristique."
-      }
-    ],
+    reviews: [],
     stats: {
       shows: 500,
       cities: 15,
       followers: 300000
     }
+  },
+  {
+    id: "sophie-alex",
+    name: "Sophie & Alex",
+    type: "Duo d'humoristes",
+    tagline: "La vraie vie, celle qu'on ne montre pas sur Insta",
+    description: "Deux voix, deux parcours, une complicité décapante. Sophie & Alex parlent des étapes de la vie avec une sincérité désarmante et un humour qui fait mouche.",
+    longDescription: "Des spectacles qui parlent des étapes de la vie, y'en a des tonnes. Sophie & Alex, elles, le font avec une authenticité rare. Entre burn-out et culottes filet post-partum, elles transforment les marques de la vie en vannes irrésistibles. Elles se mettent à nu (métaphoriquement) pour raconter la vraie vie, celle qu'on cache sur Instagram. Un duo qui rit de tout sans insulter le premier rang.",
+    image: "https://i.imgur.com/ht3EucF.jpeg",
+    posterImage: "https://i.imgur.com/ht3EucF.jpeg",
+    social: {
+      instagram: "sophieetalexandra",
+      tiktok: "sophieetalexandra",
+      youtube: "sophieetalexandra3231"
+    },
+    showName: "Sophie & Alex - Sans Filtre",
+    showDescription: "Ce spectacle, c'est elles. Mais c'est sûrement vous aussi. Un duo qui transforme les galères du quotidien en moments d'anthologie avec une complicité contagieuse.",
+    videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ",
+    websiteUrl: "#",
+    dates: [],
+    socialContent: [],
+    achievements: [
+      "Duo féminin incontournable",
+      "Humour authentique et sans filtre",
+      "Des milliers de spectateurs conquis"
+    ],
+    reviews: [],
+    stats: {
+      shows: 90,
+      cities: 35,
+      followers: 85000
+    }
   }
-  ,
 ];

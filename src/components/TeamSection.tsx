@@ -6,18 +6,18 @@ const teamMembers = [
   {
     name: "Bénédicte Lecoq",
     role: "Fondatrice",
-    description: "Plus de 15 ans d'expérience dans la production de spectacles",
-    quote: "L'art est un pont entre les rêves et la réalité",
-    image: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&q=80&w=1024",
+    description: "Visionnaire passionnée, elle crée Tiny Team avec la conviction que chaque artiste mérite un accompagnement unique",
+    quote: "Liberté et confiance sont nos valeurs fondamentales",
+    image: "https://i.imgur.com/9Zdq7Qn.png",
     color: "from-purple-500/30 to-blue-500/30",
-    passions: ["Théâtre contemporain", "Production artistique", "Développement de talents"]
+    passions: ["Direction artistique", "Production", "Management d'artistes"]
   },
   {
     name: "Isabelle Sabatier",
     role: "Responsable Diffusion",
-    description: "Experte en diffusion artistique et développement de carrière",
-    quote: "Chaque ville est une nouvelle scène à conquérir",
-    image: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?auto=format&fit=crop&q=80&w=1024",
+    description: "Passionnée du spectacle vivant, elle structure et optimise les tournées avec authenticité et professionnalisme",
+    quote: "Chaque projet mérite une stratégie de développement unique",
+    image: "https://26.staticbtf.eno.do/v1/50-default/72327cba31187ae50845f74005e56b82/media.jpg",
     color: "from-blue-500/30 to-cyan-500/30",
     passions: ["Programmation culturelle", "Gestion de tournées", "Relations publiques"]
   },
@@ -26,27 +26,27 @@ const teamMembers = [
     role: "Responsable Administrative",
     description: "Gardienne de l'excellence opérationnelle et administrative",
     quote: "L'organisation est la clé de la liberté artistique",
-    image: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=1024",
+    image: "https://i.imgur.com/VIvzDfN.png",
     color: "from-pink-500/30 to-purple-500/30",
     passions: ["Gestion administrative", "Optimisation des process", "Veille juridique"]
   },
   {
     name: "Jérémy Dravigny",
     role: "Resp. Communication",
-    description: "Stratège digital et expert en communication artistique",
-    quote: "L'innovation au service de l'émotion",
-    image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=1024",
+    description: "20 ans d'expérience, créateur de festival, il apporte une vision globale unique du spectacle vivant",
+    quote: "Faire les choses sérieusement sans se prendre au sérieux",
+    image: "https://i.imgur.com/VwHcPJF.png",
     color: "from-cyan-500/30 to-blue-500/30",
-    passions: ["Communication digitale", "Marketing artistique", "Nouvelles technologies"]
+    passions: ["Production", "Communication digitale", "Festival"]
   },
   {
     name: "Margaux Morel",
     role: "Chargée de Production",
-    description: "Créative et méthodique, experte en production de spectacles",
-    quote: "Créer des connexions, construire des ponts",
-    image: "https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&q=80&w=1024",
+    description: "Nouvelle recrue dynamique avec plus de 10 ans d'expérience événementielle",
+    quote: "Créativité et organisation au service de l'excellence",
+    image: "https://i.imgur.com/IKLr6Zq.png",
     color: "from-rose-500/30 to-pink-500/30",
-    passions: ["Production artistique", "Direction technique", "Gestion de projet"]
+    passions: ["Production artistique", "Événementiel", "Gestion de projet"]
   }
 ];
 

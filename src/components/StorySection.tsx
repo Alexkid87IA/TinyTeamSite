@@ -1,45 +1,14 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { ArrowRight, Star, Users, Globe, Award, TrendingUp, Heart, Mic, Film, Lightbulb, PenTool, Shield, Rocket } from 'lucide-react';
+import { ArrowRight, Star, Heart, Mic, Film, Lightbulb, PenTool, Shield, Rocket } from 'lucide-react';
 import { Link } from 'react-router-dom';
-
-const stats = [
-  {
-    value: "100+",
-    label: "artistes accompagnés",
-    icon: Users,
-    gradient: "from-pink-400 to-pink-500",
-    delay: 0.1
-  },
-  {
-    value: "95%",
-    label: "spectacles complets",
-    icon: TrendingUp,
-    gradient: "from-purple-400 to-purple-500",
-    delay: 0.2
-  },
-  {
-    value: "50+",
-    label: "villes en France",
-    icon: Globe,
-    gradient: "from-blue-400 to-blue-500",
-    delay: 0.3
-  },
-  {
-    value: "15+",
-    label: "années d'expérience",
-    icon: Award,
-    gradient: "from-yellow-400 to-yellow-500",
-    delay: 0.4
-  }
-];
 
 const teamMembers = [
   {
     name: "Bénédicte",
     lastName: "Lecoq",
     role: "Fondatrice & Directrice Artistique",
-    image: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&q=80&w=1024",
+    image: "https://26.staticbtf.eno.do/v1/51-default/f5464f128894d97aa54f8b509c878258/media.jpg",
     gradient: "from-pink-500/20 to-purple-500/20",
     zIndex: 50
   },
@@ -47,7 +16,7 @@ const teamMembers = [
     name: "Isabelle",
     lastName: "Sabatier", 
     role: "Responsable Diffusion & Tournées",
-    image: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?auto=format&fit=crop&q=80&w=1024",
+    image: "https://26.staticbtf.eno.do/v1/50-default/72327cba31187ae50845f74005e56b82/media.jpg",
     gradient: "from-purple-500/20 to-blue-500/20",
     zIndex: 40
   },
@@ -55,23 +24,23 @@ const teamMembers = [
     name: "Elodie",
     lastName: "Biffi",
     role: "Responsable Administrative",
-    image: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=1024",
+    image: "https://i.imgur.com/VIvzDfN.png",
     gradient: "from-blue-500/20 to-cyan-500/20",
     zIndex: 30
   },
   {
     name: "Jérémy",
     lastName: "Dravigny",
-    role: "Responsable Communication",
-    image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=1024",
+    role: "Responsable Communication & Production",
+    image: "https://i.imgur.com/VwHcPJF.png",
     gradient: "from-cyan-500/20 to-teal-500/20",
     zIndex: 20
   },
   {
     name: "Margaux",
     lastName: "Morel",
-    role: "Chargée de Production & Booking",
-    image: "https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&q=80&w=1024",
+    role: "Chargée de Production & Événementiel",
+    image: "https://i.imgur.com/IKLr6Zq.png",
     gradient: "from-teal-500/20 to-green-500/20",
     zIndex: 10
   }
@@ -103,7 +72,7 @@ const expertises = [
     gradient: "from-teal-500/20 to-green-500/20"
   },
   {
-    icon: Globe,
+    icon: Film,
     title: "Diffusion & Tournées",
     description: "Portez votre spectacle aux quatre coins de la France avec une organisation millimétrée.",
     gradient: "from-green-500/20 to-yellow-500/20"
@@ -115,46 +84,6 @@ const expertises = [
     gradient: "from-yellow-500/20 to-purple-500/20"
   }
 ];
-
-const StatCard = ({ stat, index }) => (
-  <motion.div
-    initial={{ opacity: 0, y: 30, scale: 0.8 }}
-    whileInView={{ opacity: 1, y: 0, scale: 1 }}
-    viewport={{ once: true }}
-    transition={{ 
-      duration: 0.6, 
-      delay: stat.delay,
-      type: "spring",
-      stiffness: 100
-    }}
-    whileHover={{ 
-      y: -8,
-      scale: 1.05,
-      transition: { duration: 0.3 }
-    }}
-    className="group relative"
-  >
-    <div className="absolute -inset-4 rounded-3xl bg-gradient-to-r from-white/5 to-white/10 blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-    
-    <div className="relative glass-card rounded-2xl p-6 h-full overflow-hidden">
-      <div className={`absolute inset-0 bg-gradient-to-br ${stat.gradient} opacity-0 group-hover:opacity-20 transition-opacity duration-500`} />
-      
-      <div className="relative flex flex-col items-center text-center space-y-4">
-        <div className={`w-16 h-16 rounded-2xl bg-gradient-to-br ${stat.gradient} flex items-center justify-center group-hover:scale-110 transition-transform duration-500`}>
-          <stat.icon className="w-8 h-8 text-white" />
-        </div>
-        
-        <div className="text-3xl md:text-4xl font-bold text-white group-hover:text-glow transition-all duration-300">
-          {stat.value}
-        </div>
-        
-        <div className="text-sm text-white/70 group-hover:text-white/90 transition-colors duration-300 leading-relaxed">
-          {stat.label}
-        </div>
-      </div>
-    </div>
-  </motion.div>
-);
 
 const TeamMemberCard = ({ member, index }) => (
   <motion.div
@@ -308,18 +237,11 @@ export const StorySection = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="text-lg md:text-xl text-white/80 leading-relaxed max-w-4xl mx-auto mb-16"
+            className="text-lg md:text-xl text-white/80 leading-relaxed max-w-4xl mx-auto"
           >
             Une équipe passionnée qui met son expertise au service de votre talent.
             Découvrez les visages et les compétences qui font la force de Tiny Team.
           </motion.p>
-
-          {/* Stats Grid */}
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 max-w-5xl mx-auto mb-16">
-            {stats.map((stat, index) => (
-              <StatCard key={index} stat={stat} index={index} />
-            ))}
-          </div>
         </div>
 
         {/* Team Section */}

@@ -2,49 +2,206 @@
 @tailwind components;
 @tailwind utilities;
 
-@layer utilities {
-  .text-glow {
-    text-shadow: 0 0 30px rgba(255, 255, 255, 0.2);
+@layer base {
+  /* Reset et optimisations de base */
+  html {
+    -webkit-tap-highlight-color: transparent;
+    scroll-behavior: smooth;
   }
 
-  .text-glow-strong {
-    text-shadow: 0 0 30px rgba(255, 255, 255, 0.4);
+  body {
+    @apply antialiased;
   }
 
+  /* Amélioration des performances sur mobile */
+  * {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+}
+
+@layer components {
+  /* Glass Effects standardisés */
   .glass-effect {
-    @apply bg-white/5 backdrop-blur-[8px] border border-white/10;
+    @apply bg-white/[0.03] backdrop-blur-md border border-white/10;
+    @apply transition-all duration-300;
   }
 
   .glass-card {
-    @apply bg-white/5 backdrop-blur-[12px] border border-white/10 hover:border-white/20 transition-all duration-500;
+    @apply bg-white/[0.05] backdrop-blur-xl border border-white/10;
+    @apply hover:bg-white/[0.08] hover:border-white/20;
+    @apply transition-all duration-300;
+  }
+
+  .glass-card-interactive {
+    @apply glass-card hover:scale-[1.02] active:scale-[0.98];
+    @apply cursor-pointer select-none;
+  }
+
+  /* Typographie Responsive */
+  .heading-hero {
+    @apply text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl;
+    @apply font-bold tracking-tight leading-[1.1];
+  }
+
+  .heading-section {
+    @apply text-3xl sm:text-4xl md:text-5xl lg:text-6xl;
+    @apply font-bold tracking-tight;
+  }
+
+  .heading-subsection {
+    @apply text-2xl sm:text-3xl md:text-4xl;
+    @apply font-semibold;
+  }
+
+  .heading-card {
+    @apply text-xl sm:text-2xl md:text-3xl;
+    @apply font-semibold;
+  }
+
+  .text-body {
+    @apply text-base sm:text-lg;
+    @apply leading-relaxed;
+  }
+
+  .text-small {
+    @apply text-sm sm:text-base;
+  }
+
+  /* Spacing Responsive */
+  .section-padding {
+    @apply py-16 sm:py-20 md:py-24 lg:py-32;
+  }
+
+  .container-padding {
+    @apply px-6 sm:px-8 md:px-6 lg:px-8;
+  }
+
+  /* Boutons optimisés pour mobile */
+  .btn-primary {
+    @apply px-6 py-4 sm:px-8 sm:py-3 md:px-10 md:py-4;
+    @apply text-base sm:text-sm md:text-base lg:text-lg;
+    @apply font-semibold rounded-xl sm:rounded-2xl;
+    @apply bg-gradient-to-r from-pink-400 to-pink-500;
+    @apply text-black;
+    @apply hover:from-pink-300 hover:to-pink-400;
+    @apply active:scale-[0.98] transition-all duration-200;
+    @apply min-h-[3rem] sm:min-h-0;
+    @apply touch-manipulation;
+  }
+
+  .btn-secondary {
+    @apply px-6 py-4 sm:px-8 sm:py-3 md:px-10 md:py-4;
+    @apply text-base sm:text-sm md:text-base lg:text-lg;
+    @apply font-medium rounded-xl sm:rounded-2xl;
+    @apply glass-card;
+    @apply text-white hover:text-white/90;
+    @apply active:scale-[0.98] transition-all duration-200;
+    @apply min-h-[3rem] sm:min-h-0;
+    @apply touch-manipulation;
+  }
+
+  /* Cards Responsive */
+  .card-grid {
+    @apply grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4;
+    @apply gap-4 sm:gap-6 md:gap-8;
+  }
+
+  .card-spacing {
+    @apply p-6 sm:p-8 md:p-10;
+  }
+
+  /* Navigation Mobile Optimisée */
+  .mobile-menu-item {
+    @apply flex items-center gap-3;
+    @apply px-4 py-4 sm:py-3;
+    @apply text-base sm:text-sm;
+    @apply rounded-xl;
+    @apply min-h-[3rem];
+    @apply touch-manipulation;
+  }
+
+  /* Hero Section Responsive */
+  .hero-height {
+    @apply min-h-[80vh] sm:min-h-[85vh] md:min-h-[90vh] lg:min-h-screen;
+  }
+
+  /* Container Max Widths */
+  .container-responsive {
+    @apply max-w-full sm:max-w-xl md:max-w-2xl lg:max-w-4xl xl:max-w-6xl 2xl:max-w-7xl;
+    @apply mx-auto;
+  }
+}
+
+@layer utilities {
+  /* Text Effects améliorés */
+  .text-glow {
+    text-shadow: 0 0 20px rgba(255, 255, 255, 0.15),
+                 0 0 40px rgba(255, 255, 255, 0.1);
+  }
+
+  .text-glow-strong {
+    text-shadow: 0 0 20px rgba(255, 255, 255, 0.3),
+                 0 0 40px rgba(255, 255, 255, 0.2),
+                 0 0 60px rgba(255, 255, 255, 0.1);
   }
 
   .text-gradient {
     @apply bg-clip-text text-transparent bg-gradient-to-r;
   }
 
-  .perspective-1000 {
-    perspective: 1000px;
+  /* Performance optimizations */
+  .gpu-accelerated {
+    transform: translateZ(0);
+    will-change: transform;
+    backface-visibility: hidden;
   }
 
-  .preserve-3d {
-    transform-style: preserve-3d;
+  .no-scroll-bounce {
+    overscroll-behavior: none;
+  }
+
+  /* Touch optimizations pour mobile */
+  .touch-manipulation {
+    touch-action: manipulation;
+  }
+
+  .touch-target {
+    @apply min-w-[44px] min-h-[44px];
+  }
+
+  /* Disable animations on mobile for performance */
+  @media (max-width: 640px) {
+    .mobile-no-animation {
+      animation: none !important;
+      transition: none !important;
+    }
+  }
+
+  /* Reduced motion support */
+  @media (prefers-reduced-motion: reduce) {
+    * {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
   }
 }
 
+/* Animations optimisées */
 @keyframes float {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-20px); }
+  0%, 100% { transform: translateY(0) translateZ(0); }
+  50% { transform: translateY(-10px) translateZ(0); }
 }
 
 @keyframes pulse-glow {
   0%, 100% { opacity: 0.1; }
-  50% { opacity: 0.3; }
+  50% { opacity: 0.2; }
 }
 
 @keyframes rotate-slow {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+  from { transform: rotate(0deg) translateZ(0); }
+  to { transform: rotate(360deg) translateZ(0); }
 }
 
 @keyframes gradient-shift {
@@ -54,12 +211,14 @@
 }
 
 @keyframes shimmer {
-  0% { transform: translateX(-100%); }
-  100% { transform: translateX(100%); }
+  0% { transform: translateX(-100%) translateZ(0); }
+  100% { transform: translateX(100%) translateZ(0); }
 }
 
+/* Classes d'animation avec performance optimisée */
 .animate-float {
   animation: float 6s ease-in-out infinite;
+  @apply gpu-accelerated;
 }
 
 .animate-pulse-glow {
@@ -68,6 +227,7 @@
 
 .animate-rotate-slow {
   animation: rotate-slow 20s linear infinite;
+  @apply gpu-accelerated;
 }
 
 .animate-gradient-shift {
@@ -77,51 +237,119 @@
 
 .animate-shimmer {
   animation: shimmer 2s infinite;
+  @apply gpu-accelerated;
 }
 
-.animate-spin-slow {
-  animation: rotate-slow 20s linear infinite;
+/* Désactiver les animations complexes sur mobile */
+@media (max-width: 640px) {
+  .animate-float,
+  .animate-rotate-slow {
+    animation: none;
+  }
 }
 
-.perspective {
-  perspective: 2000px;
-}
-
-.preserve-3d {
-  transform-style: preserve-3d;
-}
-
-.backface-hidden {
-  backface-visibility: hidden;
-}
-
-.transform-gpu {
-  transform: translate3d(0, 0, 0);
-  backface-visibility: hidden;
-  transform-style: preserve-3d;
-}
-
-/* Custom scrollbar */
+/* Custom scrollbar optimisé */
 ::-webkit-scrollbar {
-  width: 8px;
-  height: 8px;
+  width: 6px;
+  height: 6px;
+}
+
+@media (min-width: 768px) {
+  ::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
 }
 
 ::-webkit-scrollbar-track {
-  background: rgba(255, 255, 255, 0.1);
+  @apply bg-white/5;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: rgba(255, 255, 255, 0.2);
-  border-radius: 4px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: rgba(255, 255, 255, 0.3);
+  @apply bg-white/20 rounded;
+  @apply hover:bg-white/30;
 }
 
 /* Selection style */
 ::selection {
-  background: rgba(236, 72, 153, 0.3);
-  color: white;
+  @apply bg-pink-500/30 text-white;
+}
+
+/* Focus styles accessibles */
+:focus-visible {
+  @apply outline-none ring-2 ring-pink-400/50 ring-offset-2 ring-offset-transparent;
+}
+
+/* Optimisations spécifiques mobile */
+@media (max-width: 640px) {
+  /* Réduire le nombre de particules flottantes */
+  .floating-particles > *:nth-child(n+10) {
+    display: none;
+  }
+
+  /* Simplifier les effets de blur */
+  .backdrop-blur-xl {
+    backdrop-filter: blur(12px);
+  }
+
+  .backdrop-blur-2xl {
+    backdrop-filter: blur(16px);
+  }
+
+  /* Optimiser les ombres */
+  .shadow-2xl {
+    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.2);
+  }
+}
+
+/* Breakpoints personnalisés pour une meilleure granularité */
+@media (min-width: 375px) and (max-width: 414px) {
+  /* iPhone sizes */
+  .heading-hero {
+    @apply text-3xl;
+  }
+
+  .container-padding {
+    @apply px-4;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1024px) {
+  /* Tablet sizes */
+  .heading-hero {
+    @apply text-5xl;
+  }
+}
+
+/* Optimisations pour très grands écrans */
+@media (min-width: 1920px) {
+  .container-responsive {
+    @apply max-w-[1800px];
+  }
+
+  .heading-hero {
+    @apply text-9xl;
+  }
+}
+
+/* Safe areas pour iPhone X+ */
+@supports (padding: max(0px)) {
+  .safe-bottom {
+    padding-bottom: max(1rem, env(safe-area-inset-bottom));
+  }
+
+  .safe-top {
+    padding-top: max(1rem, env(safe-area-inset-top));
+  }
+}
+
+/* Print styles */
+@media print {
+  .no-print {
+    display: none !important;
+  }
+
+  body {
+    @apply bg-white text-black;
+  }
 }

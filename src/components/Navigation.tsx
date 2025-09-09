@@ -1,7 +1,21 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import { MessageSquare, Menu, X, ChevronDown, Sparkles, Star } from 'lucide-react';
+import { 
+  MessageSquare, 
+  Menu, 
+  X, 
+  ChevronDown, 
+  ArrowRight,
+  Sparkles,
+  Star,
+  Rocket,
+  Camera,
+  Globe,
+  Calendar,
+  Users,
+  Building
+} from 'lucide-react';
 
 const menuItems = [
   { title: 'La Team', href: '/equipe' },
@@ -11,12 +25,42 @@ const menuItems = [
     href: '/services',
     hasDropdown: true,
     dropdownItems: [
-      { title: 'Production de Spectacles', href: '/services/production', icon: '🎭' },
-      { title: 'Management d\'Artistes', href: '/services/management', icon: '⭐' },
-      { title: 'Développement Digital', href: '/services/digital', icon: '🚀' },
-      { title: 'Communication & Image', href: '/services/communication', icon: '📸' },
-      { title: 'Diffusion & Tournées', href: '/services/diffusion', icon: '🌍' },
-      { title: 'Événements Spéciaux', href: '/services/evenements', icon: '✨' },
+      { 
+        title: 'Production de Spectacles', 
+        href: '/services/production',
+        icon: Star,
+        description: 'Création et mise en scène'
+      },
+      { 
+        title: 'Management d\'Artistes', 
+        href: '/services/management',
+        icon: Users,
+        description: 'Accompagnement personnalisé'
+      },
+      { 
+        title: 'Développement Digital', 
+        href: '/services/digital',
+        icon: Rocket,
+        description: 'Stratégie en ligne'
+      },
+      { 
+        title: 'Communication & Image', 
+        href: '/services/communication',
+        icon: Camera,
+        description: 'Identité visuelle forte'
+      },
+      { 
+        title: 'Diffusion & Tournées', 
+        href: '/services/diffusion',
+        icon: Globe,
+        description: 'Rayonnement national'
+      },
+      { 
+        title: 'Événements Spéciaux', 
+        href: '/services/evenements',
+        icon: Calendar,
+        description: 'Moments uniques'
+      },
     ]
   },
   { 
@@ -24,383 +68,184 @@ const menuItems = [
     href: '#',
     hasDropdown: true,
     dropdownItems: [
-      { title: 'Programmateurs', href: '/programmateur', icon: '🎪' },
-      { title: 'Marques & Entreprises', href: '/marque', icon: '🏢' },
+      { 
+        title: 'Programmateurs', 
+        href: '/programmateur',
+        icon: Building,
+        description: 'Solutions sur mesure'
+      },
+      { 
+        title: 'Marques & Entreprises', 
+        href: '/marque',
+        icon: Sparkles,
+        description: 'Partenariats créatifs'
+      },
     ]
   },
 ];
 
 const Logo = () => (
-  <motion.div 
-    initial={{ opacity: 0, scale: 0.8 }}
-    animate={{ opacity: 1, scale: 1 }}
-    transition={{ duration: 0.8, ease: "easeOut" }}
-    className="relative group"
-  >
-    {/* Glow effect behind logo */}
-    <motion.div
-      className="absolute -inset-6 rounded-2xl opacity-0 group-hover:opacity-100 transition-all duration-700"
-      animate={{
-        background: [
-          "radial-gradient(circle, rgba(236,72,153,0.2) 0%, transparent 70%)",
-          "radial-gradient(circle, rgba(168,85,247,0.2) 0%, transparent 70%)",
-          "radial-gradient(circle, rgba(59,130,246,0.2) 0%, transparent 70%)",
-          "radial-gradient(circle, rgba(236,72,153,0.2) 0%, transparent 70%)"
-        ]
-      }}
-      transition={{
-        duration: 4,
-        repeat: Infinity,
-        ease: "easeInOut"
-      }}
+  <Link to="/" className="block">
+    <img 
+      src="https://res.cloudinary.com/diqco2njt/image/upload/v1746189362/Logo_TT_blanc_th9klb.png" 
+      alt="Tiny Team"
+      className="h-16 sm:h-20 md:h-24 w-auto"
     />
-    
-    {/* Floating particles around logo */}
-    <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-700">
-      {[...Array(6)].map((_, i) => (
-        <motion.div
-          key={i}
-          className="absolute w-1 h-1 bg-pink-400/60 rounded-full"
-          style={{
-            left: `${20 + Math.random() * 60}%`,
-            top: `${20 + Math.random() * 60}%`,
-          }}
-          animate={{
-            scale: [0, 1, 0],
-            opacity: [0, 1, 0],
-            y: [0, -20, 0],
-          }}
-          transition={{
-            duration: 2,
-            repeat: Infinity,
-            delay: i * 0.3,
-            ease: "easeInOut"
-          }}
-        />
-      ))}
-    </div>
-
-    <motion.div
-      className="relative"
-      whileHover={{ 
-        scale: 1.05,
-        rotateY: 5,
-        transition: { duration: 0.3, ease: "easeOut" }
-      }}
-      whileTap={{ scale: 0.95 }}
-    >
-      <img 
-        src="https://res.cloudinary.com/diqco2njt/image/upload/v1746189362/Logo_TT_blanc_th9klb.png" 
-        alt="Tiny Team"
-        className="h-20 md:h-24 lg:h-28 w-auto filter drop-shadow-lg"
-      />
-    </motion.div>
-  </motion.div>
+  </Link>
 );
 
-const DropdownMenu = ({ items, isOpen, onClose }) => (
-  <AnimatePresence>
-    {isOpen && (
-      <>
-        {/* Backdrop */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
-          className="fixed inset-0 bg-black/20 backdrop-blur-sm z-40"
-          onClick={onClose}
-        />
-        
-        {/* Dropdown */}
-        <motion.div
-          initial={{ opacity: 0, y: -20, scale: 0.95 }}
-          animate={{ opacity: 1, y: 0, scale: 1 }}
-          exit={{ opacity: 0, y: -20, scale: 0.95 }}
-          transition={{ duration: 0.2, ease: "easeOut" }}
-          className="absolute top-full left-0 mt-3 w-80 bg-[#0A0F29]/95 backdrop-blur-2xl border border-white/10 rounded-2xl shadow-2xl z-50 overflow-hidden"
-        >
-          {/* Gradient border effect */}
-          <div className="absolute inset-0 bg-gradient-to-r from-pink-500/20 via-purple-500/20 to-blue-500/20 rounded-2xl blur-xl opacity-50" />
-          
-          <div className="relative p-3">
-            {items.map((item, index) => (
-              <motion.div
-                key={item.href}
-                initial={{ opacity: 0, x: -10 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ delay: index * 0.05 }}
-              >
-                <Link
-                  to={item.href}
-                  onClick={onClose}
-                  className="group flex items-center gap-4 px-4 py-3 rounded-xl text-white/80 hover:text-white hover:bg-white/5 transition-all duration-300 relative overflow-hidden"
-                >
-                  {/* Hover effect */}
-                  <div className="absolute inset-0 bg-gradient-to-r from-pink-500/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                  
-                  {/* Icon */}
-                  <span className="text-2xl relative z-10">{item.icon}</span>
-                  
-                  {/* Text */}
-                  <div className="relative z-10">
-                    <div className="font-medium">{item.title}</div>
-                  </div>
-                  
-                  {/* Arrow */}
-                  <motion.div
-                    className="ml-auto opacity-0 group-hover:opacity-100 relative z-10"
-                    animate={{ x: [0, 4, 0] }}
-                    transition={{ duration: 1.5, repeat: Infinity }}
-                  >
-                    <div className="w-1.5 h-1.5 bg-pink-400 rounded-full" />
-                  </motion.div>
-                </Link>
-              </motion.div>
-            ))}
-          </div>
-        </motion.div>
-      </>
-    )}
-  </AnimatePresence>
-);
+// Desktop Dropdown
+const DesktopDropdown = ({ items, isOpen, onClose, parentRef }) => {
+  if (!isOpen) return null;
+
+  return (
+    <>
+      <div className="fixed inset-0 z-30" onClick={onClose} />
+      <motion.div
+        initial={{ opacity: 0, y: -10 }}
+        animate={{ opacity: 1, y: 0 }}
+        exit={{ opacity: 0, y: -10 }}
+        className="absolute top-full left-0 mt-2 w-64 lg:w-80 bg-[#1a1f3a] rounded-xl shadow-2xl border border-white/10 p-2 z-40"
+      >
+        {items.map((item, index) => {
+          const Icon = item.icon;
+          return (
+            <Link
+              key={item.href}
+              to={item.href}
+              onClick={onClose}
+              className="flex items-center gap-3 p-3 rounded-lg hover:bg-white/5 transition-colors group"
+            >
+              <div className="w-10 h-10 rounded-lg bg-white/5 flex items-center justify-center">
+                <Icon className="w-5 h-5 text-pink-400" />
+              </div>
+              <div className="flex-1">
+                <div className="text-white text-sm font-medium">
+                  {item.title}
+                </div>
+                <div className="text-white/50 text-xs">
+                  {item.description}
+                </div>
+              </div>
+              <ArrowRight className="w-4 h-4 text-white/30 opacity-0 group-hover:opacity-100 transition-opacity" />
+            </Link>
+          );
+        })}
+      </motion.div>
+    </>
+  );
+};
 
 const NavItem = ({ item, isActive }) => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const itemRef = React.useRef(null);
 
   if (item.hasDropdown) {
     return (
       <div 
+        ref={itemRef}
         className="relative"
         onMouseEnter={() => setIsDropdownOpen(true)}
         onMouseLeave={() => setIsDropdownOpen(false)}
       >
-        <motion.button
-          className={`relative flex items-center gap-2 px-6 py-3 rounded-xl transition-all duration-300 group ${
-            isActive
-              ? 'text-white bg-white/10 shadow-lg'
+        <button
+          className={`flex items-center gap-1 px-4 py-2 rounded-full transition-colors ${
+            isActive || isDropdownOpen
+              ? 'bg-white/10 text-white'
               : 'text-white/70 hover:text-white hover:bg-white/5'
           }`}
-          whileHover={{ scale: 1.02 }}
-          whileTap={{ scale: 0.98 }}
         >
-          {/* Background glow on hover */}
-          <div className="absolute inset-0 bg-gradient-to-r from-pink-500/20 to-purple-500/20 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 blur-xl" />
-          
-          <span className="font-medium relative z-10">{item.title}</span>
-          <motion.div
-            animate={{ rotate: isDropdownOpen ? 180 : 0 }}
-            transition={{ duration: 0.3, ease: "easeOut" }}
-            className="relative z-10"
-          >
-            <ChevronDown className="w-4 h-4" />
-          </motion.div>
-          
-          {/* Active indicator */}
-          {isActive && (
-            <motion.div
-              layoutId="nav-indicator"
-              className="absolute bottom-0 left-2 right-2 h-0.5 bg-gradient-to-r from-pink-500 via-pink-300 to-pink-500 rounded-full"
-              transition={{ duration: 0.3 }}
+          <span className="text-sm lg:text-base">{item.title}</span>
+          <ChevronDown className={`w-4 h-4 transition-transform ${isDropdownOpen ? 'rotate-180' : ''}`} />
+        </button>
+        
+        <AnimatePresence>
+          {isDropdownOpen && (
+            <DesktopDropdown 
+              items={item.dropdownItems} 
+              isOpen={isDropdownOpen}
+              onClose={() => setIsDropdownOpen(false)}
+              parentRef={itemRef}
             />
           )}
-        </motion.button>
-        
-        <DropdownMenu 
-          items={item.dropdownItems} 
-          isOpen={isDropdownOpen}
-          onClose={() => setIsDropdownOpen(false)}
-        />
+        </AnimatePresence>
       </div>
     );
   }
 
   return (
-    <motion.div
-      whileHover={{ scale: 1.02 }}
-      whileTap={{ scale: 0.98 }}
+    <Link
+      to={item.href}
+      className={`px-4 py-2 rounded-full transition-colors ${
+        isActive
+          ? 'bg-white/10 text-white'
+          : 'text-white/70 hover:text-white hover:bg-white/5'
+      }`}
     >
-      <Link
-        to={item.href}
-        className={`relative group flex items-center px-6 py-3 rounded-xl transition-all duration-300 ${
-          isActive
-            ? 'text-white bg-white/10 shadow-lg'
-            : 'text-white/70 hover:text-white hover:bg-white/5'
-        }`}
-      >
-        {/* Background glow on hover */}
-        <div className="absolute inset-0 bg-gradient-to-r from-pink-500/20 to-purple-500/20 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 blur-xl" />
-        
-        <span className="font-medium relative z-10">{item.title}</span>
-        
-        {/* Active indicator */}
-        {isActive && (
-          <motion.div
-            layoutId="nav-indicator"
-            className="absolute bottom-0 left-2 right-2 h-0.5 bg-gradient-to-r from-pink-500 via-pink-300 to-pink-500 rounded-full"
-            transition={{ duration: 0.3 }}
-          />
-        )}
-      </Link>
-    </motion.div>
+      <span className="text-sm lg:text-base">{item.title}</span>
+    </Link>
   );
 };
-
-const CTAButton = () => (
-  <motion.div
-    initial={{ opacity: 0, scale: 0.8 }}
-    animate={{ opacity: 1, scale: 1 }}
-    transition={{ duration: 0.8, delay: 0.2 }}
-    className="relative group"
-  >
-    {/* Animated background */}
-    <motion.div
-      className="absolute inset-0 rounded-2xl opacity-75 group-hover:opacity-100 transition-opacity duration-300"
-      animate={{
-        background: [
-          "linear-gradient(45deg, #ec4899, #8b5cf6, #3b82f6, #10b981, #f59e0b, #ec4899)",
-          "linear-gradient(225deg, #ec4899, #8b5cf6, #3b82f6, #10b981, #f59e0b, #ec4899)",
-          "linear-gradient(45deg, #ec4899, #8b5cf6, #3b82f6, #10b981, #f59e0b, #ec4899)"
-        ]
-      }}
-      transition={{
-        duration: 3,
-        repeat: Infinity,
-        ease: "linear"
-      }}
-    />
-    
-    {/* Glow effect */}
-    <div className="absolute -inset-2 bg-gradient-to-r from-pink-500/50 via-purple-500/50 to-blue-500/50 rounded-2xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-    
-    <motion.a
-      href="/contact"
-      className="relative flex items-center gap-3 px-6 py-3 rounded-2xl overflow-hidden"
-      whileHover={{ scale: 1.05 }}
-      whileTap={{ scale: 0.95 }}
-    >
-      {/* Floating icon */}
-      <motion.div
-        animate={{
-          y: [0, -2, 0],
-          rotate: [0, 5, -5, 0]
-        }}
-        transition={{
-          duration: 2,
-          repeat: Infinity,
-          ease: "easeInOut"
-        }}
-      >
-        <MessageSquare className="w-5 h-5 text-black relative z-10" />
-      </motion.div>
-      
-      <span className="font-bold text-black relative z-10">
-        Discutons !
-      </span>
-      
-      {/* Sparkle effects */}
-      <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
-        {[...Array(3)].map((_, i) => (
-          <motion.div
-            key={i}
-            className="absolute"
-            style={{
-              left: `${20 + i * 30}%`,
-              top: `${30 + i * 20}%`,
-            }}
-            animate={{
-              scale: [0, 1, 0],
-              rotate: [0, 180, 360],
-              opacity: [0, 1, 0]
-            }}
-            transition={{
-              duration: 1.5,
-              repeat: Infinity,
-              delay: i * 0.2,
-              ease: "easeInOut"
-            }}
-          >
-            <Sparkles className="w-3 h-3 text-white" />
-          </motion.div>
-        ))}
-      </div>
-    </motion.a>
-  </motion.div>
-);
 
 export const Navigation = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isVisible, setIsVisible] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [expandedItem, setExpandedItem] = useState(null);
   const location = useLocation();
 
   useEffect(() => {
-    let ticking = false;
-
     const handleScroll = () => {
-      if (!ticking) {
-        requestAnimationFrame(() => {
-          const currentScrollY = window.scrollY;
-          
-          // Background blur effect
-          setIsScrolled(currentScrollY > 20);
-          
-          // Navbar visibility logic
-          if (currentScrollY <= 50) {
-            setIsVisible(true);
-          } else if (currentScrollY > lastScrollY && currentScrollY > 100) {
-            setIsVisible(false);
-          } else if (currentScrollY < lastScrollY) {
-            setIsVisible(true);
-          }
-          
-          setLastScrollY(currentScrollY);
-          ticking = false;
-        });
-        ticking = true;
+      const currentScrollY = window.scrollY;
+      
+      // Détermine si on a scrollé
+      setIsScrolled(currentScrollY > 10);
+      
+      // Logique pour cacher/montrer la navbar
+      if (currentScrollY > lastScrollY && currentScrollY > 100) {
+        // Scroll vers le bas - cache la navbar
+        setIsVisible(false);
+      } else {
+        // Scroll vers le haut - montre la navbar
+        setIsVisible(true);
       }
+      
+      setLastScrollY(currentScrollY);
     };
 
     window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, [lastScrollY]);
 
+  useEffect(() => {
+    if (isMenuOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, [isMenuOpen]);
+
   return (
     <>
-      {/* Navbar */}
-      <motion.nav
-        initial={{ y: -100 }}
-        animate={{ 
-          y: isVisible ? 0 : -100,
-          transition: { duration: 0.4, ease: "easeInOut" }
-        }}
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
-          isScrolled ? 'py-3' : 'py-4'
+      <nav 
+        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 transform ${
+          isVisible ? 'translate-y-0' : '-translate-y-full'
+        } ${
+          isScrolled 
+            ? 'py-2 bg-[#0A0F29]/80 backdrop-blur-xl border-b border-white/10' 
+            : 'py-3'
         }`}
-        style={{
-          backgroundColor: isScrolled ? 'rgba(10, 15, 41, 0.95)' : 'transparent',
-          backdropFilter: isScrolled ? 'blur(20px)' : 'none',
-          borderBottom: isScrolled ? '1px solid rgba(255, 255, 255, 0.1)' : 'none',
-        }}
       >
-        {/* Animated border */}
-        {isScrolled && (
-          <motion.div
-            initial={{ scaleX: 0 }}
-            animate={{ scaleX: 1 }}
-            className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-pink-500/50 to-transparent"
-          />
-        )}
-
         <div className="container mx-auto px-4">
           <div className="flex items-center justify-between">
-            {/* Logo */}
-            <Link to="/" className="relative group flex-shrink-0 z-50">
-              <Logo />
-            </Link>
+            <Logo />
 
-            {/* Desktop Navigation */}
-            <div className="hidden lg:flex items-center space-x-2">
+            {/* Desktop Menu */}
+            <div className="hidden lg:flex items-center gap-2">
               {menuItems.map((item) => (
                 <NavItem
                   key={item.href}
@@ -410,50 +255,31 @@ export const Navigation = () => {
               ))}
             </div>
 
-            {/* CTA Button */}
+            {/* Desktop CTA */}
             <div className="hidden lg:block">
-              <CTAButton />
+              <Link
+                to="/contact"
+                className="flex items-center gap-2 px-5 py-2.5 rounded-full bg-gradient-to-r from-pink-500 to-purple-500 hover:from-pink-400 hover:to-purple-400 transition-all"
+              >
+                <MessageSquare className="w-4 h-4 text-white" />
+                <span className="font-semibold text-white">Discutons</span>
+              </Link>
             </div>
 
             {/* Mobile Menu Button */}
-            <motion.button
+            <button
               onClick={() => setIsMenuOpen(!isMenuOpen)}
-              className="lg:hidden relative w-12 h-12 rounded-xl glass-effect flex items-center justify-center z-50 group"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
+              className="lg:hidden p-2"
             >
-              {/* Glow effect */}
-              <div className="absolute inset-0 bg-gradient-to-r from-pink-500/20 to-purple-500/20 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 blur-xl" />
-              
-              <AnimatePresence mode="wait">
-                {isMenuOpen ? (
-                  <motion.div
-                    key="close"
-                    initial={{ rotate: -90, opacity: 0 }}
-                    animate={{ rotate: 0, opacity: 1 }}
-                    exit={{ rotate: 90, opacity: 0 }}
-                    transition={{ duration: 0.2 }}
-                    className="relative z-10"
-                  >
-                    <X className="w-6 h-6 text-white" />
-                  </motion.div>
-                ) : (
-                  <motion.div
-                    key="menu"
-                    initial={{ rotate: 90, opacity: 0 }}
-                    animate={{ rotate: 0, opacity: 1 }}
-                    exit={{ rotate: -90, opacity: 0 }}
-                    transition={{ duration: 0.2 }}
-                    className="relative z-10"
-                  >
-                    <Menu className="w-6 h-6 text-white" />
-                  </motion.div>
-                )}
-              </AnimatePresence>
-            </motion.button>
+              {isMenuOpen ? (
+                <X className="w-6 h-6 text-white" />
+              ) : (
+                <Menu className="w-6 h-6 text-white" />
+              )}
+            </button>
           </div>
         </div>
-      </motion.nav>
+      </nav>
 
       {/* Mobile Menu */}
       <AnimatePresence>
@@ -462,125 +288,92 @@ export const Navigation = () => {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            transition={{ duration: 0.3 }}
-            className="lg:hidden fixed inset-0 z-40"
+            className="lg:hidden fixed inset-0 z-[100] bg-[#0A0F29] pt-20"
           >
-            {/* Backdrop */}
-            <div className="absolute inset-0 bg-black/50 backdrop-blur-sm" />
-            
-            {/* Menu Content */}
-            <motion.div
-              initial={{ x: '100%' }}
-              animate={{ x: 0 }}
-              exit={{ x: '100%' }}
-              transition={{ duration: 0.3, ease: "easeOut" }}
-              className="absolute top-0 right-0 h-full w-80 max-w-[90vw] bg-[#0A0F29]/95 backdrop-blur-2xl border-l border-white/10"
-            >
-              {/* Gradient overlay */}
-              <div className="absolute inset-0 bg-gradient-to-br from-pink-500/10 via-purple-500/5 to-blue-500/10" />
-              
-              <div className="relative h-full flex flex-col">
-                {/* Header */}
-                <div className="p-6 border-b border-white/10">
-                  <div className="flex items-center gap-3">
-                    <Star className="w-6 h-6 text-pink-400" />
-                    <span className="text-xl font-bold text-white">Menu</span>
-                  </div>
-                </div>
-
-                {/* Menu Items */}
-                <div className="flex-1 p-6 space-y-2">
-                  {menuItems.map((item, index) => (
-                    <motion.div
-                      key={item.href}
-                      initial={{ opacity: 0, x: 20 }}
-                      animate={{ opacity: 1, x: 0 }}
-                      transition={{ delay: index * 0.1 }}
-                    >
-                      {item.hasDropdown ? (
-                        <div className="space-y-2">
-                          <div className="text-lg font-medium text-white/90 px-4 py-3 flex items-center gap-3">
-                            <span className="text-2xl">✨</span>
-                            {item.title}
-                          </div>
-                          <div className="pl-4 space-y-1">
-                            {item.dropdownItems.map((subItem) => (
-                              <Link
-                                key={subItem.href}
-                                to={subItem.href}
-                                onClick={() => setIsMenuOpen(false)}
-                                className="group flex items-center gap-3 px-4 py-3 text-white/70 hover:text-white hover:bg-white/5 rounded-xl transition-all duration-200"
-                              >
-                                <span className="text-lg">{subItem.icon}</span>
-                                <span>{subItem.title}</span>
-                                <motion.div
-                                  className="ml-auto opacity-0 group-hover:opacity-100"
-                                  animate={{ x: [0, 4, 0] }}
-                                  transition={{ duration: 1.5, repeat: Infinity }}
-                                >
-                                  <div className="w-1.5 h-1.5 bg-pink-400 rounded-full" />
-                                </motion.div>
-                              </Link>
-                            ))}
-                          </div>
-                        </div>
-                      ) : (
-                        <Link
-                          to={item.href}
-                          onClick={() => setIsMenuOpen(false)}
-                          className={`group flex items-center gap-3 px-4 py-3 rounded-xl text-lg transition-all duration-200 ${
-                            location.pathname === item.href
-                              ? 'text-white bg-white/10'
-                              : 'text-white/70 hover:text-white hover:bg-white/5'
-                          }`}
+            <div className="h-full overflow-y-auto p-6">
+              <div className="space-y-4">
+                {menuItems.map((item) => (
+                  <div key={item.href}>
+                    {item.hasDropdown ? (
+                      <div>
+                        <button
+                          onClick={() => setExpandedItem(expandedItem === item.title ? null : item.title)}
+                          className="flex items-center justify-between w-full p-3 text-left text-white text-lg font-medium"
                         >
-                          <span className="text-2xl">🎭</span>
-                          <span>{item.title}</span>
-                          <motion.div
-                            className="ml-auto opacity-0 group-hover:opacity-100"
-                            animate={{ x: [0, 4, 0] }}
-                            transition={{ duration: 1.5, repeat: Infinity }}
-                          >
-                            <div className="w-1.5 h-1.5 bg-pink-400 rounded-full" />
-                          </motion.div>
-                        </Link>
-                      )}
-                    </motion.div>
-                  ))}
-                </div>
-                
-                {/* Mobile CTA */}
-                <div className="p-6 border-t border-white/10">
-                  <motion.a
-                    href="/contact"
-                    onClick={() => setIsMenuOpen(false)}
-                    className="relative group flex items-center justify-center gap-3 w-full py-4 rounded-2xl overflow-hidden"
-                    whileHover={{ scale: 1.02 }}
-                    whileTap={{ scale: 0.98 }}
-                  >
-                    {/* Animated background */}
-                    <motion.div
-                      className="absolute inset-0"
-                      animate={{
-                        background: [
-                          "linear-gradient(45deg, #ec4899, #8b5cf6, #3b82f6, #10b981, #f59e0b, #ec4899)",
-                          "linear-gradient(225deg, #ec4899, #8b5cf6, #3b82f6, #10b981, #f59e0b, #ec4899)",
-                          "linear-gradient(45deg, #ec4899, #8b5cf6, #3b82f6, #10b981, #f59e0b, #ec4899)"
-                        ]
-                      }}
-                      transition={{
-                        duration: 3,
-                        repeat: Infinity,
-                        ease: "linear"
-                      }}
-                    />
-                    
-                    <MessageSquare className="w-5 h-5 text-black relative z-10" />
-                    <span className="font-bold text-black relative z-10">Discutons !</span>
-                  </motion.a>
-                </div>
+                          {item.title}
+                          <ChevronDown 
+                            className={`w-5 h-5 transition-transform ${
+                              expandedItem === item.title ? 'rotate-180' : ''
+                            }`} 
+                          />
+                        </button>
+                        
+                        <AnimatePresence>
+                          {expandedItem === item.title && (
+                            <motion.div
+                              initial={{ height: 0, opacity: 0 }}
+                              animate={{ height: 'auto', opacity: 1 }}
+                              exit={{ height: 0, opacity: 0 }}
+                              className="overflow-hidden"
+                            >
+                              <div className="pl-4 space-y-2 mt-2">
+                                {item.dropdownItems.map((subItem) => {
+                                  const Icon = subItem.icon;
+                                  return (
+                                    <Link
+                                      key={subItem.href}
+                                      to={subItem.href}
+                                      onClick={() => setIsMenuOpen(false)}
+                                      className="flex items-center gap-3 p-3 rounded-lg bg-white/5"
+                                    >
+                                      <div className="w-10 h-10 rounded-lg bg-white/10 flex items-center justify-center">
+                                        <Icon className="w-5 h-5 text-pink-400" />
+                                      </div>
+                                      <div>
+                                        <div className="text-white font-medium">
+                                          {subItem.title}
+                                        </div>
+                                        <div className="text-white/50 text-sm">
+                                          {subItem.description}
+                                        </div>
+                                      </div>
+                                    </Link>
+                                  );
+                                })}
+                              </div>
+                            </motion.div>
+                          )}
+                        </AnimatePresence>
+                      </div>
+                    ) : (
+                      <Link
+                        to={item.href}
+                        onClick={() => setIsMenuOpen(false)}
+                        className={`block p-3 text-lg font-medium ${
+                          location.pathname === item.href
+                            ? 'text-white'
+                            : 'text-white/70'
+                        }`}
+                      >
+                        {item.title}
+                      </Link>
+                    )}
+                  </div>
+                ))}
               </div>
-            </motion.div>
+
+              {/* Mobile CTA */}
+              <div className="mt-8">
+                <Link
+                  to="/contact"
+                  onClick={() => setIsMenuOpen(false)}
+                  className="flex items-center justify-center gap-3 w-full py-4 rounded-2xl bg-gradient-to-r from-pink-500 to-purple-500 text-white font-semibold"
+                >
+                  <MessageSquare className="w-5 h-5" />
+                  <span>Discutons de votre projet</span>
+                </Link>
+              </div>
+            </div>
           </motion.div>
         )}
       </AnimatePresence>
