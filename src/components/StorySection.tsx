@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { ArrowRight, Mic, Film, Lightbulb, PenTool, Shield, Rocket } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 const teamMembers = [
@@ -43,45 +43,6 @@ const teamMembers = [
     image: "https://i.imgur.com/IKLr6Zq.png",
     gradient: "from-teal-500/20 to-green-500/20",
     zIndex: 10
-  }
-];
-
-const expertises = [
-  {
-    icon: Mic,
-    title: "Production de Spectacles",
-    description: "De la conception à la réalisation, nous donnons vie à vos projets artistiques avec excellence et créativité.",
-    gradient: "from-purple-500/20 to-blue-500/20"
-  },
-  {
-    icon: Shield,
-    title: "Management d'Artistes",
-    description: "Un accompagnement complet et personnalisé pour développer votre carrière et maximiser votre potentiel.",
-    gradient: "from-blue-500/20 to-cyan-500/20"
-  },
-  {
-    icon: Rocket,
-    title: "Développement Digital",
-    description: "Construisez votre présence en ligne et engagez votre communauté avec des stratégies innovantes.",
-    gradient: "from-cyan-500/20 to-teal-500/20"
-  },
-  {
-    icon: PenTool,
-    title: "Communication & Image",
-    description: "Développez une image forte et cohérente qui vous distingue dans l'univers du spectacle.",
-    gradient: "from-teal-500/20 to-green-500/20"
-  },
-  {
-    icon: Film,
-    title: "Diffusion & Tournées",
-    description: "Portez votre spectacle aux quatre coins de la France avec une organisation millimétrée.",
-    gradient: "from-green-500/20 to-yellow-500/20"
-  },
-  {
-    icon: Lightbulb,
-    title: "Événements Spéciaux",
-    description: "Créez des moments uniques et mémorables pour des occasions exceptionnelles.",
-    gradient: "from-yellow-500/20 to-purple-500/20"
   }
 ];
 
@@ -138,38 +99,6 @@ const TeamMemberCard = ({ member, index }) => (
       </div>
 
       <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000" />
-    </div>
-  </motion.div>
-);
-
-const ExpertiseCard = ({ expertise, index }) => (
-  <motion.div
-    initial={{ opacity: 0, y: 20 }}
-    whileInView={{ opacity: 1, y: 0 }}
-    viewport={{ once: true }}
-    transition={{ duration: 0.5, delay: index * 0.1 }}
-    className="group"
-  >
-    <div className="relative h-full glass-card rounded-2xl p-8 overflow-hidden">
-      <div className="absolute inset-0">
-        <div className={`absolute inset-0 bg-gradient-to-br ${expertise.gradient} opacity-0 group-hover:opacity-100 transition-opacity duration-500`} />
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_0%,rgba(255,255,255,0.1),transparent_70%)] opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-      </div>
-
-      <div className="relative">
-        <div className="mb-6">
-          <div className="relative w-16 h-16 rounded-2xl glass-effect flex items-center justify-center group-hover:scale-110 transition-transform duration-500">
-            <expertise.icon className="w-8 h-8 text-pink-400 group-hover:text-pink-300 transition-colors duration-300" />
-          </div>
-        </div>
-
-        <h3 className="text-xl font-bold text-white mb-3 group-hover:text-glow transition-all duration-300">
-          {expertise.title}
-        </h3>
-        <p className="text-white/70 group-hover:text-white/90 transition-colors duration-300">
-          {expertise.description}
-        </p>
-      </div>
     </div>
   </motion.div>
 );
@@ -287,7 +216,7 @@ export const StorySection = () => {
           </div>
         </div>
 
-        {/* Transition */}
+        {/* Transition vers MissionSection */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -297,23 +226,27 @@ export const StorySection = () => {
         >
           <div className="relative inline-block">
             <div className="absolute -inset-8 rounded-full bg-gradient-to-r from-pink-500/10 via-purple-500/10 to-blue-500/10 blur-3xl" />
-            <h3 className="relative text-3xl md:text-5xl font-bold">
-              <span className="block text-gradient from-white via-blue-100 to-white">
-                Ces talents se traduisent par
+            <h3 className="relative text-2xl sm:text-3xl md:text-5xl font-bold">
+              <span className="text-gradient from-white via-blue-100 to-white">
+                Découvrez comment nous transformons
               </span>
               <span className="block text-gradient from-pink-300 via-pink-200 to-pink-300 mt-2">
-                des expertises concrètes
+                votre potentiel en succès
               </span>
             </h3>
           </div>
+          
+          <motion.p
+            initial={{ opacity: 0, y: 10 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+            className="text-lg text-white/70 max-w-2xl mx-auto mt-6 leading-relaxed"
+          >
+            Une méthode éprouvée, une équipe passionnée, 
+            des résultats qui parlent d'eux-mêmes.
+          </motion.p>
         </motion.div>
-
-        {/* Expertises Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-7xl mx-auto mb-20">
-          {expertises.map((expertise, index) => (
-            <ExpertiseCard key={expertise.title} expertise={expertise} index={index} />
-          ))}
-        </div>
 
         {/* Final CTA */}
         <motion.div
@@ -323,16 +256,12 @@ export const StorySection = () => {
           transition={{ duration: 0.8, delay: 0.8 }}
           className="text-center space-y-8"
         >
-          <h4 className="text-2xl md:text-3xl font-bold text-gradient from-pink-300 via-pink-200 to-pink-300">
-            Prêt à écrire votre succès avec nous ?
-          </h4>
-          
           <div className="flex justify-center">
             <Link
               to="/equipe"
               className="group inline-flex items-center gap-2 px-8 py-4 rounded-full bg-gradient-to-r from-pink-500 to-purple-500 text-white font-semibold hover:from-pink-600 hover:to-purple-600 transition-all duration-300 hover:shadow-2xl hover:shadow-purple-500/25"
             >
-              <span>En savoir plus sur nous</span>
+              <span>Rencontrer l'équipe complète</span>
               <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" />
             </Link>
           </div>

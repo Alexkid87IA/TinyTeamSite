@@ -1,7 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { ArrowRight, Star, Shield, Rocket, Layout, Globe, Calendar } from 'lucide-react';
-import { Link } from 'react-router-dom';
 
 const missions = [
   {
@@ -90,7 +89,7 @@ const missions = [
   }
 ];
 
-const MissionCard = ({ mission, index, isActive, onSelect }) => {
+const MissionCard = ({ mission, index }) => {
   const Icon = mission.icon;
   
   return (
@@ -98,10 +97,7 @@ const MissionCard = ({ mission, index, isActive, onSelect }) => {
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5, delay: index * 0.1 }}
-      className={`min-h-[calc(100vh-6rem)] md:min-h-screen flex items-center justify-center py-12 md:py-20 transition-all duration-700 cursor-pointer ${
-        isActive ? 'opacity-100 scale-100' : 'opacity-50 scale-95'
-      }`}
-      onClick={() => onSelect(index)}
+      className="min-h-[calc(100vh-6rem)] md:min-h-screen flex items-center justify-center py-12 md:py-20"
     >
       <div className="w-full max-w-5xl mx-auto px-4">
         <div className="relative">
@@ -158,14 +154,14 @@ const MissionCard = ({ mission, index, isActive, onSelect }) => {
               ))}
             </div>
 
-            {/* CTA Button - URL CORRIGÉE ICI */}
-            <Link
-              to={`/services/${mission.id}`}  // Changé de /mission/ à /services/
+            {/* CTA Button */}
+            <a
+              href={`/services/${mission.id}`}
               className="inline-flex items-center gap-2 md:gap-3 px-6 md:px-8 py-3 md:py-4 rounded-xl bg-gradient-to-r from-pink-400 to-pink-500 text-black font-semibold hover:from-pink-300 hover:to-pink-400 transition-all duration-300 group"
             >
               <span className="text-sm md:text-base">En savoir plus</span>
               <ArrowRight className="w-4 h-4 md:w-5 md:h-5 group-hover:translate-x-1 transition-transform duration-300" />
-            </Link>
+            </a>
           </div>
         </div>
       </div>
@@ -174,8 +170,6 @@ const MissionCard = ({ mission, index, isActive, onSelect }) => {
 };
 
 export const MissionSection = () => {
-  const [activeMission, setActiveMission] = React.useState(0);
-
   return (
     <section className="relative bg-[#0A0F29] overflow-hidden">
       <div className="absolute inset-0">
@@ -233,21 +227,6 @@ export const MissionSection = () => {
             </h2>
           </motion.div>
         </motion.div>
-
-        {/* Indicateurs de navigation */}
-        <div className="flex justify-center gap-2 mt-8 md:mt-12">
-          {missions.map((_, index) => (
-            <button
-              key={index}
-              onClick={() => setActiveMission(index)}
-              className={`w-2 h-2 rounded-full transition-all duration-300 ${
-                index === activeMission 
-                  ? 'w-8 bg-gradient-to-r from-pink-400 to-purple-400' 
-                  : 'bg-white/30 hover:bg-white/50'
-              }`}
-            />
-          ))}
-        </div>
       </div>
 
       <div className="relative">
@@ -256,21 +235,19 @@ export const MissionSection = () => {
             key={index}
             mission={mission}
             index={index}
-            isActive={index === activeMission}
-            onSelect={setActiveMission}
           />
         ))}
       </div>
 
       {/* CTA Section en bas */}
       <div className="relative text-center pb-20 md:pb-32">
-        <Link
-          to="/services"
+        <a
+          href="/services"
           className="inline-flex items-center gap-3 px-8 py-4 rounded-full bg-white/10 backdrop-blur-sm border border-white/20 text-white font-medium hover:bg-white/20 transition-all duration-300 group"
         >
           <span>Découvrir tous nos services</span>
           <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-        </Link>
+        </a>
       </div>
     </section>
   );

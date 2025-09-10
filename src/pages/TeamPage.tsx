@@ -208,7 +208,7 @@ const TeamMemberSection = ({ member, index, setCurrentIndex }) => {
             transition={{ duration: 0.8 }}
             className="relative order-2 lg:order-1"
           >
-            <div className="aspect-[4/3] md:aspect-[3/4] rounded-2xl overflow-hidden">
+            <div className="aspect-[3/4] md:aspect-[3/4] rounded-2xl overflow-hidden">
               <img
                 src={member.image}
                 alt={member.name}
