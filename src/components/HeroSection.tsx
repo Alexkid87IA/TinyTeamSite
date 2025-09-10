@@ -99,7 +99,7 @@ export const HeroSection = () => {
 
       {/* CONTENU PRINCIPAL */}
       <motion.div 
-        className="relative z-20 min-h-screen flex flex-col justify-center items-center px-4 sm:px-6 lg:px-8 pt-20"
+        className="relative z-20 min-h-screen flex flex-col justify-center items-center px-4 sm:px-6 lg:px-8 pt-32 sm:pt-24"
         style={{ opacity }}
       >
         <div className="max-w-6xl mx-auto w-full text-center">
