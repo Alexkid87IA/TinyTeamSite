@@ -3,7 +3,7 @@ import { motion, useScroll, useTransform } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { ArrowRight, ChevronDown } from 'lucide-react';
 
-// Les 11 vrais artistes de Tiny Team
+// Les 11 artistes de Tiny Team
 const artists = [
   { id: 1, name: "Urbain", image: "https://static.eno.do/x/fs-200359-default/9fb343deaad6dbe750cd731b4c0564b8/media.jpg" },
   { id: 2, name: "Marc-Antoine Le Bret", image: "https://static.eno.do/x/fs-200360-default/a0c4d924ae52585a517dd76531300e5b/media.jpg" },
@@ -59,7 +59,7 @@ const ArtistRow = ({ artists, direction = 'left', speed = 50 }) => {
 
 export const HeroSection = () => {
   const { scrollY } = useScroll();
-  const opacity = useTransform(scrollY, [0, 300], [1, 0]);
+  const titleOpacity = useTransform(scrollY, [0, 200], [1, 0.3]);
 
   const audiences = [
     {
@@ -98,13 +98,10 @@ export const HeroSection = () => {
       </div>
 
       {/* CONTENU PRINCIPAL */}
-      <motion.div 
-        className="relative z-20 min-h-screen flex flex-col justify-center items-center px-4 sm:px-6 lg:px-8 pt-32 sm:pt-24"
-        style={{ opacity }}
-      >
+      <div className="relative z-20 min-h-screen flex flex-col justify-center items-center px-4 sm:px-6 lg:px-8 pt-32 sm:pt-24">
         <div className="max-w-6xl mx-auto w-full text-center">
           
-          {/* TITRE PRINCIPAL - TINY TEAM, BIG DREAMS avec fade in simple */}
+          {/* TITRE PRINCIPAL - TINY TEAM, BIG DREAMS */}
           <motion.div 
             className="mb-8"
             initial={{ opacity: 0, y: -30 }}
@@ -144,7 +141,7 @@ export const HeroSection = () => {
             </p>
           </motion.div>
 
-          {/* SOUS-TITRE */}
+          {/* SOUS-TITRE descriptif */}
           <motion.p
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -207,7 +204,7 @@ export const HeroSection = () => {
             <ChevronDown className="w-6 h-6" />
           </motion.div>
         </motion.div>
-      </motion.div>
+      </div>
     </section>
   );
 };
