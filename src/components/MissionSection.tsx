@@ -1,124 +1,104 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { ArrowRight } from 'lucide-react';
+import { ArrowRight, Star, Shield, Rocket, Layout, Globe, Calendar } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 const missions = [
-  {
-    id: "strategie",
-    title: "Stratégie",
-    subtitle: "Votre vision, notre expertise",
-    description: "Nous élaborons ensemble une stratégie sur mesure pour développer votre carrière. De l'analyse du marché à la planification détaillée, chaque étape est pensée pour votre réussite.",
-    icon: () => (
-      <svg
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke="currentColor"
-        strokeWidth="2"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        className="w-8 h-8 md:w-12 md:h-12 text-white"
-      >
-        <circle cx="12" cy="12" r="10" />
-        <circle cx="12" cy="12" r="6" />
-        <circle cx="12" cy="12" r="2" />
-      </svg>
-    ),
-    features: [
-      "Analyse de marché approfondie",
-      "Positionnement artistique", 
-      "Plan de développement",
-      "Objectifs personnalisés"
-    ]
-  },
   {
     id: "production",
     title: "Production",
     subtitle: "De l'idée à la scène",
     description: "Une approche globale de la production artistique. Nous gérons tous les aspects techniques et créatifs pour que vous puissiez vous concentrer sur votre art.",
-    icon: () => (
-      <svg
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke="currentColor"
-        strokeWidth="2"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        className="w-8 h-8 md:w-12 md:h-12 text-white"
-      >
-        <rect x="2" y="3" width="20" height="14" rx="2" ry="2" />
-        <line x1="8" y1="21" x2="16" y2="21" />
-        <line x1="12" y1="17" x2="12" y2="21" />
-      </svg>
-    ),
+    icon: Star,
     features: [
       "Direction artistique",
       "Production exécutive",
-      "Gestion des tournées",
-      "Communication digitale"
-    ]
+      "Mise en scène professionnelle",
+      "Gestion technique"
+    ],
+    color: 'from-yellow-400 to-orange-400'
+  },
+  {
+    id: "management",
+    title: "Management",
+    subtitle: "Votre carrière entre de bonnes mains",
+    description: "Un accompagnement complet et personnalisé pour développer votre carrière et maximiser votre potentiel artistique.",
+    icon: Shield,
+    features: [
+      "Développement de carrière",
+      "Stratégie artistique",
+      "Gestion administrative",
+      "Relations professionnelles"
+    ],
+    color: 'from-blue-400 to-indigo-400'
   },
   {
     id: "digital",
     title: "Digital",
     subtitle: "Votre présence en ligne",
-    description: "Maîtrisez les enjeux du numérique et développez votre présence en ligne. Une stratégie digitale complète pour maximiser votre impact et votre visibilité.",
-    icon: () => (
-      <svg
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke="currentColor"
-        strokeWidth="2"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        className="w-8 h-8 md:w-12 md:h-12 text-white"
-      >
-        <circle cx="12" cy="12" r="10" />
-        <line x1="2" y1="12" x2="22" y2="12" />
-        <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" />
-      </svg>
-    ),
+    description: "Maîtrisez les enjeux du numérique et développez votre présence en ligne. Une stratégie digitale complète pour maximiser votre impact.",
+    icon: Rocket,
     features: [
       "Stratégie réseaux sociaux",
       "Création de contenus",
-      "Monétisation digitale",
-      "Gestion de communauté"
-    ]
+      "Community management",
+      "Marketing digital"
+    ],
+    color: 'from-purple-400 to-pink-400'
   },
   {
-    id: "protection",
-    title: "Protection",
-    subtitle: "Sécuriser votre avenir",
-    description: "Un accompagnement juridique et stratégique complet pour protéger vos intérêts et valoriser votre travail dans un environnement en constante évolution.",
-    icon: () => (
-      <svg
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke="currentColor"
-        strokeWidth="2"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        className="w-8 h-8 md:w-12 md:h-12 text-white"
-      >
-        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
-      </svg>
-    ),
+    id: "communication",
+    title: "Communication",
+    subtitle: "Votre image, notre expertise",
+    description: "Développez une image forte et cohérente qui vous distingue dans l'univers du spectacle vivant.",
+    icon: Layout,
     features: [
-      "Protection des droits",
-      "Monétisation des contenus",
-      "Conseil juridique",
-      "Gestion contractuelle"
-    ]
+      "Relations presse",
+      "Identité visuelle",
+      "Communication événementielle",
+      "Relations publiques"
+    ],
+    color: 'from-pink-400 to-rose-400'
+  },
+  {
+    id: "diffusion",
+    title: "Diffusion & Tournées",
+    subtitle: "Rayonnez sur toutes les scènes",
+    description: "Portez votre spectacle aux quatre coins de la France avec une organisation millimétrée et un réseau de salles partenaires.",
+    icon: Globe,
+    features: [
+      "Booking national",
+      "Gestion de tournées",
+      "Relations salles",
+      "Support technique"
+    ],
+    color: 'from-green-400 to-teal-400'
+  },
+  {
+    id: "evenements",
+    title: "Événements Spéciaux",
+    subtitle: "Des moments uniques",
+    description: "Créez des moments inoubliables pour des occasions exceptionnelles avec notre expertise événementielle.",
+    icon: Calendar,
+    features: [
+      "Conception événementielle",
+      "Production sur mesure",
+      "Coordination complète",
+      "Gestion technique"
+    ],
+    color: 'from-orange-400 to-red-400'
   }
 ];
 
 const MissionCard = ({ mission, index, isActive, onSelect }) => {
+  const Icon = mission.icon;
+  
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5, delay: index * 0.1 }}
-      className={`min-h-[calc(100vh-6rem)] md:min-h-screen flex items-center justify-center py-12 md:py-20 transition-all duration-700 ${
+      className={`min-h-[calc(100vh-6rem)] md:min-h-screen flex items-center justify-center py-12 md:py-20 transition-all duration-700 cursor-pointer ${
         isActive ? 'opacity-100 scale-100' : 'opacity-50 scale-95'
       }`}
       onClick={() => onSelect(index)}
@@ -129,18 +109,21 @@ const MissionCard = ({ mission, index, isActive, onSelect }) => {
             {/* Title Section with Icon */}
             <div className="flex flex-col md:flex-row items-center gap-4 md:gap-6 mb-8 md:mb-12">
               <div className="relative group">
-                <div className="relative w-16 h-16 md:w-24 md:h-24 rounded-2xl md:rounded-3xl glass-effect flex items-center justify-center backdrop-blur-xl">
-                  <mission.icon />
+                <div className={`absolute inset-0 bg-gradient-to-br ${mission.color} opacity-20 blur-xl group-hover:opacity-40 transition-opacity`} />
+                <div className={`relative w-16 h-16 md:w-24 md:h-24 rounded-2xl md:rounded-3xl bg-gradient-to-br ${mission.color} p-0.5`}>
+                  <div className="w-full h-full rounded-2xl md:rounded-3xl bg-gray-900 flex items-center justify-center">
+                    <Icon className="w-8 h-8 md:w-12 md:h-12 text-white" />
+                  </div>
                 </div>
               </div>
 
               <div className="text-center md:text-left">
                 <h2 className="text-4xl md:text-6xl lg:text-8xl font-bold tracking-tight">
-                  <span className="block text-gradient from-white via-blue-100 to-white">
+                  <span className="block bg-gradient-to-b from-white via-white to-white/70 bg-clip-text text-transparent">
                     {mission.title}
                   </span>
                 </h2>
-                <span className="text-xl md:text-2xl lg:text-3xl block mt-2 md:mt-4 text-gradient from-pink-300 via-pink-200 to-pink-300">
+                <span className="text-xl md:text-2xl lg:text-3xl block mt-2 md:mt-4 bg-gradient-to-r from-pink-300 via-pink-200 to-pink-300 bg-clip-text text-transparent">
                   {mission.subtitle}
                 </span>
               </div>
@@ -163,7 +146,9 @@ const MissionCard = ({ mission, index, isActive, onSelect }) => {
                   className="group"
                 >
                   <div className="relative glass-card rounded-xl md:rounded-2xl p-4 md:p-6 backdrop-blur-xl overflow-hidden">
-                    <div className="relative">
+                    <div className="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
+                    <div className="relative flex items-center gap-3">
+                      <div className="w-1.5 h-1.5 rounded-full bg-pink-400/40" />
                       <span className="text-sm md:text-lg text-white/80 group-hover:text-white transition-colors duration-300">
                         {feature}
                       </span>
@@ -173,9 +158,9 @@ const MissionCard = ({ mission, index, isActive, onSelect }) => {
               ))}
             </div>
 
-            {/* CTA Button */}
+            {/* CTA Button - URL CORRIGÉE ICI */}
             <Link
-              to={`/mission/${mission.id}`}
+              to={`/services/${mission.id}`}  // Changé de /mission/ à /services/
               className="inline-flex items-center gap-2 md:gap-3 px-6 md:px-8 py-3 md:py-4 rounded-xl bg-gradient-to-r from-pink-400 to-pink-500 text-black font-semibold hover:from-pink-300 hover:to-pink-400 transition-all duration-300 group"
             >
               <span className="text-sm md:text-base">En savoir plus</span>
@@ -195,6 +180,29 @@ export const MissionSection = () => {
     <section className="relative bg-[#0A0F29] overflow-hidden">
       <div className="absolute inset-0">
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(44,62,153,0.15),transparent_70%)]" />
+        {/* Particules flottantes */}
+        <div className="absolute inset-0">
+          {[...Array(30)].map((_, i) => (
+            <motion.div
+              key={i}
+              className="absolute w-1 h-1 bg-white/20 rounded-full"
+              initial={{
+                x: Math.random() * 100 + "%",
+                y: Math.random() * 100 + "%",
+                opacity: 0
+              }}
+              animate={{
+                y: [null, `${Math.random() * 30 - 15}%`],
+                opacity: [0, 0.5, 0]
+              }}
+              transition={{
+                duration: Math.random() * 5 + 3,
+                repeat: Infinity,
+                repeatDelay: Math.random() * 2
+              }}
+            />
+          ))}
+        </div>
       </div>
 
       <div className="relative pt-20 md:pt-32 text-center">
@@ -225,6 +233,21 @@ export const MissionSection = () => {
             </h2>
           </motion.div>
         </motion.div>
+
+        {/* Indicateurs de navigation */}
+        <div className="flex justify-center gap-2 mt-8 md:mt-12">
+          {missions.map((_, index) => (
+            <button
+              key={index}
+              onClick={() => setActiveMission(index)}
+              className={`w-2 h-2 rounded-full transition-all duration-300 ${
+                index === activeMission 
+                  ? 'w-8 bg-gradient-to-r from-pink-400 to-purple-400' 
+                  : 'bg-white/30 hover:bg-white/50'
+              }`}
+            />
+          ))}
+        </div>
       </div>
 
       <div className="relative">
@@ -237,6 +260,17 @@ export const MissionSection = () => {
             onSelect={setActiveMission}
           />
         ))}
+      </div>
+
+      {/* CTA Section en bas */}
+      <div className="relative text-center pb-20 md:pb-32">
+        <Link
+          to="/services"
+          className="inline-flex items-center gap-3 px-8 py-4 rounded-full bg-white/10 backdrop-blur-sm border border-white/20 text-white font-medium hover:bg-white/20 transition-all duration-300 group"
+        >
+          <span>Découvrir tous nos services</span>
+          <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+        </Link>
       </div>
     </section>
   );

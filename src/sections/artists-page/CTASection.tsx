@@ -58,14 +58,6 @@ export const ArtistsCTASection = () => {
                 Pour organiser un spectacle privé, un événement d'entreprise ou tout autre projet, 
                 notre équipe est à votre écoute pour créer un moment unique.
               </p>
-              
-              <Link
-                to="/contact"
-                className="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-pink-500 to-purple-500 hover:from-pink-400 hover:to-purple-400 rounded-full text-white font-semibold transition-all group"
-              >
-                Demander un devis
-                <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-              </Link>
             </div>
           </div>
         </motion.div>

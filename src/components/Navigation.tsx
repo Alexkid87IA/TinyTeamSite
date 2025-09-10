@@ -159,7 +159,7 @@ export const Navigation = () => {
     }, 200);
   };
 
-  // Logo Component
+  // Logo Component avec taille augmentée
   const Logo = () => (
     <Link to="/" className="group relative">
       <motion.div
@@ -171,7 +171,7 @@ export const Navigation = () => {
         <img 
           src="https://res.cloudinary.com/diqco2njt/image/upload/v1746189362/Logo_TT_blanc_th9klb.png" 
           alt="Tiny Team"
-          className="h-14 sm:h-16 md:h-20 w-auto relative z-10"
+          className="h-20 sm:h-24 md:h-28 w-auto relative z-10"
         />
       </motion.div>
     </Link>
