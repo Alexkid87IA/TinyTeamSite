@@ -110,6 +110,7 @@ export const HeroSection = () => {
             initial={{ opacity: 0, y: -30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, ease: "easeOut" }}
+            style={{ opacity: titleOpacity }}
           >
             {/* TINY TEAM - PLUS PETIT */}
             <div className="block text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-black italic leading-tight pb-2">
