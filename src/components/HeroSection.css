@@ -412,7 +412,16 @@ body {
     }
     
     .scroll-indicator {
-        bottom: 1rem;
+        bottom: 0.5rem; /* Réduit de 1rem */
+        gap: 0.25rem; /* Réduit l'espace */
+    }
+    
+    .scroll-text {
+        font-size: 0.6rem; /* Plus petit */
+    }
+    
+    .scroll-arrow {
+        font-size: 0.8rem; /* Plus petit */
     }
 }
 
