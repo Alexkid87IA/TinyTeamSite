@@ -12,9 +12,9 @@ export const HeroSection = () => {
   };
 
   return (
-    <section className="hero-section" style={{ position: 'relative', height: '100vh', overflow: 'hidden', paddingTop: '80px' }}>
+    <section className="hero-section">
       {/* Rivière d'artistes en arrière-plan */}
-      <div className="artists-river" style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', zIndex: 1 }}>
+      <div className="artists-river">
         {/* Rangée du haut */}
         <div className="artist-row top">
           <div className="artist-card"><img src="https://static.eno.do/x/fs-200359-default/9fb343deaad6dbe750cd731b4c0564b8/media.jpg" alt="Urbain" /></div>
@@ -37,7 +37,7 @@ export const HeroSection = () => {
           <div className="artist-card"><img src="https://static.eno.do/x/fs-200364-default/2cf3c8b262adfc3c6e72e95639c39cf8/media.jpg" alt="Thomas Angelvy" /></div>
         </div>
 
-        {/* Rangée du milieu */}
+        {/* Rangée du milieu - cachée sur mobile */}
         <div className="artist-row middle">
           <div className="artist-card"><img src="https://26.staticbtf.eno.do/v1/29-default/caa1da7f867fc1ad334621eba4d80b76/media.jpg" alt="Julien Santini" /></div>
           <div className="artist-card"><img src="https://static.eno.do/x/fs-200359-default/9fb343deaad6dbe750cd731b4c0564b8/media.jpg" alt="Urbain" /></div>
@@ -81,66 +81,51 @@ export const HeroSection = () => {
 
       {/* Contenu principal */}
       <div className="main-content">
-        {/* Badge */}
-        <div className="badge">
-          <span className="badge-dot"></span>
-          <span className="badge-text">Production de spectacles vivants</span>
-        </div>
-
-        {/* Titres */}
-        <h1 className="title-tiny">TINY TEAM,</h1>
-        <h1 className="title-big">BIG DREAMS</h1>
-
-        {/* Boutons */}
-        <div className="buttons">
-          <a href="/artistes" className="btn btn-primary">
-            Découvrir nos artistes →
-          </a>
-          <a href="#" onClick={handleShowreelClick} className="btn btn-secondary">
-            ▶ Voir le showreel
-          </a>
-        </div>
-
-        {/* Popup "Bientôt disponible" */}
-        {showPopup && (
-          <div style={{
-            position: 'fixed',
-            top: '50%',
-            left: '50%',
-            transform: 'translate(-50%, -50%)',
-            background: 'linear-gradient(135deg, #ec4899 0%, #a855f7 100%)',
-            color: 'white',
-            padding: '1.5rem 3rem',
-            borderRadius: '1rem',
-            boxShadow: '0 20px 40px rgba(0,0,0,0.3)',
-            zIndex: 1000,
-            fontSize: '1.1rem',
-            fontWeight: '600',
-            animation: 'fadeIn 0.3s ease-out'
-          }}>
-            🎬 Showreel bientôt disponible !
+        <div className="hero-top">
+          {/* Badge */}
+          <div className="badge">
+            <span className="badge-dot"></span>
+            <span className="badge-text">Production de spectacles vivants</span>
           </div>
-        )}
+
+          {/* Titres avec conteneur pour éviter le tronquage */}
+          <div className="titles-container">
+            <h1 className="title-tiny">TINY TEAM,</h1>
+            <h1 className="title-big">BIG DREAMS</h1>
+          </div>
+
+          {/* Boutons */}
+          <div className="buttons">
+            <a href="/artistes" className="btn btn-primary">
+              <span className="desktop-text">Découvrir nos </span>Artistes →
+            </a>
+            <a href="#" onClick={handleShowreelClick} className="btn btn-secondary">
+              ▶ Showreel
+            </a>
+          </div>
+        </div>
 
         {/* Cartes */}
-        <div className="cards">
-          <div className="card">
-            <p className="card-label">ARTISTE ?</p>
-            <h3 className="card-title">Développez votre carrière</h3>
-            <p className="card-description">Production • Tournées</p>
-            <div className="card-link">En savoir plus →</div>
-          </div>
-          <div className="card">
-            <p className="card-label">PROGRAMMATEUR ?</p>
-            <h3 className="card-title">Des spectacles qui cartonnent</h3>
-            <p className="card-description">Humour • Stand-up</p>
-            <div className="card-link">En savoir plus →</div>
-          </div>
-          <div className="card">
-            <p className="card-label">ENTREPRISE ?</p>
-            <h3 className="card-title">Événements mémorables</h3>
-            <p className="card-description">Soirées • Events</p>
-            <div className="card-link">En savoir plus →</div>
+        <div className="cards-wrapper">
+          <div className="cards">
+            <div className="card">
+              <p className="card-label">VOUS ÊTES ARTISTE ?</p>
+              <h3 className="card-title">Développez votre carrière</h3>
+              <p className="card-description">Production • Tournées • Communication</p>
+              <div className="card-link">En savoir plus →</div>
+            </div>
+            <div className="card">
+              <p className="card-label">VOUS ÊTES PROGRAMMATEUR ?</p>
+              <h3 className="card-title">Des spectacles qui cartonnent</h3>
+              <p className="card-description">Humour • Stand-up • One-man shows</p>
+              <div className="card-link">En savoir plus →</div>
+            </div>
+            <div className="card">
+              <p className="card-label">VOUS ÊTES ENTREPRISE ?</p>
+              <h3 className="card-title">Événements mémorables</h3>
+              <p className="card-description">Soirées • Conventions • Team building</p>
+              <div className="card-link">En savoir plus →</div>
+            </div>
           </div>
         </div>
 
@@ -150,6 +135,27 @@ export const HeroSection = () => {
           <div className="scroll-arrow">↓</div>
         </div>
       </div>
+
+      {/* Popup "Bientôt disponible" */}
+      {showPopup && (
+        <div style={{
+          position: 'fixed',
+          top: '50%',
+          left: '50%',
+          transform: 'translate(-50%, -50%)',
+          background: 'linear-gradient(135deg, #ec4899 0%, #a855f7 100%)',
+          color: 'white',
+          padding: '1.5rem 3rem',
+          borderRadius: '1rem',
+          boxShadow: '0 20px 40px rgba(0,0,0,0.3)',
+          zIndex: 1000,
+          fontSize: '1.1rem',
+          fontWeight: '600',
+          animation: 'fadeIn 0.3s ease-out'
+        }}>
+          🎬 Showreel bientôt disponible !
+        </div>
+      )}
 
       {/* Animation CSS pour la popup */}
       <style>{`
