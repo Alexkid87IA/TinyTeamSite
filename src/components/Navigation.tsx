@@ -159,7 +159,7 @@ export const Navigation = () => {
     }, 200);
   };
 
-  // Logo Component avec taille augmentée
+  // Logo Component
   const Logo = () => (
     <Link to="/" className="group relative">
       <motion.div
@@ -171,7 +171,7 @@ export const Navigation = () => {
         <img 
           src="https://res.cloudinary.com/diqco2njt/image/upload/v1746189362/Logo_TT_blanc_th9klb.png" 
           alt="Tiny Team"
-          className="h-20 sm:h-24 md:h-28 w-auto relative z-10"
+          className="h-12 sm:h-16 md:h-20 lg:h-24 w-auto relative z-10"
         />
       </motion.div>
     </Link>
@@ -410,14 +410,19 @@ export const Navigation = () => {
         transition={{ type: 'spring', stiffness: 300, damping: 30 }}
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
           isScrolled 
-            ? 'py-3 bg-gray-900/80 backdrop-blur-2xl shadow-2xl border-b border-white/10' 
-            : 'py-4 bg-gradient-to-b from-black/50 to-transparent backdrop-blur-sm'
+            ? 'py-2 sm:py-3 bg-gray-900/80 backdrop-blur-2xl shadow-2xl border-b border-white/10' 
+            : 'py-2 sm:py-4 bg-gradient-to-b from-black/50 to-transparent backdrop-blur-sm'
         }`}
       >
         <div className="container mx-auto px-4">
           <div className="flex items-center justify-between">
-            {/* Logo */}
-            <Logo />
+            {/* Logo - Caché sur mobile */}
+            <div className="hidden sm:block">
+              <Logo />
+            </div>
+            
+            {/* Spacer invisible sur mobile pour garder le burger à droite */}
+            <div className="sm:hidden"></div>
 
             {/* Desktop Menu */}
             <div className="hidden lg:flex items-center gap-2">
