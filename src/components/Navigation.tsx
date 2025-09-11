@@ -416,13 +416,8 @@ export const Navigation = () => {
       >
         <div className="container mx-auto px-4">
           <div className="flex items-center justify-between">
-            {/* Logo - Caché sur mobile */}
-            <div className="hidden sm:block">
-              <Logo />
-            </div>
-            
-            {/* Spacer invisible sur mobile pour garder le burger à droite */}
-            <div className="sm:hidden"></div>
+            {/* Logo - Visible sur toutes les tailles */}
+            <Logo />
 
             {/* Desktop Menu */}
             <div className="hidden lg:flex items-center gap-2">

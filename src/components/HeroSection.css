@@ -315,6 +315,11 @@ body {
 
 /* Mobile responsive */
 @media (max-width: 768px) {
+    /* Hero section adaptations */
+    .hero-section {
+        padding-top: 50px; /* Espace pour la navbar mobile */
+    }
+    
     /* Rivière d'artistes plus subtile sur mobile */
     .artists-river {
         opacity: 0.15;
