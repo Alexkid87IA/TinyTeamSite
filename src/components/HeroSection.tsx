@@ -1,10 +1,19 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './HeroSection.css';
 
 export const HeroSection = () => {
+  const [showPopup, setShowPopup] = useState(false);
+
+  const handleShowreelClick = (e) => {
+    e.preventDefault();
+    setShowPopup(true);
+    // Fermer automatiquement après 3 secondes
+    setTimeout(() => setShowPopup(false), 3000);
+  };
+
   return (
-    <section className="hero-section" style={{ position: 'relative', height: '100vh', overflow: 'hidden' }}>
-      {/* Rivière d'artistes en arrière-plan - DANS LE HERO */}
+    <section className="hero-section" style={{ position: 'relative', height: '100vh', overflow: 'hidden', paddingTop: '80px' }}>
+      {/* Rivière d'artistes en arrière-plan */}
       <div className="artists-river" style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', zIndex: 1 }}>
         {/* Rangée du haut */}
         <div className="artist-row top">
@@ -28,7 +37,7 @@ export const HeroSection = () => {
           <div className="artist-card"><img src="https://static.eno.do/x/fs-200364-default/2cf3c8b262adfc3c6e72e95639c39cf8/media.jpg" alt="Thomas Angelvy" /></div>
         </div>
 
-        {/* Rangée du milieu - NOUVELLE */}
+        {/* Rangée du milieu */}
         <div className="artist-row middle">
           <div className="artist-card"><img src="https://26.staticbtf.eno.do/v1/29-default/caa1da7f867fc1ad334621eba4d80b76/media.jpg" alt="Julien Santini" /></div>
           <div className="artist-card"><img src="https://static.eno.do/x/fs-200359-default/9fb343deaad6dbe750cd731b4c0564b8/media.jpg" alt="Urbain" /></div>
@@ -84,13 +93,34 @@ export const HeroSection = () => {
 
         {/* Boutons */}
         <div className="buttons">
-          <a href="#" className="btn btn-primary">
+          <a href="/artistes" className="btn btn-primary">
             Découvrir nos artistes →
           </a>
-          <a href="#" className="btn btn-secondary">
+          <a href="#" onClick={handleShowreelClick} className="btn btn-secondary">
             ▶ Voir le showreel
           </a>
         </div>
+
+        {/* Popup "Bientôt disponible" */}
+        {showPopup && (
+          <div style={{
+            position: 'fixed',
+            top: '50%',
+            left: '50%',
+            transform: 'translate(-50%, -50%)',
+            background: 'linear-gradient(135deg, #ec4899 0%, #a855f7 100%)',
+            color: 'white',
+            padding: '1.5rem 3rem',
+            borderRadius: '1rem',
+            boxShadow: '0 20px 40px rgba(0,0,0,0.3)',
+            zIndex: 1000,
+            fontSize: '1.1rem',
+            fontWeight: '600',
+            animation: 'fadeIn 0.3s ease-out'
+          }}>
+            🎬 Showreel bientôt disponible !
+          </div>
+        )}
 
         {/* Cartes */}
         <div className="cards">
@@ -120,6 +150,20 @@ export const HeroSection = () => {
           <div className="scroll-arrow">↓</div>
         </div>
       </div>
+
+      {/* Animation CSS pour la popup */}
+      <style>{`
+        @keyframes fadeIn {
+          from { 
+            opacity: 0;
+            transform: translate(-50%, -40%);
+          }
+          to { 
+            opacity: 1;
+            transform: translate(-50%, -50%);
+          }
+        }
+      `}</style>
     </section>
   );
 };
