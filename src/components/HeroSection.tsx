@@ -125,21 +125,21 @@ export const HeroSection = () => {
         {/* Cartes */}
         <div className="cards">
           <div className="card">
-            <p className="card-label">VOUS ÊTES ARTISTE ?</p>
+            <p className="card-label">ARTISTE ?</p>
             <h3 className="card-title">Développez votre carrière</h3>
-            <p className="card-description">Production • Tournées • Communication</p>
+            <p className="card-description">Production • Tournées</p>
             <div className="card-link">En savoir plus →</div>
           </div>
           <div className="card">
-            <p className="card-label">VOUS ÊTES PROGRAMMATEUR ?</p>
+            <p className="card-label">PROGRAMMATEUR ?</p>
             <h3 className="card-title">Des spectacles qui cartonnent</h3>
-            <p className="card-description">Humour • Stand-up • One-man shows</p>
+            <p className="card-description">Humour • Stand-up</p>
             <div className="card-link">En savoir plus →</div>
           </div>
           <div className="card">
-            <p className="card-label">VOUS ÊTES ENTREPRISE ?</p>
+            <p className="card-label">ENTREPRISE ?</p>
             <h3 className="card-title">Événements mémorables</h3>
-            <p className="card-description">Soirées • Conventions • Team building</p>
+            <p className="card-description">Soirées • Events</p>
             <div className="card-link">En savoir plus →</div>
           </div>
         </div>
