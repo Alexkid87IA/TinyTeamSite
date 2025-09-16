@@ -204,6 +204,32 @@
 
 /* SOLUTION CORRECTE pour le débordement horizontal sur mobile */
 @media (max-width: 768px) {
+  /* DÉSACTIVER LES ANIMATIONS QUI CAUSENT LE CLIGNOTEMENT */
+  * {
+    animation: none !important;
+    transition: opacity 0.3s ease, color 0.3s ease !important;
+  }
+  
+  /* Désactiver les effets de blur qui causent des problèmes de performance */
+  .backdrop-blur-sm,
+  .backdrop-blur,
+  .backdrop-blur-md,
+  .backdrop-blur-lg,
+  .backdrop-blur-xl,
+  .backdrop-blur-2xl,
+  .backdrop-blur-3xl {
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    background: rgba(10, 15, 41, 0.95) !important;
+  }
+  
+  /* Désactiver will-change et les transformations 3D */
+  * {
+    will-change: auto !important;
+    transform-style: flat !important;
+    perspective: none !important;
+  }
+  
   /* Conteneur principal avec padding contrôlé */
   .container,
   [class*="container"] {
@@ -213,21 +239,24 @@
     padding-right: 1rem;
   }
   
-  /* Gérer les très grandes tailles de texte */
+  /* CORRECTION DES TITRES TRONQUÉS - Tailles plus adaptées */
   h1, h2, h3, h4, h5, h6 {
     max-width: 100%;
-    word-break: break-word;
-    hyphens: auto;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+    hyphens: manual;
+    text-align: center;
   }
   
-  /* Adapter les tailles de police dynamiquement */
+  /* Adapter les tailles avec des valeurs qui ne tronquent pas */
   .text-9xl, 
   .sm\\:text-9xl, 
   .md\\:text-9xl, 
   .lg\\:text-9xl, 
   .xl\\:text-9xl {
-    font-size: clamp(3rem, 12vw, 5rem);
-    line-height: 1;
+    font-size: min(13vw, 3.5rem) !important;
+    line-height: 1.1 !important;
+    letter-spacing: -0.02em;
   }
   
   .text-8xl,
@@ -235,30 +264,38 @@
   .md\\:text-8xl,
   .lg\\:text-8xl,
   .xl\\:text-8xl {
-    font-size: clamp(2.5rem, 10vw, 4rem);
-    line-height: 1.1;
+    font-size: min(11vw, 3rem) !important;
+    line-height: 1.1 !important;
+    letter-spacing: -0.02em;
   }
   
   .text-7xl,
   .sm\\:text-7xl,
   .md\\:text-7xl,
   .lg\\:text-7xl {
-    font-size: clamp(2rem, 8vw, 3.5rem);
-    line-height: 1.1;
+    font-size: min(10vw, 2.75rem) !important;
+    line-height: 1.1 !important;
   }
   
   .text-6xl,
   .sm\\:text-6xl,
   .md\\:text-6xl {
-    font-size: clamp(1.875rem, 7vw, 3rem);
-    line-height: 1.2;
+    font-size: min(9vw, 2.5rem) !important;
+    line-height: 1.15 !important;
   }
   
   .text-5xl,
   .sm\\:text-5xl,
   .md\\:text-5xl {
-    font-size: clamp(1.5rem, 6vw, 2.5rem);
-    line-height: 1.2;
+    font-size: min(8vw, 2.25rem) !important;
+    line-height: 1.2 !important;
+  }
+  
+  .text-4xl,
+  .sm\\:text-4xl,
+  .md\\:text-4xl {
+    font-size: min(7vw, 2rem) !important;
+    line-height: 1.2 !important;
   }
   
   /* Gérer les éléments avec position absolute */
@@ -288,6 +325,31 @@
   /* Gérer les gradients de fond */
   [class*="bg-gradient"] {
     background-size: 200% 200%;
+  }
+  
+  /* DÉSACTIVER LES PARTICULES FLOTTANTES SUR MOBILE */
+  .floating-particles,
+  [class*="particle"],
+  [class*="float"] {
+    display: none !important;
+  }
+}
+
+/* OPTIMISATION SPÉCIFIQUE POUR iOS */
+@supports (-webkit-touch-callout: none) {
+  /* iOS specific fixes */
+  .backdrop-blur-xl,
+  .backdrop-blur-2xl,
+  .backdrop-blur-md,
+  .backdrop-blur-lg {
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+  }
+  
+  /* Désactiver les transformations 3D sur iOS */
+  * {
+    -webkit-transform: translateZ(0);
+    -webkit-backface-visibility: hidden;
   }
 }
 

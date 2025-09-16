@@ -1,9 +1,22 @@
+/* ArtistsSliderSection.css - Design Néon Spectaculaire cohérent avec la homepage */
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;900&display=swap');
 
 /* ====================================
-   ARTISTS SLIDER SECTION - BASE
+   VARIABLES
    ==================================== */
+:root {
+    --neon-pink: #ff00ff;
+    --neon-cyan: #00ffff;
+    --neon-yellow: #ffff00;
+    --neon-purple: #a855f7;
+    --neon-orange: #ff8800;
+    --primary-pink: #ec4899;
+    --bg-dark: #0a0a1a;
+}
 
+/* ====================================
+   SECTION PRINCIPALE
+   ==================================== */
 .artists-slider-section {
     position: relative;
     min-height: 100vh;
@@ -14,191 +27,212 @@
 }
 
 /* ====================================
-   EFFETS DE FOND
+   EFFETS DE FOND SPECTACULAIRES
    ==================================== */
-
-.artists-bg-layer {
+.artists-background {
     position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
+    inset: 0;
     pointer-events: none;
-    z-index: 1;
 }
 
-.gradient-overlay-1 {
+/* Grille animée style néon */
+.artists-grid {
     position: absolute;
     inset: 0;
-    background: radial-gradient(ellipse at center, rgba(44, 62, 153, 0.15), transparent 70%);
+    background-image: 
+        linear-gradient(rgba(236, 72, 153, 0.1) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(168, 85, 247, 0.1) 1px, transparent 1px);
+    background-size: 80px 80px;
+    animation: gridMove 25s linear infinite;
+    opacity: 0.3;
 }
 
-.gradient-overlay-2 {
-    position: absolute;
-    inset: 0;
-    background: radial-gradient(circle at 20% 80%, rgba(236, 72, 153, 0.1), transparent 50%);
+@keyframes gridMove {
+    0% { transform: translate(0, 0); }
+    100% { transform: translate(80px, 80px); }
 }
 
-/* Particules */
-.particles-container {
+/* Orbes de lumière */
+.artists-orb {
     position: absolute;
-    inset: 0;
-}
-
-.floating-particle {
-    position: absolute;
-    width: 1px;
-    height: 1px;
-    background: rgba(255, 255, 255, 0.2);
     border-radius: 50%;
-    animation: floatUp 15s infinite ease-in-out;
+    filter: blur(100px);
+    animation: floatOrb 30s ease-in-out infinite;
 }
 
-@keyframes floatUp {
-    0%, 100% {
-        transform: translateY(0) translateX(0);
-        opacity: 0;
-    }
-    50% {
-        transform: translateY(-100px) translateX(30px);
-        opacity: 1;
-    }
+.orb-1 {
+    width: 500px;
+    height: 500px;
+    background: radial-gradient(circle, rgba(236, 72, 153, 0.3), transparent 70%);
+    top: 10%;
+    left: -200px;
+}
+
+.orb-2 {
+    width: 400px;
+    height: 400px;
+    background: radial-gradient(circle, rgba(168, 85, 247, 0.3), transparent 70%);
+    bottom: 10%;
+    right: -200px;
+    animation-delay: 15s;
+}
+
+.orb-3 {
+    width: 350px;
+    height: 350px;
+    background: radial-gradient(circle, rgba(0, 255, 255, 0.2), transparent 70%);
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    animation-delay: 10s;
+}
+
+@keyframes floatOrb {
+    0%, 100% { transform: translate(0, 0) scale(1); }
+    33% { transform: translate(100px, -100px) scale(1.1); }
+    66% { transform: translate(-100px, 50px) scale(0.9); }
+}
+
+/* Étoiles scintillantes */
+.artists-stars {
+    position: absolute;
+    inset: 0;
+}
+
+.star {
+    position: absolute;
+    width: 2px;
+    height: 2px;
+    background: white;
+    border-radius: 50%;
+    animation: twinkle 3s ease-in-out infinite;
+}
+
+@keyframes twinkle {
+    0%, 100% { opacity: 0; transform: scale(0.5); }
+    50% { opacity: 1; transform: scale(1); }
 }
 
 /* ====================================
    CONTENU PRINCIPAL
    ==================================== */
-
 .artists-main-content {
     position: relative;
     z-index: 10;
 }
 
 /* ====================================
-   EN-TÊTE DE SECTION
+   HEADER ÉPIQUE
    ==================================== */
-
 .section-header {
     text-align: center;
     margin-bottom: 4rem;
     max-width: 1200px;
     margin-left: auto;
     margin-right: auto;
+    position: relative;
 }
 
+/* Effet de glow derrière le titre */
+.title-glow {
+    position: absolute;
+    inset: -100px;
+    background: radial-gradient(circle, rgba(236, 72, 153, 0.4), transparent 40%);
+    filter: blur(100px);
+    animation: glow 4s ease-in-out infinite;
+    pointer-events: none;
+}
+
+@keyframes glow {
+    0%, 100% { opacity: 0.5; transform: scale(0.8); }
+    50% { opacity: 1; transform: scale(1.2); }
+}
+
+/* Titre principal style néon */
 .section-title {
-    font-size: clamp(3rem, 10vw, 9rem);
+    font-size: clamp(3rem, 8vw, 7rem);
     font-weight: 900;
     font-style: italic;
     text-transform: uppercase;
     line-height: 0.9;
-    margin-bottom: 2.5rem;
-    color: white;
-    background: linear-gradient(180deg, white, rgba(255, 255, 255, 0.7));
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    filter: drop-shadow(0 0 30px rgba(255, 255, 255, 0.1));
-    animation: titleFadeIn 1s ease-out;
     letter-spacing: -0.02em;
+    margin-bottom: 2rem;
+    position: relative;
 }
 
-@keyframes titleFadeIn {
-    from {
-        opacity: 0;
-        transform: translateY(-30px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
+.title-line-1 {
+    display: block;
+    color: white;
+    margin-bottom: -0.1em;
+    animation: slideInLeft 1s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-/* ====================================
-   SLOGAN
-   ==================================== */
-
-.slogan-container {
-    font-size: 1.5rem;
-    line-height: 1.8;
-    margin-bottom: 1.5rem;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: baseline;
-    gap: 0.5rem;
-    animation: sloganFadeIn 1s ease-out 0.3s backwards;
-}
-
-.slogan-text {
-    color: rgba(255, 255, 255, 0.6);
-    font-weight: 400;
-    transition: color 0.3s ease;
-}
-
-.slogan-text:hover {
-    color: rgba(255, 255, 255, 0.8);
-}
-
-.slogan-emphasis {
-    display: inline-block;
-    font-size: 1.75rem;
-    font-weight: 700;
-    color: #ec4899;
-    background: linear-gradient(135deg, #ec4899 0%, #a855f7 50%, #ec4899 100%);
+.title-line-2 {
+    display: block;
+    font-size: 1.2em;
+    padding-right: 0.2em;
+    background: linear-gradient(90deg, 
+        #ff00ff 0%, 
+        #00ffff 25%, 
+        #ffff00 50%, 
+        #ff00ff 75%, 
+        #00ffff 100%);
     background-size: 200% 100%;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
+    filter: drop-shadow(0 0 60px rgba(236, 72, 153, 0.8));
+    animation: 
+        slideInRight 1s cubic-bezier(0.16, 1, 0.3, 1) 0.2s backwards,
+        gradientSlide 3s linear infinite;
+}
+
+@keyframes slideInLeft {
+    from { opacity: 0; transform: translateX(-100px); }
+    to { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes slideInRight {
+    from { opacity: 0; transform: translateX(100px); }
+    to { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes gradientSlide {
+    0% { background-position: 0% 50%; }
+    100% { background-position: 200% 50%; }
+}
+
+/* Slogan avec emphase néon */
+.slogan-container {
+    font-size: clamp(1rem, 2vw, 1.5rem);
+    color: rgba(255, 255, 255, 0.7);
+    line-height: 1.8;
+    margin-bottom: 1rem;
+    animation: fadeInUp 1s ease-out 0.5s backwards;
+}
+
+.slogan-emphasis {
+    display: block;
+    font-size: 1.3em;
+    font-weight: 900;
     text-transform: uppercase;
-    letter-spacing: 0.05em;
-    filter: drop-shadow(0 0 20px rgba(236, 72, 153, 0.3));
+    margin-top: 0.5rem;
+    background: linear-gradient(135deg, var(--primary-pink), var(--neon-purple));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    filter: drop-shadow(0 0 30px var(--primary-pink));
     animation: emphasisPulse 3s ease-in-out infinite;
-    position: relative;
 }
 
 @keyframes emphasisPulse {
-    0%, 100% {
-        background-position: 0% 50%;
-        transform: scale(1);
-    }
-    50% {
-        background-position: 100% 50%;
-        transform: scale(1.02);
-    }
+    0%, 100% { filter: drop-shadow(0 0 30px var(--primary-pink)); }
+    50% { filter: drop-shadow(0 0 50px var(--primary-pink)); }
 }
 
-.slogan-emphasis::after {
-    content: '';
-    position: absolute;
-    bottom: -2px;
-    left: 0;
-    right: 0;
-    height: 2px;
-    background: linear-gradient(90deg, transparent, #ec4899, transparent);
-    animation: underlineAnimation 3s ease-in-out infinite;
-}
-
-@keyframes underlineAnimation {
-    0%, 100% {
-        transform: scaleX(0);
-        opacity: 0;
-    }
-    50% {
-        transform: scaleX(1);
-        opacity: 1;
-    }
-}
-
-@keyframes sloganFadeIn {
-    from {
-        opacity: 0;
-        transform: translateY(20px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
+@keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
 }
 
 .section-hint {
@@ -207,87 +241,87 @@
     text-transform: uppercase;
     letter-spacing: 0.1em;
     font-weight: 300;
-    animation: sloganFadeIn 1s ease-out 0.5s backwards;
+    margin-top: 1rem;
+    animation: fadeInUp 1s ease-out 0.7s backwards;
 }
 
 /* ====================================
-   RIVIÈRE D'ARTISTES
+   RIVIÈRE D'ARTISTES AMÉLIORÉE
    ==================================== */
-
 .artists-river {
     position: relative;
     margin: 0 -2rem;
-    padding: 2rem 0;
+    padding: 3rem 0;
 }
 
-/* Masques de dégradé */
+/* Masques de dégradé plus doux */
 .mask-left,
 .mask-right {
     position: absolute;
     top: 0;
     bottom: 0;
-    width: 8rem;
+    width: 10rem;
     z-index: 10;
     pointer-events: none;
 }
 
 .mask-left {
     left: 0;
-    background: linear-gradient(to right, #0a0a1a, transparent);
+    background: linear-gradient(to right, 
+        rgba(10, 10, 26, 1) 0%, 
+        rgba(10, 10, 26, 0.8) 50%, 
+        transparent 100%);
 }
 
 .mask-right {
     right: 0;
-    background: linear-gradient(to left, #0a0a1a, transparent);
+    background: linear-gradient(to left, 
+        rgba(10, 10, 26, 1) 0%, 
+        rgba(10, 10, 26, 0.8) 50%, 
+        transparent 100%);
 }
 
-/* Rangées */
+/* Rangées avec espacement optimisé */
 .river-row {
     display: flex;
-    gap: 1.5rem;
-    margin-bottom: 1.5rem;
+    gap: 2rem;
+    margin-bottom: 2rem;
     width: fit-content;
 }
 
 .row-right {
-    animation: scrollRight 50s linear infinite;
+    animation: scrollRight 60s linear infinite;
 }
 
 .row-left {
-    animation: scrollLeft 45s linear infinite;
+    animation: scrollLeft 55s linear infinite;
 }
 
 @keyframes scrollRight {
-    from {
-        transform: translateX(0);
-    }
-    to {
-        transform: translateX(-33.333%);
-    }
+    from { transform: translateX(0); }
+    to { transform: translateX(-33.333%); }
 }
 
 @keyframes scrollLeft {
-    from {
-        transform: translateX(-33.333%);
-    }
-    to {
-        transform: translateX(0);
-    }
+    from { transform: translateX(-33.333%); }
+    to { transform: translateX(0); }
 }
 
 /* ====================================
-   CARTES D'ARTISTES
+   CARTES D'ARTISTES NÉON
    ==================================== */
-
 .poster-card {
     flex-shrink: 0;
     width: 320px;
     height: 480px;
-    border-radius: 1rem;
+    border-radius: 1.5rem;
     overflow: hidden;
     position: relative;
-    transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
     cursor: pointer;
+    background: rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(10px);
+    border: 2px solid rgba(255, 255, 255, 0.1);
 }
 
 .poster-card a {
@@ -298,43 +332,58 @@
     text-decoration: none;
 }
 
+/* État hover avec effet néon */
 .poster-card.hovered {
-    transform: scale(1.05);
+    transform: scale(1.05) translateY(-10px);
     z-index: 20;
+    border-color: var(--primary-pink);
+    box-shadow: 
+        0 30px 60px rgba(0, 0, 0, 0.5),
+        0 0 80px rgba(236, 72, 153, 0.4);
 }
 
 .poster-image {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    transition: transform 0.5s ease;
+    transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+    filter: brightness(0.9);
 }
 
 .poster-card.hovered .poster-image {
-    transform: scale(1.1);
+    transform: scale(1.15);
+    filter: brightness(1.1);
 }
 
+/* Overlay gradient amélioré */
 .poster-overlay {
     position: absolute;
     inset: 0;
-    background: linear-gradient(to top, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0.4) 40%, transparent 100%);
+    background: linear-gradient(
+        to top,
+        rgba(0, 0, 0, 0.95) 0%,
+        rgba(0, 0, 0, 0.7) 30%,
+        rgba(0, 0, 0, 0.3) 60%,
+        transparent 100%
+    );
     opacity: 0;
-    transition: opacity 0.3s ease;
+    transition: opacity 0.4s ease;
 }
 
 .poster-card.hovered .poster-overlay {
     opacity: 1;
 }
 
+/* Contenu de la carte avec style néon */
 .poster-content {
     position: absolute;
     bottom: 0;
     left: 0;
     right: 0;
-    padding: 2rem;
-    transform: translateY(20px);
+    padding: 2.5rem 2rem 2rem;
+    transform: translateY(30px);
     opacity: 0;
-    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .poster-card.hovered .poster-content {
@@ -343,34 +392,47 @@
 }
 
 .poster-name {
-    font-size: 1.5rem;
-    font-weight: 700;
+    font-size: 1.8rem;
+    font-weight: 900;
     color: white;
-    margin-bottom: 1rem;
+    margin-bottom: 1.2rem;
+    text-transform: uppercase;
+    letter-spacing: -0.02em;
+    text-shadow: 0 0 30px rgba(255, 255, 255, 0.5);
 }
 
 .poster-button {
     display: inline-flex;
     align-items: center;
-    padding: 0.75rem 1.5rem;
+    gap: 0.5rem;
+    padding: 1rem 2rem;
     background: white;
-    color: black;
+    color: var(--bg-dark);
     border: none;
     border-radius: 9999px;
-    font-weight: 600;
+    font-weight: 700;
     font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
     cursor: pointer;
-    transition: all 0.2s;
+    transition: all 0.3s;
 }
 
 .poster-button:hover {
     transform: scale(1.05);
+    box-shadow: 0 0 30px rgba(255, 255, 255, 0.5);
 }
 
+/* Effet de brillance néon */
 .poster-shine {
     position: absolute;
     inset: 0;
-    background: linear-gradient(to right, transparent, rgba(255, 255, 255, 0.1), transparent);
+    background: linear-gradient(
+        105deg,
+        transparent 40%,
+        rgba(255, 255, 255, 0.2) 50%,
+        transparent 60%
+    );
     transform: translateX(-100%);
     transition: transform 0.8s ease-in-out;
 }
@@ -380,47 +442,59 @@
 }
 
 /* ====================================
-   CTA SECTION
+   CTA SECTION NÉON
    ==================================== */
-
 .section-cta {
     text-align: center;
-    margin-top: 5rem;
-    animation: sloganFadeIn 1s ease-out 0.8s backwards;
+    margin-top: 4rem;
+    animation: fadeInUp 1s ease-out 1s backwards;
 }
 
 .main-cta-button {
-    position: relative;
     display: inline-flex;
     align-items: center;
-    padding: 1.25rem 3rem;
-    font-weight: 700;
+    gap: 1rem;
+    padding: 1.5rem 4rem;
     font-size: 1.125rem;
+    font-weight: 900;
     text-transform: uppercase;
     letter-spacing: 0.1em;
-    border-radius: 9999px;
     text-decoration: none;
+    color: white;
+    border-radius: 9999px;
+    position: relative;
     overflow: hidden;
-    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-    
-    /* Style néon/glow */
     background: rgba(0, 0, 0, 0.3);
     backdrop-filter: blur(10px);
-    border: 2px solid transparent;
-    background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), 
-                      linear-gradient(135deg, #ec4899, #a855f7);
+    border: 3px solid transparent;
+    background-image: 
+        linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), 
+        linear-gradient(135deg, var(--primary-pink), var(--neon-purple));
     background-origin: border-box;
     background-clip: padding-box, border-box;
-    color: white;
-    
-    /* Ombre lumineuse */
     box-shadow: 
-        0 0 20px rgba(236, 72, 153, 0.3),
-        0 0 40px rgba(168, 85, 247, 0.2),
+        0 0 40px rgba(236, 72, 153, 0.3),
+        0 0 80px rgba(168, 85, 247, 0.2),
         inset 0 0 20px rgba(236, 72, 153, 0.1);
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    animation: ctaPulse 3s ease-in-out infinite;
 }
 
-/* Effet de brillance qui traverse le bouton */
+@keyframes ctaPulse {
+    0%, 100% {
+        box-shadow: 
+            0 0 40px rgba(236, 72, 153, 0.3),
+            0 0 80px rgba(168, 85, 247, 0.2),
+            inset 0 0 20px rgba(236, 72, 153, 0.1);
+    }
+    50% {
+        box-shadow: 
+            0 0 60px rgba(236, 72, 153, 0.5),
+            0 0 100px rgba(168, 85, 247, 0.3),
+            inset 0 0 30px rgba(236, 72, 153, 0.2);
+    }
+}
+
 .main-cta-button::before {
     content: '';
     position: absolute;
@@ -428,57 +502,28 @@
     left: -100%;
     width: 100%;
     height: 100%;
-    background: linear-gradient(
-        90deg,
-        transparent,
-        rgba(255, 255, 255, 0.2),
-        transparent
-    );
-    transition: left 0.6s ease;
+    background: linear-gradient(90deg, 
+        transparent, 
+        rgba(255, 255, 255, 0.3), 
+        transparent);
+    transition: left 0.6s;
 }
 
 .main-cta-button:hover::before {
     left: 100%;
 }
 
-/* Lueur animée au hover */
 .main-cta-button:hover {
-    transform: translateY(-4px) scale(1.05);
-    background-image: linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.2)), 
-                      linear-gradient(135deg, #d946a0, #9333ea);
+    transform: translateY(-5px) scale(1.05);
     box-shadow: 
-        0 0 30px rgba(236, 72, 153, 0.5),
-        0 0 60px rgba(168, 85, 247, 0.3),
-        inset 0 0 30px rgba(236, 72, 153, 0.2),
-        0 10px 40px rgba(0, 0, 0, 0.4);
-    color: white;
-    text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
-}
-
-/* Animation de pulsation subtile */
-@keyframes ctaPulse {
-    0%, 100% {
-        box-shadow: 
-            0 0 20px rgba(236, 72, 153, 0.3),
-            0 0 40px rgba(168, 85, 247, 0.2),
-            inset 0 0 20px rgba(236, 72, 153, 0.1);
-    }
-    50% {
-        box-shadow: 
-            0 0 30px rgba(236, 72, 153, 0.4),
-            0 0 50px rgba(168, 85, 247, 0.3),
-            inset 0 0 25px rgba(236, 72, 153, 0.15);
-    }
-}
-
-.main-cta-button {
-    animation: ctaPulse 3s ease-in-out infinite;
+        0 0 60px rgba(236, 72, 153, 0.6),
+        0 0 120px rgba(168, 85, 247, 0.4),
+        0 20px 40px rgba(0, 0, 0, 0.3);
 }
 
 /* ====================================
    INDICATEUR D'INTERACTION
    ==================================== */
-
 .interaction-indicator {
     text-align: center;
     margin-top: 2rem;
@@ -487,35 +532,163 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 0.5rem;
-    animation: fadeInAnimation 1s ease-out 1s backwards;
+    gap: 0.75rem;
+    animation: fadeInUp 1s ease-out 1.2s backwards;
 }
 
-.indicator-emoji {
-    animation: floatAnimation 2s ease-in-out infinite;
+.indicator-icon {
+    width: 20px;
+    height: 20px;
+    color: var(--primary-pink);
+    animation: bounce 2s ease-in-out infinite;
 }
 
-@keyframes floatAnimation {
-    0%, 100% {
-        transform: translateY(0);
-    }
-    50% {
-        transform: translateY(-8px);
-    }
-}
-
-@keyframes fadeInAnimation {
-    from {
-        opacity: 0;
-    }
-    to {
-        opacity: 1;
-    }
+@keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-8px); }
 }
 
 /* ====================================
-   RESPONSIVE
+   RESPONSIVE - MOBILE FIRST
    ==================================== */
+
+/* Mobile */
+@media (max-width: 768px) {
+    .artists-slider-section {
+        padding: 4rem 1rem;
+        min-height: auto;
+    }
+    
+    .section-header {
+        margin-bottom: 3rem;
+    }
+    
+    .title-glow {
+        inset: -50px;
+    }
+    
+    .section-title {
+        font-size: clamp(2.5rem, 12vw, 4rem);
+        margin-bottom: 1.5rem;
+    }
+    
+    .title-line-2 {
+        font-size: 1.15em;
+    }
+    
+    .slogan-container {
+        font-size: 1rem;
+    }
+    
+    .slogan-emphasis {
+        font-size: 1.2em;
+        margin-top: 0.3rem;
+    }
+    
+    .section-hint {
+        display: none;
+    }
+    
+    .artists-river {
+        margin: 0 -1rem;
+        padding: 2rem 0;
+    }
+    
+    .mask-left,
+    .mask-right {
+        width: 4rem;
+    }
+    
+    .river-row {
+        gap: 1rem;
+        margin-bottom: 1rem;
+    }
+    
+    /* Une seule rangée sur mobile */
+    .river-row:last-child {
+        display: none;
+    }
+    
+    .poster-card {
+        width: 240px;
+        height: 360px;
+        border-radius: 1rem;
+    }
+    
+    /* Désactiver hover sur mobile */
+    .poster-card.hovered {
+        transform: none;
+    }
+    
+    .poster-content {
+        transform: translateY(0);
+        opacity: 1;
+        padding: 1.5rem 1rem;
+        background: linear-gradient(
+            to top,
+            rgba(0, 0, 0, 0.9) 0%,
+            rgba(0, 0, 0, 0.7) 50%,
+            transparent 100%
+        );
+    }
+    
+    .poster-name {
+        font-size: 1.3rem;
+        margin-bottom: 0.8rem;
+    }
+    
+    .poster-button {
+        padding: 0.75rem 1.5rem;
+        font-size: 0.8rem;
+    }
+    
+    .section-cta {
+        margin-top: 3rem;
+    }
+    
+    .main-cta-button {
+        padding: 1.25rem 2.5rem;
+        font-size: 1rem;
+    }
+    
+    .interaction-indicator {
+        display: none;
+    }
+}
+
+/* Très petits écrans */
+@media (max-width: 380px) {
+    .section-title {
+        font-size: 2rem;
+    }
+    
+    .title-line-2 {
+        font-size: 1.1em;
+    }
+    
+    .slogan-container {
+        font-size: 0.875rem;
+    }
+    
+    .poster-card {
+        width: 200px;
+        height: 300px;
+    }
+    
+    .poster-name {
+        font-size: 1.1rem;
+    }
+    
+    .poster-button {
+        padding: 0.6rem 1.2rem;
+        font-size: 0.75rem;
+    }
+    
+    .main-cta-button {
+        padding: 1rem 2rem;
+        font-size: 0.9rem;
+    }
+}
 
 /* Tablette */
 @media (min-width: 769px) and (max-width: 1024px) {
@@ -534,112 +707,33 @@
     
     .mask-left,
     .mask-right {
-        width: 6rem;
+        width: 8rem;
     }
 }
 
-/* Mobile */
-@media (max-width: 768px) {
-    .artists-slider-section {
-        padding: 4rem 1rem;
-        min-height: auto;
-    }
-    
+/* Grand écran */
+@media (min-width: 1920px) {
     .section-title {
-        font-size: 3rem;
-        margin-bottom: 1.5rem;
-    }
-    
-    .slogan-container {
-        font-size: 1.1rem;
-        flex-direction: column;
-        align-items: center;
-        gap: 0.2rem;
-    }
-    
-    .slogan-emphasis {
-        font-size: 1.3rem;
-        margin-top: 0.5rem;
-    }
-    
-    .section-hint,
-    .interaction-indicator {
-        display: none;
-    }
-    
-    .artists-river {
-        margin: 0 -1rem;
-        padding: 1rem 0;
-    }
-    
-    .river-row:last-child {
-        display: none;
+        font-size: 8rem;
     }
     
     .poster-card {
-        width: 200px;
-        height: 300px;
+        width: 360px;
+        height: 540px;
     }
     
     .poster-name {
-        font-size: 1.2rem;
-    }
-    
-    .poster-button {
-        padding: 0.5rem 1rem;
-        font-size: 0.875rem;
-    }
-    
-    .mask-left,
-    .mask-right {
-        width: 3rem;
-    }
-    
-    .main-cta-button {
-        padding: 1rem 2rem;
-        font-size: 1rem;
-    }
-}
-
-/* Très petits écrans */
-@media (max-width: 380px) {
-    .section-title {
-        font-size: 2.5rem;
-    }
-    
-    .slogan-container {
-        font-size: 0.875rem;
-    }
-    
-    .slogan-emphasis {
-        font-size: 1.1rem;
-    }
-    
-    .poster-card {
-        width: 160px;
-        height: 240px;
-    }
-    
-    .poster-content {
-        padding: 1rem;
-    }
-    
-    .poster-name {
-        font-size: 1rem;
-        margin-bottom: 0.5rem;
-    }
-    
-    .poster-button {
-        padding: 0.4rem 0.8rem;
-        font-size: 0.75rem;
+        font-size: 2rem;
     }
 }
 
 /* Préférences de mouvement réduit */
 @media (prefers-reduced-motion: reduce) {
     .river-row,
-    .floating-particle,
-    .indicator-emoji {
-        animation: none;
+    .artists-grid,
+    .artists-orb,
+    .star,
+    .indicator-icon {
+        animation: none !important;
     }
 }

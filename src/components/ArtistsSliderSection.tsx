@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { motion } from 'framer-motion';
+import { ChevronRight, MousePointer2 } from 'lucide-react';
 import './ArtistsSliderSection.css';
 
-// Liste des artistes SANS Adel
+// Liste des artistes
 const artistsData = [
   {
     id: "urbain",
@@ -65,22 +67,26 @@ export const ArtistsSliderSection = () => {
 
   return (
     <section className="artists-slider-section">
-      {/* Effets de fond */}
-      <div className="artists-bg-layer">
-        <div className="gradient-overlay-1"></div>
-        <div className="gradient-overlay-2"></div>
+      {/* Effets de fond spectaculaires */}
+      <div className="artists-background">
+        {/* Grille animée */}
+        <div className="artists-grid" />
         
-        {/* Particules animées */}
-        <div className="particles-container">
-          {[...Array(30)].map((_, i) => (
+        {/* Orbes de lumière */}
+        <div className="artists-orb orb-1" />
+        <div className="artists-orb orb-2" />
+        <div className="artists-orb orb-3" />
+        
+        {/* Étoiles scintillantes */}
+        <div className="artists-stars">
+          {[...Array(40)].map((_, i) => (
             <div
               key={i}
-              className="floating-particle"
+              className="star"
               style={{
                 left: `${Math.random() * 100}%`,
                 top: `${Math.random() * 100}%`,
-                animationDelay: `${Math.random() * 10}s`,
-                animationDuration: `${10 + Math.random() * 10}s`
+                animationDelay: `${Math.random() * 3}s`
               }}
             />
           ))}
@@ -90,89 +96,149 @@ export const ArtistsSliderSection = () => {
       {/* Contenu principal */}
       <div className="artists-main-content">
         
-        {/* En-tête de la section */}
-        <div className="section-header">
-          <h2 className="section-title">NOS ARTISTES</h2>
+        {/* Header épique avec animations */}
+        <motion.div 
+          className="section-header"
+          initial={{ opacity: 0, scale: 0.9 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8 }}
+        >
+          <div className="title-glow" />
           
-          <div className="slogan-container">
-            <span className="slogan-text">Nos artistes,</span>
-            <span className="slogan-text">leurs univers,</span>
-            <span className="slogan-text">une seule passion :</span>
-            <span className="slogan-emphasis">VOUS ÉMERVEILLER</span>
-          </div>
+          <h2 className="section-title">
+            <span className="title-line-1">Nos</span>
+            <span className="title-line-2">Artistes</span>
+          </h2>
           
-          <p className="section-hint">
+          <motion.div 
+            className="slogan-container"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8, delay: 0.3 }}
+          >
+            <p>
+              Des talents d'exception, des univers uniques, une seule passion :
+            </p>
+            <span className="slogan-emphasis">
+              Vous émerveiller
+            </span>
+          </motion.div>
+          
+          <motion.p 
+            className="section-hint"
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8, delay: 0.5 }}
+          >
             Survolez les affiches pour découvrir chaque artiste
-          </p>
-        </div>
+          </motion.p>
+        </motion.div>
 
-        {/* Rivière d'artistes */}
-        <div className="artists-river">
+        {/* Rivière d'artistes améliorée */}
+        <motion.div 
+          className="artists-river"
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 1, delay: 0.4 }}
+        >
           {/* Masques de dégradé */}
-          <div className="mask-left"></div>
-          <div className="mask-right"></div>
+          <div className="mask-left" />
+          <div className="mask-right" />
           
           {/* Rangée du haut - défile vers la droite */}
           <div className="river-row row-right">
             {topRow.map((artist, index) => (
-              <div
+              <motion.div
                 key={`top-${index}`}
                 className={`poster-card ${hoveredCard === `top-${index}` ? 'hovered' : ''}`}
                 onMouseEnter={() => setHoveredCard(`top-${index}`)}
                 onMouseLeave={() => setHoveredCard(null)}
+                whileHover={{ scale: 1.05, y: -10 }}
+                transition={{ duration: 0.3 }}
               >
                 <Link to={`/artiste/${artist.id}`}>
-                  <img src={artist.image} alt={artist.name} className="poster-image" />
-                  <div className="poster-overlay"></div>
+                  <img 
+                    src={artist.image} 
+                    alt={artist.name} 
+                    className="poster-image"
+                    loading="lazy"
+                  />
+                  <div className="poster-overlay" />
                   <div className="poster-content">
                     <h3 className="poster-name">{artist.name}</h3>
                     <button className="poster-button">
-                      Découvrir →
+                      Découvrir
+                      <ChevronRight size={16} />
                     </button>
                   </div>
-                  <div className="poster-shine"></div>
+                  <div className="poster-shine" />
                 </Link>
-              </div>
+              </motion.div>
             ))}
           </div>
           
-          {/* Rangée du bas - défile vers la gauche */}
+          {/* Rangée du bas - défile vers la gauche (desktop uniquement) */}
           <div className="river-row row-left">
             {bottomRow.map((artist, index) => (
-              <div
+              <motion.div
                 key={`bottom-${index}`}
                 className={`poster-card ${hoveredCard === `bottom-${index}` ? 'hovered' : ''}`}
                 onMouseEnter={() => setHoveredCard(`bottom-${index}`)}
                 onMouseLeave={() => setHoveredCard(null)}
+                whileHover={{ scale: 1.05, y: -10 }}
+                transition={{ duration: 0.3 }}
               >
                 <Link to={`/artiste/${artist.id}`}>
-                  <img src={artist.image} alt={artist.name} className="poster-image" />
-                  <div className="poster-overlay"></div>
+                  <img 
+                    src={artist.image} 
+                    alt={artist.name} 
+                    className="poster-image"
+                    loading="lazy"
+                  />
+                  <div className="poster-overlay" />
                   <div className="poster-content">
                     <h3 className="poster-name">{artist.name}</h3>
                     <button className="poster-button">
-                      Découvrir →
+                      Découvrir
+                      <ChevronRight size={16} />
                     </button>
                   </div>
-                  <div className="poster-shine"></div>
+                  <div className="poster-shine" />
                 </Link>
-              </div>
+              </motion.div>
             ))}
           </div>
-        </div>
+        </motion.div>
 
-        {/* Bouton CTA */}
-        <div className="section-cta">
+        {/* CTA Section avec animation */}
+        <motion.div 
+          className="section-cta"
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8, delay: 0.6 }}
+        >
           <Link to="/artistes" className="main-cta-button">
-            Explorer tous nos artistes →
+            <span>Explorer tous nos artistes</span>
+            <ChevronRight size={20} />
           </Link>
-        </div>
+        </motion.div>
 
         {/* Indicateur d'interaction (desktop uniquement) */}
-        <div className="interaction-indicator">
-          <span className="indicator-emoji">👆</span>
+        <motion.div 
+          className="interaction-indicator"
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8, delay: 0.8 }}
+        >
+          <MousePointer2 className="indicator-icon" />
           <span>Survolez une affiche pour en savoir plus</span>
-        </div>
+        </motion.div>
       </div>
     </section>
   );
