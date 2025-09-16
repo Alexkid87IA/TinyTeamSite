@@ -26,13 +26,13 @@ const servicesData: Service[] = [
     number: "01",
     title: "Production",
     subtitle: "De l'idée à la scène",
-    description: "Une approche globale de la production artistique. Nous transformons vos idées en spectacles vivants mémorables avec une expertise technique et créative sans faille.",
+    description: "Une approche globale de la production artistique. Nous transformons vos idées en spectacles vivants mémorables.",
     icon: Star,
     features: [
-      { title: "Direction artistique", desc: "Vision créative unique" },
-      { title: "Production exécutive", desc: "Gestion complète du projet" },
-      { title: "Mise en scène", desc: "Scénographie professionnelle" },
-      { title: "Gestion technique", desc: "Support son, lumière, vidéo" }
+      { title: "Direction artistique", desc: "Vision créative" },
+      { title: "Production exécutive", desc: "Gestion complète" },
+      { title: "Mise en scène", desc: "Scénographie pro" },
+      { title: "Gestion technique", desc: "Son, lumière, vidéo" }
     ]
   },
   {
@@ -40,11 +40,11 @@ const servicesData: Service[] = [
     number: "02",
     title: "Management",
     subtitle: "Votre carrière entre de bonnes mains",
-    description: "Un accompagnement sur mesure pour propulser votre carrière. Nous gérons tous les aspects administratifs et stratégiques pour que vous puissiez vous concentrer sur votre art.",
+    description: "Un accompagnement sur mesure pour propulser votre carrière artistique au niveau supérieur.",
     icon: Shield,
     features: [
-      { title: "Développement carrière", desc: "Stratégie à long terme" },
-      { title: "Négociations", desc: "Contrats et partenariats" },
+      { title: "Développement carrière", desc: "Stratégie long terme" },
+      { title: "Négociations", desc: "Contrats optimisés" },
       { title: "Gestion administrative", desc: "Paperasse simplifiée" },
       { title: "Relations pro", desc: "Réseau d'experts" }
     ]
@@ -54,12 +54,12 @@ const servicesData: Service[] = [
     number: "03",
     title: "Digital",
     subtitle: "Votre présence en ligne",
-    description: "Maîtrisez les enjeux du numérique avec une stratégie digitale complète. Nous créons et gérons votre image en ligne pour maximiser votre impact et votre audience.",
+    description: "Stratégie digitale complète pour maximiser votre impact et développer votre audience.",
     icon: Rocket,
     features: [
-      { title: "Réseaux sociaux", desc: "Instagram, TikTok, YouTube" },
-      { title: "Création contenus", desc: "Photos, vidéos, stories" },
-      { title: "Community management", desc: "Engagement des fans" },
+      { title: "Réseaux sociaux", desc: "Multi-plateformes" },
+      { title: "Création contenus", desc: "Photos, vidéos" },
+      { title: "Community management", desc: "Engagement fans" },
       { title: "Marketing digital", desc: "Campagnes ciblées" }
     ]
   },
@@ -68,12 +68,12 @@ const servicesData: Service[] = [
     number: "04",
     title: "Communication",
     subtitle: "Votre image, notre expertise",
-    description: "Développez une image forte et cohérente. Nous créons une identité visuelle unique qui vous distingue et raconte votre histoire dans l'univers du spectacle vivant.",
+    description: "Développez une image forte et cohérente qui vous distingue dans le spectacle vivant.",
     icon: Layout,
     features: [
       { title: "Relations presse", desc: "Médias nationaux" },
-      { title: "Identité visuelle", desc: "Logo, charte graphique" },
-      { title: "Com événementielle", desc: "Lancement de spectacles" },
+      { title: "Identité visuelle", desc: "Charte graphique" },
+      { title: "Com événementielle", desc: "Lancements" },
       { title: "Relations publiques", desc: "Image de marque" }
     ]
   },
@@ -82,13 +82,13 @@ const servicesData: Service[] = [
     number: "05",
     title: "Diffusion & Tournées",
     subtitle: "Rayonnez sur toutes les scènes",
-    description: "Portez votre spectacle partout en France. Organisation millimétrée, réseau de salles partenaires et support technique pour des tournées réussies.",
+    description: "Organisation millimétrée et réseau de salles partenaires pour des tournées réussies.",
     icon: Globe,
     features: [
-      { title: "Booking national", desc: "300+ salles partenaires" },
-      { title: "Gestion tournées", desc: "Logistique complète" },
-      { title: "Relations salles", desc: "Négociation, contrats" },
-      { title: "Support technique", desc: "Équipe sur place" }
+      { title: "Booking national", desc: "300+ salles" },
+      { title: "Gestion tournées", desc: "Logistique A-Z" },
+      { title: "Relations salles", desc: "Négociations" },
+      { title: "Support technique", desc: "Équipe dédiée" }
     ]
   },
   {
@@ -96,13 +96,13 @@ const servicesData: Service[] = [
     number: "06",
     title: "Événements Spéciaux",
     subtitle: "Des moments uniques",
-    description: "Créez des moments inoubliables pour vos événements privés ou corporatifs. Production sur mesure, coordination complète et expertise événementielle premium.",
+    description: "Production sur mesure pour créer des moments inoubliables lors d'événements exceptionnels.",
     icon: Calendar,
     features: [
       { title: "Conception sur mesure", desc: "Événements uniques" },
       { title: "Production complète", desc: "Clé en main" },
-      { title: "Coordination", desc: "Gestion A à Z" },
-      { title: "Technique premium", desc: "Équipement haut de gamme" }
+      { title: "Coordination", desc: "Gestion globale" },
+      { title: "Technique premium", desc: "Équipement pro" }
     ]
   }
 ];
@@ -124,12 +124,15 @@ const ServicePanel: React.FC<ServicePanelProps> = ({ service, isActive, onClick 
     >
       <div className="panel-container">
         {/* Header cliquable */}
-        <div className="panel-header" onClick={onClick}>
-          {/* Badge numéro visible */}
+        <div 
+          className="panel-header" 
+          onClick={onClick}
+          role="button"
+          tabIndex={0}
+          aria-expanded={isActive}
+        >
+          {/* Badge numéro */}
           <div className="panel-number">{service.number}</div>
-          
-          {/* Numéro géant en arrière-plan */}
-          <div className="panel-number-bg">{service.number}</div>
           
           {/* Icône */}
           <div className="panel-icon-wrapper">
@@ -169,7 +172,7 @@ const ServicePanel: React.FC<ServicePanelProps> = ({ service, isActive, onClick 
               {/* CTA */}
               <Link to={`/services/${service.id}`} className="panel-cta">
                 <span>En savoir plus</span>
-                <ArrowRight size={18} />
+                <ArrowRight size={16} />
               </Link>
             </div>
           </div>
@@ -187,40 +190,16 @@ export const MissionSection: React.FC = () => {
     setActivePanel(prevActive => prevActive === serviceId ? null : serviceId);
   }, []);
   
-  // Génération des étoiles de fond
-  const stars = Array.from({ length: 30 }, (_, i) => ({
-    id: i,
-    left: Math.random() * 100,
-    top: Math.random() * 100,
-    opacity: Math.random() * 0.5 + 0.3
-  }));
-  
   return (
     <section className="mission-section">
-      {/* Effets de fond */}
+      {/* Effets de fond simples */}
       <div className="mission-background">
         <div className="bg-gradient-overlay" />
-        
-        {/* Étoiles statiques */}
-        <div className="stars-container">
-          {stars.map(star => (
-            <div
-              key={star.id}
-              className="star"
-              style={{
-                left: `${star.left}%`,
-                top: `${star.top}%`,
-                opacity: star.opacity
-              }}
-            />
-          ))}
-        </div>
       </div>
       
-      {/* Header spectaculaire */}
-      <div className="mission-header">
+      {/* Header */}
+      <header className="mission-header">
         <div className="title-container">
-          <div className="title-glow" />
           <h2 className="main-title">
             <span className="title-word-1">Nos</span>
             <span className="title-word-2">Services</span>
@@ -230,9 +209,9 @@ export const MissionSection: React.FC = () => {
         <p className="subtitle">
           Six expertises pour propulser votre talent
         </p>
-      </div>
+      </header>
       
-      {/* CASCADE de services */}
+      {/* Services en cascade */}
       <div className="services-cascade">
         {servicesData.map((service) => (
           <ServicePanel
@@ -245,12 +224,12 @@ export const MissionSection: React.FC = () => {
       </div>
       
       {/* Footer avec CTA */}
-      <div className="section-footer">
+      <footer className="section-footer">
         <Link to="/services" className="footer-cta">
           <span>Découvrir tous nos services</span>
-          <ArrowRight size={20} />
+          <ArrowRight />
         </Link>
-      </div>
+      </footer>
     </section>
   );
 };
