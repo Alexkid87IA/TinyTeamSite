@@ -1,4 +1,4 @@
-/* HeroSection.css - Styles complets avec rivière d'affiches et animations premium */
+/* HeroSection.css - Version complète avec responsive optimisé */
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;900&display=swap');
 
 :root {
@@ -7,7 +7,8 @@
     --bg-dark: #0a0a1f;
     --bg-dark-secondary: #16213e;
     --poster-size-desktop: 320px;
-    --poster-size-mobile: 200px;
+    --poster-size-tablet: 260px;
+    --poster-size-mobile: 180px;
 }
 
 * {
@@ -24,17 +25,19 @@ body {
     position: relative;
 }
 
-/* Section héros principale */
+/* ============================== */
+/* SECTION HERO */
+/* ============================== */
 .hero-section {
     position: relative;
     min-height: 100vh;
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 100px 20px 40px;
+    padding: 80px 20px 40px;
 }
 
-/* Particules flottantes animées */
+/* Particules flottantes */
 @keyframes float {
     0%, 100% { transform: translateY(0) rotate(0deg); }
     33% { transform: translateY(-20px) rotate(120deg); }
@@ -58,7 +61,6 @@ body {
 .hero-section::before {
     top: 20%;
     left: -100px;
-    animation-delay: 0s;
 }
 
 .hero-section::after {
@@ -66,11 +68,10 @@ body {
     right: -100px;
     background: radial-gradient(circle, rgba(168,85,247,0.15) 0%, transparent 70%);
     animation-delay: 10s;
-    animation-duration: 25s;
 }
 
 /* ============================== */
-/* RIVIÈRE D'AFFICHES (CAROUSEL) */
+/* CAROUSEL D'AFFICHES */
 /* ============================== */
 .background-carousel {
     position: absolute;
@@ -96,34 +97,24 @@ body {
     width: max-content;
 }
 
-/* Rangée du haut - 10% du viewport */
 .carousel-track.top-row {
     top: 10%;
     animation: scrollLeft 50s linear infinite;
 }
 
-/* Rangée du bas - 45% du viewport */
 .carousel-track.bottom-row {
     top: 45%;
     animation: scrollRight 45s linear infinite;
 }
 
 @keyframes scrollLeft {
-    from {
-        transform: translateX(0);
-    }
-    to {
-        transform: translateX(-50%);
-    }
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
 }
 
 @keyframes scrollRight {
-    from {
-        transform: translateX(0);
-    }
-    to {
-        transform: translateX(50%);
-    }
+    from { transform: translateX(0); }
+    to { transform: translateX(50%); }
 }
 
 .poster-card {
@@ -133,39 +124,12 @@ body {
     border-radius: 16px;
     overflow: hidden;
     position: relative;
-    transition: transform 0.3s ease;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
 }
 
-/* Effet de brillance sur les affiches */
-.poster-card::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: linear-gradient(135deg, transparent 30%, rgba(255,255,255,0.1) 50%, transparent 70%);
-    opacity: 0;
-    transition: opacity 0.3s;
-}
-
-.poster-card:hover::after {
-    opacity: 1;
-}
-
-/* Rotation alternée des affiches */
-.poster-card:nth-child(3n+1) {
-    transform: rotate(-3deg);
-}
-
-.poster-card:nth-child(3n+2) {
-    transform: rotate(3deg) translateY(10px);
-}
-
-.poster-card:nth-child(3n) {
-    transform: rotate(-1deg) translateY(-5px);
-}
+.poster-card:nth-child(3n+1) { transform: rotate(-3deg); }
+.poster-card:nth-child(3n+2) { transform: rotate(3deg) translateY(10px); }
+.poster-card:nth-child(3n) { transform: rotate(-1deg) translateY(-5px); }
 
 .poster-card img {
     width: 100%;
@@ -184,10 +148,7 @@ body {
 /* ============================== */
 .overlay {
     position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
+    inset: 0;
     background: radial-gradient(
         ellipse at center,
         rgba(10, 10, 31, 0.2) 0%,
@@ -228,7 +189,11 @@ body {
     overflow: hidden;
 }
 
-/* Effet de brillance qui traverse le badge */
+@keyframes shimmer {
+    0% { left: -100%; }
+    100% { left: 200%; }
+}
+
 .badge::before {
     content: '';
     position: absolute;
@@ -241,11 +206,6 @@ body {
     animation: shimmer 6s infinite;
 }
 
-@keyframes shimmer {
-    0% { left: -100%; }
-    100% { left: 200%; }
-}
-
 .badge-dot {
     width: 8px;
     height: 8px;
@@ -255,14 +215,8 @@ body {
 }
 
 @keyframes pulse {
-    0%, 100% { 
-        opacity: 1; 
-        transform: scale(1); 
-    }
-    50% { 
-        opacity: 0.5; 
-        transform: scale(1.2); 
-    }
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.5; transform: scale(1.2); }
 }
 
 .badge-text {
@@ -278,7 +232,7 @@ body {
 }
 
 .title-tiny {
-    font-size: clamp(2.5rem, 6vw, 4rem);
+    font-size: 4rem;
     font-weight: 900;
     font-style: italic;
     text-transform: uppercase;
@@ -287,25 +241,15 @@ body {
     margin-bottom: 0.25rem;
 }
 
-/* Wrapper pour le titre BIG DREAMS */
-.title-wrapper {
-    position: relative;
-    display: inline-block;
-}
-
-/* Titre BIG DREAMS avec animations AUDACIEUSES */
 .title-big {
-    font-size: clamp(4rem, 12vw, 10rem);
+    font-size: 10rem;
     font-weight: 900;
     font-style: italic;
     text-transform: uppercase;
     line-height: 0.85;
     background: linear-gradient(135deg, 
-        #ff00ff 0%,
-        #00ffff 25%,
-        #ffff00 50%,
-        #ff00ff 75%,
-        #00ffff 100%);
+        #ff00ff 0%, #00ffff 25%, #ffff00 50%, 
+        #ff00ff 75%, #00ffff 100%);
     background-size: 400% 400%;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -315,198 +259,21 @@ body {
     padding-left: 0.05em;
     display: inline-block;
     position: relative;
-    animation: 
-        epicGradient 3s ease infinite,
-        glitchText 8s ease-in-out infinite,
-        floatText 4s ease-in-out infinite;
+    animation: epicGradient 3s ease infinite;
 }
 
-/* Animation du gradient arc-en-ciel néon */
 @keyframes epicGradient {
-    0% { 
+    0%, 100% { 
         background-position: 0% 50%;
-        filter: drop-shadow(0 0 60px rgba(236, 72, 153, 0.8)) 
-                drop-shadow(0 0 120px rgba(168, 85, 247, 0.5));
-    }
-    25% {
-        background-position: 100% 50%;
-        filter: drop-shadow(0 0 80px rgba(0, 255, 255, 0.8)) 
-                drop-shadow(0 0 140px rgba(255, 0, 255, 0.5));
+        filter: drop-shadow(0 0 60px rgba(236, 72, 153, 0.8));
     }
     50% { 
         background-position: 100% 100%;
-        filter: drop-shadow(0 0 60px rgba(255, 255, 0, 0.8)) 
-                drop-shadow(0 0 120px rgba(0, 255, 255, 0.5));
-    }
-    75% {
-        background-position: 0% 100%;
-        filter: drop-shadow(0 0 80px rgba(168, 85, 247, 0.8)) 
-                drop-shadow(0 0 140px rgba(236, 72, 153, 0.5));
-    }
-    100% {
-        background-position: 0% 50%;
-        filter: drop-shadow(0 0 60px rgba(236, 72, 153, 0.8)) 
-                drop-shadow(0 0 120px rgba(168, 85, 247, 0.5));
+        filter: drop-shadow(0 0 60px rgba(255, 255, 0, 0.8));
     }
 }
 
-/* Effet de glitch subtil */
-@keyframes glitchText {
-    0%, 90%, 100% {
-        transform: translate(0);
-    }
-    91% {
-        transform: translate(-2px, 2px);
-    }
-    92% {
-        transform: translate(2px, -2px);
-    }
-    93% {
-        transform: translate(-1px, 1px);
-    }
-}
-
-/* Flottement dynamique */
-@keyframes floatText {
-    0%, 100% {
-        transform: translateY(0) scale(1);
-    }
-    50% {
-        transform: translateY(-10px) scale(1.02);
-    }
-}
-
-/* Animation individuelle des lettres */
-.title-big span {
-    display: inline-block;
-    position: relative;
-    animation: 
-        letterDance 6s ease-in-out infinite,
-        letterGlow 3s ease-in-out infinite;
-}
-
-/* Décalage d'animation pour chaque lettre */
-.letter-b { animation-delay: 0s, 0s; }
-.letter-i { animation-delay: 0.1s, 0.15s; }
-.letter-g { animation-delay: 0.2s, 0.3s; }
-.letter-d { animation-delay: 0.3s, 0.45s; }
-.letter-r { animation-delay: 0.4s, 0.6s; }
-.letter-e { animation-delay: 0.5s, 0.75s; }
-.letter-a { animation-delay: 0.6s, 0.9s; }
-.letter-m { animation-delay: 0.7s, 1.05s; }
-.letter-s { animation-delay: 0.8s, 1.2s; }
-
-/* Danse des lettres */
-@keyframes letterDance {
-    0%, 100% {
-        transform: translateY(0) rotateZ(0deg) scale(1);
-    }
-    25% {
-        transform: translateY(-20px) rotateZ(-5deg) scale(1.1);
-    }
-    50% {
-        transform: translateY(10px) rotateZ(3deg) scale(0.95);
-    }
-    75% {
-        transform: translateY(-10px) rotateZ(-2deg) scale(1.05);
-    }
-}
-
-/* Lueur individuelle des lettres */
-@keyframes letterGlow {
-    0%, 100% {
-        text-shadow: 
-            0 0 20px rgba(255, 0, 255, 0.8),
-            0 0 40px rgba(0, 255, 255, 0.6),
-            0 0 60px rgba(255, 255, 0, 0.4);
-    }
-    33% {
-        text-shadow: 
-            0 0 30px rgba(0, 255, 255, 0.9),
-            0 0 50px rgba(255, 255, 0, 0.7),
-            0 0 70px rgba(255, 0, 255, 0.5);
-    }
-    66% {
-        text-shadow: 
-            0 0 25px rgba(255, 255, 0, 0.8),
-            0 0 45px rgba(255, 0, 255, 0.6),
-            0 0 65px rgba(0, 255, 255, 0.4);
-    }
-}
-
-/* Particules lumineuses autour du texte */
-.title-big::after {
-    content: '';
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 120%;
-    height: 120%;
-    transform: translate(-50%, -50%);
-    background: radial-gradient(
-        circle,
-        transparent 30%,
-        rgba(236, 72, 153, 0.1) 50%,
-        transparent 70%
-    );
-    animation: pulseGlow 2s ease-in-out infinite;
-    pointer-events: none;
-}
-
-@keyframes pulseGlow {
-    0%, 100% {
-        opacity: 0.5;
-        transform: translate(-50%, -50%) scale(1);
-    }
-    50% {
-        opacity: 1;
-        transform: translate(-50%, -50%) scale(1.1);
-    }
-}
-
-/* Hover effect - les lettres deviennent FOLLES */
-.title-big:hover span {
-    animation: 
-        letterExplode 0.8s ease-out forwards,
-        letterRainbow 0.5s linear infinite;
-}
-
-@keyframes letterExplode {
-    0% {
-        transform: translateY(0) scale(1);
-    }
-    50% {
-        transform: translateY(-30px) scale(1.3) rotateZ(var(--random-rotate, 10deg));
-    }
-    100% {
-        transform: translateY(0) scale(1.1) rotateZ(0);
-    }
-}
-
-@keyframes letterRainbow {
-    0% { color: #ff00ff; }
-    16% { color: #ff00aa; }
-    33% { color: #aa00ff; }
-    50% { color: #00ffff; }
-    66% { color: #ffff00; }
-    83% { color: #ff00ff; }
-    100% { color: #00ffff; }
-}
-
-/* Variables CSS pour rotation aléatoire au hover */
-.title-big:hover .letter-b { --random-rotate: -15deg; }
-.title-big:hover .letter-i { --random-rotate: 20deg; }
-.title-big:hover .letter-g { --random-rotate: -10deg; }
-.title-big:hover .letter-d { --random-rotate: 15deg; }
-.title-big:hover .letter-r { --random-rotate: -20deg; }
-.title-big:hover .letter-e { --random-rotate: 10deg; }
-.title-big:hover .letter-a { --random-rotate: -12deg; }
-.title-big:hover .letter-m { --random-rotate: 18deg; }
-.title-big:hover .letter-s { --random-rotate: -8deg; }
-
-/* ============================== */
-/* BOUTONS AVEC EFFET GLOW/NÉON */
-/* ============================== */
+/* Boutons */
 .buttons {
     display: flex;
     gap: 1rem;
@@ -524,6 +291,7 @@ body {
     letter-spacing: 0.1em;
     display: inline-flex;
     align-items: center;
+    justify-content: center;
     gap: 0.5rem;
     transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
     text-decoration: none;
@@ -534,7 +302,6 @@ body {
     border: none;
 }
 
-/* Bouton primaire avec effet néon/glow */
 .btn-primary {
     background: rgba(0, 0, 0, 0.3);
     backdrop-filter: blur(10px);
@@ -546,88 +313,28 @@ body {
     background-clip: padding-box, border-box;
     box-shadow: 
         0 0 20px rgba(236, 72, 153, 0.3),
-        0 0 40px rgba(168, 85, 247, 0.2),
-        inset 0 0 20px rgba(236, 72, 153, 0.1);
-    animation: glowPulse 3s ease-in-out infinite;
-}
-
-/* Effet d'onde au survol */
-.btn-primary::before {
-    content: '';
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 0;
-    height: 0;
-    border-radius: 50%;
-    background: rgba(236, 72, 153, 0.3);
-    transform: translate(-50%, -50%);
-    transition: width 0.6s, height 0.6s;
-}
-
-.btn-primary:hover::before {
-    width: 300px;
-    height: 300px;
+        0 0 40px rgba(168, 85, 247, 0.2);
 }
 
 .btn-primary:hover {
     transform: translateY(-4px) scale(1.05);
-    background-image: 
-        linear-gradient(rgba(0,0,0,0.1), rgba(0,0,0,0.1)), 
-        linear-gradient(135deg, #ec4899, #a855f7);
     box-shadow: 
         0 0 40px rgba(236, 72, 153, 0.6),
-        0 0 80px rgba(168, 85, 247, 0.4),
-        inset 0 0 30px rgba(236, 72, 153, 0.3),
-        0 10px 40px rgba(0, 0, 0, 0.4);
+        0 0 80px rgba(168, 85, 247, 0.4);
 }
 
-/* Bouton secondaire glassmorphism */
 .btn-secondary {
     background: rgba(255, 255, 255, 0.05);
     backdrop-filter: blur(10px);
     border: 2px solid rgba(255, 255, 255, 0.1);
-    position: relative;
-    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .btn-secondary:hover {
     transform: translateY(-4px) scale(1.05);
     background: rgba(255, 255, 255, 0.1);
-    border-color: rgba(255, 255, 255, 0.2);
-    box-shadow: 
-        0 0 20px rgba(255, 255, 255, 0.1),
-        0 10px 40px rgba(0, 0, 0, 0.3);
 }
 
-/* Animation de pulsation pour le bouton primaire */
-@keyframes glowPulse {
-    0%, 100% {
-        box-shadow: 
-            0 0 20px rgba(236, 72, 153, 0.3),
-            0 0 40px rgba(168, 85, 247, 0.2),
-            inset 0 0 20px rgba(236, 72, 153, 0.1);
-    }
-    50% {
-        box-shadow: 
-            0 0 30px rgba(236, 72, 153, 0.4),
-            0 0 50px rgba(168, 85, 247, 0.3),
-            inset 0 0 25px rgba(236, 72, 153, 0.15);
-    }
-}
-
-.btn span {
-    position: relative;
-    z-index: 1;
-}
-
-.desktop-text {
-    display: inline;
-}
-
-/* ============================== */
-/* CARTES */
-/* ============================== */
+/* Cards */
 .cards-wrapper {
     width: 100%;
     animation: fadeInUp 0.8s ease-out 0.6s both;
@@ -656,39 +363,6 @@ body {
     overflow: hidden;
 }
 
-/* Gradient animé subtil */
-.card::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: linear-gradient(135deg, transparent, rgba(236,72,153,0.05), transparent);
-    transform: translateX(-100%);
-    transition: transform 0.6s;
-}
-
-.card:hover::after {
-    transform: translateX(100%);
-}
-
-.card::before {
-    content: '';
-    position: absolute;
-    top: -50%;
-    left: -50%;
-    width: 200%;
-    height: 200%;
-    background: radial-gradient(circle, rgba(236,72,153,0.1) 0%, transparent 70%);
-    opacity: 0;
-    transition: opacity 0.4s;
-}
-
-.card:hover::before {
-    opacity: 1;
-}
-
 .card:hover {
     transform: translateY(-10px) scale(1.02);
     border-color: rgba(236, 72, 153, 0.3);
@@ -702,21 +376,18 @@ body {
     text-transform: uppercase;
     letter-spacing: 0.1em;
     margin-bottom: 0.75rem;
-    transition: all 0.3s;
-}
-
-.card:hover .card-label {
-    color: rgba(236, 72, 153, 0.8);
-    letter-spacing: 0.15em;
 }
 
 .card-title {
     font-size: 1.5rem;
     font-weight: 700;
     color: white;
-    margin-bottom: 0;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
     transition: all 0.3s;
-    position: relative;
 }
 
 .card:hover .card-title {
@@ -724,94 +395,54 @@ body {
     transform: scale(1.05);
 }
 
-/* Flèche intégrée dans le titre */
 .card-arrow {
     display: inline-block;
-    margin-left: 0.5rem;
     transition: transform 0.3s ease;
-    font-weight: 400;
 }
 
 .card:hover .card-arrow {
     transform: translateX(8px);
 }
 
-/* Animations */
 @keyframes fadeInUp {
-    from {
-        opacity: 0;
-        transform: translateY(30px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-@keyframes fadeIn {
-    from { 
-        opacity: 0;
-    }
-    to { 
-        opacity: 1;
-    }
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
 }
 
 /* ============================== */
-/* TABLETTE RESPONSIVE */
+/* RESPONSIVE TABLETTE */
 /* ============================== */
-@media (min-width: 769px) and (max-width: 1024px) {
-    .hero-section {
-        padding-top: 80px;
-    }
-
+@media (max-width: 1024px) {
     .poster-card {
-        width: 280px;
-        height: calc(280px * 1.4);
+        width: var(--poster-size-tablet);
+        height: calc(var(--poster-size-tablet) * 1.4);
     }
 
     .title-tiny {
-        font-size: 2.5rem;
+        font-size: 3rem;
     }
     
     .title-big {
-        font-size: 4.5rem;
-    }
-    
-    .btn {
-        padding: 1rem 2rem;
-        font-size: 0.9rem;
+        font-size: 6rem;
     }
     
     .cards {
         grid-template-columns: repeat(2, 1fr);
-        max-width: 600px;
+        max-width: 700px;
     }
 }
 
 /* ============================== */
-/* MOBILE RESPONSIVE */
+/* RESPONSIVE MOBILE */
 /* ============================== */
 @media (max-width: 768px) {
     .hero-section {
-        padding: 80px 15px 30px;
-        min-height: 100dvh;
+        padding: 60px 15px 30px;
+        min-height: 100vh;
     }
 
     .background-carousel {
-        opacity: 0.35;
-    }
-
-    .carousel-track {
-        gap: 1.5rem;
-    }
-
-    .carousel-track.top-row {
-        animation-duration: 35s;
-    }
-
-    .carousel-track.bottom-row {
-        animation-duration: 40s;
+        opacity: 0.3;
     }
 
     .poster-card {
@@ -819,35 +450,17 @@ body {
         height: calc(var(--poster-size-mobile) * 1.4);
     }
 
-    /* Désactiver hover sur mobile */
-    .poster-card:hover {
-        transform: inherit;
-    }
-
-    .poster-card:nth-child(3n+1) {
-        transform: rotate(-2deg);
-    }
-
-    .poster-card:nth-child(3n+2) {
-        transform: rotate(2deg) translateY(5px);
-    }
-
-    .poster-card:nth-child(3n) {
-        transform: rotate(-1deg) translateY(-3px);
-    }
-
     .overlay {
         background: radial-gradient(
             ellipse at center,
             rgba(10, 10, 31, 0.3) 0%,
-            rgba(10, 10, 31, 0.7) 50%,
-            rgba(10, 10, 31, 0.9) 100%
+            rgba(10, 10, 31, 0.75) 50%,
+            rgba(10, 10, 31, 0.95) 100%
         );
     }
 
     .badge {
         padding: 0.5rem 1rem;
-        transform: scale(0.95);
     }
 
     .badge-text {
@@ -855,79 +468,76 @@ body {
     }
 
     .title-tiny {
-        font-size: 2.5rem;
-    }
-
-    .title-big {
-        font-size: 4.5rem;
-        filter: drop-shadow(0 0 20px rgba(236, 72, 153, 0.4));
-    }
-
-    .buttons {
-        width: 100%;
-        max-width: 350px;
-    }
-
-    .btn {
-        flex: 1;
-        padding: 1rem 2rem;
-        font-size: 0.85rem;
-        min-width: 140px;
-        letter-spacing: 0.05em;
-    }
-
-    .desktop-text {
-        display: none;
-    }
-
-    /* Adaptation mobile pour les effets glow */
-    .btn-primary {
-        box-shadow: 
-            0 0 15px rgba(236, 72, 153, 0.3),
-            0 0 30px rgba(168, 85, 247, 0.2),
-            inset 0 0 15px rgba(236, 72, 153, 0.1);
-    }
-
-    .cards {
-        grid-template-columns: 1fr;
-        gap: 1rem;
-        padding: 0 10px;
-    }
-
-    .card {
-        padding: 1.5rem 1.25rem;
-    }
-
-    .card-label {
-        font-size: 0.65rem;
-    }
-
-    .card-title {
-        font-size: 1rem;
-    }
-
-    .card-arrow {
-        font-size: 1rem;
-    }
-}
-
-/* Très petits écrans */
-@media (max-width: 380px) {
-    .hero-section {
-        padding-top: 60px;
-    }
-
-    .title-tiny {
         font-size: 2rem;
     }
 
     .title-big {
-        font-size: 3.5rem;
+        font-size: 3rem;
+    }
+
+    .buttons {
+        flex-direction: column;
+        width: 100%;
+        max-width: 320px;
+    }
+
+    .btn {
+        width: 100%;
+        padding: 1rem 2rem;
+        font-size: 0.875rem;
+    }
+
+    /* CRITICAL: Cards responsive */
+    .cards {
+        grid-template-columns: 1fr;
+        gap: 0.75rem;
+        padding: 0 10px;
+        max-width: 100%;
+    }
+
+    .card {
+        padding: 1rem 0.75rem;
+        max-width: 260px;
+        margin: 0 auto;
+    }
+
+    .card-label {
+        font-size: 0.5rem;
+        letter-spacing: 0.05em;
+        margin-bottom: 0.4rem;
+    }
+
+    .card-title {
+        font-size: 0.45rem;
+        gap: 0.2rem;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+    }
+
+    .card-arrow {
+        font-size: 0.45rem;
+    }
+}
+
+/* ============================== */
+/* RESPONSIVE TRÈS PETITS ÉCRANS */
+/* ============================== */
+@media (max-width: 380px) {
+    .hero-section {
+        padding: 50px 10px 20px;
+    }
+
+    .title-tiny {
+        font-size: 1.5rem;
+    }
+
+    .title-big {
+        font-size: 2rem;
     }
 
     .badge {
-        padding: 0.35rem 0.7rem;
-        margin-bottom: 0.5rem;
+        padding: 0.4rem 0.8rem;
     }
 
     .badge-text {
@@ -935,43 +545,45 @@ body {
     }
 
     .btn {
-        padding: 0.85rem 1.5rem;
+        padding: 0.875rem 1.5rem;
         font-size: 0.75rem;
     }
 
-    .cards {
-        max-width: 280px;
-    }
-
     .card {
-        padding: 1.25rem 1rem;
+        padding: 0.875rem 0.5rem;
+        max-width: 240px;
     }
 
     .card-label {
-        font-size: 0.55rem;
+        font-size: 0.45rem;
+        margin-bottom: 0.35rem;
     }
 
     .card-title {
-        font-size: 0.85rem;
+        font-size: 0.35rem;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.04em;
     }
 
     .card-arrow {
-        font-size: 0.85rem;
+        font-size: 0.35rem;
     }
 }
 
-/* Grand écran */
-@media (min-width: 1920px) {
-    .poster-card {
-        width: 360px;
-        height: calc(360px * 1.4);
-    }
-    
-    .main-content {
-        max-width: 1600px;
-    }
-    
-    .cards {
-        max-width: 1100px;
-    }
+/* Popup */
+.popup {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: linear-gradient(135deg, #ec4899 0%, #a855f7 100%);
+    color: white;
+    padding: 1.5rem 2.5rem;
+    border-radius: 1rem;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+    z-index: 1000;
+    font-size: 1rem;
+    font-weight: 600;
+    animation: fadeIn 0.3s ease-out;
 }

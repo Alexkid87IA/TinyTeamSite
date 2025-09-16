@@ -372,12 +372,12 @@
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    gap: 0.4rem;
-    padding: 0.8rem 1.8rem;
-    font-size: 0.85rem;
+    gap: 0.3rem;
+    padding: 0.5rem 1rem;
+    font-size: 0.75rem;
     font-weight: 600;
     text-transform: uppercase;
-    letter-spacing: 0.06em;
+    letter-spacing: 0.05em;
     text-decoration: none;
     color: white;
     border-radius: 9999px;
@@ -386,15 +386,15 @@
         rgba(168, 85, 247, 0.2));
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
-    border: 2px solid rgba(236, 72, 153, 0.4);
-    box-shadow: 0 0 20px rgba(236, 72, 153, 0.3);
+    border: 1px solid rgba(236, 72, 153, 0.3);
+    box-shadow: 0 0 15px rgba(236, 72, 153, 0.2);
     transition: all 0.3s ease;
-    white-space: nowrap; /* Empêche le texte de se couper */
+    white-space: nowrap;
 }
 
 .footer-cta svg {
-    width: 18px;
-    height: 18px;
+    width: 14px;
+    height: 14px;
 }
 
 .footer-cta:hover {

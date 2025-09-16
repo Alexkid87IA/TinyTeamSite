@@ -4,7 +4,7 @@ import './HeroSection.css';
 export const HeroSection = () => {
   const [showPopup, setShowPopup] = useState(false);
 
-  const handleShowreelClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+  const handleShowreelClick = (e) => {
     e.preventDefault();
     setShowPopup(true);
     setTimeout(() => setShowPopup(false), 3000);
@@ -15,13 +15,13 @@ export const HeroSection = () => {
     const tracks = document.querySelectorAll('.carousel-track');
     if (!tracks.length) return;
 
-    const handleMouseEnter = (e: Event) => {
-      const target = e.currentTarget as HTMLElement;
+    const handleMouseEnter = (e) => {
+      const target = e.currentTarget;
       target.style.animationPlayState = 'paused';
     };
     
-    const handleMouseLeave = (e: Event) => {
-      const target = e.currentTarget as HTMLElement;
+    const handleMouseLeave = (e) => {
+      const target = e.currentTarget;
       target.style.animationPlayState = 'running';
     };
 
@@ -57,27 +57,15 @@ export const HeroSection = () => {
   
   // Générer les affiches pour la rangée du bas (ordre mélangé, doublé pour l'animation infinie)
   const bottomRowPosters = [
-    artistPosters[8], // Djamel Comedy Club
-    artistPosters[9], // Sophie & Alex
-    artistPosters[5], // Lucie Carbone
-    artistPosters[0], // Urbain
-    artistPosters[4], // Thomas Angelvy
-    artistPosters[2], // D'Jal
-    artistPosters[1], // Marc-Antoine Le Bret
-    artistPosters[3], // Morgane Berling
-    artistPosters[7], // Edouard Deloignon
-    artistPosters[6], // Julien Santini
+    artistPosters[8], artistPosters[9], artistPosters[5], 
+    artistPosters[0], artistPosters[4], artistPosters[2],
+    artistPosters[1], artistPosters[3], artistPosters[7], 
+    artistPosters[6],
     // Duplication pour l'animation infinie
-    artistPosters[8], // Djamel Comedy Club
-    artistPosters[9], // Sophie & Alex
-    artistPosters[5], // Lucie Carbone
-    artistPosters[0], // Urbain
-    artistPosters[4], // Thomas Angelvy
-    artistPosters[2], // D'Jal
-    artistPosters[1], // Marc-Antoine Le Bret
-    artistPosters[3], // Morgane Berling
-    artistPosters[7], // Edouard Deloignon
-    artistPosters[6], // Julien Santini
+    artistPosters[8], artistPosters[9], artistPosters[5], 
+    artistPosters[0], artistPosters[4], artistPosters[2],
+    artistPosters[1], artistPosters[3], artistPosters[7], 
+    artistPosters[6],
   ];
 
   return (
@@ -89,7 +77,7 @@ export const HeroSection = () => {
           <div className="carousel-track top-row">
             {topRowPosters.map((artist, index) => (
               <div key={`top-${index}`} className="poster-card">
-                <img src={artist.img} alt={artist.name} />
+                <img src={artist.img} alt={artist.name} loading="lazy" />
               </div>
             ))}
           </div>
@@ -98,7 +86,7 @@ export const HeroSection = () => {
           <div className="carousel-track bottom-row">
             {bottomRowPosters.map((artist, index) => (
               <div key={`bottom-${index}`} className="poster-card">
-                <img src={artist.img} alt={artist.name} />
+                <img src={artist.img} alt={artist.name} loading="lazy" />
               </div>
             ))}
           </div>
@@ -125,10 +113,7 @@ export const HeroSection = () => {
         {/* Boutons avec effet glow */}
         <div className="buttons">
           <a href="/artistes" className="btn btn-primary">
-            <span>
-              <span className="desktop-text">Découvrir nos </span>
-              Artistes →
-            </span>
+            <span>Découvrir nos artistes →</span>
           </a>
           <a href="#" onClick={handleShowreelClick} className="btn btn-secondary">
             <span>▶ Showreel</span>
@@ -141,7 +126,7 @@ export const HeroSection = () => {
             <a href="/artiste" className="card">
               <p className="card-label">Vous êtes</p>
               <h3 className="card-title">
-                Artiste
+                <span>Artiste</span>
                 <span className="card-arrow">→</span>
               </h3>
             </a>
@@ -149,7 +134,7 @@ export const HeroSection = () => {
             <a href="/programmateur" className="card">
               <p className="card-label">Vous êtes</p>
               <h3 className="card-title">
-                Programmateur
+                <span>Programmateur</span>
                 <span className="card-arrow">→</span>
               </h3>
             </a>
@@ -157,7 +142,7 @@ export const HeroSection = () => {
             <a href="/entreprise" className="card">
               <p className="card-label">Vous êtes une</p>
               <h3 className="card-title">
-                Entreprise
+                <span>Entreprise</span>
                 <span className="card-arrow">→</span>
               </h3>
             </a>
@@ -167,19 +152,8 @@ export const HeroSection = () => {
 
       {/* Popup "Bientôt disponible" */}
       {showPopup && (
-        <div style={{
-          position: 'fixed',
-          top: '50%',
-          left: '50%',
-          transform: 'translate(-50%, -50%)',
-          background: 'linear-gradient(135deg, #ec4899 0%, #a855f7 100%)',
-          color: 'white',
-          padding: '1.5rem 3rem',
-          borderRadius: '1rem',
-          boxShadow: '0 20px 40px rgba(0,0,0,0.3)',
-          zIndex: 1000,
-          fontSize: '1.1rem',
-          fontWeight: '600',
+        <div className="popup" style={{
+          display: showPopup ? 'block' : 'none',
           animation: 'fadeIn 0.3s ease-out'
         }}>
           🎬 Showreel bientôt disponible !

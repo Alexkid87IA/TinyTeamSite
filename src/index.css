@@ -2,31 +2,136 @@
 @tailwind components;
 @tailwind utilities;
 
+/* ===== FIXES CRITIQUES MOBILE ===== */
 @layer base {
-  /* Reset et optimisations de base */
-  html {
-    -webkit-tap-highlight-color: transparent;
-    scroll-behavior: smooth;
-    /* Fix pour le scroll horizontal sur mobile */
-    overflow-x: hidden;
-  }
-
-  body {
-    @apply antialiased;
-    /* Fix pour le scroll horizontal sur mobile */
-    overflow-x: hidden;
-    position: relative;
-  }
-
-  /* Amélioration des performances sur mobile */
+  /* 1. Reset global pour empêcher TOUT débordement */
   * {
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+  }
+  
+  html {
+    overflow-x: hidden;
+    scroll-behavior: smooth;
+    -webkit-tap-highlight-color: transparent;
+  }
+  
+  body {
+    overflow-x: hidden !important;
+    position: relative;
+    width: 100%;
+    max-width: 100vw !important;
+    margin: 0;
+    padding: 0;
+  }
+  
+  /* 2. Container principal de l'app */
+  #root {
+    overflow-x: hidden !important;
+    position: relative;
+    width: 100%;
+    max-width: 100vw !important;
+    min-height: 100vh;
+  }
+  
+  /* 3. Forcer tous les conteneurs principaux à respecter la largeur */
+  main, section, article, aside, nav, header, footer {
+    max-width: 100vw !important;
+    overflow-x: hidden !important;
+  }
+  
+  /* 4. Fix pour les éléments qui peuvent déborder */
+  img, video, iframe, canvas, svg {
+    max-width: 100% !important;
+    height: auto;
+    display: block;
+  }
+  
+  /* 5. Fix spécifique pour le logo Tiny Team */
+  img[alt="Tiny Team"] {
+    max-height: 60px !important;
+    width: auto !important;
+    object-fit: contain;
+  }
+  
+  /* 6. Prévenir les débordements sur les éléments positionnés */
+  [class*="absolute"], [class*="fixed"] {
+    max-width: 100vw;
+  }
+  
+  /* 7. Fix pour les animations qui pourraient déborder */
+  @media (max-width: 768px) {
+    /* Désactiver certaines animations complexes sur mobile */
+    .logo-particles, .logo-halo {
+      display: none !important;
+    }
+    
+    /* Limiter les transformations 3D sur mobile */
+    * {
+      -webkit-transform: translate3d(0, 0, 0) !important;
+      -webkit-backface-visibility: hidden !important;
+      -webkit-perspective: 1000px !important;
+    }
   }
 }
 
+/* ===== AJUSTEMENTS RESPONSIVE ===== */
+@layer components {
+  /* Mobile First - Corrections spécifiques */
+  @media (max-width: 768px) {
+    /* Conteneurs avec padding sécurisé */
+    .container, [class*="container"] {
+      padding-left: 1rem !important;
+      padding-right: 1rem !important;
+      max-width: 100% !important;
+    }
+    
+    /* Fix pour les éléments flex qui pourraient déborder */
+    [class*="flex"] {
+      flex-wrap: wrap;
+      max-width: 100%;
+    }
+    
+    /* Grilles responsives */
+    [class*="grid"] {
+      grid-template-columns: 1fr !important;
+      gap: 1rem !important;
+      max-width: 100%;
+    }
+    
+    /* Textes qui ne débordent pas */
+    h1, h2, h3, h4, h5, h6, p, span, a {
+      word-break: break-word;
+      overflow-wrap: break-word;
+      hyphens: auto;
+    }
+    
+    /* Boutons et liens */
+    button, a {
+      max-width: 100%;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+  }
+  
+  /* Tablette */
+  @media (min-width: 769px) and (max-width: 1024px) {
+    img[alt="Tiny Team"] {
+      max-height: 70px !important;
+    }
+  }
+  
+  /* Desktop */
+  @media (min-width: 1025px) {
+    img[alt="Tiny Team"] {
+      max-height: 80px !important;
+    }
+  }
+}
+
+/* ===== VOS CLASSES UTILITAIRES EXISTANTES ===== */
 @layer utilities {
-  /* Text effects - EXACTEMENT COMME VOTRE ORIGINAL */
   .text-glow {
     text-shadow: 0 0 30px rgba(255, 255, 255, 0.2);
   }
@@ -35,7 +140,6 @@
     text-shadow: 0 0 30px rgba(255, 255, 255, 0.4);
   }
 
-  /* Glass effects - CONSERVÉS TELS QUELS */
   .glass-effect {
     @apply bg-white/5 backdrop-blur-[8px] border border-white/10;
   }
@@ -55,23 +159,18 @@
   .preserve-3d {
     transform-style: preserve-3d;
   }
-
-  .transform-gpu {
-    transform: translate3d(0, 0, 0);
-    backface-visibility: hidden;
-    transform-style: preserve-3d;
+  
+  /* Classes helper pour mobile */
+  .mobile-safe {
+    @apply max-w-full overflow-x-hidden;
   }
-
-  .backface-hidden {
-    backface-visibility: hidden;
-  }
-
-  .perspective {
-    perspective: 2000px;
+  
+  .no-overflow {
+    overflow: hidden !important;
   }
 }
 
-/* Animations - CONSERVÉES INTÉGRALEMENT */
+/* ===== ANIMATIONS ===== */
 @keyframes float {
   0%, 100% { transform: translateY(0); }
   50% { transform: translateY(-20px); }
@@ -111,10 +210,6 @@
   animation: rotate-slow 20s linear infinite;
 }
 
-.animate-spin-slow {
-  animation: rotate-slow 20s linear infinite;
-}
-
 .animate-gradient-shift {
   animation: gradient-shift 15s ease infinite;
   background-size: 200% 200%;
@@ -124,7 +219,30 @@
   animation: shimmer 2s infinite;
 }
 
-/* Custom scrollbar */
+.animate-spin-slow {
+  animation: rotate-slow 20s linear infinite;
+}
+
+/* Perspective et 3D */
+.perspective {
+  perspective: 2000px;
+}
+
+.preserve-3d {
+  transform-style: preserve-3d;
+}
+
+.backface-hidden {
+  backface-visibility: hidden;
+}
+
+.transform-gpu {
+  transform: translate3d(0, 0, 0);
+  backface-visibility: hidden;
+  transform-style: preserve-3d;
+}
+
+/* ===== SCROLLBAR PERSONNALISÉE ===== */
 ::-webkit-scrollbar {
   width: 8px;
   height: 8px;
@@ -143,55 +261,55 @@
   background: rgba(255, 255, 255, 0.3);
 }
 
-/* Selection style */
+/* ===== SELECTION ===== */
 ::selection {
   background: rgba(236, 72, 153, 0.3);
   color: white;
 }
 
-/* ====================================
-   CORRECTIONS MOBILE UNIQUEMENT
-   ==================================== */
+/* ===== FIX FINAL - SÉCURITÉ MAXIMALE MOBILE ===== */
 @media (max-width: 768px) {
-  /* Fix scroll horizontal */
-  html, body {
+  /* Force absolue contre les débordements */
+  html, body, #root {
+    position: relative !important;
     overflow-x: hidden !important;
+    overflow-y: auto !important;
+    max-width: 100vw !important;
     width: 100% !important;
   }
   
-  #root, main {
-    overflow-x: hidden !important;
-    width: 100% !important;
+  /* Désactiver les transforms horizontaux qui pourraient causer des problèmes */
+  * {
+    transform: none !important;
+    -webkit-transform: none !important;
   }
   
-  section {
-    overflow-x: hidden !important;
+  /* Garder seulement les transforms essentiels */
+  .nav-container, .mobile-menu, button, a {
+    transform: unset !important;
+    -webkit-transform: unset !important;
+  }
+  
+  /* S'assurer que rien ne dépasse l'écran */
+  *:not(html):not(body) {
     max-width: 100vw !important;
   }
   
-  /* Fix images */
-  img, video, iframe {
-    max-width: 100% !important;
-    height: auto !important;
+  /* Fix pour les éléments avec position fixed */
+  .nav-container {
+    width: 100% !important;
+    left: 0 !important;
+    right: 0 !important;
   }
   
-  /* Fix pour les titres dans les fichiers CSS séparés */
-  .title-text,
-  .mission-title,
-  .hero-title,
-  .section-title,
-  .title-line-2,
-  .line-2 {
-    font-size: clamp(2.5rem, 10vw, 4rem) !important;
-    word-wrap: break-word !important;
-    overflow-wrap: break-word !important;
-    line-height: 1.1 !important;
+  /* Cacher les éléments décoratifs qui pourraient poser problème */
+  .particle, .logo-particles, .logo-halo, [class*="gradient-"] {
+    display: none !important;
   }
   
-  /* Réduction des animations pour performance */
-  .animate-float,
-  .animate-rotate-slow,
-  .animate-spin-slow {
-    animation: none !important;
+  /* Simplifier les effets visuels */
+  [class*="blur"], [class*="backdrop"] {
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
   }
 }
