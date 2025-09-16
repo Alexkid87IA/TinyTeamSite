@@ -7,10 +7,16 @@
   html {
     -webkit-tap-highlight-color: transparent;
     scroll-behavior: smooth;
+    /* Solution correcte: empêcher le scroll horizontal sans couper le contenu */
+    overflow-x: hidden;
+    overflow-y: auto;
   }
 
   body {
     @apply antialiased;
+    overflow-x: hidden;
+    overflow-y: auto;
+    min-height: 100vh;
   }
 
   /* Amélioration des performances sur mobile */
@@ -38,25 +44,33 @@
     @apply cursor-pointer select-none;
   }
 
-  /* Typographie Responsive */
+  /* Typographie Responsive CORRIGÉE */
   .heading-hero {
     @apply text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl;
     @apply font-bold tracking-tight leading-[1.1];
+    /* Solution: limiter la largeur et gérer le débordement */
+    max-width: 100%;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
   }
 
   .heading-section {
     @apply text-3xl sm:text-4xl md:text-5xl lg:text-6xl;
     @apply font-bold tracking-tight;
+    max-width: 100%;
+    word-wrap: break-word;
   }
 
   .heading-subsection {
     @apply text-2xl sm:text-3xl md:text-4xl;
     @apply font-semibold;
+    max-width: 100%;
   }
 
   .heading-card {
     @apply text-xl sm:text-2xl md:text-3xl;
     @apply font-semibold;
+    max-width: 100%;
   }
 
   .text-body {
@@ -188,6 +202,117 @@
   }
 }
 
+/* SOLUTION CORRECTE pour le débordement horizontal sur mobile */
+@media (max-width: 768px) {
+  /* Conteneur principal avec padding contrôlé */
+  .container,
+  [class*="container"] {
+    width: 100%;
+    max-width: 100%;
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+  
+  /* Gérer les très grandes tailles de texte */
+  h1, h2, h3, h4, h5, h6 {
+    max-width: 100%;
+    word-break: break-word;
+    hyphens: auto;
+  }
+  
+  /* Adapter les tailles de police dynamiquement */
+  .text-9xl, 
+  .sm\\:text-9xl, 
+  .md\\:text-9xl, 
+  .lg\\:text-9xl, 
+  .xl\\:text-9xl {
+    font-size: clamp(3rem, 12vw, 5rem);
+    line-height: 1;
+  }
+  
+  .text-8xl,
+  .sm\\:text-8xl,
+  .md\\:text-8xl,
+  .lg\\:text-8xl,
+  .xl\\:text-8xl {
+    font-size: clamp(2.5rem, 10vw, 4rem);
+    line-height: 1.1;
+  }
+  
+  .text-7xl,
+  .sm\\:text-7xl,
+  .md\\:text-7xl,
+  .lg\\:text-7xl {
+    font-size: clamp(2rem, 8vw, 3.5rem);
+    line-height: 1.1;
+  }
+  
+  .text-6xl,
+  .sm\\:text-6xl,
+  .md\\:text-6xl {
+    font-size: clamp(1.875rem, 7vw, 3rem);
+    line-height: 1.2;
+  }
+  
+  .text-5xl,
+  .sm\\:text-5xl,
+  .md\\:text-5xl {
+    font-size: clamp(1.5rem, 6vw, 2.5rem);
+    line-height: 1.2;
+  }
+  
+  /* Gérer les éléments avec position absolute */
+  .absolute {
+    max-width: 100%;
+  }
+  
+  /* Images responsives */
+  img, video, iframe, svg {
+    max-width: 100%;
+    height: auto;
+  }
+  
+  /* Gérer les éléments avec des marges négatives */
+  [class*="-mx-"],
+  [class*="-ml-"],
+  [class*="-mr-"] {
+    max-width: calc(100% + 2rem);
+  }
+  
+  /* S'assurer que les flex ne débordent pas */
+  .flex {
+    flex-wrap: wrap;
+    max-width: 100%;
+  }
+  
+  /* Gérer les gradients de fond */
+  [class*="bg-gradient"] {
+    background-size: 200% 200%;
+  }
+}
+
+/* Optimisations spécifiques mobile */
+@media (max-width: 640px) {
+  /* Réduire le nombre de particules flottantes */
+  .floating-particles > *:nth-child(n+10) {
+    display: none;
+  }
+
+  /* Simplifier les effets de blur */
+  .backdrop-blur-xl {
+    backdrop-filter: blur(12px);
+  }
+
+  .backdrop-blur-2xl {
+    backdrop-filter: blur(16px);
+  }
+
+  /* Optimiser les ombres */
+  .shadow-2xl {
+    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.2);
+  }
+}
+
 /* Animations optimisées */
 @keyframes float {
   0%, 100% { transform: translateY(0) translateZ(0); }
@@ -278,28 +403,6 @@
 /* Focus styles accessibles */
 :focus-visible {
   @apply outline-none ring-2 ring-pink-400/50 ring-offset-2 ring-offset-transparent;
-}
-
-/* Optimisations spécifiques mobile */
-@media (max-width: 640px) {
-  /* Réduire le nombre de particules flottantes */
-  .floating-particles > *:nth-child(n+10) {
-    display: none;
-  }
-
-  /* Simplifier les effets de blur */
-  .backdrop-blur-xl {
-    backdrop-filter: blur(12px);
-  }
-
-  .backdrop-blur-2xl {
-    backdrop-filter: blur(16px);
-  }
-
-  /* Optimiser les ombres */
-  .shadow-2xl {
-    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.2);
-  }
 }
 
 /* Breakpoints personnalisés pour une meilleure granularité */

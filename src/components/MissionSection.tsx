@@ -1,276 +1,187 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
-import { motion, AnimatePresence } from 'framer-motion';
-import { Star, Shield, Rocket, Layout, Globe, Calendar, ChevronDown, ArrowRight } from 'lucide-react';
+import { Star, Shield, Rocket, Layout, Globe, Calendar, ArrowRight } from 'lucide-react';
 import './MissionSection.css';
 
+// Types
+interface Service {
+  id: string;
+  number: string;
+  title: string;
+  subtitle: string;
+  description: string;
+  icon: React.ElementType;
+  features: string[];
+}
+
 // Données des services
-const servicesData = [
+const servicesData: Service[] = [
   {
     id: "production",
     number: "01",
     title: "Production",
     subtitle: "De l'idée à la scène",
-    description: "Une approche globale de la production artistique. Nous transformons vos idées en spectacles vivants mémorables avec une expertise technique et créative sans faille.",
+    description: "Une approche globale de la production artistique pour transformer vos idées en spectacles mémorables.",
     icon: Star,
-    features: [
-      { title: "Direction artistique", desc: "Vision créative unique" },
-      { title: "Production exécutive", desc: "Gestion complète du projet" },
-      { title: "Mise en scène", desc: "Scénographie professionnelle" },
-      { title: "Gestion technique", desc: "Support son, lumière, vidéo" }
-    ]
+    features: ["Direction artistique", "Production exécutive", "Mise en scène", "Gestion technique"]
   },
   {
     id: "management",
     number: "02",
     title: "Management",
     subtitle: "Votre carrière entre de bonnes mains",
-    description: "Un accompagnement sur mesure pour propulser votre carrière. Nous gérons tous les aspects administratifs et stratégiques pour que vous puissiez vous concentrer sur votre art.",
+    description: "Accompagnement personnalisé pour développer votre carrière et maximiser votre potentiel artistique.",
     icon: Shield,
-    features: [
-      { title: "Développement carrière", desc: "Stratégie à long terme" },
-      { title: "Négociations", desc: "Contrats et partenariats" },
-      { title: "Gestion administrative", desc: "Paperasse simplifiée" },
-      { title: "Relations pro", desc: "Réseau d'experts" }
-    ]
+    features: ["Développement carrière", "Négociations", "Gestion admin", "Relations pro"]
   },
   {
     id: "digital",
     number: "03",
     title: "Digital",
     subtitle: "Votre présence en ligne",
-    description: "Maîtrisez les enjeux du numérique avec une stratégie digitale complète. Nous créons et gérons votre image en ligne pour maximiser votre impact et votre audience.",
+    description: "Stratégie digitale complète pour maximiser votre impact et développer votre audience.",
     icon: Rocket,
-    features: [
-      { title: "Réseaux sociaux", desc: "Instagram, TikTok, YouTube" },
-      { title: "Création contenus", desc: "Photos, vidéos, stories" },
-      { title: "Community management", desc: "Engagement des fans" },
-      { title: "Marketing digital", desc: "Campagnes ciblées" }
-    ]
+    features: ["Réseaux sociaux", "Création contenus", "Community management", "Marketing digital"]
   },
   {
     id: "communication",
     number: "04",
     title: "Communication",
     subtitle: "Votre image, notre expertise",
-    description: "Développez une image forte et cohérente. Nous créons une identité visuelle unique qui vous distingue et raconte votre histoire dans l'univers du spectacle vivant.",
+    description: "Développez une image forte et cohérente qui vous distingue dans le spectacle vivant.",
     icon: Layout,
-    features: [
-      { title: "Relations presse", desc: "Médias nationaux" },
-      { title: "Identité visuelle", desc: "Logo, charte graphique" },
-      { title: "Com événementielle", desc: "Lancement de spectacles" },
-      { title: "Relations publiques", desc: "Image de marque" }
-    ]
+    features: ["Relations presse", "Identité visuelle", "Com événementielle", "Relations publiques"]
   },
   {
     id: "diffusion",
     number: "05",
     title: "Diffusion & Tournées",
     subtitle: "Rayonnez sur toutes les scènes",
-    description: "Portez votre spectacle partout en France. Organisation millimétrée, réseau de salles partenaires et support technique pour des tournées réussies.",
+    description: "Organisation millimétrée et réseau de salles partenaires pour des tournées réussies.",
     icon: Globe,
-    features: [
-      { title: "Booking national", desc: "300+ salles partenaires" },
-      { title: "Gestion tournées", desc: "Logistique complète" },
-      { title: "Relations salles", desc: "Négociation, contrats" },
-      { title: "Support technique", desc: "Équipe sur place" }
-    ]
+    features: ["Booking national", "Gestion tournées", "Relations salles", "Support technique"]
   },
   {
     id: "evenements",
     number: "06",
     title: "Événements Spéciaux",
     subtitle: "Des moments uniques",
-    description: "Créez des moments inoubliables pour vos événements privés ou corporatifs. Production sur mesure, coordination complète et expertise événementielle premium.",
+    description: "Production sur mesure et expertise événementielle pour créer des moments inoubliables.",
     icon: Calendar,
-    features: [
-      { title: "Conception sur mesure", desc: "Événements uniques" },
-      { title: "Production complète", desc: "Clé en main" },
-      { title: "Coordination", desc: "Gestion A à Z" },
-      { title: "Technique premium", desc: "Équipement haut de gamme" }
-    ]
+    features: ["Conception sur mesure", "Production complète", "Coordination", "Technique premium"]
   }
 ];
 
-const ServicePanel = ({ service, index, isActive, onClick }) => {
+// Composant ServiceCard
+interface ServiceCardProps {
+  service: Service;
+}
+
+const ServiceCard: React.FC<ServiceCardProps> = ({ service }) => {
   const Icon = service.icon;
   
   return (
-    <motion.div
-      className={`service-panel ${isActive ? 'active' : ''}`}
+    <Link 
+      to={`/services/${service.id}`} 
+      className="service-card" 
       data-service={service.id}
-      style={{ '--index': index } as React.CSSProperties}
-      initial={{ opacity: 0, x: -50 }}
-      animate={{ opacity: 1, x: 0 }}
-      transition={{ duration: 0.5, delay: index * 0.1 }}
     >
-      <div className="panel-container">
-        {/* Effet de lumière */}
-        <div className="light-sweep" />
-        
-        {/* Header cliquable */}
-        <div className="panel-header" onClick={onClick}>
-          {/* Numéro en arrière-plan - AMÉLIORÉ */}
-          <div className="panel-number-bg">{service.number}</div>
-          
-          {/* Icône animée */}
-          <div className="panel-icon-wrapper">
-            <div className="panel-icon-bg" />
-            <div className="panel-icon">
-              <Icon />
-            </div>
-          </div>
-          
-          {/* Infos */}
-          <div className="panel-info">
-            <h3 className="panel-title">{service.title}</h3>
-            <p className="panel-subtitle">{service.subtitle}</p>
-          </div>
-          
-          {/* Toggle button */}
-          <div className="panel-toggle">
-            <ChevronDown />
-          </div>
-        </div>
-        
-        {/* Contenu expansible */}
-        <AnimatePresence>
-          {isActive && (
-            <motion.div 
-              className="panel-content"
-              initial={{ height: 0, opacity: 0 }}
-              animate={{ height: 'auto', opacity: 1 }}
-              exit={{ height: 0, opacity: 0 }}
-              transition={{ duration: 0.3 }}
-            >
-              <div className="content-inner">
-                <p className="panel-description">{service.description}</p>
-                
-                {/* Grille de features */}
-                <div className="features-grid">
-                  {service.features.map((feature, i) => (
-                    <motion.div
-                      key={i}
-                      className="feature-card"
-                      initial={{ opacity: 0, y: 20 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={{ delay: i * 0.05 }}
-                    >
-                      <h4 className="feature-title">{feature.title}</h4>
-                      <p className="feature-desc">{feature.desc}</p>
-                    </motion.div>
-                  ))}
-                </div>
-                
-                {/* CTA */}
-                <Link to={`/services/${service.id}`} className="panel-cta">
-                  <span>En savoir plus</span>
-                  <ArrowRight size={20} />
-                </Link>
-              </div>
-            </motion.div>
-          )}
-        </AnimatePresence>
+      {/* Numéro du service */}
+      <div className="service-number">
+        {service.number}
       </div>
-    </motion.div>
+      
+      {/* Icône principale */}
+      <Icon className="service-icon" />
+      
+      {/* Contenu textuel */}
+      <div className="service-content">
+        <h3 className="service-title">{service.title}</h3>
+        <p className="service-subtitle">{service.subtitle}</p>
+        <p className="service-description">{service.description}</p>
+      </div>
+      
+      {/* Liste des features */}
+      <div className="service-features">
+        {service.features.map((feature, index) => (
+          <span key={index} className="feature-pill">
+            {feature}
+          </span>
+        ))}
+      </div>
+      
+      {/* Bouton flèche */}
+      <div className="service-cta">
+        <ArrowRight />
+      </div>
+    </Link>
   );
 };
 
-export const MissionSection = () => {
-  const [activePanel, setActivePanel] = useState<string | null>(null);
-  
-  const togglePanel = (serviceId: string) => {
-    setActivePanel(activePanel === serviceId ? null : serviceId);
-  };
-  
+// Composant principal MissionSection
+export const MissionSection: React.FC = () => {
+  // Génération des particules
+  const particles = Array.from({ length: 20 }, (_, i) => ({
+    id: i,
+    left: Math.random() * 100,
+    top: Math.random() * 100,
+    opacity: Math.random() * 0.5 + 0.3,
+    duration: 10 + Math.random() * 10,
+    delay: Math.random() * 5
+  }));
+
   return (
     <section className="mission-section">
       {/* Effets de fond */}
       <div className="mission-background">
-        {/* Grille animée */}
-        <div className="grid-lines" />
-        
-        {/* Vagues de couleur */}
-        <div className="color-waves">
-          {[
-            { color: 'rgba(255, 0, 255, 0.3)', delay: '0s' },
-            { color: 'rgba(0, 255, 255, 0.3)', delay: '10s' },
-            { color: 'rgba(255, 255, 0, 0.3)', delay: '20s' }
-          ].map((wave, i) => (
-            <motion.div
-              key={i}
-              className="wave"
-              style={{
-                '--wave-color': wave.color,
-                animationDelay: wave.delay
-              } as React.CSSProperties}
-            />
-          ))}
-        </div>
-        
-        {/* Étoiles scintillantes */}
-        <div className="stars">
-          {[...Array(50)].map((_, i) => (
+        <div className="bg-gradient" />
+        <div className="bg-particles">
+          {particles.map((particle) => (
             <div
-              key={i}
-              className="star"
+              key={particle.id}
+              className="particle"
               style={{
-                left: `${Math.random() * 100}%`,
-                top: `${Math.random() * 100}%`,
-                animationDelay: `${Math.random() * 3}s`
+                left: `${particle.left}%`,
+                top: `${particle.top}%`,
+                opacity: particle.opacity,
+                animation: `float ${particle.duration}s linear infinite`,
+                animationDelay: `${particle.delay}s`
               }}
             />
           ))}
         </div>
       </div>
       
-      {/* Header spectaculaire */}
-      <div className="mission-header">
-        <div className="title-container">
-          <div className="title-glow" />
-          <h2 className="main-title">
-            <span className="title-word-1">Nos</span>
-            <span className="title-word-2">Services</span>
-          </h2>
+      {/* En-tête de section */}
+      <header className="mission-header">
+        <h2 className="mission-title">
+          <span className="title-line-1">Une team au service</span>
+          <span className="title-line-2">de votre carrière</span>
+        </h2>
+        <p className="mission-subtitle">
+          Six expertises complémentaires pour propulser votre talent
+        </p>
+      </header>
+      
+      {/* Conteneur principal */}
+      <div className="services-container">
+        <div className="services-grid">
+          {servicesData.map((service) => (
+            <ServiceCard 
+              key={service.id} 
+              service={service} 
+            />
+          ))}
         </div>
-        
-        <motion.p 
-          className="subtitle"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8, delay: 0.3 }}
-        >
-          Six expertises pour propulser votre talent
-        </motion.p>
       </div>
       
-      {/* CASCADE de services */}
-      <div className="services-cascade">
-        {servicesData.map((service, index) => (
-          <ServicePanel
-            key={service.id}
-            service={service}
-            index={index}
-            isActive={activePanel === service.id}
-            onClick={() => togglePanel(service.id)}
-          />
-        ))}
-      </div>
-      
-      {/* Footer avec CTA */}
-      <motion.div 
-        className="section-footer"
-        initial={{ opacity: 0, y: 30 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.8 }}
-      >
-        <Link to="/services" className="footer-cta">
+      {/* Call to action final */}
+      <footer className="mission-footer">
+        <Link to="/services" className="main-cta">
           <span>Découvrir tous nos services</span>
-          <ArrowRight size={24} />
+          <ArrowRight size={20} />
         </Link>
-      </motion.div>
+      </footer>
     </section>
   );
 };

@@ -1,153 +1,224 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import { ArrowRight, Instagram, Linkedin, Music2, Youtube, Heart } from 'lucide-react';
+import { 
+  Mail, 
+  ArrowRight, 
+  Instagram, 
+  Linkedin, 
+  Music2, 
+  Youtube, 
+  Heart,
+  Sparkles 
+} from 'lucide-react';
 import './Footer.css';
-
-// Configuration des liens
-const footerNavigation = [
-  {
-    title: 'Services',
-    links: [
-      { label: 'Production', href: '/services#production' },
-      { label: 'Management', href: '/services#management' },
-      { label: 'Digital', href: '/services#digital' },
-      { label: 'Communication', href: '/services#communication' },
-      { label: 'Diffusion & Tournées', href: '/services#diffusion' },
-      { label: 'Événements Spéciaux', href: '/services#evenements' },
-    ],
-  },
-  {
-    title: 'Navigation',
-    links: [
-      { label: 'Nos artistes', href: '/artistes' },
-      { label: 'Nos services', href: '/services' },
-      { label: 'À propos', href: '/about' },
-      { label: 'Contact', href: '/contact' },
-    ],
-  },
-  {
-    title: 'Espace Pro',
-    links: [
-      { label: 'Artistes', href: '/artiste' },
-      { label: 'Programmateurs', href: '/programmateur' },
-      { label: 'Marques', href: '/marque' },
-      { label: 'Partenaires', href: '/partenaires' },
-    ],
-  },
-];
 
 export const Footer = () => {
   const currentYear = new Date().getFullYear();
   
+  const footerVariants = {
+    hidden: { opacity: 0, y: 30 },
+    visible: { 
+      opacity: 1, 
+      y: 0,
+      transition: {
+        duration: 0.8,
+        staggerChildren: 0.1
+      }
+    }
+  };
+  
+  const itemVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: { 
+      opacity: 1, 
+      y: 0,
+      transition: { duration: 0.6 }
+    }
+  };
+  
   return (
-    <footer className="footer-ultra">
-      {/* Ligne néon supérieure */}
-      <div className="footer-neon-line" />
-      
-      {/* Effets de fond */}
-      <div className="footer-bg-effects">
-        <div className="footer-glow footer-glow-1" />
-        <div className="footer-glow footer-glow-2" />
+    <footer className="footer">
+      {/* Effets de fond spectaculaires */}
+      <div className="footer-background">
+        {/* Grille animée */}
+        <div className="footer-grid" />
+        
+        {/* Orbes flottants */}
+        <div className="footer-orb footer-orb-1" />
+        <div className="footer-orb footer-orb-2" />
       </div>
-      
-      {/* Container principal */}
-      <div className="footer-container">
+
+      <div className="footer-wrapper">
         
-        {/* Hero Section */}
+        {/* Section principale */}
         <motion.div 
-          className="footer-hero"
-          initial={{ opacity: 0, y: 40 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8 }}
+          className="footer-main"
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-100px" }}
+          variants={footerVariants}
         >
-          {/* Logo */}
-          <div className="footer-logo-section">
-            <Link to="/" className="footer-logo-link">
-              <img 
-                src="https://res.cloudinary.com/diqco2njt/image/upload/v1746189362/Logo_TT_blanc_th9klb.png"
-                alt="Tiny Team"
-                className="footer-logo-img"
-              />
-            </Link>
-          </div>
+          {/* Colonne Brand */}
+          <motion.div className="footer-brand" variants={itemVariants}>
+            <div>
+              <Link to="/" className="footer-logo">
+                <img 
+                  src="https://res.cloudinary.com/diqco2njt/image/upload/v1746189362/Logo_TT_blanc_th9klb.png"
+                  alt="Tiny Team"
+                />
+              </Link>
+              
+              <h2 className="footer-headline">
+                <span className="headline-line-1">L'excellence</span>
+                <span className="headline-line-2">Créative</span>
+              </h2>
+              
+              <p className="footer-description">
+                Nous propulsons les talents du spectacle vivant vers de nouveaux sommets. 
+                Production, management, diffusion : une expertise complète pour votre succès.
+              </p>
+            </div>
+            
+            <a href="mailto:contact@tinyteam.fr" className="footer-email">
+              <Mail size={18} />
+              contact@tinyteam.fr
+            </a>
+          </motion.div>
           
-          {/* Tagline */}
-          <div className="footer-tagline">
-            <h2 className="tagline-line-1">Révélons ensemble</h2>
-            <h3 className="tagline-line-2">Votre potentiel créatif</h3>
-          </div>
+          {/* Navigation - Services */}
+          <motion.div className="footer-column" variants={itemVariants}>
+            <h3 className="footer-column-title">Nos Services</h3>
+            <ul className="footer-links">
+              <li>
+                <Link to="/services#production" className="footer-link">
+                  Production artistique
+                </Link>
+              </li>
+              <li>
+                <Link to="/services#management" className="footer-link">
+                  Management d'artistes
+                </Link>
+              </li>
+              <li>
+                <Link to="/services#digital" className="footer-link">
+                  Stratégie digitale
+                </Link>
+              </li>
+              <li>
+                <Link to="/services#communication" className="footer-link">
+                  Communication
+                </Link>
+              </li>
+              <li>
+                <Link to="/services#diffusion" className="footer-link">
+                  Diffusion & Booking
+                </Link>
+              </li>
+            </ul>
+          </motion.div>
           
-          <p className="footer-subtitle">
-            Nous accompagnons les artistes du spectacle vivant avec passion et 
-            expertise. Une équipe dédiée pour transformer vos rêves en succès.
-          </p>
+          {/* Navigation - Entreprise */}
+          <motion.div className="footer-column" variants={itemVariants}>
+            <h3 className="footer-column-title">L'Agence</h3>
+            <ul className="footer-links">
+              <li>
+                <Link to="/about" className="footer-link">
+                  Notre histoire
+                </Link>
+              </li>
+              <li>
+                <Link to="/team" className="footer-link">
+                  L'équipe
+                </Link>
+              </li>
+              <li>
+                <Link to="/artistes" className="footer-link">
+                  Nos artistes
+                </Link>
+              </li>
+              <li>
+                <Link to="/actualites" className="footer-link">
+                  Actualités
+                </Link>
+              </li>
+              <li>
+                <Link to="/contact" className="footer-link">
+                  Contact
+                </Link>
+              </li>
+            </ul>
+          </motion.div>
+          
+          {/* Navigation - Espace Pro */}
+          <motion.div className="footer-column" variants={itemVariants}>
+            <h3 className="footer-column-title">Espace Pro</h3>
+            <ul className="footer-links">
+              <li>
+                <Link to="/artiste" className="footer-link">
+                  Devenir artiste
+                </Link>
+              </li>
+              <li>
+                <Link to="/programmateur" className="footer-link">
+                  Programmateurs
+                </Link>
+              </li>
+              <li>
+                <Link to="/entreprise" className="footer-link">
+                  Entreprises
+                </Link>
+              </li>
+              <li>
+                <Link to="/partenaires" className="footer-link">
+                  Partenariats
+                </Link>
+              </li>
+              <li>
+                <Link to="/presse" className="footer-link">
+                  Espace presse
+                </Link>
+              </li>
+            </ul>
+          </motion.div>
         </motion.div>
         
-        {/* Navigation Grid */}
+        {/* CTA Section Néon */}
         <motion.div 
-          className="footer-nav-section"
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8, delay: 0.2 }}
-        >
-          <div className="footer-nav-grid">
-            {footerNavigation.map((section, index) => (
-              <div key={section.title} className="footer-nav-column">
-                <h4 className="nav-column-title">{section.title}</h4>
-                <ul className="footer-nav-list">
-                  {section.links.map((link) => (
-                    <li key={link.label} className="footer-nav-item">
-                      <Link to={link.href} className="footer-nav-link">
-                        {link.label}
-                      </Link>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            ))}
-          </div>
-        </motion.div>
-        
-        {/* CTA Section */}
-        <motion.div 
-          className="footer-cta-section"
+          className="footer-cta"
           initial={{ opacity: 0, scale: 0.95 }}
           whileInView={{ opacity: 1, scale: 1 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.8, delay: 0.3 }}
+          transition={{ duration: 0.8, delay: 0.2 }}
         >
-          <div className="footer-cta-card">
-            <h3 className="cta-title">Prêt à révéler votre talent ?</h3>
-            <p className="cta-subtitle">
-              Contactez-nous pour discuter de votre projet artistique
-            </p>
-            <Link to="/contact" className="footer-cta-button">
-              <span>Parlons de votre projet</span>
-              <ArrowRight size={20} />
-            </Link>
+          <div className="footer-cta-content">
+            <h3>Prêt à faire vibrer les scènes ?</h3>
+            <p>Discutons de vos ambitions artistiques autour d'un café</p>
           </div>
+          <Link to="/contact" className="footer-cta-button">
+            <span>Démarrer un projet</span>
+            <ArrowRight size={20} />
+          </Link>
         </motion.div>
         
-        {/* Social Links */}
+        {/* Bottom Section */}
         <motion.div 
-          className="footer-social-section"
+          className="footer-bottom"
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.8, delay: 0.4 }}
+          transition={{ duration: 0.8, delay: 0.3 }}
         >
-          <div className="social-links-row">
+          {/* Social Links Néon */}
+          <div className="footer-social">
             <motion.a
               href="https://www.instagram.com/latinyteam/?hl=fr"
               target="_blank"
               rel="noopener noreferrer"
-              className="footer-social-link"
-              data-network="instagram"
-              whileHover={{ y: -4 }}
-              whileTap={{ scale: 0.95 }}
+              className="social-link"
+              whileHover={{ y: -5, scale: 1.1 }}
+              whileTap={{ scale: 0.9 }}
+              aria-label="Instagram"
             >
               <Instagram />
             </motion.a>
@@ -156,10 +227,10 @@ export const Footer = () => {
               href="https://www.linkedin.com/in/bénédicte-lecoq-426083138/"
               target="_blank"
               rel="noopener noreferrer"
-              className="footer-social-link"
-              data-network="linkedin"
-              whileHover={{ y: -4 }}
-              whileTap={{ scale: 0.95 }}
+              className="social-link"
+              whileHover={{ y: -5, scale: 1.1 }}
+              whileTap={{ scale: 0.9 }}
+              aria-label="LinkedIn"
             >
               <Linkedin />
             </motion.a>
@@ -168,10 +239,10 @@ export const Footer = () => {
               href="#"
               target="_blank"
               rel="noopener noreferrer"
-              className="footer-social-link"
-              data-network="tiktok"
-              whileHover={{ y: -4 }}
-              whileTap={{ scale: 0.95 }}
+              className="social-link"
+              whileHover={{ y: -5, scale: 1.1 }}
+              whileTap={{ scale: 0.9 }}
+              aria-label="Spotify"
             >
               <Music2 />
             </motion.a>
@@ -180,48 +251,41 @@ export const Footer = () => {
               href="#"
               target="_blank"
               rel="noopener noreferrer"
-              className="footer-social-link"
-              data-network="youtube"
-              whileHover={{ y: -4 }}
-              whileTap={{ scale: 0.95 }}
+              className="social-link"
+              whileHover={{ y: -5, scale: 1.1 }}
+              whileTap={{ scale: 0.9 }}
+              aria-label="YouTube"
             >
               <Youtube />
             </motion.a>
           </div>
-        </motion.div>
-        
-        {/* Bottom Bar */}
-        <div className="footer-bottom">
-          <div className="footer-bottom-content">
+          
+          {/* Legal */}
+          <div className="footer-legal">
             <p className="footer-copyright">
               © {currentYear} Tiny Team. Tous droits réservés.
             </p>
             
-            <div className="footer-legal">
-              <Link to="/mentions-legales" className="footer-legal-link">
-                Mentions légales
-              </Link>
-              <Link to="/confidentialite" className="footer-legal-link">
-                Confidentialité
-              </Link>
-              <Link to="/cookies" className="footer-legal-link">
-                Cookies
-              </Link>
+            <div className="footer-legal-links">
+              <Link to="/mentions-legales">Mentions légales</Link>
+              <Link to="/confidentialite">Confidentialité</Link>
+              <Link to="/cgv">CGV</Link>
             </div>
             
-            <a 
-              href="https://www.instagram.com/alex______kid/?hl=fr"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="footer-credit"
-            >
-              <span>Made with</span>
-              <Heart size={14} />
-              <span>by</span>
-              <span className="footer-credit-name">alexkid</span>
-            </a>
+            <div className="footer-credits">
+              Crafted with 
+              <Heart size={14} style={{ fill: 'currentColor' }} /> 
+              by
+              <a 
+                href="https://www.instagram.com/alex______kid/?hl=fr"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                alexkid
+              </a>
+            </div>
           </div>
-        </div>
+        </motion.div>
         
       </div>
     </footer>

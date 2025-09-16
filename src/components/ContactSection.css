@@ -1,4 +1,4 @@
-/* ContactSection.css - Design SPECTACULAIRE avec effets neon */
+/* ContactSection.css - Design Spectaculaire cohérent avec la homepage */
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;900&display=swap');
 
 /* ====================================
@@ -10,10 +10,8 @@
     --neon-yellow: #ffff00;
     --neon-purple: #a855f7;
     --neon-orange: #ff8800;
-    --neon-green: #00ff88;
     --primary-pink: #ec4899;
-    --primary-purple: #a855f7;
-    --bg-dark: #0A0F29;
+    --bg-dark: #0a0a1f;
 }
 
 /* ====================================
@@ -21,261 +19,562 @@
    ==================================== */
 .contact-section {
     position: relative;
-    padding: 8rem 0;
+    min-height: 100vh;
+    padding: 8rem 2rem;
     background: linear-gradient(180deg, #16213e 0%, #0f0f23 30%, #0a0a1a 70%, #070710 100%);
     overflow: hidden;
-    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 /* ====================================
-   EFFETS DE FOND
+   EFFETS DE FOND SPECTACULAIRES
    ==================================== */
-.contact-bg-effects {
+.contact-background {
     position: absolute;
     inset: 0;
     pointer-events: none;
 }
 
-/* Grille cyberpunk */
-.cyber-grid {
+/* Grille animée style Tron */
+.grid-bg {
     position: absolute;
     inset: 0;
-    opacity: 0.08;
     background-image: 
-        linear-gradient(var(--neon-pink) 1px, transparent 1px),
-        linear-gradient(90deg, var(--neon-cyan) 1px, transparent 1px);
-    background-size: 80px 80px;
-    animation: gridSlide 30s linear infinite;
+        linear-gradient(rgba(236, 72, 153, 0.1) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(168, 85, 247, 0.1) 1px, transparent 1px);
+    background-size: 100px 100px;
+    animation: gridMove 20s linear infinite;
+    opacity: 0.3;
 }
 
-@keyframes gridSlide {
+@keyframes gridMove {
     0% { transform: translate(0, 0); }
-    100% { transform: translate(80px, 80px); }
+    100% { transform: translate(100px, 100px); }
 }
 
-/* Orbes flottants */
-.floating-orbs {
-    position: absolute;
-    inset: 0;
-}
-
+/* Orbes de lumière flottants */
 .orb {
     position: absolute;
     border-radius: 50%;
     filter: blur(80px);
-    animation: orbFloat 20s ease-in-out infinite;
+    animation: float 20s ease-in-out infinite;
 }
 
 .orb-1 {
-    width: 400px;
-    height: 400px;
-    background: radial-gradient(circle, rgba(255, 0, 255, 0.3), transparent);
-    top: -200px;
-    left: -200px;
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle, rgba(236, 72, 153, 0.3), transparent 70%);
+    top: -300px;
+    left: -300px;
+    animation-duration: 25s;
 }
 
 .orb-2 {
-    width: 350px;
-    height: 350px;
-    background: radial-gradient(circle, rgba(0, 255, 255, 0.3), transparent);
-    bottom: -150px;
-    right: -150px;
-    animation-delay: -10s;
+    width: 500px;
+    height: 500px;
+    background: radial-gradient(circle, rgba(168, 85, 247, 0.3), transparent 70%);
+    bottom: -250px;
+    right: -250px;
+    animation-duration: 30s;
+    animation-delay: 5s;
 }
 
 .orb-3 {
-    width: 300px;
-    height: 300px;
-    background: radial-gradient(circle, rgba(255, 255, 0, 0.2), transparent);
+    width: 400px;
+    height: 400px;
+    background: radial-gradient(circle, rgba(0, 255, 255, 0.2), transparent 70%);
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    animation-delay: -5s;
+    animation-duration: 35s;
+    animation-delay: 10s;
 }
 
-@keyframes orbFloat {
+@keyframes float {
     0%, 100% {
         transform: translate(0, 0) scale(1);
     }
     33% {
-        transform: translate(50px, -50px) scale(1.1);
+        transform: translate(100px, -100px) scale(1.1);
     }
     66% {
-        transform: translate(-50px, 50px) scale(0.9);
+        transform: translate(-100px, 50px) scale(0.9);
     }
 }
 
-/* Particules brillantes */
-.sparkle-field {
+/* Particules étoiles */
+.stars {
     position: absolute;
     inset: 0;
 }
 
-.sparkle {
+.star {
     position: absolute;
     width: 2px;
     height: 2px;
     background: white;
     border-radius: 50%;
-    animation: sparkleAnimation 6s linear infinite;
+    animation: twinkle 3s ease-in-out infinite;
 }
 
-@keyframes sparkleAnimation {
-    0%, 100% {
-        opacity: 0;
-        transform: scale(0);
+@keyframes twinkle {
+    0%, 100% { 
+        opacity: 0; 
+        transform: scale(0.5); 
     }
-    50% {
-        opacity: 1;
-        transform: scale(1);
-        box-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
+    50% { 
+        opacity: 1; 
+        transform: scale(1); 
     }
 }
 
 /* ====================================
-   HEADER SPECTACULAIRE
+   CONTENU PRINCIPAL
    ==================================== */
-.contact-header {
-    text-align: center;
-    margin-bottom: 5rem;
+.contact-content {
     position: relative;
     z-index: 10;
-    padding: 0 2rem;
+    max-width: 1200px;
+    width: 100%;
+    text-align: center;
 }
 
-.header-container {
+/* ====================================
+   TITRE ÉPIQUE
+   ==================================== */
+.contact-header {
+    margin-bottom: 4rem;
+    animation: fadeInUp 1s ease-out;
+    overflow: visible; /* Assure que rien n'est tronqué */
+}
+
+.title-main {
     position: relative;
     display: inline-block;
+    padding: 0 1rem; /* Padding horizontal pour éviter la troncature */
 }
 
-/* Effet de lueur derriere le titre */
-.title-glow-bg {
+/* Effet de glow derrière le titre */
+.title-glow {
     position: absolute;
     inset: -100px;
     background: radial-gradient(circle, rgba(236, 72, 153, 0.4), transparent 40%);
     filter: blur(100px);
-    animation: glowPulse 4s ease-in-out infinite;
+    animation: glow 4s ease-in-out infinite;
+    pointer-events: none;
 }
 
-@keyframes glowPulse {
-    0%, 100% {
-        opacity: 0.4;
-        transform: scale(0.95);
+@keyframes glow {
+    0%, 100% { 
+        opacity: 0.5; 
+        transform: scale(0.8); 
     }
-    50% {
-        opacity: 0.7;
-        transform: scale(1.05);
+    50% { 
+        opacity: 1; 
+        transform: scale(1.2); 
     }
 }
 
-/* Titre principal */
-.contact-title {
-    font-size: clamp(2.5rem, 6vw, 5.5rem);
+/* Texte du titre avec gradient animé */
+.title-text {
+    font-size: clamp(3rem, 8vw, 6rem);
     font-weight: 900;
     font-style: italic;
     text-transform: uppercase;
     line-height: 0.9;
     letter-spacing: -0.02em;
-    margin-bottom: 2rem;
     position: relative;
 }
 
-.title-line-1 {
+.line-1 {
     display: block;
     color: white;
-    text-shadow: 0 0 40px rgba(255, 255, 255, 0.5);
-    animation: slideFromTop 1s cubic-bezier(0.16, 1, 0.3, 1);
+    margin-bottom: -0.1em;
+    animation: slideInLeft 1s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.title-line-2 {
+.line-2 {
     display: block;
-    font-size: 1.15em;
+    font-size: 1.2em;
+    padding-right: 0.2em; /* Espace pour le point d'interrogation */
     background: linear-gradient(90deg, 
-        var(--neon-pink) 0%, 
-        var(--neon-cyan) 20%, 
-        var(--neon-yellow) 40%, 
-        var(--neon-purple) 60%, 
-        var(--neon-pink) 80%, 
-        var(--neon-cyan) 100%);
+        #ff00ff 0%, 
+        #00ffff 25%, 
+        #ffff00 50%, 
+        #ff00ff 75%, 
+        #00ffff 100%);
     background-size: 200% 100%;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
-    filter: drop-shadow(0 0 50px var(--neon-pink))
-           drop-shadow(0 0 100px var(--neon-cyan));
+    filter: drop-shadow(0 0 60px rgba(236, 72, 153, 0.8));
     animation: 
-        slideFromBottom 1s cubic-bezier(0.16, 1, 0.3, 1) 0.2s backwards,
-        neonFlow 3s linear infinite;
+        slideInRight 1s cubic-bezier(0.16, 1, 0.3, 1) 0.2s backwards,
+        gradientSlide 3s linear infinite,
+        textPulse 2s ease-in-out infinite;
 }
 
-.title-line-3 {
-    display: block;
-    font-size: 1.25em;
-    margin-top: -0.1em;
-    background: linear-gradient(135deg, 
-        var(--neon-yellow) 0%,
-        var(--neon-orange) 50%,
-        var(--neon-pink) 100%);
-    background-size: 200% 200%;
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    filter: drop-shadow(0 0 60px var(--neon-yellow));
-    animation: 
-        slideFromBottom 1s cubic-bezier(0.16, 1, 0.3, 1) 0.4s backwards,
-        gradientWave 4s ease-in-out infinite;
-}
-
-/* Point d'interrogation style */
-.title-question {
-    display: inline-block;
-    margin-left: 0.2em;
-}
-
-@keyframes slideFromTop {
-    from {
-        opacity: 0;
-        transform: translateY(-50px);
+@keyframes slideInLeft {
+    from { 
+        opacity: 0; 
+        transform: translateX(-100px); 
     }
-    to {
-        opacity: 1;
-        transform: translateY(0);
+    to { 
+        opacity: 1; 
+        transform: translateX(0); 
     }
 }
 
-@keyframes slideFromBottom {
-    from {
-        opacity: 0;
-        transform: translateY(50px);
+@keyframes slideInRight {
+    from { 
+        opacity: 0; 
+        transform: translateX(100px); 
     }
-    to {
-        opacity: 1;
-        transform: translateY(0);
+    to { 
+        opacity: 1; 
+        transform: translateX(0); 
     }
 }
 
-@keyframes neonFlow {
+@keyframes gradientSlide {
     0% { background-position: 0% 50%; }
     100% { background-position: 200% 50%; }
 }
 
-@keyframes gradientWave {
-    0%, 100% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
+@keyframes textPulse {
+    0%, 100% {
+        filter: drop-shadow(0 0 60px rgba(236, 72, 153, 0.8));
+    }
+    50% {
+        filter: drop-shadow(0 0 100px rgba(236, 72, 153, 1));
+    }
 }
 
 /* Sous-titre */
-.contact-subtitle {
-    font-size: clamp(0.95rem, 2vw, 1.3rem);
+.subtitle {
+    margin-top: 2rem;
+    font-size: clamp(1.1rem, 2vw, 1.5rem);
     color: rgba(255, 255, 255, 0.7);
-    font-weight: 300;
-    letter-spacing: 0.05em;
-    max-width: 600px;
-    margin: 0 auto;
-    animation: fadeInUp 1s ease-out 0.8s backwards;
+    font-weight: 400;
     line-height: 1.6;
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+    animation: fadeInUp 1s ease-out 0.5s backwards;
 }
 
+/* ====================================
+   CARTES DE CONTACT
+   ==================================== */
+.contact-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 2rem;
+    margin-bottom: 4rem;
+    animation: fadeInUp 1s ease-out 0.8s backwards;
+}
+
+.contact-card {
+    position: relative;
+    padding: 3rem 2rem;
+    background: rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(20px);
+    border-radius: 2rem;
+    border: 2px solid transparent;
+    background-image: 
+        linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), 
+        linear-gradient(135deg, var(--card-color-1), var(--card-color-2));
+    background-origin: border-box;
+    background-clip: padding-box, border-box;
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    cursor: pointer;
+    overflow: hidden;
+}
+
+.contact-card:hover {
+    transform: translateY(-10px) scale(1.02);
+    box-shadow: 
+        0 30px 60px rgba(0, 0, 0, 0.4),
+        0 0 100px var(--card-color-1);
+}
+
+/* Couleurs des cartes */
+.card-artiste {
+    --card-color-1: var(--neon-pink);
+    --card-color-2: var(--primary-pink);
+}
+
+.card-programmateur {
+    --card-color-1: var(--neon-cyan);
+    --card-color-2: #3b82f6;
+}
+
+.card-entreprise {
+    --card-color-1: var(--neon-yellow);
+    --card-color-2: var(--neon-orange);
+}
+
+/* Effet de brillance */
+.card-shine {
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, 
+        transparent, 
+        rgba(255, 255, 255, 0.2), 
+        transparent);
+    transition: left 0.8s;
+}
+
+.contact-card:hover .card-shine {
+    left: 100%;
+}
+
+.card-icon-wrapper {
+    width: 80px;
+    height: 80px;
+    margin: 0 auto 1.5rem;
+    position: relative;
+}
+
+.card-icon-bg {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, var(--card-color-1), var(--card-color-2));
+    border-radius: 1.5rem;
+    animation: iconRotate 20s linear infinite;
+}
+
+@keyframes iconRotate {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+.card-icon {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--bg-dark);
+    border-radius: 1.5rem;
+    transform: scale(0.85);
+    transition: transform 0.3s;
+}
+
+.contact-card:hover .card-icon {
+    transform: scale(0.95);
+    animation: iconFloat 3s ease-in-out infinite;
+}
+
+@keyframes iconFloat {
+    0%, 100% { transform: translateY(0) scale(0.95); }
+    50% { transform: translateY(-10px) scale(0.95); }
+}
+
+.card-icon svg {
+    width: 40px;
+    height: 40px;
+    color: white;
+    filter: drop-shadow(0 0 20px currentColor);
+}
+
+.card-title {
+    font-size: 1.8rem;
+    font-weight: 900;
+    text-transform: uppercase;
+    color: white;
+    margin-bottom: 1rem;
+    letter-spacing: -0.02em;
+    transition: all 0.3s;
+}
+
+.contact-card:hover .card-title {
+    background: linear-gradient(135deg, var(--card-color-1), var(--card-color-2));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    filter: drop-shadow(0 0 30px var(--card-color-1));
+}
+
+.card-description {
+    font-size: 1rem;
+    color: rgba(255, 255, 255, 0.7);
+    line-height: 1.6;
+    margin-bottom: 2rem;
+}
+
+.card-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 1rem 2rem;
+    background: white;
+    color: var(--bg-dark);
+    border: none;
+    border-radius: 9999px;
+    font-weight: 700;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    cursor: pointer;
+    transition: all 0.3s;
+    text-decoration: none;
+}
+
+.card-button:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 30px rgba(255, 255, 255, 0.5);
+}
+
+/* ====================================
+   BOUTON CTA PRINCIPAL
+   ==================================== */
+.main-cta-container {
+    margin-bottom: 4rem;
+    animation: fadeInUp 1s ease-out 1s backwards;
+}
+
+.main-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1.5rem 4rem;
+    font-size: 1.25rem;
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    text-decoration: none;
+    color: white;
+    border-radius: 9999px;
+    position: relative;
+    overflow: hidden;
+    background: rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(10px);
+    border: 3px solid transparent;
+    background-image: 
+        linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), 
+        linear-gradient(135deg, var(--primary-pink), var(--neon-purple));
+    background-origin: border-box;
+    background-clip: padding-box, border-box;
+    box-shadow: 
+        0 0 40px rgba(236, 72, 153, 0.3),
+        0 0 80px rgba(168, 85, 247, 0.2),
+        inset 0 0 20px rgba(236, 72, 153, 0.1);
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    animation: ctaPulse 3s ease-in-out infinite;
+}
+
+@keyframes ctaPulse {
+    0%, 100% {
+        box-shadow: 
+            0 0 40px rgba(236, 72, 153, 0.3),
+            0 0 80px rgba(168, 85, 247, 0.2),
+            inset 0 0 20px rgba(236, 72, 153, 0.1);
+    }
+    50% {
+        box-shadow: 
+            0 0 60px rgba(236, 72, 153, 0.5),
+            0 0 100px rgba(168, 85, 247, 0.3),
+            inset 0 0 30px rgba(236, 72, 153, 0.2);
+    }
+}
+
+.main-cta::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, 
+        transparent, 
+        rgba(255, 255, 255, 0.3), 
+        transparent);
+    transition: left 0.6s;
+}
+
+.main-cta:hover::before {
+    left: 100%;
+}
+
+.main-cta:hover {
+    transform: translateY(-5px) scale(1.05);
+    box-shadow: 
+        0 0 60px rgba(236, 72, 153, 0.6),
+        0 0 120px rgba(168, 85, 247, 0.4),
+        0 20px 40px rgba(0, 0, 0, 0.3);
+}
+
+/* ====================================
+   FOOTER DE CONTACT
+   ==================================== */
+.contact-footer {
+    text-align: center;
+    padding-top: 2rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    animation: fadeInUp 1s ease-out 1.2s backwards;
+}
+
+.footer-text {
+    font-size: 1rem;
+    color: rgba(255, 255, 255, 0.5);
+    margin-bottom: 1rem;
+}
+
+.contact-info {
+    display: flex;
+    justify-content: center;
+    gap: 3rem;
+    flex-wrap: wrap;
+}
+
+.contact-item {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.contact-item svg {
+    width: 20px;
+    height: 20px;
+    color: var(--primary-pink);
+    filter: drop-shadow(0 0 10px currentColor);
+}
+
+.contact-link {
+    color: white;
+    text-decoration: none;
+    font-weight: 600;
+    position: relative;
+    transition: color 0.3s;
+}
+
+.contact-link::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: linear-gradient(90deg, var(--primary-pink), var(--neon-purple));
+    transition: width 0.3s;
+}
+
+.contact-link:hover::after {
+    width: 100%;
+}
+
+.contact-link:hover {
+    color: var(--primary-pink);
+}
+
+/* Animation d'entrée */
 @keyframes fadeInUp {
     from {
         opacity: 0;
@@ -288,297 +587,67 @@
 }
 
 /* ====================================
-   BOUTONS CTA SPECTACULAIRES
-   ==================================== */
-.cta-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 2rem;
-    position: relative;
-    z-index: 10;
-}
-
-.cta-buttons {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 1.5rem;
-    justify-content: center;
-    animation: fadeInUp 1s ease-out 1s backwards;
-}
-
-/* Bouton principal EXPLOSIF */
-.cta-primary {
-    position: relative;
-    display: inline-flex;
-    align-items: center;
-    gap: 0.75rem;
-    padding: 1.25rem 3rem;
-    font-size: 1.1rem;
-    font-weight: 900;
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-    text-decoration: none;
-    color: var(--bg-dark);
-    border-radius: 9999px;
-    overflow: hidden;
-    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-    z-index: 1;
-}
-
-.cta-primary::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(135deg, 
-        var(--neon-pink) 0%, 
-        var(--neon-purple) 50%, 
-        var(--neon-cyan) 100%);
-    background-size: 200% 200%;
-    animation: buttonGradientShift 3s ease-in-out infinite;
-    z-index: -1;
-}
-
-.cta-primary::after {
-    content: '';
-    position: absolute;
-    inset: -2px;
-    background: linear-gradient(135deg, 
-        var(--neon-pink), 
-        var(--neon-yellow), 
-        var(--neon-cyan));
-    border-radius: 9999px;
-    opacity: 0;
-    z-index: -2;
-    transition: opacity 0.3s ease;
-    filter: blur(10px);
-}
-
-.cta-primary:hover::after {
-    opacity: 1;
-}
-
-.cta-primary:hover {
-    transform: translateY(-5px) scale(1.05);
-    box-shadow: 
-        0 20px 40px rgba(236, 72, 153, 0.4),
-        0 0 80px rgba(236, 72, 153, 0.6),
-        0 0 120px rgba(168, 85, 247, 0.4);
-    color: white;
-    text-shadow: 0 0 20px rgba(255, 255, 255, 0.8);
-}
-
-@keyframes buttonGradientShift {
-    0%, 100% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
-}
-
-/* Bouton secondaire glassmorphism */
-.cta-secondary {
-    position: relative;
-    display: inline-flex;
-    align-items: center;
-    gap: 0.5rem;
-    padding: 1.1rem 2.2rem;
-    font-size: 1rem;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
-    text-decoration: none;
-    color: white;
-    border-radius: 9999px;
-    background: rgba(255, 255, 255, 0.05);
-    backdrop-filter: blur(20px);
-    border: 2px solid rgba(255, 255, 255, 0.1);
-    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-    overflow: hidden;
-}
-
-.cta-secondary::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-    transform: translateX(-100%);
-    transition: transform 0.6s ease;
-}
-
-.cta-secondary:hover::before {
-    transform: translateX(100%);
-}
-
-.cta-secondary:hover {
-    transform: translateY(-3px);
-    background: rgba(255, 255, 255, 0.1);
-    border-color: var(--neon-cyan);
-    box-shadow: 
-        0 10px 30px rgba(0, 255, 255, 0.3),
-        inset 0 0 20px rgba(0, 255, 255, 0.1);
-}
-
-/* Icones animees */
-.cta-icon {
-    width: 20px;
-    height: 20px;
-    transition: transform 0.3s ease;
-}
-
-.cta-primary:hover .cta-icon,
-.cta-secondary:hover .cta-icon {
-    transform: translateX(5px);
-    animation: iconPulse 0.5s ease;
-}
-
-@keyframes iconPulse {
-    0%, 100% { transform: translateX(5px) scale(1); }
-    50% { transform: translateX(5px) scale(1.2); }
-}
-
-/* ====================================
-   INFO DE CONTACT RAPIDE
-   ==================================== */
-.quick-contact {
-    text-align: center;
-    margin-top: 3rem;
-    animation: fadeInUp 1s ease-out 1.2s backwards;
-}
-
-.quick-contact-text {
-    font-size: 0.95rem;
-    color: rgba(255, 255, 255, 0.5);
-    margin-bottom: 1rem;
-}
-
-.contact-email {
-    display: inline-block;
-    font-size: 1.2rem;
-    font-weight: 700;
-    color: var(--neon-pink);
-    text-decoration: none;
-    position: relative;
-    transition: all 0.3s ease;
-    padding: 0.5rem 1rem;
-}
-
-.contact-email::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 0;
-    height: 2px;
-    background: linear-gradient(90deg, var(--neon-pink), var(--neon-cyan));
-    transition: width 0.3s ease;
-}
-
-.contact-email:hover {
-    color: var(--neon-cyan);
-    text-shadow: 0 0 20px var(--neon-cyan);
-    transform: translateY(-2px);
-}
-
-.contact-email:hover::after {
-    width: 100%;
-}
-
-/* ====================================
    RESPONSIVE
    ==================================== */
 @media (max-width: 768px) {
     .contact-section {
-        padding: 5rem 0;
+        padding: 4rem 1rem;
     }
-    
-    .contact-header {
-        margin-bottom: 3rem;
-        padding: 0 1.5rem;
+
+    .title-text {
+        font-size: clamp(2.5rem, 12vw, 4rem);
     }
-    
-    .contact-title {
-        font-size: clamp(2rem, 8vw, 3rem);
-        margin-bottom: 1.5rem;
+
+    .line-2 {
+        font-size: 1.15em;
     }
-    
-    .title-line-2,
-    .title-line-3 {
-        font-size: 1.05em;
-    }
-    
-    .contact-subtitle {
-        font-size: 0.9rem;
-        padding: 0 1rem;
-    }
-    
-    .cta-buttons {
-        flex-direction: column;
-        width: 100%;
-        padding: 0 1.5rem;
-    }
-    
-    .cta-primary,
-    .cta-secondary {
-        width: 100%;
-        justify-content: center;
-        padding: 1rem 1.5rem;
-        font-size: 0.9rem;
-    }
-    
-    .contact-email {
+
+    .subtitle {
         font-size: 1rem;
     }
-    
-    .cyber-grid {
-        background-size: 60px 60px;
-    }
-    
-    .orb-1,
-    .orb-2,
-    .orb-3 {
-        width: 200px;
-        height: 200px;
-    }
-}
 
-/* Tablette */
-@media (min-width: 769px) and (max-width: 1024px) {
-    .contact-title {
-        font-size: 4.5rem;
+    .contact-cards {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
     }
-    
-    .cta-primary {
-        padding: 1.2rem 2.5rem;
-        font-size: 1rem;
-    }
-    
-    .cta-secondary {
-        padding: 1rem 2rem;
-        font-size: 0.95rem;
-    }
-}
 
-/* Grand ecran */
-@media (min-width: 1920px) {
-    .contact-section {
-        padding: 10rem 0;
+    .contact-card {
+        padding: 2rem 1.5rem;
     }
-    
-    .contact-title {
-        font-size: 7rem;
-    }
-    
-    .contact-subtitle {
+
+    .card-title {
         font-size: 1.5rem;
-        max-width: 800px;
     }
-    
-    .cta-primary {
-        padding: 1.5rem 3.5rem;
-        font-size: 1.3rem;
+
+    .main-cta {
+        padding: 1.25rem 2.5rem;
+        font-size: 1rem;
     }
-    
-    .cta-secondary {
-        padding: 1.3rem 2.8rem;
-        font-size: 1.15rem;
+
+    .contact-info {
+        flex-direction: column;
+        gap: 1.5rem;
+    }
+}
+
+@media (min-width: 769px) and (max-width: 1024px) {
+    .title-text {
+        font-size: 5rem;
+    }
+
+    .contact-cards {
+        max-width: 900px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+}
+
+@media (min-width: 1920px) {
+    .contact-content {
+        max-width: 1600px;
+    }
+
+    .title-text {
+        font-size: 7rem;
     }
 }
