@@ -1,4 +1,4 @@
-/* HeroSection.css - Version complète avec responsive optimisé */
+/* HeroSection.css - Version finale avec responsive corrigé et tailles desktop réduites */
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;900&display=swap');
 
 :root {
@@ -6,9 +6,8 @@
     --primary-purple: #a855f7;
     --bg-dark: #0a0a1f;
     --bg-dark-secondary: #16213e;
-    --poster-size-desktop: 320px;
-    --poster-size-tablet: 260px;
-    --poster-size-mobile: 180px;
+    --poster-size-desktop: 270px; /* RÉDUIT de 320px à 270px (-15%) */
+    --poster-size-mobile: 200px;
 }
 
 * {
@@ -25,19 +24,24 @@ body {
     position: relative;
 }
 
-/* ============================== */
-/* SECTION HERO */
-/* ============================== */
+/* Section héros principale */
 .hero-section {
     position: relative;
     min-height: 100vh;
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 80px 20px 40px;
+    padding: 100px 20px 40px;
 }
 
-/* Particules flottantes */
+/* AJUSTEMENT DESKTOP : Réduction du padding sur desktop */
+@media (min-width: 1024px) {
+    .hero-section {
+        padding: 85px 20px 35px; /* RÉDUIT de 100px à 85px */
+    }
+}
+
+/* Particules flottantes animées */
 @keyframes float {
     0%, 100% { transform: translateY(0) rotate(0deg); }
     33% { transform: translateY(-20px) rotate(120deg); }
@@ -61,6 +65,7 @@ body {
 .hero-section::before {
     top: 20%;
     left: -100px;
+    animation-delay: 0s;
 }
 
 .hero-section::after {
@@ -68,11 +73,10 @@ body {
     right: -100px;
     background: radial-gradient(circle, rgba(168,85,247,0.15) 0%, transparent 70%);
     animation-delay: 10s;
+    animation-duration: 25s;
 }
 
-/* ============================== */
-/* CAROUSEL D'AFFICHES */
-/* ============================== */
+/* RIVIÈRE D'AFFICHES (CAROUSEL) */
 .background-carousel {
     position: absolute;
     top: 0;
@@ -95,6 +99,13 @@ body {
     display: flex;
     gap: 2rem;
     width: max-content;
+}
+
+/* AJUSTEMENT DESKTOP : Réduction du gap sur desktop */
+@media (min-width: 1024px) {
+    .carousel-track {
+        gap: 1.6rem; /* RÉDUIT de 2rem à 1.6rem */
+    }
 }
 
 .carousel-track.top-row {
@@ -124,7 +135,24 @@ body {
     border-radius: 16px;
     overflow: hidden;
     position: relative;
+    transition: transform 0.3s ease;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+.poster-card::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, transparent 30%, rgba(255,255,255,0.1) 50%, transparent 70%);
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.poster-card:hover::after {
+    opacity: 1;
 }
 
 .poster-card:nth-child(3n+1) { transform: rotate(-3deg); }
@@ -143,12 +171,13 @@ body {
     z-index: 10;
 }
 
-/* ============================== */
 /* OVERLAY GRADIENT */
-/* ============================== */
 .overlay {
     position: absolute;
-    inset: 0;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
     background: radial-gradient(
         ellipse at center,
         rgba(10, 10, 31, 0.2) 0%,
@@ -158,20 +187,26 @@ body {
     z-index: 2;
 }
 
-/* ============================== */
 /* CONTENU PRINCIPAL */
-/* ============================== */
 .main-content {
     position: relative;
     z-index: 10;
     width: 100%;
-    max-width: 1200px;
+    max-width: 1400px;
     margin: 0 auto;
     display: flex;
     flex-direction: column;
     align-items: center;
     text-align: center;
     gap: 2rem;
+}
+
+/* AJUSTEMENT DESKTOP : Réduction du gap et max-width sur desktop */
+@media (min-width: 1024px) {
+    .main-content {
+        max-width: 1200px; /* RÉDUIT de 1400px à 1200px */
+        gap: 1.6rem; /* RÉDUIT de 2rem à 1.6rem */
+    }
 }
 
 /* Badge */
@@ -187,6 +222,13 @@ body {
     animation: fadeInUp 0.8s ease-out;
     position: relative;
     overflow: hidden;
+}
+
+/* AJUSTEMENT DESKTOP : Réduction du padding du badge sur desktop */
+@media (min-width: 1024px) {
+    .badge {
+        padding: 0.6rem 1.2rem; /* RÉDUIT de 0.75rem 1.5rem */
+    }
 }
 
 @keyframes shimmer {
@@ -232,7 +274,7 @@ body {
 }
 
 .title-tiny {
-    font-size: 4rem;
+    font-size: clamp(2rem, 5vw, 4rem);
     font-weight: 900;
     font-style: italic;
     text-transform: uppercase;
@@ -242,14 +284,17 @@ body {
 }
 
 .title-big {
-    font-size: 10rem;
+    font-size: clamp(3rem, 10vw, 10rem);
     font-weight: 900;
     font-style: italic;
     text-transform: uppercase;
     line-height: 0.85;
     background: linear-gradient(135deg, 
-        #ff00ff 0%, #00ffff 25%, #ffff00 50%, 
-        #ff00ff 75%, #00ffff 100%);
+        #ff00ff 0%,
+        #00ffff 25%,
+        #ffff00 50%,
+        #ff00ff 75%,
+        #00ffff 100%);
     background-size: 400% 400%;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -260,6 +305,17 @@ body {
     display: inline-block;
     position: relative;
     animation: epicGradient 3s ease infinite;
+}
+
+/* AJUSTEMENT DESKTOP : Réduction des tailles de titres sur desktop uniquement */
+@media (min-width: 1024px) {
+    .title-tiny {
+        font-size: 3.2rem; /* RÉDUIT de 4rem max à 3.2rem (-20%) */
+    }
+    
+    .title-big {
+        font-size: 8rem; /* RÉDUIT de 10rem max à 8rem (-20%) */
+    }
 }
 
 @keyframes epicGradient {
@@ -273,7 +329,7 @@ body {
     }
 }
 
-/* Boutons */
+/* BOUTONS */
 .buttons {
     display: flex;
     gap: 1rem;
@@ -291,7 +347,6 @@ body {
     letter-spacing: 0.1em;
     display: inline-flex;
     align-items: center;
-    justify-content: center;
     gap: 0.5rem;
     transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
     text-decoration: none;
@@ -300,6 +355,14 @@ body {
     overflow: hidden;
     cursor: pointer;
     border: none;
+}
+
+/* AJUSTEMENT DESKTOP : Réduction du padding des boutons sur desktop */
+@media (min-width: 1024px) {
+    .btn {
+        padding: 1rem 2.4rem; /* RÉDUIT de 1.25rem 3rem */
+        font-size: 0.9rem; /* RÉDUIT de 1rem à 0.9rem */
+    }
 }
 
 .btn-primary {
@@ -332,24 +395,34 @@ body {
 .btn-secondary:hover {
     transform: translateY(-4px) scale(1.05);
     background: rgba(255, 255, 255, 0.1);
+    border-color: rgba(255, 255, 255, 0.2);
 }
 
-/* Cards */
+/* CARTES - OPTIMISÉ POUR DESKTOP ET MOBILE */
 .cards-wrapper {
     width: 100%;
     animation: fadeInUp 0.8s ease-out 0.6s both;
+    padding: 0 20px;
 }
 
 .cards {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 1.5rem;
-    max-width: 900px;
+    gap: 2rem;
+    max-width: 1100px;
     margin: 0 auto;
 }
 
+/* AJUSTEMENT DESKTOP : Réduction FORTE des cartes sur desktop */
+@media (min-width: 1024px) {
+    .cards {
+        max-width: 850px; /* ENCORE PLUS RÉDUIT de 900px à 850px */
+        gap: 1.25rem; /* RÉDUIT de 1.5rem à 1.25rem */
+    }
+}
+
 .card {
-    padding: 2rem 1.5rem;
+    padding: 1.75rem 1.25rem;
     border-radius: 24px;
     background: linear-gradient(135deg, rgba(0,0,0,0.3) 0%, rgba(0,0,0,0.1) 100%);
     backdrop-filter: blur(20px);
@@ -361,6 +434,15 @@ body {
     display: block;
     position: relative;
     overflow: hidden;
+    min-width: 0;
+}
+
+/* AJUSTEMENT DESKTOP : Réduction FORTE du padding des cartes sur desktop */
+@media (min-width: 1024px) {
+    .card {
+        padding: 1rem 0.8rem; /* ENCORE PLUS RÉDUIT */
+        border-radius: 18px; /* Légèrement réduit */
+    }
 }
 
 .card:hover {
@@ -378,8 +460,16 @@ body {
     margin-bottom: 0.75rem;
 }
 
+/* AJUSTEMENT DESKTOP : Réduction des textes des cartes sur desktop */
+@media (min-width: 1024px) {
+    .card-label {
+        font-size: 0.65rem; /* RÉDUIT de 0.75rem - PLUS FORT */
+        margin-bottom: 0.5rem; /* RÉDUIT de 0.75rem - PLUS FORT */
+    }
+}
+
 .card-title {
-    font-size: 1.5rem;
+    font-size: 1.25rem;
     font-weight: 700;
     color: white;
     margin: 0;
@@ -388,6 +478,33 @@ body {
     justify-content: center;
     gap: 0.5rem;
     transition: all 0.3s;
+    text-transform: uppercase; /* AJOUT pour forcer les majuscules */
+}
+
+/* AJUSTEMENT DESKTOP : Réduction FORTE du titre des cartes sur desktop */
+@media (min-width: 1024px) {
+    .card-title {
+        font-size: 0.75rem !important; /* TRÈS RÉDUIT - de 1.25rem à 0.75rem (-40%) */
+        gap: 0.25rem; /* RÉDUIT encore plus */
+        font-weight: 600; /* Légèrement moins gras */
+        letter-spacing: 0.03em; /* Espacement minimal */
+        line-height: 1.2;
+    }
+    
+    .card-title span:first-child {
+        font-size: 0.75rem !important; /* Même taille pour uniformité */
+    }
+}
+
+/* AJUSTEMENT POUR TRÈS GRANDS ÉCRANS */
+@media (min-width: 1440px) {
+    .card-title {
+        font-size: 0.8rem !important;
+    }
+    
+    .card-title span:first-child {
+        font-size: 0.8rem !important;
+    }
 }
 
 .card:hover .card-title {
@@ -398,6 +515,7 @@ body {
 .card-arrow {
     display: inline-block;
     transition: transform 0.3s ease;
+    flex-shrink: 0;
 }
 
 .card:hover .card-arrow {
@@ -409,40 +527,35 @@ body {
     to { opacity: 1; transform: translateY(0); }
 }
 
-/* ============================== */
-/* RESPONSIVE TABLETTE */
-/* ============================== */
+/* RESPONSIVE TABLETTE - PAS DE CHANGEMENT */
 @media (max-width: 1024px) {
-    .poster-card {
-        width: var(--poster-size-tablet);
-        height: calc(var(--poster-size-tablet) * 1.4);
-    }
-
-    .title-tiny {
-        font-size: 3rem;
-    }
-    
-    .title-big {
-        font-size: 6rem;
+    .main-content {
+        max-width: 900px;
     }
     
     .cards {
         grid-template-columns: repeat(2, 1fr);
         max-width: 700px;
     }
+    
+    .title-tiny {
+        font-size: 2.5rem;
+    }
+    
+    .title-big {
+        font-size: 5rem;
+    }
 }
 
-/* ============================== */
-/* RESPONSIVE MOBILE */
-/* ============================== */
+/* RESPONSIVE MOBILE - PAS DE CHANGEMENT */
 @media (max-width: 768px) {
     .hero-section {
-        padding: 60px 15px 30px;
-        min-height: 100vh;
+        padding: 80px 15px 30px;
+        min-height: 100dvh;
     }
 
     .background-carousel {
-        opacity: 0.3;
+        opacity: 0.35;
     }
 
     .poster-card {
@@ -454,8 +567,8 @@ body {
         background: radial-gradient(
             ellipse at center,
             rgba(10, 10, 31, 0.3) 0%,
-            rgba(10, 10, 31, 0.75) 50%,
-            rgba(10, 10, 31, 0.95) 100%
+            rgba(10, 10, 31, 0.7) 50%,
+            rgba(10, 10, 31, 0.9) 100%
         );
     }
 
@@ -476,114 +589,55 @@ body {
     }
 
     .buttons {
-        flex-direction: column;
         width: 100%;
-        max-width: 320px;
+        max-width: 350px;
+        flex-direction: column;
     }
 
     .btn {
         width: 100%;
         padding: 1rem 2rem;
-        font-size: 0.875rem;
+        font-size: 0.85rem;
     }
 
-    /* CRITICAL: Cards responsive */
+    .cards-wrapper {
+        padding: 0 15px;
+    }
+
     .cards {
         grid-template-columns: 1fr;
-        gap: 0.75rem;
-        padding: 0 10px;
-        max-width: 100%;
+        gap: 1rem;
+        max-width: 320px;
     }
 
     .card {
-        padding: 1rem 0.75rem;
-        max-width: 260px;
-        margin: 0 auto;
-    }
-
-    .card-label {
-        font-size: 0.5rem;
-        letter-spacing: 0.05em;
-        margin-bottom: 0.4rem;
+        padding: 1.5rem 1rem;
     }
 
     .card-title {
-        font-size: 0.45rem;
-        gap: 0.2rem;
-        font-weight: 600;
-        text-transform: uppercase;
-        letter-spacing: 0.05em;
-    }
-
-    .card-arrow {
-        font-size: 0.45rem;
+        font-size: 1rem;
     }
 }
 
-/* ============================== */
-/* RESPONSIVE TRÈS PETITS ÉCRANS */
-/* ============================== */
+/* TRÈS PETITS ÉCRANS - PAS DE CHANGEMENT */
 @media (max-width: 380px) {
-    .hero-section {
-        padding: 50px 10px 20px;
-    }
-
     .title-tiny {
-        font-size: 1.5rem;
+        font-size: 1.75rem;
     }
 
     .title-big {
-        font-size: 2rem;
-    }
-
-    .badge {
-        padding: 0.4rem 0.8rem;
-    }
-
-    .badge-text {
-        font-size: 0.6rem;
-    }
-
-    .btn {
-        padding: 0.875rem 1.5rem;
-        font-size: 0.75rem;
+        font-size: 2.5rem;
     }
 
     .card {
-        padding: 0.875rem 0.5rem;
-        max-width: 240px;
+        padding: 1.25rem 0.75rem;
     }
 
     .card-label {
-        font-size: 0.45rem;
-        margin-bottom: 0.35rem;
+        font-size: 0.65rem;
     }
 
     .card-title {
-        font-size: 0.35rem;
-        font-weight: 600;
-        text-transform: uppercase;
-        letter-spacing: 0.04em;
+        font-size: 0.85rem;
     }
-
-    .card-arrow {
-        font-size: 0.35rem;
-    }
-}
-
-/* Popup */
-.popup {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background: linear-gradient(135deg, #ec4899 0%, #a855f7 100%);
-    color: white;
-    padding: 1.5rem 2.5rem;
-    border-radius: 1rem;
-    box-shadow: 0 20px 40px rgba(0,0,0,0.3);
-    z-index: 1000;
-    font-size: 1rem;
-    font-weight: 600;
-    animation: fadeIn 0.3s ease-out;
 }

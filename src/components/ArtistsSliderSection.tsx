@@ -173,9 +173,9 @@ export const ArtistsSliderSection = () => {
             viewport={{ once: true }}
             transition={{ duration: 0.8, delay: 0.3 }}
           >
-            <p>
+            <span className="slogan-text">
               Des talents d'exception, des univers uniques, une seule passion :
-            </p>
+            </span>
             <span className="slogan-emphasis">
               Vous émerveiller
             </span>

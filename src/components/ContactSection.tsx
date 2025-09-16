@@ -1,34 +1,17 @@
 import React from 'react';
-import { motion } from 'framer-motion';
-import { Link } from 'react-router-dom';
-import { 
-  ArrowRight, 
-  Sparkles, 
-  Star, 
-  Briefcase, 
-  Building, 
-  Mail, 
-  Phone,
-  MapPin 
-} from 'lucide-react';
-import './ContactSection.css';
+import './ContactSection.css'; // Import du CSS
 
 export const ContactSection = () => {
   return (
     <section className="contact-section">
       {/* Effets de fond spectaculaires */}
       <div className="contact-background">
-        {/* Grille animée */}
-        <div className="grid-bg" />
-        
-        {/* Orbes de lumière */}
-        <div className="orb orb-1" />
-        <div className="orb orb-2" />
-        <div className="orb orb-3" />
-        
-        {/* Étoiles scintillantes */}
+        <div className="grid-bg"></div>
+        <div className="orb orb-1"></div>
+        <div className="orb orb-2"></div>
+        <div className="orb orb-3"></div>
         <div className="stars">
-          {[...Array(30)].map((_, i) => (
+          {[...Array(20)].map((_, i) => (
             <div
               key={i}
               className="star"
@@ -44,159 +27,97 @@ export const ContactSection = () => {
 
       {/* Contenu principal */}
       <div className="contact-content">
-        {/* Header épique */}
-        <motion.div 
-          className="contact-header"
-          initial={{ opacity: 0, scale: 0.9 }}
-          whileInView={{ opacity: 1, scale: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8 }}
-        >
+        {/* Header avec titre épique */}
+        <div className="contact-header">
           <div className="title-main">
-            <div className="title-glow" />
+            <div className="title-glow"></div>
             <h2 className="title-text">
-              <span className="line-1">Prêt à</span>
-              <span className="line-2">Collaborer ?</span>
+              <span className="line-1">Prêt à faire</span>
+              <span className="line-2">vibrer les scènes ?</span>
             </h2>
           </div>
-          
-          <motion.p 
-            className="subtitle"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8, delay: 0.3 }}
-          >
-            Que vous soyez artiste, programmateur ou marque, 
-            nous sommes là pour donner vie à vos projets les plus ambitieux
-          </motion.p>
-        </motion.div>
+          <p className="subtitle">
+            Discutons de vos ambitions artistiques autour d'un café. 
+            Choisissez votre profil pour une expérience sur mesure.
+          </p>
+        </div>
 
         {/* Cartes de contact */}
-        <motion.div 
-          className="contact-cards"
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8, delay: 0.4 }}
-        >
+        <div className="contact-cards">
           {/* Carte Artiste */}
-          <div className="contact-card card-artiste">
-            <div className="card-shine" />
-            
-            <div className="card-icon-wrapper">
-              <div className="card-icon-bg" />
-              <div className="card-icon">
-                <Star />
-              </div>
+          <a href="/contact?type=artiste" className="contact-card card-artiste">
+            <div className="card-shine"></div>
+            <div className="card-badge">
+              <span className="card-badge-text">Pour les talents</span>
             </div>
-            
-            <h3 className="card-title">Artiste</h3>
+            <h3 className="card-title">Vous êtes</h3>
+            <div className="card-subtitle">Artiste</div>
             <p className="card-description">
-              Propulsez votre carrière avec notre expertise en production et management
+              Développez votre carrière avec notre expertise en production et management
             </p>
-            
-            <Link to="/artiste" className="card-button">
-              <span>En savoir plus</span>
-              <ArrowRight size={16} />
-            </Link>
-          </div>
+            <div className="card-link">
+              <span>Démarrer l'aventure</span>
+              <span className="card-link-arrow">→</span>
+            </div>
+          </a>
 
           {/* Carte Programmateur */}
-          <div className="contact-card card-programmateur">
-            <div className="card-shine" />
-            
-            <div className="card-icon-wrapper">
-              <div className="card-icon-bg" />
-              <div className="card-icon">
-                <Briefcase />
-              </div>
+          <a href="/contact?type=programmateur" className="contact-card card-programmateur">
+            <div className="card-shine"></div>
+            <div className="card-badge">
+              <span className="card-badge-text">Pour les salles</span>
             </div>
-            
-            <h3 className="card-title">Programmateur</h3>
+            <h3 className="card-title">Vous êtes</h3>
+            <div className="card-subtitle">Programmateur</div>
             <p className="card-description">
-              Découvrez nos spectacles et enrichissez votre programmation culturelle
+              Trouvez les spectacles parfaits pour votre public et votre lieu
             </p>
-            
-            <Link to="/programmateur" className="card-button">
-              <span>Nos spectacles</span>
-              <ArrowRight size={16} />
-            </Link>
-          </div>
+            <div className="card-link">
+              <span>Voir nos artistes</span>
+              <span className="card-link-arrow">→</span>
+            </div>
+          </a>
 
           {/* Carte Entreprise */}
-          <div className="contact-card card-entreprise">
-            <div className="card-shine" />
-            
-            <div className="card-icon-wrapper">
-              <div className="card-icon-bg" />
-              <div className="card-icon">
-                <Building />
-              </div>
+          <a href="/contact?type=entreprise" className="contact-card card-entreprise">
+            <div className="card-shine"></div>
+            <div className="card-badge">
+              <span className="card-badge-text">Pour les marques</span>
             </div>
-            
-            <h3 className="card-title">Entreprise</h3>
+            <h3 className="card-title">Vous êtes une</h3>
+            <div className="card-subtitle">Entreprise</div>
             <p className="card-description">
-              Créez des événements inoubliables pour vos équipes et vos clients
+              Créez des événements uniques avec nos talents du spectacle vivant
             </p>
-            
-            <Link to="/entreprise" className="card-button">
-              <span>Événements pro</span>
-              <ArrowRight size={16} />
-            </Link>
-          </div>
-        </motion.div>
+            <div className="card-link">
+              <span>Créer un événement</span>
+              <span className="card-link-arrow">→</span>
+            </div>
+          </a>
+        </div>
 
-        {/* CTA Principal */}
-        <motion.div 
-          className="main-cta-container"
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8, delay: 0.6 }}
-        >
-          <Link to="/contact" className="main-cta">
-            <Sparkles size={24} />
-            <span>Discutons de votre projet</span>
-            <ArrowRight size={24} />
-          </Link>
-        </motion.div>
-
-        {/* Footer de contact */}
-        <motion.div 
-          className="contact-footer"
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8, delay: 0.8 }}
-        >
-          <p className="footer-text">
-            Ou contactez-nous directement
-          </p>
-          
+        {/* Footer de contact avec infos */}
+        <div className="contact-footer">
+          <p className="footer-text">Besoin d'aide pour choisir ?</p>
           <div className="contact-info">
             <div className="contact-item">
-              <Mail />
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                <path d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+              </svg>
               <a href="mailto:contact@tinyteam.fr" className="contact-link">
                 contact@tinyteam.fr
               </a>
             </div>
-            
             <div className="contact-item">
-              <Phone />
-              <a href="tel:+33612345678" className="contact-link">
-                +33 6 12 34 56 78
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/>
+              </svg>
+              <a href="tel:+33123456789" className="contact-link">
+                +33 1 23 45 67 89
               </a>
             </div>
-            
-            <div className="contact-item">
-              <MapPin />
-              <span className="contact-link">
-                Cagnes-sur-Mer, France
-              </span>
-            </div>
           </div>
-        </motion.div>
+        </div>
       </div>
     </section>
   );

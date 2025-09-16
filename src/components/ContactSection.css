@@ -1,4 +1,4 @@
-/* ContactSection.css - Design Spectaculaire cohérent avec la homepage */
+/* ContactSection.css - Design Spectaculaire cohérent avec la homepage - Tailles desktop réduites */
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;900&display=swap');
 
 /* ====================================
@@ -28,6 +28,13 @@
     justify-content: center;
 }
 
+/* AJUSTEMENT DESKTOP : Réduction du padding sur desktop */
+@media (min-width: 1024px) {
+    .contact-section {
+        padding: 6.5rem 2rem; /* RÉDUIT de 8rem */
+    }
+}
+
 /* ====================================
    EFFETS DE FOND SPECTACULAIRES
    ==================================== */
@@ -47,6 +54,13 @@
     background-size: 100px 100px;
     animation: gridMove 20s linear infinite;
     opacity: 0.3;
+}
+
+/* AJUSTEMENT DESKTOP : Réduction de la grille sur desktop */
+@media (min-width: 1024px) {
+    .grid-bg {
+        background-size: 85px 85px; /* RÉDUIT de 100px */
+    }
 }
 
 @keyframes gridMove {
@@ -90,6 +104,22 @@
     transform: translate(-50%, -50%);
     animation-duration: 35s;
     animation-delay: 10s;
+}
+
+/* AJUSTEMENT DESKTOP : Réduction des orbes sur desktop */
+@media (min-width: 1024px) {
+    .orb-1 {
+        width: 500px; /* RÉDUIT de 600px */
+        height: 500px;
+    }
+    .orb-2 {
+        width: 420px; /* RÉDUIT de 500px */
+        height: 420px;
+    }
+    .orb-3 {
+        width: 340px; /* RÉDUIT de 400px */
+        height: 340px;
+    }
 }
 
 @keyframes float {
@@ -141,6 +171,13 @@
     text-align: center;
 }
 
+/* AJUSTEMENT DESKTOP : Réduction du max-width sur desktop */
+@media (min-width: 1024px) {
+    .contact-content {
+        max-width: 1000px; /* RÉDUIT de 1200px */
+    }
+}
+
 /* ====================================
    TITRE ÉPIQUE
    ==================================== */
@@ -148,6 +185,13 @@
     margin-bottom: 4rem;
     animation: fadeInUp 1s ease-out;
     overflow: visible; /* Assure que rien n'est tronqué */
+}
+
+/* AJUSTEMENT DESKTOP : Réduction du margin sur desktop */
+@media (min-width: 1024px) {
+    .contact-header {
+        margin-bottom: 3.2rem; /* RÉDUIT de 4rem */
+    }
 }
 
 .title-main {
@@ -164,6 +208,14 @@
     filter: blur(100px);
     animation: glow 4s ease-in-out infinite;
     pointer-events: none;
+}
+
+/* AJUSTEMENT DESKTOP : Réduction du glow sur desktop */
+@media (min-width: 1024px) {
+    .title-glow {
+        inset: -80px; /* RÉDUIT de -100px */
+        filter: blur(80px); /* RÉDUIT de 100px */
+    }
 }
 
 @keyframes glow {
@@ -186,6 +238,13 @@
     line-height: 0.9;
     letter-spacing: -0.02em;
     position: relative;
+}
+
+/* AJUSTEMENT DESKTOP : Réduction du titre sur desktop */
+@media (min-width: 1024px) {
+    .title-text {
+        font-size: 5rem; /* RÉDUIT de 6rem max à 5rem (-17%) */
+    }
 }
 
 .line-1 {
@@ -265,39 +324,88 @@
     animation: fadeInUp 1s ease-out 0.5s backwards;
 }
 
+/* AJUSTEMENT DESKTOP : Réduction du subtitle sur desktop */
+@media (min-width: 1024px) {
+    .subtitle {
+        margin-top: 1.6rem; /* RÉDUIT de 2rem */
+        font-size: 1.25rem; /* RÉDUIT de 1.5rem max */
+        max-width: 600px; /* RÉDUIT de 700px */
+    }
+}
+
 /* ====================================
-   CARTES DE CONTACT
+   CARTES DE CONTACT - DESIGN MODERNE MINIMALISTE
    ==================================== */
 .contact-cards {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    grid-template-columns: repeat(3, 1fr);
     gap: 2rem;
     margin-bottom: 4rem;
     animation: fadeInUp 1s ease-out 0.8s backwards;
 }
 
+/* AJUSTEMENT DESKTOP : Réduction des cartes sur desktop */
+@media (min-width: 1024px) {
+    .contact-cards {
+        gap: 1.6rem; /* RÉDUIT de 2rem */
+        margin-bottom: 3.2rem; /* RÉDUIT de 4rem */
+    }
+}
+
 .contact-card {
     position: relative;
-    padding: 3rem 2rem;
-    background: rgba(0, 0, 0, 0.3);
+    padding: 2.5rem 2rem;
+    background: linear-gradient(135deg, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.2));
     backdrop-filter: blur(20px);
-    border-radius: 2rem;
-    border: 2px solid transparent;
-    background-image: 
-        linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), 
-        linear-gradient(135deg, var(--card-color-1), var(--card-color-2));
-    background-origin: border-box;
-    background-clip: padding-box, border-box;
+    border-radius: 1.5rem;
+    border: 2px solid rgba(255,255,255,0.05);
     transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
     cursor: pointer;
     overflow: hidden;
+    text-decoration: none;
+    display: block;
+}
+
+/* AJUSTEMENT DESKTOP : Réduction du padding des cartes sur desktop */
+@media (min-width: 1024px) {
+    .contact-card {
+        padding: 2rem 1.6rem; /* RÉDUIT de 2.5rem 2rem */
+        border-radius: 1.2rem; /* RÉDUIT de 1.5rem */
+    }
+}
+
+/* Hover avec bordure colorée subtile */
+.contact-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: 1.5rem;
+    padding: 2px;
+    background: linear-gradient(135deg, var(--card-color-1), var(--card-color-2));
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+}
+
+@media (min-width: 1024px) {
+    .contact-card::before {
+        border-radius: 1.2rem; /* Match le border-radius de la carte */
+    }
+}
+
+.contact-card:hover::before {
+    opacity: 1;
 }
 
 .contact-card:hover {
-    transform: translateY(-10px) scale(1.02);
+    transform: translateY(-10px);
+    background: linear-gradient(135deg, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.3));
     box-shadow: 
-        0 30px 60px rgba(0, 0, 0, 0.4),
-        0 0 100px var(--card-color-1);
+        0 20px 40px rgba(0, 0, 0, 0.3),
+        0 0 60px var(--card-color-1, rgba(255,255,255,0.1));
+    border-color: transparent;
 }
 
 /* Couleurs des cartes */
@@ -316,17 +424,17 @@
     --card-color-2: var(--neon-orange);
 }
 
-/* Effet de brillance */
+/* Effet de brillance subtil */
 .card-shine {
     position: absolute;
     top: 0;
     left: -100%;
     width: 100%;
     height: 100%;
-    background: linear-gradient(90deg, 
-        transparent, 
-        rgba(255, 255, 255, 0.2), 
-        transparent);
+    background: linear-gradient(105deg, 
+        transparent 40%, 
+        rgba(255, 255, 255, 0.1) 50%, 
+        transparent 60%);
     transition: left 0.8s;
 }
 
@@ -334,102 +442,163 @@
     left: 100%;
 }
 
+/* NOUVEAU DESIGN : Badge coloré minimaliste en haut */
+.card-badge {
+    display: inline-block;
+    padding: 0.4rem 0.8rem;
+    background: linear-gradient(135deg, var(--card-color-1), var(--card-color-2));
+    border-radius: 9999px;
+    margin-bottom: 1.5rem;
+    animation: badgePulse 3s ease-in-out infinite;
+}
+
+/* AJUSTEMENT DESKTOP */
+@media (min-width: 1024px) {
+    .card-badge {
+        padding: 0.35rem 0.7rem; /* RÉDUIT */
+        margin-bottom: 1.2rem;
+    }
+}
+
+@keyframes badgePulse {
+    0%, 100% { 
+        box-shadow: 0 0 20px var(--card-color-1);
+        transform: scale(1);
+    }
+    50% { 
+        box-shadow: 0 0 30px var(--card-color-1);
+        transform: scale(1.02);
+    }
+}
+
+.card-badge-text {
+    font-size: 0.7rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--bg-dark);
+}
+
+/* AJUSTEMENT DESKTOP */
+@media (min-width: 1024px) {
+    .card-badge-text {
+        font-size: 0.65rem; /* RÉDUIT */
+    }
+}
+
+/* Suppression de l'ancien système d'icônes complexe */
 .card-icon-wrapper {
-    width: 80px;
-    height: 80px;
-    margin: 0 auto 1.5rem;
-    position: relative;
+    display: none; /* On supprime complètement */
 }
 
 .card-icon-bg {
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(135deg, var(--card-color-1), var(--card-color-2));
-    border-radius: 1.5rem;
-    animation: iconRotate 20s linear infinite;
-}
-
-@keyframes iconRotate {
-    from { transform: rotate(0deg); }
-    to { transform: rotate(360deg); }
+    display: none;
 }
 
 .card-icon {
-    position: relative;
-    width: 100%;
-    height: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: var(--bg-dark);
-    border-radius: 1.5rem;
-    transform: scale(0.85);
-    transition: transform 0.3s;
-}
-
-.contact-card:hover .card-icon {
-    transform: scale(0.95);
-    animation: iconFloat 3s ease-in-out infinite;
-}
-
-@keyframes iconFloat {
-    0%, 100% { transform: translateY(0) scale(0.95); }
-    50% { transform: translateY(-10px) scale(0.95); }
-}
-
-.card-icon svg {
-    width: 40px;
-    height: 40px;
-    color: white;
-    filter: drop-shadow(0 0 20px currentColor);
+    display: none;
 }
 
 .card-title {
-    font-size: 1.8rem;
+    font-size: 1.6rem;
     font-weight: 900;
     text-transform: uppercase;
     color: white;
-    margin-bottom: 1rem;
+    margin-bottom: 0.5rem;
     letter-spacing: -0.02em;
     transition: all 0.3s;
+    line-height: 1;
 }
 
-.contact-card:hover .card-title {
+/* AJUSTEMENT DESKTOP : Réduction du titre sur desktop */
+@media (min-width: 1024px) {
+    .card-title {
+        font-size: 1.3rem; /* RÉDUIT de 1.6rem */
+        margin-bottom: 0.4rem; /* RÉDUIT */
+    }
+}
+
+/* Nouveau style : sous-titre stylé */
+.card-subtitle {
+    font-size: 2rem;
+    font-weight: 900;
+    font-style: italic;
+    text-transform: uppercase;
+    margin-bottom: 1.5rem;
     background: linear-gradient(135deg, var(--card-color-1), var(--card-color-2));
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
+    filter: drop-shadow(0 0 20px var(--card-color-1));
+    transition: all 0.3s;
+}
+
+/* AJUSTEMENT DESKTOP */
+@media (min-width: 1024px) {
+    .card-subtitle {
+        font-size: 1.6rem; /* RÉDUIT de 2rem */
+        margin-bottom: 1.2rem;
+    }
+}
+
+.contact-card:hover .card-subtitle {
     filter: drop-shadow(0 0 30px var(--card-color-1));
+    transform: scale(1.05);
 }
 
 .card-description {
-    font-size: 1rem;
-    color: rgba(255, 255, 255, 0.7);
-    line-height: 1.6;
+    font-size: 0.95rem;
+    color: rgba(255, 255, 255, 0.6);
+    line-height: 1.5;
     margin-bottom: 2rem;
 }
 
-.card-button {
+/* AJUSTEMENT DESKTOP : Réduction de la description sur desktop */
+@media (min-width: 1024px) {
+    .card-description {
+        font-size: 0.85rem; /* RÉDUIT */
+        margin-bottom: 1.6rem; /* RÉDUIT de 2rem */
+    }
+}
+
+/* Nouveau : Indicateur visuel simple au lieu du bouton */
+.card-link {
     display: inline-flex;
     align-items: center;
     gap: 0.5rem;
-    padding: 1rem 2rem;
-    background: white;
-    color: var(--bg-dark);
-    border: none;
-    border-radius: 9999px;
+    color: white;
     font-weight: 700;
     font-size: 0.9rem;
     text-transform: uppercase;
     letter-spacing: 0.1em;
-    cursor: pointer;
     transition: all 0.3s;
     text-decoration: none;
 }
 
-.card-button:hover {
-    transform: scale(1.05);
-    box-shadow: 0 0 30px rgba(255, 255, 255, 0.5);
+/* AJUSTEMENT DESKTOP */
+@media (min-width: 1024px) {
+    .card-link {
+        font-size: 0.8rem; /* RÉDUIT */
+        gap: 0.4rem;
+    }
+}
+
+.card-link-arrow {
+    display: inline-block;
+    transition: transform 0.3s ease;
+}
+
+.contact-card:hover .card-link {
+    gap: 0.8rem;
+}
+
+.contact-card:hover .card-link-arrow {
+    transform: translateX(5px);
+}
+
+/* Suppression de l'ancien bouton */
+.card-button {
+    display: none; /* On supprime l'ancien style de bouton blanc */
 }
 
 /* ====================================
@@ -438,6 +607,13 @@
 .main-cta-container {
     margin-bottom: 4rem;
     animation: fadeInUp 1s ease-out 1s backwards;
+}
+
+/* AJUSTEMENT DESKTOP : Réduction du margin sur desktop */
+@media (min-width: 1024px) {
+    .main-cta-container {
+        margin-bottom: 3.2rem; /* RÉDUIT de 4rem */
+    }
 }
 
 .main-cta {
@@ -468,6 +644,16 @@
         inset 0 0 20px rgba(236, 72, 153, 0.1);
     transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
     animation: ctaPulse 3s ease-in-out infinite;
+}
+
+/* AJUSTEMENT DESKTOP : Réduction du CTA principal sur desktop */
+@media (min-width: 1024px) {
+    .main-cta {
+        padding: 1.2rem 3.2rem; /* RÉDUIT de 1.5rem 4rem */
+        font-size: 1.05rem; /* RÉDUIT de 1.25rem */
+        gap: 0.8rem; /* RÉDUIT de 1rem */
+        letter-spacing: 0.08em; /* RÉDUIT de 0.1em */
+    }
 }
 
 @keyframes ctaPulse {
@@ -521,10 +707,25 @@
     animation: fadeInUp 1s ease-out 1.2s backwards;
 }
 
+/* AJUSTEMENT DESKTOP : Réduction du padding sur desktop */
+@media (min-width: 1024px) {
+    .contact-footer {
+        padding-top: 1.6rem; /* RÉDUIT de 2rem */
+    }
+}
+
 .footer-text {
     font-size: 1rem;
     color: rgba(255, 255, 255, 0.5);
     margin-bottom: 1rem;
+}
+
+/* AJUSTEMENT DESKTOP : Réduction du texte footer sur desktop */
+@media (min-width: 1024px) {
+    .footer-text {
+        font-size: 0.9rem; /* RÉDUIT de 1rem */
+        margin-bottom: 0.8rem; /* RÉDUIT de 1rem */
+    }
 }
 
 .contact-info {
@@ -534,10 +735,24 @@
     flex-wrap: wrap;
 }
 
+/* AJUSTEMENT DESKTOP : Réduction du gap sur desktop */
+@media (min-width: 1024px) {
+    .contact-info {
+        gap: 2.4rem; /* RÉDUIT de 3rem */
+    }
+}
+
 .contact-item {
     display: flex;
     align-items: center;
     gap: 0.75rem;
+}
+
+/* AJUSTEMENT DESKTOP : Réduction du gap item sur desktop */
+@media (min-width: 1024px) {
+    .contact-item {
+        gap: 0.6rem; /* RÉDUIT de 0.75rem */
+    }
 }
 
 .contact-item svg {
@@ -547,12 +762,27 @@
     filter: drop-shadow(0 0 10px currentColor);
 }
 
+/* AJUSTEMENT DESKTOP : Réduction de l'icône sur desktop */
+@media (min-width: 1024px) {
+    .contact-item svg {
+        width: 18px; /* RÉDUIT de 20px */
+        height: 18px;
+    }
+}
+
 .contact-link {
     color: white;
     text-decoration: none;
     font-weight: 600;
     position: relative;
     transition: color 0.3s;
+}
+
+/* AJUSTEMENT DESKTOP : Réduction de la font sur desktop */
+@media (min-width: 1024px) {
+    .contact-link {
+        font-size: 0.9rem; /* Légèrement réduit */
+    }
 }
 
 .contact-link::after {
@@ -587,8 +817,9 @@
 }
 
 /* ====================================
-   RESPONSIVE
+   RESPONSIVE - PAS DE CHANGEMENT
    ==================================== */
+/* RESPONSIVE - CARTES ADAPTÉES */
 @media (max-width: 768px) {
     .contact-section {
         padding: 4rem 1rem;
@@ -616,6 +847,10 @@
     }
 
     .card-title {
+        font-size: 1rem;
+    }
+
+    .card-subtitle {
         font-size: 1.5rem;
     }
 

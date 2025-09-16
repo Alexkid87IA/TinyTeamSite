@@ -152,8 +152,19 @@ export const HeroSection = () => {
 
       {/* Popup "Bientôt disponible" */}
       {showPopup && (
-        <div className="popup" style={{
-          display: showPopup ? 'block' : 'none',
+        <div style={{
+          position: 'fixed',
+          top: '50%',
+          left: '50%',
+          transform: 'translate(-50%, -50%)',
+          background: 'linear-gradient(135deg, #ec4899 0%, #a855f7 100%)',
+          color: 'white',
+          padding: '1.5rem 3rem',
+          borderRadius: '1rem',
+          boxShadow: '0 20px 40px rgba(0,0,0,0.3)',
+          zIndex: 1000,
+          fontSize: '1.1rem',
+          fontWeight: '600',
           animation: 'fadeIn 0.3s ease-out'
         }}>
           🎬 Showreel bientôt disponible !

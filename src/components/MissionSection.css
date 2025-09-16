@@ -1,4 +1,4 @@
-/* MissionSection.css - Version finale optimisée */
+/* MissionSection.css - Version corrigée avec S visible et bouton amélioré - Tailles desktop réduites */
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;900&display=swap');
 
 /* ====================================
@@ -11,7 +11,9 @@
     --neon-purple: #a855f7;
     --neon-orange: #ff8800;
     --neon-green: #00ff88;
+    --neon-blue: #0099ff;
     --bg-dark: #0A0F29;
+    --bg-darker: #070710;
 }
 
 /* ====================================
@@ -20,10 +22,21 @@
 .mission-section {
     position: relative;
     min-height: 100vh;
-    padding: 6rem 0 4rem;
-    background: linear-gradient(180deg, #16213e 0%, #0f0f23 30%, #0a0a1a 70%, #070710 100%);
-    overflow-x: hidden; /* Changé pour permettre le scroll vertical */
+    padding: 5rem 1rem 4rem;
+    background: linear-gradient(180deg, 
+        #1a1f3a 0%, 
+        #0f0f23 25%, 
+        #0a0a1a 60%, 
+        #070710 100%);
+    overflow-x: hidden;
     overflow-y: visible;
+}
+
+/* AJUSTEMENT DESKTOP : Réduction du padding sur desktop */
+@media (min-width: 1024px) {
+    .mission-section {
+        padding: 4rem 1rem 3.2rem; /* RÉDUIT de 5rem 1rem 4rem */
+    }
 }
 
 /* ====================================
@@ -38,190 +51,403 @@
 .bg-gradient-overlay {
     position: absolute;
     inset: 0;
-    background: radial-gradient(ellipse at center, rgba(236, 72, 153, 0.08), transparent 50%);
-    opacity: 0.6;
+    background: radial-gradient(
+        ellipse at 50% 30%, 
+        rgba(236, 72, 153, 0.15) 0%, 
+        rgba(168, 85, 247, 0.1) 25%, 
+        transparent 60%
+    );
+    animation: pulseGlow 8s ease-in-out infinite;
+}
+
+@keyframes pulseGlow {
+    0%, 100% { opacity: 0.6; }
+    50% { opacity: 1; }
+}
+
+/* Particules flottantes */
+.floating-particles {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+}
+
+.particle {
+    position: absolute;
+    width: 2px;
+    height: 2px;
+    background: white;
+    border-radius: 50%;
+    opacity: 0.3;
+    animation: float 20s infinite linear;
+}
+
+@keyframes float {
+    from { transform: translateY(100vh) translateX(0); }
+    to { transform: translateY(-100px) translateX(100px); }
 }
 
 /* ====================================
-   HEADER
+   HEADER - CORRECTION DU S TRONQUÉ
    ==================================== */
 .mission-header {
     text-align: center;
     margin-bottom: 4rem;
     position: relative;
     z-index: 10;
-    padding: 0 2rem;
+    width: 100%;
+    max-width: 100%;
+    overflow: visible !important; /* Force l'overflow visible */
+}
+
+/* AJUSTEMENT DESKTOP : Réduction du margin sur desktop */
+@media (min-width: 1024px) {
+    .mission-header {
+        margin-bottom: 3.2rem; /* RÉDUIT de 4rem */
+    }
 }
 
 .title-container {
     position: relative;
-    display: inline-block;
-    padding: 0 3rem; /* Augmenté encore pour assurer l'espace */
-    margin: 0 auto; /* Centrage */
+    display: block;
+    width: 100%;
+    padding: 0;
+    margin: 0 auto;
+    overflow: visible !important;
 }
 
 .main-title {
-    font-size: clamp(3rem, 7vw, 6rem);
+    font-size: clamp(3rem, 8vw, 6rem);
     font-weight: 900;
     font-style: italic;
     text-transform: uppercase;
-    line-height: 0.9;
+    line-height: 0.85;
     letter-spacing: -0.02em;
-    padding: 0 0.5em; /* Ajout de padding horizontal pour éviter la coupure */
-    display: inline-block;
+    position: relative;
+    margin: 0 auto;
+    display: block;
+    text-align: center;
+}
+
+/* AJUSTEMENT DESKTOP : Réduction du titre sur desktop */
+@media (min-width: 1024px) {
+    .main-title {
+        font-size: 5rem; /* RÉDUIT de 6rem max à 5rem (-17%) */
+    }
 }
 
 .title-word-1 {
     display: block;
     color: white;
     opacity: 0.95;
-    margin-bottom: -0.1em;
+    margin-bottom: -0.15em;
+    text-shadow: 0 4px 20px rgba(255, 255, 255, 0.1);
 }
 
 .title-word-2 {
-    display: block;
-    font-size: 1.2em;
-    background: linear-gradient(90deg, 
+    display: inline-block; /* Changé pour permettre le padding horizontal */
+    font-size: 1.25em;
+    position: relative;
+    padding: 0 0.5em; /* PADDING HORIZONTAL pour éviter la troncature du S */
+    margin-left: -0.25em; /* Décale légèrement à gauche pour centrer visuellement */
+    background: linear-gradient(270deg, 
         var(--neon-pink) 0%, 
-        var(--neon-cyan) 25%, 
-        var(--neon-yellow) 50%, 
-        var(--neon-purple) 75%, 
+        var(--neon-cyan) 20%, 
+        var(--neon-yellow) 40%, 
+        var(--neon-purple) 60%, 
+        var(--neon-green) 80%, 
         var(--neon-pink) 100%);
-    background-size: 200% 100%;
+    background-size: 300% 100%;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
-    filter: drop-shadow(0 0 40px var(--neon-pink));
-    animation: gradientSlide 4s linear infinite;
+    filter: drop-shadow(0 0 30px var(--neon-pink)) 
+            drop-shadow(0 0 60px var(--neon-cyan));
+    animation: gradientSlide 6s linear infinite,
+               glowPulse 3s ease-in-out infinite;
 }
 
 @keyframes gradientSlide {
     0% { background-position: 0% 50%; }
-    100% { background-position: 200% 50%; }
+    100% { background-position: 300% 50%; }
+}
+
+@keyframes glowPulse {
+    0%, 100% { filter: drop-shadow(0 0 30px var(--neon-pink)) drop-shadow(0 0 60px var(--neon-cyan)); }
+    50% { filter: drop-shadow(0 0 40px var(--neon-pink)) drop-shadow(0 0 80px var(--neon-cyan)); }
 }
 
 .subtitle {
-    margin-top: 1.5rem;
-    font-size: clamp(0.9rem, 2vw, 1.2rem);
-    color: rgba(255, 255, 255, 0.6);
+    margin-top: 1.8rem;
+    font-size: clamp(1rem, 2.5vw, 1.3rem);
+    color: rgba(255, 255, 255, 0.7);
     font-weight: 300;
-    letter-spacing: 0.1em;
+    letter-spacing: 0.15em;
     text-transform: uppercase;
+    animation: fadeInUp 1s ease-out 0.5s both;
+}
+
+/* AJUSTEMENT DESKTOP : Réduction du subtitle sur desktop */
+@media (min-width: 1024px) {
+    .subtitle {
+        margin-top: 1.5rem; /* RÉDUIT de 1.8rem */
+        font-size: 1.1rem; /* RÉDUIT de 1.3rem max */
+        letter-spacing: 0.12em; /* RÉDUIT de 0.15em */
+    }
+}
+
+@keyframes fadeInUp {
+    from { 
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to { 
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 /* ====================================
    CASCADE DE SERVICES
    ==================================== */
 .services-cascade {
-    max-width: 1000px;
+    max-width: 1100px;
     margin: 0 auto;
-    padding: 0 1.5rem;
+    padding: 0 2rem;
     position: relative;
     z-index: 10;
 }
 
+/* AJUSTEMENT DESKTOP : Réduction du container sur desktop */
+@media (min-width: 1024px) {
+    .services-cascade {
+        max-width: 950px; /* RÉDUIT de 1100px */
+    }
+}
+
 .service-panel {
-    margin-bottom: 1rem;
+    margin-bottom: 1.2rem;
+    animation: slideInLeft 0.6s ease-out both;
+}
+
+/* AJUSTEMENT DESKTOP : Réduction du margin sur desktop */
+@media (min-width: 1024px) {
+    .service-panel {
+        margin-bottom: 1rem; /* RÉDUIT de 1.2rem */
+    }
+}
+
+.service-panel:nth-child(1) { animation-delay: 0.1s; }
+.service-panel:nth-child(2) { animation-delay: 0.2s; }
+.service-panel:nth-child(3) { animation-delay: 0.3s; }
+.service-panel:nth-child(4) { animation-delay: 0.4s; }
+.service-panel:nth-child(5) { animation-delay: 0.5s; }
+.service-panel:nth-child(6) { animation-delay: 0.6s; }
+
+@keyframes slideInLeft {
+    from { 
+        opacity: 0;
+        transform: translateX(-50px);
+    }
+    to { 
+        opacity: 1;
+        transform: translateX(0);
+    }
 }
 
 .panel-container {
     position: relative;
-    background: rgba(0, 0, 0, 0.4);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-    border-radius: 1.2rem;
-    overflow: visible; /* Changé pour éviter la coupure */
-    transition: all 0.3s ease;
+    background: linear-gradient(135deg, 
+        rgba(0, 0, 0, 0.5) 0%, 
+        rgba(0, 0, 0, 0.3) 100%);
+    backdrop-filter: blur(20px) saturate(150%);
+    -webkit-backdrop-filter: blur(20px) saturate(150%);
+    border-radius: 1.5rem;
+    overflow: hidden;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     border: 2px solid transparent;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
 }
 
-/* Couleurs par service */
+/* AJUSTEMENT DESKTOP : Réduction du border-radius sur desktop */
+@media (min-width: 1024px) {
+    .panel-container {
+        border-radius: 1.2rem; /* RÉDUIT de 1.5rem */
+    }
+}
+
+/* Couleurs et gradients par service */
 .service-panel[data-service="production"] {
     --service-color-1: var(--neon-yellow);
     --service-color-2: var(--neon-orange);
+    --service-gradient: linear-gradient(135deg, var(--neon-yellow), var(--neon-orange));
 }
 
 .service-panel[data-service="management"] {
     --service-color-1: var(--neon-cyan);
-    --service-color-2: var(--neon-purple);
+    --service-color-2: var(--neon-blue);
+    --service-gradient: linear-gradient(135deg, var(--neon-cyan), var(--neon-blue));
 }
 
 .service-panel[data-service="digital"] {
     --service-color-1: var(--neon-purple);
     --service-color-2: var(--neon-pink);
+    --service-gradient: linear-gradient(135deg, var(--neon-purple), var(--neon-pink));
 }
 
 .service-panel[data-service="communication"] {
     --service-color-1: var(--neon-pink);
-    --service-color-2: #ff00aa;
+    --service-color-2: #ff0080;
+    --service-gradient: linear-gradient(135deg, var(--neon-pink), #ff0080);
 }
 
 .service-panel[data-service="diffusion"] {
     --service-color-1: var(--neon-green);
     --service-color-2: var(--neon-cyan);
+    --service-gradient: linear-gradient(135deg, var(--neon-green), var(--neon-cyan));
 }
 
 .service-panel[data-service="evenements"] {
     --service-color-1: var(--neon-orange);
-    --service-color-2: #ff0044;
+    --service-color-2: #ff0055;
+    --service-gradient: linear-gradient(135deg, var(--neon-orange), #ff0055);
 }
 
-.panel-container {
-    background-image: 
-        linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), 
-        linear-gradient(135deg, var(--service-color-1), var(--service-color-2));
-    background-origin: border-box;
-    background-clip: padding-box, border-box;
+/* Bordure gradient animée */
+.panel-container::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: 1.5rem;
+    padding: 2px;
+    background: var(--service-gradient);
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    opacity: 0.5;
+    transition: opacity 0.4s ease;
+}
+
+/* AJUSTEMENT DESKTOP : Ajustement du border-radius before sur desktop */
+@media (min-width: 1024px) {
+    .panel-container::before {
+        border-radius: 1.2rem; /* RÉDUIT pour correspondre au container */
+    }
+}
+
+.panel-container:hover::before,
+.service-panel.active .panel-container::before {
+    opacity: 1;
 }
 
 .panel-container:hover,
 .service-panel.active .panel-container {
-    transform: translateY(-3px);
-    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+    transform: translateY(-5px) scale(1.02);
+    box-shadow: 0 15px 50px rgba(0, 0, 0, 0.4),
+                0 0 40px var(--service-color-1, rgba(255, 255, 255, 0.1));
 }
 
 /* Header du panel */
 .panel-header {
-    padding: 1.5rem 1.5rem 1.5rem 5rem;
+    padding: 1.8rem 2rem 1.8rem 6rem;
     display: flex;
     align-items: center;
-    gap: 1rem;
+    gap: 1.5rem;
     cursor: pointer;
     position: relative;
-    min-height: 90px;
+    min-height: 100px;
+    transition: all 0.3s ease;
 }
 
-/* Badge numéro */
+/* AJUSTEMENT DESKTOP : Réduction du header sur desktop */
+@media (min-width: 1024px) {
+    .panel-header {
+        padding: 1.5rem 1.6rem 1.5rem 5rem; /* RÉDUIT de 1.8rem 2rem 1.8rem 6rem */
+        min-height: 85px; /* RÉDUIT de 100px */
+        gap: 1.2rem; /* RÉDUIT de 1.5rem */
+    }
+}
+
+.panel-header:hover {
+    padding-left: 6.3rem;
+}
+
+/* AJUSTEMENT DESKTOP : Ajustement du hover padding sur desktop */
+@media (min-width: 1024px) {
+    .panel-header:hover {
+        padding-left: 5.2rem; /* RÉDUIT proportionnellement */
+    }
+}
+
+/* Badge numéro avec effet glass */
 .panel-number {
     position: absolute;
-    left: 1.2rem;
+    left: 1.5rem;
     top: 50%;
     transform: translateY(-50%);
-    width: 48px;
-    height: 48px;
-    border-radius: 0.8rem;
-    background: linear-gradient(135deg, var(--service-color-1), var(--service-color-2));
+    width: 54px;
+    height: 54px;
+    border-radius: 1rem;
+    background: var(--service-gradient);
     display: flex;
     align-items: center;
     justify-content: center;
     font-weight: 900;
-    font-size: 1.2rem;
+    font-size: 1.4rem;
     color: var(--bg-dark);
-    transition: all 0.3s ease;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+/* AJUSTEMENT DESKTOP : Réduction du badge sur desktop */
+@media (min-width: 1024px) {
+    .panel-number {
+        width: 46px; /* RÉDUIT de 54px */
+        height: 46px;
+        font-size: 1.2rem; /* RÉDUIT de 1.4rem */
+        left: 1.2rem; /* RÉDUIT de 1.5rem */
+        border-radius: 0.8rem; /* RÉDUIT de 1rem */
+    }
+}
+
+.panel-number::after {
+    content: '';
+    position: absolute;
+    inset: -2px;
+    border-radius: 1rem;
+    background: var(--service-gradient);
+    opacity: 0;
+    z-index: -1;
+    filter: blur(10px);
+    transition: opacity 0.4s ease;
 }
 
 .panel-container:hover .panel-number,
 .service-panel.active .panel-number {
-    transform: translateY(-50%) scale(1.1);
+    transform: translateY(-50%) scale(1.15) rotate(5deg);
 }
 
-/* Icône */
+.panel-container:hover .panel-number::after,
+.service-panel.active .panel-number::after {
+    opacity: 0.7;
+}
+
+/* Icône avec animation */
 .panel-icon-wrapper {
-    width: 50px;
-    height: 50px;
+    width: 54px;
+    height: 54px;
     display: flex;
     align-items: center;
     justify-content: center;
+    position: relative;
+}
+
+/* AJUSTEMENT DESKTOP : Réduction de l'icône wrapper sur desktop */
+@media (min-width: 1024px) {
+    .panel-icon-wrapper {
+        width: 46px; /* RÉDUIT de 54px */
+        height: 46px;
+    }
 }
 
 .panel-icon {
@@ -230,13 +456,28 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    transition: all 0.3s ease;
 }
 
 .panel-icon svg {
-    width: 28px;
-    height: 28px;
+    width: 30px;
+    height: 30px;
     color: white;
     opacity: 0.9;
+    transition: all 0.3s ease;
+}
+
+/* AJUSTEMENT DESKTOP : Réduction de l'icône svg sur desktop */
+@media (min-width: 1024px) {
+    .panel-icon svg {
+        width: 26px; /* RÉDUIT de 30px */
+        height: 26px;
+    }
+}
+
+.panel-container:hover .panel-icon svg {
+    transform: scale(1.1);
+    filter: drop-shadow(0 0 10px var(--service-color-1));
 }
 
 /* Textes */
@@ -245,37 +486,85 @@
 }
 
 .panel-title {
-    font-size: 1.6rem;
+    font-size: 1.8rem;
     font-weight: 900;
     text-transform: uppercase;
     color: white;
-    margin-bottom: 0.2rem;
+    margin-bottom: 0.3rem;
     letter-spacing: -0.02em;
+    transition: all 0.3s ease;
+}
+
+/* AJUSTEMENT DESKTOP : Réduction du titre sur desktop */
+@media (min-width: 1024px) {
+    .panel-title {
+        font-size: 1.5rem; /* RÉDUIT de 1.8rem (-17%) */
+        margin-bottom: 0.25rem; /* RÉDUIT de 0.3rem */
+    }
+}
+
+.panel-container:hover .panel-title {
+    text-shadow: 0 0 20px var(--service-color-1);
 }
 
 .panel-subtitle {
-    font-size: 0.9rem;
-    color: rgba(255, 255, 255, 0.5);
+    font-size: 1rem;
+    color: rgba(255, 255, 255, 0.6);
     font-style: italic;
+    transition: all 0.3s ease;
 }
 
-/* Toggle */
+/* AJUSTEMENT DESKTOP : Réduction du subtitle sur desktop */
+@media (min-width: 1024px) {
+    .panel-subtitle {
+        font-size: 0.85rem; /* RÉDUIT de 1rem */
+    }
+}
+
+.panel-container:hover .panel-subtitle {
+    color: rgba(255, 255, 255, 0.8);
+}
+
+/* Toggle button */
 .panel-toggle {
-    width: 36px;
-    height: 36px;
+    width: 40px;
+    height: 40px;
     border-radius: 50%;
-    background: rgba(255, 255, 255, 0.08);
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
     display: flex;
     align-items: center;
     justify-content: center;
     transition: all 0.3s ease;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* AJUSTEMENT DESKTOP : Réduction du toggle sur desktop */
+@media (min-width: 1024px) {
+    .panel-toggle {
+        width: 35px; /* RÉDUIT de 40px */
+        height: 35px;
+    }
 }
 
 .panel-toggle svg {
-    width: 20px;
-    height: 20px;
+    width: 22px;
+    height: 22px;
     color: white;
-    transition: transform 0.3s ease;
+    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* AJUSTEMENT DESKTOP : Réduction du toggle svg sur desktop */
+@media (min-width: 1024px) {
+    .panel-toggle svg {
+        width: 20px; /* RÉDUIT de 22px */
+        height: 20px;
+    }
+}
+
+.panel-container:hover .panel-toggle {
+    background: rgba(255, 255, 255, 0.15);
+    transform: scale(1.1);
 }
 
 .service-panel.active .panel-toggle svg {
@@ -286,145 +575,379 @@
 .panel-content {
     max-height: 0;
     overflow: hidden;
-    transition: max-height 0.3s ease;
+    transition: max-height 0.5s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .service-panel.active .panel-content {
-    max-height: 600px; /* Utiliser max-height au lieu de height auto */
-    overflow: visible;
+    max-height: 800px;
 }
 
 .content-inner {
-    padding: 0 1.5rem 1.5rem;
+    padding: 0 2rem 2rem;
+    animation: fadeIn 0.5s ease;
+}
+
+/* AJUSTEMENT DESKTOP : Réduction du padding inner sur desktop */
+@media (min-width: 1024px) {
+    .content-inner {
+        padding: 0 1.6rem 1.6rem; /* RÉDUIT de 0 2rem 2rem */
+    }
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
 }
 
 .panel-description {
-    font-size: 0.95rem;
-    line-height: 1.6;
-    color: rgba(255, 255, 255, 0.7);
-    margin-bottom: 1.2rem;
+    font-size: 1.05rem;
+    line-height: 1.7;
+    color: rgba(255, 255, 255, 0.8);
+    margin-bottom: 1.5rem;
 }
 
+/* AJUSTEMENT DESKTOP : Réduction de la description sur desktop */
+@media (min-width: 1024px) {
+    .panel-description {
+        font-size: 0.9rem; /* RÉDUIT de 1.05rem */
+        margin-bottom: 1.2rem; /* RÉDUIT de 1.5rem */
+    }
+}
+
+/* Grille de features */
 .features-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-    gap: 0.8rem;
-    margin-bottom: 1.2rem;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+    margin-bottom: 1.8rem;
+}
+
+/* AJUSTEMENT DESKTOP : Réduction de la grille sur desktop */
+@media (min-width: 1024px) {
+    .features-grid {
+        gap: 0.8rem; /* RÉDUIT de 1rem */
+        margin-bottom: 1.5rem; /* RÉDUIT de 1.8rem */
+    }
 }
 
 .feature-card {
-    padding: 0.8rem;
-    background: rgba(255, 255, 255, 0.05);
+    padding: 1rem;
+    background: linear-gradient(135deg, 
+        rgba(255, 255, 255, 0.05) 0%, 
+        rgba(255, 255, 255, 0.02) 100%);
     border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 0.6rem;
-    transition: all 0.2s ease;
+    border-radius: 0.8rem;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+/* AJUSTEMENT DESKTOP : Réduction de la feature card sur desktop */
+@media (min-width: 1024px) {
+    .feature-card {
+        padding: 0.8rem; /* RÉDUIT de 1rem */
+        border-radius: 0.6rem; /* RÉDUIT de 0.8rem */
+    }
+}
+
+.feature-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 2px;
+    background: var(--service-gradient);
+    transition: left 0.5s ease;
+}
+
+.feature-card:hover::before {
+    left: 0;
 }
 
 .feature-card:hover {
-    background: rgba(255, 255, 255, 0.08);
-    transform: translateX(3px);
+    background: linear-gradient(135deg, 
+        rgba(255, 255, 255, 0.08) 0%, 
+        rgba(255, 255, 255, 0.04) 100%);
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
 }
 
 .feature-title {
     font-weight: 700;
     color: white;
-    margin-bottom: 0.2rem;
-    font-size: 0.85rem;
+    margin-bottom: 0.3rem;
+    font-size: 0.95rem;
+}
+
+/* AJUSTEMENT DESKTOP : Réduction du feature title sur desktop */
+@media (min-width: 1024px) {
+    .feature-title {
+        font-size: 0.85rem; /* RÉDUIT de 0.95rem */
+        margin-bottom: 0.25rem; /* RÉDUIT de 0.3rem */
+    }
 }
 
 .feature-desc {
-    font-size: 0.75rem;
-    color: rgba(255, 255, 255, 0.5);
+    font-size: 0.8rem;
+    color: rgba(255, 255, 255, 0.6);
 }
 
+/* AJUSTEMENT DESKTOP : Réduction de la feature desc sur desktop */
+@media (min-width: 1024px) {
+    .feature-desc {
+        font-size: 0.75rem; /* RÉDUIT de 0.8rem */
+    }
+}
+
+/* CTA Panel */
 .panel-cta {
     display: inline-flex;
     align-items: center;
-    gap: 0.4rem;
-    padding: 0.7rem 1.4rem;
-    background: linear-gradient(135deg, var(--service-color-1), var(--service-color-2));
+    gap: 0.5rem;
+    padding: 0.8rem 1.8rem;
+    background: var(--service-gradient);
     color: var(--bg-dark);
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 0.05em;
-    font-size: 0.8rem;
-    border-radius: 9999px;
+    font-size: 0.85rem;
+    border-radius: 50px;
     text-decoration: none;
-    transition: all 0.2s ease;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+/* AJUSTEMENT DESKTOP : Réduction du panel CTA sur desktop */
+@media (min-width: 1024px) {
+    .panel-cta {
+        padding: 0.65rem 1.5rem; /* RÉDUIT de 0.8rem 1.8rem */
+        font-size: 0.75rem; /* RÉDUIT de 0.85rem */
+        gap: 0.4rem; /* RÉDUIT de 0.5rem */
+    }
+}
+
+.panel-cta::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    transition: width 0.6s ease, height 0.6s ease;
+}
+
+.panel-cta:hover::before {
+    width: 300px;
+    height: 300px;
 }
 
 .panel-cta:hover {
     transform: scale(1.05);
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3),
+                0 0 30px var(--service-color-1);
 }
 
 /* ====================================
-   FOOTER CTA
+   FOOTER CTA - DESIGN ÉLÉGANT NÉON
    ==================================== */
 .section-footer {
     text-align: center;
-    margin-top: 4rem;
-    padding: 2rem; /* Augmenté le padding pour éviter la coupure */
+    margin-top: 5rem;
+    padding: 2rem;
     position: relative;
     z-index: 10;
 }
 
-.footer-cta {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    gap: 0.3rem;
-    padding: 0.5rem 1rem;
-    font-size: 0.75rem;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    text-decoration: none;
-    color: white;
-    border-radius: 9999px;
-    background: linear-gradient(135deg, 
-        rgba(236, 72, 153, 0.2), 
-        rgba(168, 85, 247, 0.2));
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    border: 1px solid rgba(236, 72, 153, 0.3);
-    box-shadow: 0 0 15px rgba(236, 72, 153, 0.2);
-    transition: all 0.3s ease;
-    white-space: nowrap;
+/* AJUSTEMENT DESKTOP : Réduction du footer sur desktop */
+@media (min-width: 1024px) {
+    .section-footer {
+        margin-top: 4rem; /* RÉDUIT de 5rem */
+        padding: 1.6rem; /* RÉDUIT de 2rem */
+    }
 }
 
-.footer-cta svg {
-    width: 14px;
-    height: 14px;
+/* Force le style sur TOUS les éléments avec cette classe */
+.footer-cta,
+a.footer-cta,
+.section-footer .footer-cta,
+.section-footer a.footer-cta {
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 0.8rem !important;
+    padding: 1.2rem 2.8rem !important;
+    font-size: 1.1rem !important;
+    font-weight: 800 !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.1em !important;
+    text-decoration: none !important;
+    color: white !important;
+    border-radius: 60px !important;
+    position: relative !important;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1) !important;
+    overflow: hidden !important;
+    
+    /* Gradient néon violet/rose cohérent avec le design */
+    background: linear-gradient(135deg, 
+        #a855f7 0%, 
+        #ec4899 50%,
+        #a855f7 100%) !important;
+    background-size: 200% 200% !important;
+    animation: gradientShift 3s ease infinite !important;
+    
+    /* Bordure subtile */
+    border: 2px solid rgba(168, 85, 247, 0.3) !important;
+    
+    /* Ombres néon élégantes */
+    box-shadow: 
+        0 0 30px rgba(168, 85, 247, 0.3),
+        0 0 20px rgba(236, 72, 153, 0.3),
+        0 4px 20px rgba(0, 0, 0, 0.3),
+        inset 0 1px 1px rgba(255, 255, 255, 0.1) !important;
 }
 
-.footer-cta:hover {
-    transform: translateY(-2px);
+/* AJUSTEMENT DESKTOP : Réduction du footer CTA sur desktop */
+@media (min-width: 1024px) {
+    .footer-cta,
+    a.footer-cta,
+    .section-footer .footer-cta,
+    .section-footer a.footer-cta {
+        padding: 1rem 2.3rem !important; /* RÉDUIT de 1.2rem 2.8rem */
+        font-size: 0.95rem !important; /* RÉDUIT de 1.1rem */
+        gap: 0.65rem !important; /* RÉDUIT de 0.8rem */
+        letter-spacing: 0.08em !important; /* RÉDUIT de 0.1em */
+    }
+}
+
+@keyframes gradientShift {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+/* Effet de brillance au survol */
+.footer-cta::before,
+a.footer-cta::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        90deg,
+        transparent 0%,
+        rgba(255, 255, 255, 0.2) 50%,
+        transparent 100%
+    );
+    transition: left 0.6s ease;
+    z-index: 1;
+}
+
+.footer-cta:hover::before,
+a.footer-cta:hover::before {
+    left: 100%;
+}
+
+/* Texte et icône avec z-index élevé */
+.footer-cta span,
+a.footer-cta span {
+    position: relative !important;
+    z-index: 2 !important;
+    font-weight: 800 !important;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2) !important;
+    color: #FFFFFF !important;
+}
+
+.footer-cta svg,
+a.footer-cta svg {
+    position: relative !important;
+    z-index: 2 !important;
+    width: 20px !important;
+    height: 20px !important;
+    transition: all 0.3s ease !important;
+    color: #FFFFFF !important;
+}
+
+/* AJUSTEMENT DESKTOP : Réduction des icônes svg sur desktop */
+@media (min-width: 1024px) {
+    .footer-cta svg,
+    a.footer-cta svg {
+        width: 18px !important; /* RÉDUIT de 20px */
+        height: 18px !important;
+    }
+}
+
+/* État hover - Plus lumineux */
+.footer-cta:hover,
+a.footer-cta:hover,
+.section-footer .footer-cta:hover,
+.section-footer a.footer-cta:hover {
+    transform: translateY(-3px) scale(1.05) !important;
     background: linear-gradient(135deg, 
-        rgba(236, 72, 153, 0.3), 
-        rgba(168, 85, 247, 0.3));
-    border-color: rgba(236, 72, 153, 0.6);
-    box-shadow: 0 0 30px rgba(236, 72, 153, 0.5);
+        #c084fc 0%, 
+        #f472b6 50%,
+        #c084fc 100%) !important;
+    animation: none !important;
+    
+    border-color: rgba(236, 72, 153, 0.5) !important;
+    
+    box-shadow: 
+        0 0 50px rgba(168, 85, 247, 0.5),
+        0 0 30px rgba(236, 72, 153, 0.5),
+        0 8px 30px rgba(0, 0, 0, 0.3),
+        inset 0 1px 1px rgba(255, 255, 255, 0.2) !important;
+}
+
+.footer-cta:hover svg,
+a.footer-cta:hover svg {
+    transform: translateX(5px) !important;
+}
+
+/* État actif */
+.footer-cta:active,
+a.footer-cta:active {
+    transform: translateY(-1px) !important;
+    background: linear-gradient(135deg, 
+        #9333ea 0%, 
+        #db2777 50%,
+        #9333ea 100%) !important;
+    box-shadow: 
+        0 0 25px rgba(168, 85, 247, 0.4),
+        0 0 15px rgba(236, 72, 153, 0.4),
+        0 4px 20px rgba(0, 0, 0, 0.3) !important;
 }
 
 /* ====================================
-   RESPONSIVE
+   RESPONSIVE - PAS DE CHANGEMENT
    ==================================== */
 @media (max-width: 768px) {
     .mission-section {
-        padding: 3rem 0;
+        padding: 3rem 0.5rem;
     }
     
     .mission-header {
-        margin-bottom: 2.5rem;
+        margin-bottom: 3rem;
+        padding: 0;
     }
     
     .main-title {
-        font-size: clamp(2.2rem, 10vw, 3.5rem);
-        padding: 0 0.3em; /* Ajusté pour mobile */
+        font-size: clamp(2.5rem, 12vw, 4rem);
     }
     
-    .title-container {
-        padding: 0 1rem; /* Ajusté pour mobile */
+    .title-word-2 {
+        font-size: 1.15em;
+        padding: 0 0.3em; /* Un peu moins de padding sur mobile */
+        margin-left: -0.15em;
+    }
+    
+    .subtitle {
+        font-size: clamp(0.85rem, 3vw, 1.1rem);
+        padding: 0 1rem;
     }
     
     .services-cascade {
@@ -432,56 +955,71 @@
     }
     
     .panel-header {
-        padding: 1.2rem 1rem 1.2rem 4rem;
-        min-height: 80px;
+        padding: 1.5rem 1rem 1.5rem 5rem;
+        min-height: 90px;
     }
     
     .panel-number {
-        width: 40px;
-        height: 40px;
-        left: 0.8rem;
-        font-size: 1rem;
+        width: 45px;
+        height: 45px;
+        left: 1rem;
+        font-size: 1.1rem;
     }
     
     .panel-icon-wrapper {
-        width: 40px;
-        height: 40px;
+        width: 45px;
+        height: 45px;
     }
     
     .panel-icon svg {
-        width: 22px;
-        height: 22px;
+        width: 24px;
+        height: 24px;
     }
     
     .panel-title {
-        font-size: 1.2rem;
+        font-size: 1.3rem;
     }
     
     .panel-subtitle {
-        font-size: 0.8rem;
+        font-size: 0.85rem;
     }
     
     .panel-toggle {
-        width: 32px;
-        height: 32px;
+        width: 35px;
+        height: 35px;
     }
     
     .features-grid {
         grid-template-columns: 1fr;
     }
     
-    .section-footer {
-        padding: 1rem; /* Ajusté pour mobile */
+    .footer-cta {
+        padding: 1rem 2rem;
+        font-size: 0.95rem;
     }
     
-    .footer-cta {
-        padding: 0.75rem 1.5rem;
-        font-size: 0.8rem;
+    .footer-cta svg {
+        width: 18px;
+        height: 18px;
     }
 }
 
 @media (min-width: 1400px) {
     .services-cascade {
-        max-width: 1200px;
+        max-width: 1300px;
+    }
+    
+    .main-title {
+        font-size: 7rem;
+    }
+    
+    .panel-header {
+        padding: 2rem 2.5rem 2rem 7rem;
+    }
+    
+    .panel-number {
+        width: 60px;
+        height: 60px;
+        font-size: 1.5rem;
     }
 }

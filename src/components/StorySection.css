@@ -1,4 +1,4 @@
-/* StorySection.css - Styles complets et organisés */
+/* StorySection.css - Styles complets et organisés - Tailles desktop réduites */
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;900&display=swap');
 
 /* ====================================
@@ -25,6 +25,13 @@
     background: var(--bg-dark);
     overflow: hidden;
     min-height: 100vh;
+}
+
+/* AJUSTEMENT DESKTOP : Réduction du padding sur desktop */
+@media (min-width: 1024px) {
+    .story-section {
+        padding: 4rem 0 6.5rem; /* RÉDUIT de 5rem 0 8rem */
+    }
 }
 
 /* ====================================
@@ -80,12 +87,27 @@
     overflow: visible;
 }
 
+/* AJUSTEMENT DESKTOP : Réduction du margin sur desktop */
+@media (min-width: 1024px) {
+    .hero-title-wrapper {
+        margin-bottom: 5rem; /* RÉDUIT de 6rem */
+    }
+}
+
 .hero-title-glow {
     position: absolute;
     inset: -3rem;
     background: radial-gradient(circle, rgba(236,72,153,0.2), transparent 40%);
     filter: blur(60px);
     animation: glowPulse 4s ease-in-out infinite;
+}
+
+/* AJUSTEMENT DESKTOP : Réduction du glow sur desktop */
+@media (min-width: 1024px) {
+    .hero-title-glow {
+        inset: -2.5rem; /* RÉDUIT de -3rem */
+        filter: blur(50px); /* RÉDUIT de 60px */
+    }
 }
 
 .hero-title {
@@ -100,6 +122,13 @@
     margin: 0 auto;
     max-width: 100%;
     white-space: nowrap;
+}
+
+/* AJUSTEMENT DESKTOP : Réduction du titre sur desktop */
+@media (min-width: 1024px) {
+    .hero-title {
+        font-size: 5.5rem; /* RÉDUIT de 7rem max à 5.5rem (-21%) */
+    }
 }
 
 .title-line-1 {
@@ -178,6 +207,14 @@
     padding: 0 2rem;
 }
 
+/* AJUSTEMENT DESKTOP : Réduction du container sur desktop */
+@media (min-width: 1024px) {
+    .team-cards-container {
+        max-width: 1200px; /* RÉDUIT de 1400px */
+        margin: 0 auto 5rem; /* RÉDUIT margin-bottom de 6rem à 5rem */
+    }
+}
+
 .team-cards-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -185,10 +222,25 @@
     margin-bottom: 2.5rem;
 }
 
+/* AJUSTEMENT DESKTOP : Réduction du gap sur desktop */
+@media (min-width: 1024px) {
+    .team-cards-grid {
+        gap: 2rem; /* RÉDUIT de 2.5rem */
+        margin-bottom: 2rem; /* RÉDUIT de 2.5rem */
+    }
+}
+
 .team-cards-grid.row-two {
     grid-template-columns: repeat(2, 1fr);
     max-width: 900px;
     margin: 0 auto;
+}
+
+/* AJUSTEMENT DESKTOP : Réduction de la row-two sur desktop */
+@media (min-width: 1024px) {
+    .team-cards-grid.row-two {
+        max-width: 750px; /* RÉDUIT de 900px */
+    }
 }
 
 .team-card {
@@ -207,6 +259,14 @@
     background-clip: padding-box, border-box;
     transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
     cursor: pointer;
+}
+
+/* AJUSTEMENT DESKTOP : Réduction des cartes sur desktop */
+@media (min-width: 1024px) {
+    .team-card {
+        height: 420px; /* RÉDUIT de 500px à 420px (-16%) */
+        border-radius: 1.2rem; /* RÉDUIT de 1.5rem */
+    }
 }
 
 /* Couleurs des cartes */
@@ -243,6 +303,13 @@
         inset 0 0 30px rgba(255, 255, 255, 0.1);
     z-index: 100;
     border-color: var(--card-color-1);
+}
+
+/* AJUSTEMENT DESKTOP : Réduction de l'effet hover sur desktop */
+@media (min-width: 1024px) {
+    .team-card:hover {
+        transform: translateY(-12px) scale(1.06); /* RÉDUIT l'effet */
+    }
 }
 
 .team-card-image {
@@ -283,6 +350,13 @@
     transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
+/* AJUSTEMENT DESKTOP : Réduction du padding content sur desktop */
+@media (min-width: 1024px) {
+    .team-card-content {
+        padding: 1.6rem 1.2rem 1.2rem; /* RÉDUIT de 2rem 1.5rem 1.5rem */
+    }
+}
+
 .team-card:hover .team-card-content {
     transform: translateY(-5px);
 }
@@ -296,6 +370,14 @@
     line-height: 1;
     margin-bottom: 0.25rem;
     text-shadow: 0 0 30px rgba(255,255,255,0.5);
+}
+
+/* AJUSTEMENT DESKTOP : Réduction du nom sur desktop */
+@media (min-width: 1024px) {
+    .team-member-name {
+        font-size: 0.95rem; /* RÉDUIT de 1.1rem */
+        letter-spacing: 0.12em; /* RÉDUIT de 0.15em */
+    }
 }
 
 .team-member-lastname {
@@ -317,6 +399,14 @@
     filter: drop-shadow(0 0 20px var(--card-color-1));
 }
 
+/* AJUSTEMENT DESKTOP : Réduction du lastname sur desktop */
+@media (min-width: 1024px) {
+    .team-member-lastname {
+        font-size: 1.5rem; /* RÉDUIT de 1.8rem (-17%) */
+        margin-bottom: 0.8rem; /* RÉDUIT de 1rem */
+    }
+}
+
 .team-member-role {
     display: inline-block;
     padding: 0.5rem 1rem;
@@ -330,6 +420,14 @@
     backdrop-filter: blur(20px);
     border: 1px solid rgba(255,255,255,0.2);
     transition: all 0.3s;
+}
+
+/* AJUSTEMENT DESKTOP : Réduction du role sur desktop */
+@media (min-width: 1024px) {
+    .team-member-role {
+        padding: 0.4rem 0.8rem; /* RÉDUIT de 0.5rem 1rem */
+        font-size: 0.65rem; /* RÉDUIT de 0.7rem */
+    }
 }
 
 .team-card:hover .team-member-role {
@@ -346,6 +444,14 @@
     transform: scale(0) rotate(0);
     transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
     filter: drop-shadow(0 0 10px currentColor);
+}
+
+/* AJUSTEMENT DESKTOP : Réduction de l'icône sur desktop */
+@media (min-width: 1024px) {
+    .sparkle-icon {
+        top: 1.2rem; /* RÉDUIT de 1.5rem */
+        right: 1.2rem;
+    }
 }
 
 .team-card:hover .sparkle-icon {
@@ -372,8 +478,15 @@
     text-align: center;
     margin: 4rem 0 0;
     padding: 4rem 2rem;
-    overflow: visible; /* Changé pour éviter la troncature */
-    /* Suppression du background avec overlay sombre */
+    overflow: visible;
+}
+
+/* AJUSTEMENT DESKTOP : Réduction de la section finale sur desktop */
+@media (min-width: 1024px) {
+    .section-finale {
+        margin: 3.2rem 0 0; /* RÉDUIT de 4rem */
+        padding: 3.2rem 2rem; /* RÉDUIT de 4rem 2rem */
+    }
 }
 
 /* Titre final */
@@ -381,6 +494,13 @@
     position: relative;
     z-index: 2;
     margin-bottom: 3rem;
+}
+
+/* AJUSTEMENT DESKTOP : Réduction du margin sur desktop */
+@media (min-width: 1024px) {
+    .finale-title {
+        margin-bottom: 2.4rem; /* RÉDUIT de 3rem */
+    }
 }
 
 .finale-line-1 {
@@ -391,7 +511,14 @@
     color: rgba(255,255,255,0.6);
     margin-bottom: 0.75rem;
     animation: fadeInUp 0.8s ease-out;
-    /* Suppression de toute ombre */
+}
+
+/* AJUSTEMENT DESKTOP : Réduction de finale-line-1 sur desktop */
+@media (min-width: 1024px) {
+    .finale-line-1 {
+        font-size: 1.05rem; /* RÉDUIT de 1.25rem max */
+        margin-bottom: 0.6rem; /* RÉDUIT de 0.75rem */
+    }
 }
 
 .finale-line-2 {
@@ -433,6 +560,13 @@
     animation: fadeInUp 0.8s ease-out 0.2s backwards;
 }
 
+/* AJUSTEMENT DESKTOP : Réduction de finale-line-2 sur desktop */
+@media (min-width: 1024px) {
+    .finale-line-2 {
+        font-size: 3.6rem; /* RÉDUIT de 4.5rem max à 3.6rem (-20%) */
+    }
+}
+
 @keyframes fadeInUp {
     from { 
         opacity: 0; 
@@ -468,6 +602,15 @@
     border: 1px solid rgba(255,255,255,0.1);
 }
 
+/* AJUSTEMENT DESKTOP : Réduction du CTA sur desktop */
+@media (min-width: 1024px) {
+    .cta-button {
+        padding: 0.8rem 1.6rem; /* RÉDUIT de 1rem 2rem */
+        font-size: 0.8rem; /* RÉDUIT de 0.875rem */
+        gap: 0.6rem; /* RÉDUIT de 0.75rem */
+    }
+}
+
 .cta-text {
     position: relative;
     z-index: 2;
@@ -480,6 +623,14 @@
     transition: transform 0.3s ease;
     position: relative;
     z-index: 2;
+}
+
+/* AJUSTEMENT DESKTOP : Réduction de l'icône sur desktop */
+@media (min-width: 1024px) {
+    .cta-icon {
+        width: 16px; /* RÉDUIT de 18px */
+        height: 16px;
+    }
 }
 
 /* Effet gradient subtil au hover */
@@ -506,7 +657,7 @@
 }
 
 /* ====================================
-   RESPONSIVE
+   RESPONSIVE - PAS DE CHANGEMENT
    ==================================== */
 @media (max-width: 768px) {
     .story-section {
