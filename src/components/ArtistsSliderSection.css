@@ -308,6 +308,60 @@
 }
 
 /* ====================================
+   CAROUSEL MOBILE
+   ==================================== */
+.mobile-carousel {
+    display: none;
+    position: relative;
+    margin: 0 -1rem;
+    padding: 2rem 0;
+}
+
+.carousel-container {
+    display: flex;
+    gap: 1rem;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    padding: 0 1rem;
+}
+
+.carousel-container::-webkit-scrollbar {
+    display: none;
+}
+
+.carousel-card {
+    flex: 0 0 85%;
+    scroll-snap-align: center;
+    scroll-snap-stop: always;
+}
+
+/* Indicateurs de pagination */
+.carousel-indicators {
+    display: flex;
+    justify-content: center;
+    gap: 0.5rem;
+    margin-top: 1.5rem;
+}
+
+.indicator-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.3);
+    transition: all 0.3s;
+    cursor: pointer;
+}
+
+.indicator-dot.active {
+    width: 24px;
+    border-radius: 4px;
+    background: var(--primary-pink);
+    box-shadow: 0 0 10px var(--primary-pink);
+}
+
+/* ====================================
    CARTES D'ARTISTES NÉON
    ==================================== */
 .poster-card {
@@ -555,12 +609,13 @@
 /* Mobile */
 @media (max-width: 768px) {
     .artists-slider-section {
-        padding: 4rem 1rem;
+        padding: 4rem 0;
         min-height: auto;
     }
     
     .section-header {
         margin-bottom: 3rem;
+        padding: 0 1rem;
     }
     
     .title-glow {
@@ -589,66 +644,62 @@
         display: none;
     }
     
+    /* Masquer la rivière desktop */
     .artists-river {
-        margin: 0 -1rem;
-        padding: 2rem 0;
-    }
-    
-    .mask-left,
-    .mask-right {
-        width: 4rem;
-    }
-    
-    .river-row {
-        gap: 1rem;
-        margin-bottom: 1rem;
-    }
-    
-    /* Une seule rangée sur mobile */
-    .river-row:last-child {
         display: none;
     }
     
+    /* Afficher le carousel mobile */
+    .mobile-carousel {
+        display: block;
+    }
+    
     .poster-card {
-        width: 240px;
-        height: 360px;
+        width: 100%;
+        height: 400px;
         border-radius: 1rem;
+        transform: scale(0.95);
+        transition: transform 0.3s ease;
     }
     
-    /* Désactiver hover sur mobile */
-    .poster-card.hovered {
-        transform: none;
+    .poster-card.active {
+        transform: scale(1);
     }
     
+    /* Contenu toujours visible sur mobile */
     .poster-content {
         transform: translateY(0);
         opacity: 1;
-        padding: 1.5rem 1rem;
+        padding: 1.5rem;
         background: linear-gradient(
             to top,
-            rgba(0, 0, 0, 0.9) 0%,
-            rgba(0, 0, 0, 0.7) 50%,
+            rgba(0, 0, 0, 0.95) 0%,
+            rgba(0, 0, 0, 0.8) 40%,
+            rgba(0, 0, 0, 0.4) 70%,
             transparent 100%
         );
     }
     
     .poster-name {
-        font-size: 1.3rem;
+        font-size: 1.5rem;
         margin-bottom: 0.8rem;
     }
     
     .poster-button {
         padding: 0.75rem 1.5rem;
-        font-size: 0.8rem;
+        font-size: 0.85rem;
     }
     
     .section-cta {
         margin-top: 3rem;
+        padding: 0 1rem;
     }
     
     .main-cta-button {
         padding: 1.25rem 2.5rem;
         font-size: 1rem;
+        width: 100%;
+        justify-content: center;
     }
     
     .interaction-indicator {

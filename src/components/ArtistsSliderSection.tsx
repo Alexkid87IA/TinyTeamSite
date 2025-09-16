@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { ChevronRight, MousePointer2 } from 'lucide-react';
@@ -64,6 +64,61 @@ const bottomRow = [...artistsData.slice(5, 10), ...artistsData.slice(5, 10), ...
 
 export const ArtistsSliderSection = () => {
   const [hoveredCard, setHoveredCard] = useState<string | null>(null);
+  const [activeIndex, setActiveIndex] = useState(0);
+  const carouselRef = useRef<HTMLDivElement>(null);
+  const [isMobile, setIsMobile] = useState(false);
+
+  // Détecter si on est sur mobile
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth <= 768);
+    };
+    
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+
+  // Gérer le scroll du carousel mobile
+  useEffect(() => {
+    if (!isMobile || !carouselRef.current) return;
+
+    const handleScroll = () => {
+      const container = carouselRef.current;
+      if (!container) return;
+
+      const scrollLeft = container.scrollLeft;
+      const cardWidth = container.offsetWidth * 0.85;
+      const gap = 16; // 1rem en px
+      const scrollUnit = cardWidth + gap;
+      
+      const newIndex = Math.round(scrollLeft / scrollUnit);
+      setActiveIndex(newIndex);
+    };
+
+    const container = carouselRef.current;
+    container.addEventListener('scroll', handleScroll);
+
+    return () => {
+      container.removeEventListener('scroll', handleScroll);
+    };
+  }, [isMobile]);
+
+  // Fonction pour scroller vers une carte spécifique
+  const scrollToCard = (index: number) => {
+    if (!carouselRef.current) return;
+    
+    const container = carouselRef.current;
+    const cardWidth = container.offsetWidth * 0.85;
+    const gap = 16;
+    const scrollPosition = index * (cardWidth + gap);
+    
+    container.scrollTo({
+      left: scrollPosition,
+      behavior: 'smooth'
+    });
+  };
 
   return (
     <section className="artists-slider-section">
@@ -137,82 +192,144 @@ export const ArtistsSliderSection = () => {
           </motion.p>
         </motion.div>
 
-        {/* Rivière d'artistes améliorée */}
-        <motion.div 
-          className="artists-river"
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 1, delay: 0.4 }}
-        >
-          {/* Masques de dégradé */}
-          <div className="mask-left" />
-          <div className="mask-right" />
-          
-          {/* Rangée du haut - défile vers la droite */}
-          <div className="river-row row-right">
-            {topRow.map((artist, index) => (
-              <motion.div
-                key={`top-${index}`}
-                className={`poster-card ${hoveredCard === `top-${index}` ? 'hovered' : ''}`}
-                onMouseEnter={() => setHoveredCard(`top-${index}`)}
-                onMouseLeave={() => setHoveredCard(null)}
-                whileHover={{ scale: 1.05, y: -10 }}
-                transition={{ duration: 0.3 }}
-              >
-                <Link to={`/artiste/${artist.id}`}>
-                  <img 
-                    src={artist.image} 
-                    alt={artist.name} 
-                    className="poster-image"
-                    loading="lazy"
-                  />
-                  <div className="poster-overlay" />
-                  <div className="poster-content">
-                    <h3 className="poster-name">{artist.name}</h3>
-                    <button className="poster-button">
-                      Découvrir
-                      <ChevronRight size={16} />
-                    </button>
-                  </div>
-                  <div className="poster-shine" />
-                </Link>
-              </motion.div>
-            ))}
-          </div>
-          
-          {/* Rangée du bas - défile vers la gauche (desktop uniquement) */}
-          <div className="river-row row-left">
-            {bottomRow.map((artist, index) => (
-              <motion.div
-                key={`bottom-${index}`}
-                className={`poster-card ${hoveredCard === `bottom-${index}` ? 'hovered' : ''}`}
-                onMouseEnter={() => setHoveredCard(`bottom-${index}`)}
-                onMouseLeave={() => setHoveredCard(null)}
-                whileHover={{ scale: 1.05, y: -10 }}
-                transition={{ duration: 0.3 }}
-              >
-                <Link to={`/artiste/${artist.id}`}>
-                  <img 
-                    src={artist.image} 
-                    alt={artist.name} 
-                    className="poster-image"
-                    loading="lazy"
-                  />
-                  <div className="poster-overlay" />
-                  <div className="poster-content">
-                    <h3 className="poster-name">{artist.name}</h3>
-                    <button className="poster-button">
-                      Découvrir
-                      <ChevronRight size={16} />
-                    </button>
-                  </div>
-                  <div className="poster-shine" />
-                </Link>
-              </motion.div>
-            ))}
-          </div>
-        </motion.div>
+        {/* Rivière d'artistes pour desktop */}
+        {!isMobile && (
+          <motion.div 
+            className="artists-river"
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 1, delay: 0.4 }}
+          >
+            {/* Masques de dégradé */}
+            <div className="mask-left" />
+            <div className="mask-right" />
+            
+            {/* Rangée du haut - défile vers la droite */}
+            <div className="river-row row-right">
+              {topRow.map((artist, index) => (
+                <motion.div
+                  key={`top-${index}`}
+                  className={`poster-card ${hoveredCard === `top-${index}` ? 'hovered' : ''}`}
+                  onMouseEnter={() => setHoveredCard(`top-${index}`)}
+                  onMouseLeave={() => setHoveredCard(null)}
+                  whileHover={{ scale: 1.05, y: -10 }}
+                  transition={{ duration: 0.3 }}
+                >
+                  <Link to={`/artiste/${artist.id}`}>
+                    <img 
+                      src={artist.image} 
+                      alt={artist.name} 
+                      className="poster-image"
+                      loading="lazy"
+                    />
+                    <div className="poster-overlay" />
+                    <div className="poster-content">
+                      <h3 className="poster-name">{artist.name}</h3>
+                      <button className="poster-button">
+                        Découvrir
+                        <ChevronRight size={16} />
+                      </button>
+                    </div>
+                    <div className="poster-shine" />
+                  </Link>
+                </motion.div>
+              ))}
+            </div>
+            
+            {/* Rangée du bas - défile vers la gauche */}
+            <div className="river-row row-left">
+              {bottomRow.map((artist, index) => (
+                <motion.div
+                  key={`bottom-${index}`}
+                  className={`poster-card ${hoveredCard === `bottom-${index}` ? 'hovered' : ''}`}
+                  onMouseEnter={() => setHoveredCard(`bottom-${index}`)}
+                  onMouseLeave={() => setHoveredCard(null)}
+                  whileHover={{ scale: 1.05, y: -10 }}
+                  transition={{ duration: 0.3 }}
+                >
+                  <Link to={`/artiste/${artist.id}`}>
+                    <img 
+                      src={artist.image} 
+                      alt={artist.name} 
+                      className="poster-image"
+                      loading="lazy"
+                    />
+                    <div className="poster-overlay" />
+                    <div className="poster-content">
+                      <h3 className="poster-name">{artist.name}</h3>
+                      <button className="poster-button">
+                        Découvrir
+                        <ChevronRight size={16} />
+                      </button>
+                    </div>
+                    <div className="poster-shine" />
+                  </Link>
+                </motion.div>
+              ))}
+            </div>
+          </motion.div>
+        )}
+
+        {/* Carousel mobile avec scroll horizontal */}
+        {isMobile && (
+          <motion.div 
+            className="mobile-carousel"
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 1, delay: 0.4 }}
+          >
+            <div 
+              className="carousel-container"
+              ref={carouselRef}
+            >
+              {artistsData.map((artist, index) => (
+                <div
+                  key={artist.id}
+                  className="carousel-card"
+                >
+                  <motion.div
+                    className={`poster-card ${activeIndex === index ? 'active' : ''}`}
+                    initial={{ opacity: 0, scale: 0.9 }}
+                    animate={{ opacity: 1, scale: activeIndex === index ? 1 : 0.95 }}
+                    transition={{ duration: 0.3 }}
+                  >
+                    <Link to={`/artiste/${artist.id}`}>
+                      <img 
+                        src={artist.image} 
+                        alt={artist.name} 
+                        className="poster-image"
+                        loading="lazy"
+                      />
+                      <div className="poster-overlay" />
+                      <div className="poster-content">
+                        <h3 className="poster-name">{artist.name}</h3>
+                        <button className="poster-button">
+                          Découvrir
+                          <ChevronRight size={16} />
+                        </button>
+                      </div>
+                      <div className="poster-shine" />
+                    </Link>
+                  </motion.div>
+                </div>
+              ))}
+            </div>
+
+            {/* Indicateurs de pagination */}
+            <div className="carousel-indicators">
+              {artistsData.map((_, index) => (
+                <button
+                  key={index}
+                  className={`indicator-dot ${activeIndex === index ? 'active' : ''}`}
+                  onClick={() => scrollToCard(index)}
+                  aria-label={`Aller à l'artiste ${index + 1}`}
+                />
+              ))}
+            </div>
+          </motion.div>
+        )}
 
         {/* CTA Section avec animation */}
         <motion.div 
