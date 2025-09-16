@@ -258,6 +258,7 @@
     display: block;
     font-size: 1.2em;
     padding-right: 0.2em; /* Espace pour le point d'interrogation */
+    white-space: nowrap; /* CORRECTION: Force le texte sur une seule ligne */
     background: linear-gradient(90deg, 
         #ff00ff 0%, 
         #00ffff 25%, 
@@ -338,15 +339,19 @@
    ==================================== */
 .contact-cards {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     gap: 2rem;
     margin-bottom: 4rem;
     animation: fadeInUp 1s ease-out 0.8s backwards;
+    max-width: 1400px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
-/* AJUSTEMENT DESKTOP : Réduction des cartes sur desktop */
+/* AJUSTEMENT DESKTOP : Forcer 3 colonnes sur grand écran */
 @media (min-width: 1024px) {
     .contact-cards {
+        grid-template-columns: repeat(3, 1fr);
         gap: 1.6rem; /* RÉDUIT de 2rem */
         margin-bottom: 3.2rem; /* RÉDUIT de 4rem */
     }
@@ -364,6 +369,9 @@
     overflow: hidden;
     text-decoration: none;
     display: block;
+    min-height: 380px; /* Hauteur minimale pour uniformité */
+    display: flex;
+    flex-direction: column;
 }
 
 /* AJUSTEMENT DESKTOP : Réduction du padding des cartes sur desktop */
@@ -371,6 +379,7 @@
     .contact-card {
         padding: 2rem 1.6rem; /* RÉDUIT de 2.5rem 2rem */
         border-radius: 1.2rem; /* RÉDUIT de 1.5rem */
+        min-height: 350px; /* Hauteur ajustée pour desktop */
     }
 }
 
@@ -520,7 +529,7 @@
 
 /* Nouveau style : sous-titre stylé */
 .card-subtitle {
-    font-size: 2rem;
+    font-size: 1.8rem;
     font-weight: 900;
     font-style: italic;
     text-transform: uppercase;
@@ -531,12 +540,14 @@
     background-clip: text;
     filter: drop-shadow(0 0 20px var(--card-color-1));
     transition: all 0.3s;
+    line-height: 1.1;
+    word-break: break-word; /* Permet au texte long de passer à la ligne */
 }
 
 /* AJUSTEMENT DESKTOP */
 @media (min-width: 1024px) {
     .card-subtitle {
-        font-size: 1.6rem; /* RÉDUIT de 2rem */
+        font-size: 1.5rem; /* RÉDUIT de 2rem */
         margin-bottom: 1.2rem;
     }
 }
@@ -817,7 +828,7 @@
 }
 
 /* ====================================
-   RESPONSIVE - PAS DE CHANGEMENT
+   RESPONSIVE - ADAPTATION MOBILE
    ==================================== */
 /* RESPONSIVE - CARTES ADAPTÉES */
 @media (max-width: 768px) {
@@ -831,6 +842,7 @@
 
     .line-2 {
         font-size: 1.15em;
+        white-space: normal; /* Permettre le wrap sur mobile si nécessaire */
     }
 
     .subtitle {
@@ -852,6 +864,7 @@
 
     .card-subtitle {
         font-size: 1.5rem;
+        word-break: normal;
     }
 
     .main-cta {
@@ -865,15 +878,20 @@
     }
 }
 
-@media (min-width: 769px) and (max-width: 1024px) {
+@media (min-width: 769px) and (max-width: 1023px) {
     .title-text {
-        font-size: 5rem;
+        font-size: 4.5rem;
     }
 
     .contact-cards {
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
         max-width: 900px;
         margin-left: auto;
         margin-right: auto;
+    }
+    
+    .card-subtitle {
+        font-size: 1.6rem;
     }
 }
 

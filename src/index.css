@@ -181,3 +181,6 @@
     -webkit-backdrop-filter: blur(4px);
   }
 }
+
+/* ===== IMPORT DES CORRECTIONS MOBILES ===== */
+@import './styles/mobile-fixes.css';

@@ -1,0 +1,699 @@
+/* ============================================
+   MOBILE FIXES - Corrections unifiées pour mobile
+   Fichier: src/styles/mobile-fixes.css
+   À importer dans index.css ou App.tsx
+   ============================================ */
+
+/* ============================================
+   1. FOND UNIFORME POUR TOUTES LES SECTIONS
+   ============================================ */
+@media (max-width: 768px) {
+  /* Fond uniforme sombre pour toutes les sections */
+  body,
+  .hero-section,
+  .artists-slider-section,
+  .story-section,
+  .mission-section,
+  .contact-section,
+  .footer {
+    background: #0a0a1f !important;
+    background-color: #0a0a1f !important;
+  }
+
+  /* Supprimer tous les gradients de fond sur mobile */
+  .hero-section::before,
+  .hero-section::after,
+  .story-bg-effects,
+  .mission-background,
+  .contact-bg-effects,
+  .gradient-mesh,
+  .gradient-radial-1,
+  .gradient-radial-2,
+  .gradient-radial-3,
+  .bg-gradient-overlay {
+    display: none !important;
+    opacity: 0 !important;
+  }
+
+  /* Overlay unifié pour les sections qui en ont besoin */
+  .overlay,
+  .section-overlay {
+    background: rgba(10, 10, 31, 0.4) !important;
+  }
+}
+
+/* ============================================
+   2. CORRECTION ESPACEMENT "NOS SERVICES"
+   ============================================ */
+@media (max-width: 768px) {
+  /* Section Mission - Espacement titre principal */
+  .mission-section {
+    padding-top: 5rem !important;
+    padding-bottom: 4rem !important;
+  }
+
+  .mission-header {
+    margin-bottom: 4rem !important;
+    padding: 0 1rem !important;
+  }
+
+  /* Titre "Nos Services" avec meilleur espacement */
+  .mission-header .main-title {
+    font-size: 3rem !important;
+    line-height: 1.1 !important;
+    margin-bottom: 1.5rem !important;
+    letter-spacing: -0.02em !important;
+    display: flex !important;
+    justify-content: center !important;
+    align-items: baseline !important;
+    gap: 0.5rem !important;
+    flex-wrap: nowrap !important;
+  }
+
+  .mission-header .title-word-1 {
+    font-size: 1em !important;
+    color: white !important;
+  }
+
+  .mission-header .title-word-2 {
+    font-size: 1em !important;
+    background: linear-gradient(45deg, #ec4899, #a855f7, #3b82f6) !important;
+    background-clip: text !important;
+    -webkit-background-clip: text !important;
+    -webkit-text-fill-color: transparent !important;
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+
+  /* Sous-titre centré */
+  .mission-header .subtitle {
+    text-align: center !important;
+    font-size: 1rem !important;
+    padding: 0 2rem !important;
+    max-width: 100% !important;
+    color: rgba(255, 255, 255, 0.7) !important;
+  }
+}
+
+/* ============================================
+   3. CORRECTION DES PANNEAUX DE SERVICES
+   ============================================ */
+@media (max-width: 768px) {
+  /* Conteneur des services */
+  .services-cascade {
+    padding: 0 1rem !important;
+    max-width: 100% !important;
+    margin: 0 auto !important;
+  }
+
+  /* Panneau individuel */
+  .service-panel {
+    margin-bottom: 1rem !important;
+    border-radius: 1rem !important;
+  }
+
+  /* Header du panneau */
+  .panel-header {
+    padding: 1.2rem 3rem 1.2rem 4rem !important;
+    min-height: 75px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    position: relative !important;
+  }
+
+  /* Numéro du panneau */
+  .panel-number {
+    position: absolute !important;
+    left: 0.8rem !important;
+    top: 50% !important;
+    transform: translateY(-50%) !important;
+    width: 35px !important;
+    height: 35px !important;
+    font-size: 0.9rem !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    border-radius: 0.5rem !important;
+  }
+
+  /* Contenu texte du panneau */
+  .panel-text {
+    flex: 1 !important;
+    padding-right: 0.5rem !important;
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 0.2rem !important;
+  }
+
+  /* Titre du service */
+  .panel-title {
+    font-size: 1rem !important;
+    line-height: 1.2 !important;
+    font-weight: 700 !important;
+    word-break: break-word !important;
+    text-transform: uppercase !important;
+  }
+
+  /* Sous-titre du service */
+  .panel-subtitle {
+    font-size: 0.7rem !important;
+    line-height: 1.2 !important;
+    color: rgba(255, 255, 255, 0.6) !important;
+    white-space: normal !important;
+    word-break: break-word !important;
+    font-style: italic !important;
+  }
+
+  /* Bouton toggle */
+  .panel-toggle {
+    position: absolute !important;
+    right: 0.8rem !important;
+    top: 50% !important;
+    transform: translateY(-50%) !important;
+    width: 30px !important;
+    height: 30px !important;
+    flex-shrink: 0 !important;
+  }
+
+  /* Icône dans le panneau */
+  .panel-icon-wrapper {
+    display: none !important;
+  }
+
+  /* Contenu déplié du panneau */
+  .panel-content {
+    padding: 1.5rem 1rem !important;
+  }
+
+  .features-grid {
+    grid-template-columns: 1fr !important;
+    gap: 1rem !important;
+  }
+
+  .feature-card {
+    padding: 1rem !important;
+  }
+
+  .feature-title {
+    font-size: 0.9rem !important;
+  }
+
+  .feature-description {
+    font-size: 0.8rem !important;
+    line-height: 1.4 !important;
+  }
+}
+
+/* ============================================
+   4. CORRECTION SECTION "ENSEMBLE NOUS CRÉONS"
+   ============================================ */
+@media (max-width: 768px) {
+  /* Story Section */
+  .story-section {
+    padding: 4rem 0 !important;
+    min-height: auto !important;
+  }
+
+  /* Titre principal centré */
+  .hero-title-wrapper {
+    margin-bottom: 3rem !important;
+    padding: 0 1.5rem !important;
+  }
+
+  .hero-title {
+    font-size: 1.8rem !important;
+    line-height: 1.2 !important;
+    text-align: center !important;
+  }
+
+  .hero-title span {
+    display: block !important;
+    margin: 0.3rem 0 !important;
+  }
+
+  /* "L'EXCELLENCE" en plus grand */
+  .hero-title .excellence {
+    font-size: 2.2rem !important;
+    font-weight: 900 !important;
+    font-style: italic !important;
+    background: linear-gradient(45deg, #ec4899, #a855f7, #3b82f6) !important;
+    background-clip: text !important;
+    -webkit-background-clip: text !important;
+    -webkit-text-fill-color: transparent !important;
+    margin-top: 0.5rem !important;
+  }
+
+  /* Bouton découvrir centré */
+  .cta-wrapper {
+    display: flex !important;
+    justify-content: center !important;
+    margin-top: 2rem !important;
+  }
+
+  .story-cta-button,
+  .cta-button {
+    padding: 0.9rem 1.8rem !important;
+    font-size: 0.85rem !important;
+    border-radius: 9999px !important;
+    white-space: nowrap !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 0.5rem !important;
+  }
+}
+
+/* ============================================
+   5. CORRECTION SECTION "NOTRE FORCE"
+   ============================================ */
+@media (max-width: 768px) {
+  /* Team Section dans Story */
+  .team-section {
+    padding: 3rem 1rem !important;
+  }
+
+  /* Titre "Notre Force, Notre Team" */
+  .team-title {
+    font-size: 1.8rem !important;
+    line-height: 1.2 !important;
+    text-align: center !important;
+    margin-bottom: 2.5rem !important;
+  }
+
+  .team-title .force {
+    display: block !important;
+    color: white !important;
+  }
+
+  .team-title .team {
+    display: block !important;
+    margin-top: 0.3rem !important;
+    background: linear-gradient(45deg, #3b82f6, #06b6d4, #ffff00) !important;
+    background-clip: text !important;
+    -webkit-background-clip: text !important;
+    -webkit-text-fill-color: transparent !important;
+    font-size: 1.1em !important;
+  }
+
+  /* Cards de l'équipe */
+  .team-member-card {
+    border-radius: 1rem !important;
+    overflow: hidden !important;
+    height: auto !important;
+    min-height: 380px !important;
+  }
+
+  .member-info {
+    padding: 1.2rem !important;
+  }
+
+  .member-name {
+    font-size: 1.3rem !important;
+    margin-bottom: 0.4rem !important;
+  }
+
+  .member-title {
+    font-size: 0.9rem !important;
+    color: #ec4899 !important;
+  }
+}
+
+/* ============================================
+   6. CORRECTION NAVIGATION MOBILE
+   ============================================ */
+@media (max-width: 768px) {
+  /* Menu burger */
+  .burger-menu {
+    z-index: 9999 !important;
+  }
+
+  /* Overlay du menu mobile */
+  .mobile-menu-overlay {
+    background: #0a0a1f !important;
+    z-index: 9998 !important;
+  }
+
+  /* Logo dans le menu mobile */
+  .mobile-logo {
+    max-height: 45px !important;
+  }
+
+  /* Navigation links */
+  .mobile-link {
+    font-size: 1.3rem !important;
+  }
+
+  .mobile-sub-link {
+    font-size: 0.9rem !important;
+  }
+}
+
+/* ============================================
+   7. CORRECTION HERO SECTION (ACCUEIL)
+   ============================================ */
+@media (max-width: 768px) {
+  /* Section hero */
+  .hero-section {
+    padding: 75px 1rem 35px !important;
+    min-height: 100dvh !important;
+  }
+
+  /* Badge */
+  .badge {
+    padding: 0.4rem 0.8rem !important;
+    font-size: 0.65rem !important;
+  }
+
+  /* Titre principal */
+  .title-tiny {
+    font-size: 1.6rem !important;
+    display: block !important;
+    margin-bottom: 0.3rem !important;
+  }
+
+  .title-big {
+    font-size: 2.8rem !important;
+    line-height: 1 !important;
+  }
+
+  /* Boutons CTA */
+  .buttons {
+    gap: 0.8rem !important;
+    margin-top: 1.8rem !important;
+    width: 100% !important;
+    max-width: 320px !important;
+  }
+
+  .btn {
+    padding: 0.9rem 1.4rem !important;
+    font-size: 0.85rem !important;
+    min-height: 44px !important;
+    width: 100% !important;
+  }
+
+  /* Cards section */
+  .cards-wrapper {
+    padding: 0 1rem !important;
+  }
+
+  .cards {
+    grid-template-columns: 1fr !important;
+    gap: 0.8rem !important;
+    max-width: 100% !important;
+  }
+
+  .card {
+    padding: 1.2rem !important;
+  }
+
+  .card-label {
+    font-size: 0.6rem !important;
+  }
+
+  .card-title {
+    font-size: 0.95rem !important;
+  }
+}
+
+/* ============================================
+   8. CORRECTION CAROUSEL D'ARTISTES
+   ============================================ */
+@media (max-width: 768px) {
+  /* Artists Slider Section */
+  .artists-slider-section {
+    padding: 3rem 0 !important;
+  }
+
+  .section-header {
+    margin-bottom: 2.5rem !important;
+  }
+
+  /* Titre de la section */
+  .section-title {
+    font-size: 2.2rem !important;
+    text-align: center !important;
+    padding: 0 1rem !important;
+    line-height: 1.1 !important;
+  }
+
+  .title-line-2 {
+    font-size: 1.1em !important;
+  }
+
+  /* Slogan */
+  .slogan-container {
+    font-size: 0.9rem !important;
+    margin-top: 1rem !important;
+  }
+
+  .slogan-emphasis {
+    font-size: 1.1em !important;
+    margin-top: 0.2rem !important;
+  }
+
+  /* Carousel mobile */
+  .mobile-carousel {
+    padding: 0 1rem !important;
+  }
+
+  .swiper-slide {
+    height: auto !important;
+  }
+
+  .poster-card {
+    height: 400px !important;
+    border-radius: 1rem !important;
+  }
+
+  .poster-image {
+    object-fit: cover !important;
+    object-position: center 20% !important;
+  }
+
+  .poster-content {
+    padding: 1.2rem !important;
+  }
+
+  .poster-title {
+    font-size: 1.1rem !important;
+  }
+
+  .poster-role {
+    font-size: 0.8rem !important;
+  }
+}
+
+/* ============================================
+   9. CORRECTION SECTION CONTACT
+   ============================================ */
+@media (max-width: 768px) {
+  .contact-section {
+    padding: 3rem 0 !important;
+  }
+
+  .contact-header h2 {
+    font-size: 2.5rem !important;
+    margin-bottom: 1rem !important;
+  }
+
+  .contact-subtitle {
+    font-size: 0.9rem !important;
+    padding: 0 1rem !important;
+  }
+
+  .contact-form {
+    padding: 0 1rem !important;
+  }
+
+  .form-group {
+    margin-bottom: 1.2rem !important;
+  }
+
+  .form-label {
+    font-size: 0.85rem !important;
+  }
+
+  .form-input,
+  .form-textarea {
+    font-size: 0.9rem !important;
+    padding: 0.8rem !important;
+  }
+
+  .submit-btn {
+    padding: 1rem 2rem !important;
+    font-size: 0.9rem !important;
+  }
+}
+
+/* ============================================
+   10. CORRECTION FOOTER
+   ============================================ */
+@media (max-width: 768px) {
+  .footer {
+    background: #050510 !important;
+    padding: 2.5rem 0 1.5rem !important;
+  }
+
+  .footer-container {
+    padding: 0 1rem !important;
+  }
+
+  .footer-logo {
+    height: 40px !important;
+    margin-bottom: 1rem !important;
+  }
+
+  .footer-nav {
+    gap: 1.5rem !important;
+    grid-template-columns: 1fr !important;
+  }
+
+  .footer-title {
+    font-size: 0.85rem !important;
+    margin-bottom: 0.6rem !important;
+    text-transform: uppercase !important;
+  }
+
+  .footer-list {
+    gap: 0.3rem !important;
+  }
+
+  .footer-list a {
+    font-size: 0.8rem !important;
+    padding: 0.2rem 0 !important;
+    opacity: 0.8 !important;
+  }
+
+  .footer-bottom {
+    margin-top: 2rem !important;
+    padding-top: 1.5rem !important;
+    border-top: 1px solid rgba(255,255,255,0.1) !important;
+  }
+
+  .footer-copyright,
+  .footer-credit {
+    font-size: 0.75rem !important;
+  }
+
+  .footer-legal {
+    gap: 1rem !important;
+  }
+
+  .footer-legal a {
+    font-size: 0.75rem !important;
+  }
+}
+
+/* ============================================
+   11. OPTIMISATIONS GÉNÉRALES MOBILE
+   ============================================ */
+@media (max-width: 768px) {
+  /* Désactiver les animations complexes sur mobile */
+  * {
+    animation-duration: 0.3s !important;
+  }
+
+  /* Animations simples uniquement */
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+
+  /* Améliorer la lisibilité */
+  p, span, a {
+    letter-spacing: 0 !important;
+  }
+
+  /* S'assurer que rien ne déborde */
+  section {
+    overflow-x: hidden !important;
+    max-width: 100vw !important;
+  }
+
+  /* Taille minimale pour les éléments tactiles */
+  button, 
+  a.btn,
+  .clickable {
+    min-height: 44px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+  }
+
+  /* Améliorer les contrastes */
+  .text-muted,
+  .subtitle,
+  .description {
+    color: rgba(255, 255, 255, 0.75) !important;
+  }
+
+  /* Espacements cohérents */
+  h1, h2, h3, h4, h5, h6 {
+    margin-top: 0 !important;
+  }
+
+  /* Protection supplémentaire contre les débordements */
+  * {
+    max-width: 100vw !important;
+  }
+
+  img {
+    max-width: 100% !important;
+    height: auto !important;
+  }
+}
+
+/* ============================================
+   12. CORRECTIONS TRÈS PETITS ÉCRANS
+   ============================================ */
+@media (max-width: 380px) {
+  /* Titres encore plus petits */
+  .title-big {
+    font-size: 2.2rem !important;
+  }
+
+  .title-tiny {
+    font-size: 1.3rem !important;
+  }
+
+  .main-title,
+  .section-title {
+    font-size: 1.8rem !important;
+  }
+
+  /* Panneaux de services */
+  .panel-title {
+    font-size: 0.85rem !important;
+  }
+
+  .panel-subtitle {
+    font-size: 0.65rem !important;
+  }
+
+  .panel-number {
+    width: 30px !important;
+    height: 30px !important;
+    font-size: 0.8rem !important;
+  }
+
+  /* Boutons plus petits */
+  .btn {
+    padding: 0.8rem 1.2rem !important;
+    font-size: 0.8rem !important;
+  }
+
+  /* Cards */
+  .card {
+    padding: 1rem !important;
+  }
+
+  .card-title {
+    font-size: 0.85rem !important;
+  }
+
+  /* Footer */
+  .footer-list a {
+    font-size: 0.75rem !important;
+  }
+}
