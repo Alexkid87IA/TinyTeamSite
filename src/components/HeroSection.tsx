@@ -140,17 +140,26 @@ export const HeroSection = () => {
           <div className="cards">
             <a href="/artiste" className="card">
               <p className="card-label">Vous êtes</p>
-              <h3 className="card-title">Artiste</h3>
+              <h3 className="card-title">
+                Artiste
+                <span className="card-arrow">→</span>
+              </h3>
             </a>
             
             <a href="/programmateur" className="card">
               <p className="card-label">Vous êtes</p>
-              <h3 className="card-title">Programmateur</h3>
+              <h3 className="card-title">
+                Programmateur
+                <span className="card-arrow">→</span>
+              </h3>
             </a>
             
             <a href="/entreprise" className="card">
               <p className="card-label">Vous êtes une</p>
-              <h3 className="card-title">Entreprise</h3>
+              <h3 className="card-title">
+                Entreprise
+                <span className="card-arrow">→</span>
+              </h3>
             </a>
           </div>
         </div>
