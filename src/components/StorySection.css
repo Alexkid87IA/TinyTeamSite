@@ -1,0 +1,601 @@
+/* StorySection.css - Styles complets et organisés */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;900&display=swap');
+
+/* ====================================
+   VARIABLES GLOBALES
+   ==================================== */
+:root {
+    --primary-pink: #ec4899;
+    --primary-purple: #a855f7;
+    --primary-blue: #3b82f6;
+    --primary-cyan: #06b6d4;
+    --primary-teal: #14b8a6;
+    --bg-dark: #0A0F29;
+    --neon-pink: #ff00ff;
+    --neon-cyan: #00ffff;
+    --neon-yellow: #ffff00;
+}
+
+/* ====================================
+   SECTION PRINCIPALE
+   ==================================== */
+.story-section {
+    position: relative;
+    padding: 5rem 0 8rem;
+    background: var(--bg-dark);
+    overflow: hidden;
+    min-height: 100vh;
+}
+
+/* ====================================
+   EFFETS DE FOND
+   ==================================== */
+.story-bg-effects {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+}
+
+.gradient-mesh {
+    position: absolute;
+    inset: 0;
+    opacity: 0.3;
+    background: linear-gradient(45deg, #ec4899, #a855f7, #3b82f6, #ec4899);
+    background-size: 400% 400%;
+    animation: meshAnimation 20s linear infinite;
+}
+
+.gradient-radial-1 {
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at center, rgba(236,72,153,0.08), transparent 50%);
+}
+
+.gradient-radial-2 {
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at 80% 20%, rgba(168,85,247,0.08), transparent 50%);
+}
+
+.gradient-radial-3 {
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at 20% 80%, rgba(59,130,246,0.08), transparent 50%);
+}
+
+@keyframes meshAnimation {
+    0% { background-position: 0% 0%; }
+    100% { background-position: 100% 100%; }
+}
+
+/* ====================================
+   TITRE PRINCIPAL
+   ==================================== */
+.hero-title-wrapper {
+    text-align: center;
+    margin-bottom: 6rem;
+    position: relative;
+    padding: 0 2rem;
+    width: 100%;
+    overflow: visible;
+}
+
+.hero-title-glow {
+    position: absolute;
+    inset: -3rem;
+    background: radial-gradient(circle, rgba(236,72,153,0.2), transparent 40%);
+    filter: blur(60px);
+    animation: glowPulse 4s ease-in-out infinite;
+}
+
+.hero-title {
+    position: relative;
+    font-size: clamp(3rem, 8vw, 7rem);
+    font-weight: 900;
+    font-style: italic;
+    text-transform: uppercase;
+    line-height: 0.9;
+    letter-spacing: -0.02em;
+    display: block;
+    margin: 0 auto;
+    max-width: 100%;
+    white-space: nowrap;
+}
+
+.title-line-1 {
+    display: block;
+    background: linear-gradient(180deg, white, rgba(255,255,255,0.9));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: -0.1em;
+    filter: drop-shadow(0 0 20px rgba(255,255,255,0.3));
+    animation: slideInLeft 1s cubic-bezier(0.16, 1, 0.3, 1);
+    white-space: nowrap;
+}
+
+.title-line-2 {
+    display: block;
+    font-size: 1.2em;
+    background: linear-gradient(135deg, 
+        #ff00ff 0%,
+        #00ffff 20%,
+        #ffff00 40%,
+        #ff00ff 60%,
+        #00ffff 80%,
+        #ff00ff 100%);
+    background-size: 300% 300%;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    filter: drop-shadow(0 0 40px rgba(236, 72, 153, 0.6))
+           drop-shadow(0 0 80px rgba(168, 85, 247, 0.4));
+    animation: 
+        slideInRight 1s cubic-bezier(0.16, 1, 0.3, 1) 0.2s backwards,
+        rainbowShift 4s linear infinite,
+        textGlow 2s ease-in-out infinite;
+    white-space: nowrap;
+}
+
+@keyframes glowPulse {
+    0%, 100% { opacity: 0.5; transform: scale(1); }
+    50% { opacity: 0.8; transform: scale(1.1); }
+}
+
+@keyframes slideInLeft {
+    from { opacity: 0; transform: translateX(-50px); }
+    to { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes slideInRight {
+    from { opacity: 0; transform: translateX(50px); }
+    to { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes rainbowShift {
+    0% { background-position: 0% 50%; }
+    100% { background-position: 100% 50%; }
+}
+
+@keyframes textGlow {
+    0%, 100% {
+        filter: drop-shadow(0 0 40px rgba(236, 72, 153, 0.6))
+               drop-shadow(0 0 80px rgba(168, 85, 247, 0.4));
+    }
+    50% {
+        filter: drop-shadow(0 0 60px rgba(236, 72, 153, 0.8))
+               drop-shadow(0 0 100px rgba(168, 85, 247, 0.6));
+    }
+}
+
+/* ====================================
+   CARTES D'ÉQUIPE - GRILLE 3-2
+   ==================================== */
+.team-cards-container {
+    width: 100%;
+    max-width: 1400px;
+    margin: 0 auto 6rem;
+    padding: 0 2rem;
+}
+
+.team-cards-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2.5rem;
+    margin-bottom: 2.5rem;
+}
+
+.team-cards-grid.row-two {
+    grid-template-columns: repeat(2, 1fr);
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.team-card {
+    position: relative;
+    width: 100%;
+    height: 500px;
+    border-radius: 1.5rem;
+    overflow: hidden;
+    background: linear-gradient(135deg, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.2));
+    backdrop-filter: blur(20px);
+    border: 2px solid transparent;
+    background-image: 
+        linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), 
+        linear-gradient(135deg, var(--card-color-1), var(--card-color-2));
+    background-origin: border-box;
+    background-clip: padding-box, border-box;
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    cursor: pointer;
+}
+
+/* Couleurs des cartes */
+.team-card-0 {
+    --card-color-1: #ff00ff;
+    --card-color-2: #ec4899;
+}
+
+.team-card-1 {
+    --card-color-1: #a855f7;
+    --card-color-2: #ff00ff;
+}
+
+.team-card-2 {
+    --card-color-1: #00ffff;
+    --card-color-2: #3b82f6;
+}
+
+.team-card-3 {
+    --card-color-1: #ffff00;
+    --card-color-2: #00ffff;
+}
+
+.team-card-4 {
+    --card-color-1: #14b8a6;
+    --card-color-2: #00ff88;
+}
+
+.team-card:hover {
+    transform: translateY(-15px) scale(1.08);
+    box-shadow: 
+        0 30px 60px rgba(0, 0, 0, 0.5),
+        0 0 80px var(--card-color-1),
+        inset 0 0 30px rgba(255, 255, 255, 0.1);
+    z-index: 100;
+    border-color: var(--card-color-1);
+}
+
+.team-card-image {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+    filter: brightness(1.1) contrast(1.05);
+}
+
+.team-card:hover .team-card-image {
+    transform: scale(1.15);
+    filter: brightness(1.2) contrast(1.1);
+}
+
+.team-card-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+        to top,
+        rgba(0,0,0,0.95) 0%,
+        rgba(0,0,0,0.7) 25%,
+        rgba(0,0,0,0.3) 50%,
+        transparent 100%
+    );
+    transition: all 0.4s;
+}
+
+.team-card-content {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 2rem 1.5rem 1.5rem;
+    transform: translateY(10px);
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.team-card:hover .team-card-content {
+    transform: translateY(-5px);
+}
+
+.team-member-name {
+    font-size: 1.1rem;
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: white;
+    line-height: 1;
+    margin-bottom: 0.25rem;
+    text-shadow: 0 0 30px rgba(255,255,255,0.5);
+}
+
+.team-member-lastname {
+    font-size: 1.8rem;
+    font-weight: 900;
+    font-style: italic;
+    text-transform: uppercase;
+    letter-spacing: -0.02em;
+    background: linear-gradient(135deg, 
+        var(--card-color-1) 0%,
+        var(--card-color-2) 50%,
+        var(--card-color-1) 100%);
+    background-size: 200% 200%;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 1rem;
+    animation: gradientShift 3s ease-in-out infinite;
+    filter: drop-shadow(0 0 20px var(--card-color-1));
+}
+
+.team-member-role {
+    display: inline-block;
+    padding: 0.5rem 1rem;
+    border-radius: 9999px;
+    font-size: 0.7rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: white;
+    background: rgba(255,255,255,0.1);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255,255,255,0.2);
+    transition: all 0.3s;
+}
+
+.team-card:hover .team-member-role {
+    background: rgba(255,255,255,0.15);
+    border-color: var(--card-color-1);
+    box-shadow: 0 0 20px var(--card-color-1);
+}
+
+.sparkle-icon {
+    position: absolute;
+    top: 1.5rem;
+    right: 1.5rem;
+    opacity: 0;
+    transform: scale(0) rotate(0);
+    transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+    filter: drop-shadow(0 0 10px currentColor);
+}
+
+.team-card:hover .sparkle-icon {
+    opacity: 1;
+    transform: scale(1) rotate(360deg);
+    animation: sparkleGlow 2s ease-in-out infinite;
+}
+
+@keyframes sparkleGlow {
+    0%, 100% { filter: drop-shadow(0 0 10px currentColor); }
+    50% { filter: drop-shadow(0 0 20px currentColor) drop-shadow(0 0 30px currentColor); }
+}
+
+@keyframes gradientShift {
+    0%, 100% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+}
+
+/* ====================================
+   SECTION FINALE
+   ==================================== */
+.section-finale {
+    position: relative;
+    text-align: center;
+    margin: 4rem 0 0;
+    padding: 4rem 2rem;
+    overflow: visible; /* Changé pour éviter la troncature */
+    /* Suppression du background avec overlay sombre */
+}
+
+/* Titre final */
+.finale-title {
+    position: relative;
+    z-index: 2;
+    margin-bottom: 3rem;
+}
+
+.finale-line-1 {
+    font-size: clamp(1rem, 2vw, 1.25rem);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: rgba(255,255,255,0.6);
+    margin-bottom: 0.75rem;
+    animation: fadeInUp 0.8s ease-out;
+    /* Suppression de toute ombre */
+}
+
+.finale-line-2 {
+    font-size: clamp(2.5rem, 6vw, 4.5rem);
+    font-weight: 900;
+    font-style: italic;
+    text-transform: uppercase;
+    line-height: 1;
+    letter-spacing: -0.02em;
+    position: relative;
+    display: inline-block;
+    /* Option 1: Blanc pur - simple et élégant */
+    color: white;
+    
+    /* Option 2: Dégradé doré luxueux (décommentez pour activer) */
+    /* background: linear-gradient(135deg, #ffd700 0%, #ffed4e 50%, #ffa500 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text; */
+    
+    /* Option 3: Dégradé argent métallique (décommentez pour activer) */
+    /* background: linear-gradient(135deg, #e8e8e8 0%, #ffffff 50%, #c0c0c0 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text; */
+    
+    /* Option 4: Dégradé cyan néon (décommentez pour activer) */
+    /* background: linear-gradient(135deg, #00ffff 0%, #00e5ff 50%, #00acc1 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text; */
+    
+    /* Option 5: Dégradé rouge passion (décommentez pour activer) */
+    /* background: linear-gradient(135deg, #ff4444 0%, #ff6b6b 50%, #ee5a6f 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text; */
+    
+    animation: fadeInUp 0.8s ease-out 0.2s backwards;
+}
+
+@keyframes fadeInUp {
+    from { 
+        opacity: 0; 
+        transform: translateY(20px); 
+    }
+    to { 
+        opacity: 1; 
+        transform: translateY(0); 
+    }
+}
+
+/* ====================================
+   BOUTON CTA
+   ==================================== */
+.cta-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 1rem 2rem;
+    border-radius: 100px;
+    font-weight: 600;
+    font-size: 0.875rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    text-decoration: none;
+    color: white;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    z-index: 10;
+    background: linear-gradient(135deg, rgba(0,0,0,0.3) 0%, rgba(0,0,0,0.1) 100%);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255,255,255,0.1);
+}
+
+.cta-text {
+    position: relative;
+    z-index: 2;
+    display: inline-block;
+}
+
+.cta-icon {
+    width: 18px;
+    height: 18px;
+    transition: transform 0.3s ease;
+    position: relative;
+    z-index: 2;
+}
+
+/* Effet gradient subtil au hover */
+.cta-button::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(236,72,153,0.2), rgba(168,85,247,0.2));
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.cta-button:hover::before {
+    opacity: 1;
+}
+
+.cta-button:hover {
+    transform: translateY(-2px);
+    border-color: rgba(236,72,153,0.3);
+}
+
+.cta-button:hover .cta-icon {
+    transform: translateX(4px);
+}
+
+/* ====================================
+   RESPONSIVE
+   ==================================== */
+@media (max-width: 768px) {
+    .story-section {
+        padding: 3rem 0 5rem;
+    }
+    
+    .hero-title {
+        font-size: clamp(2.5rem, 12vw, 3.5rem);
+        margin-bottom: 1rem;
+    }
+    
+    .title-line-1,
+    .title-line-2 {
+        white-space: nowrap;
+    }
+    
+    .hero-title-wrapper {
+        margin-bottom: 3rem;
+        padding: 0 1rem;
+    }
+    
+    .team-cards-container {
+        padding: 0 1rem;
+    }
+    
+    .team-cards-grid,
+    .team-cards-grid.row-two {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+    
+    .team-card {
+        height: 420px;
+        max-width: 380px;
+        margin: 0 auto;
+    }
+    
+    .team-member-name {
+        font-size: 1rem;
+    }
+    
+    .team-member-lastname {
+        font-size: 1.5rem;
+    }
+    
+    .team-member-role {
+        font-size: 0.65rem;
+        padding: 0.4rem 0.8rem;
+    }
+    
+    .finale-line-1 {
+        font-size: 1.5rem;
+    }
+    
+    .finale-line-2 {
+        font-size: 3rem;
+    }
+    
+    .cta-button {
+        padding: 1rem 2rem;
+        font-size: 0.875rem;
+    }
+}
+
+@media (min-width: 769px) and (max-width: 1024px) {
+    .hero-title {
+        font-size: clamp(3.5rem, 7vw, 5rem);
+    }
+    
+    .team-cards-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .team-cards-grid.row-two {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .team-card {
+        height: 450px;
+    }
+}
+
+@media (min-width: 1920px) {
+    .hero-title {
+        font-size: 8rem;
+    }
+    
+    .team-card {
+        width: 100%;
+        height: 550px;
+    }
+}

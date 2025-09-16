@@ -1,271 +1,238 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { ArrowRight } from 'lucide-react';
-import { Link } from 'react-router-dom';
+import { ArrowRight, Sparkles } from 'lucide-react';
+import './StorySection.css';
 
 const teamMembers = [
   {
     name: "Bénédicte",
     lastName: "Lecoq",
-    role: "Fondatrice & Directrice Artistique",
-    image: "https://26.staticbtf.eno.do/v1/51-default/f5464f128894d97aa54f8b509c878258/media.jpg",
-    gradient: "from-pink-500/20 to-purple-500/20",
-    zIndex: 50
+    role: "Fondatrice & Directrice",
+    image: "https://static.eno.do/x/fs-207406-default/2584a08dbb3b3d9c470bee9fb6019dd1/media.jpg",
+    color: "#ff00ff"
   },
   {
     name: "Isabelle",
     lastName: "Sabatier", 
-    role: "Responsable Diffusion & Tournées",
-    image: "https://26.staticbtf.eno.do/v1/50-default/72327cba31187ae50845f74005e56b82/media.jpg",
-    gradient: "from-purple-500/20 to-blue-500/20",
-    zIndex: 40
+    role: "Diffusion & Tournées",
+    image: "https://static.eno.do/x/fs-207410-default/af6d91411c60335f407220493c043763/media.jpg",
+    color: "#a855f7"
   },
   {
     name: "Elodie",
     lastName: "Biffi",
-    role: "Responsable Administrative",
-    image: "https://i.imgur.com/VIvzDfN.png",
-    gradient: "from-blue-500/20 to-cyan-500/20",
-    zIndex: 30
+    role: "Administration",
+    image: "https://static.eno.do/x/fs-207411-default/0ed25e6fe47508a9f55ceb7a0ee6fc4c/media.jpg",
+    color: "#00ffff"
   },
   {
     name: "Jérémy",
     lastName: "Dravigny",
-    role: "Responsable Communication & Production",
-    image: "https://i.imgur.com/VwHcPJF.png",
-    gradient: "from-cyan-500/20 to-teal-500/20",
-    zIndex: 20
+    role: "Communication & Prod",
+    image: "https://static.eno.do/x/fs-207412-default/b0bd97d300f452b564d515009f33562b/media.jpg",
+    color: "#ffff00"
   },
   {
     name: "Margaux",
     lastName: "Morel",
-    role: "Chargée de Production & Événementiel",
-    image: "https://i.imgur.com/IKLr6Zq.png",
-    gradient: "from-teal-500/20 to-green-500/20",
-    zIndex: 10
+    role: "Production & Events",
+    image: "https://static.eno.do/x/fs-207407-default/6f534256453179693776055b70110e0e/media.jpg",
+    color: "#14b8a6"
   }
 ];
 
-const TeamMemberCard = ({ member, index }) => (
-  <motion.div
-    initial={{ opacity: 0, y: 50, rotateY: -15 }}
-    whileInView={{ opacity: 1, y: 0, rotateY: 0 }}
-    viewport={{ once: true }}
-    transition={{ 
-      duration: 0.8, 
-      delay: index * 0.15,
-      type: "spring",
-      stiffness: 80
-    }}
-    whileHover={{ 
-      y: -12,
-      scale: 1.02,
-      zIndex: 100,
-      transition: { duration: 0.4, type: "spring", stiffness: 200 }
-    }}
-    className="group relative"
-    style={{ zIndex: member.zIndex }}
-  >
-    <div className="absolute -inset-6 rounded-3xl bg-gradient-to-r from-pink-500/20 via-purple-500/20 to-blue-500/20 blur-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
-    
-    <div className="relative w-full max-w-[320px] mx-auto sm:max-w-none sm:w-72 md:w-64 lg:w-72 xl:w-80 h-[450px] sm:h-[480px] lg:h-[500px] rounded-3xl overflow-hidden glass-card group-hover:ring-2 group-hover:ring-white/30 transition-all duration-500">
-      <div className="absolute inset-0">
-        <img
-          src={member.image}
-          alt={`${member.name} ${member.lastName}`}
-          className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-        />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent" />
-        <div className={`absolute inset-0 bg-gradient-to-t ${member.gradient} mix-blend-overlay opacity-0 group-hover:opacity-60 transition-opacity duration-500`} />
-      </div>
-
-      <div className="absolute bottom-0 left-0 right-0 p-8">
-        <div className="space-y-3">
-          <div>
-            <h3 className="text-2xl font-bold text-white group-hover:text-glow transition-all duration-300">
-              {member.name}
-            </h3>
-            <h4 className="text-xl font-semibold text-white/90 group-hover:text-white transition-colors duration-300">
-              {member.lastName}
-            </h4>
-          </div>
-          
-          <div className="inline-block px-4 py-2 rounded-full bg-white/10 backdrop-blur-sm border border-white/20 group-hover:border-white/40 group-hover:bg-white/20 transition-all duration-300">
-            <span className="text-sm text-white/90 group-hover:text-white transition-colors duration-300 font-medium">
-              {member.role}
-            </span>
-          </div>
-        </div>
-      </div>
-
-      <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000" />
-    </div>
-  </motion.div>
-);
-
-const FloatingOrbs = () => (
-  <div className="absolute inset-0 overflow-hidden pointer-events-none">
-    {[...Array(8)].map((_, i) => (
-      <motion.div
-        key={i}
-        className="absolute w-32 h-32 rounded-full"
-        style={{
-          background: `radial-gradient(circle, ${
-            ['rgba(236,72,153,0.1)', 'rgba(168,85,247,0.1)', 'rgba(59,130,246,0.1)', 'rgba(34,197,94,0.1)'][i % 4]
-          } 0%, transparent 70%)`,
-          left: `${Math.random() * 100}%`,
-          top: `${Math.random() * 100}%`,
-        }}
-        animate={{
-          x: [0, Math.random() * 200 - 100, 0],
-          y: [0, Math.random() * 200 - 100, 0],
-          scale: [1, 1.2, 1],
-          opacity: [0.3, 0.6, 0.3]
-        }}
-        transition={{
-          duration: Math.random() * 10 + 10,
-          repeat: Infinity,
-          ease: "easeInOut"
-        }}
-      />
-    ))}
-  </div>
-);
-
 export const StorySection = () => {
   return (
-    <section className="relative py-20 md:py-32 bg-[#0A0F29] overflow-hidden">
-      {/* Background Effects */}
-      <div className="absolute inset-0">
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(44,62,153,0.15),transparent_70%)]" />
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_80%,rgba(236,72,153,0.1),transparent_50%)]" />
-        <FloatingOrbs />
+    <section className="story-section">
+      {/* Effets de fond */}
+      <div className="story-bg-effects">
+        <div className="gradient-mesh"></div>
+        <div className="gradient-radial-1"></div>
+        <div className="gradient-radial-2"></div>
+        <div className="gradient-radial-3"></div>
+        
+        {/* Orbes flottants */}
+        {[...Array(6)].map((_, i) => (
+          <motion.div
+            key={i}
+            className="absolute w-40 h-40 rounded-full"
+            style={{
+              background: `radial-gradient(circle, ${
+                ['rgba(236,72,153,0.15)', 'rgba(168,85,247,0.15)', 'rgba(59,130,246,0.15)'][i % 3]
+              } 0%, transparent 70%)`,
+              left: `${Math.random() * 100}%`,
+              top: `${Math.random() * 100}%`,
+              filter: 'blur(60px)'
+            }}
+            animate={{
+              x: [0, Math.random() * 100 - 50, 0],
+              y: [0, Math.random() * 100 - 50, 0],
+              scale: [1, 1.3, 1],
+            }}
+            transition={{
+              duration: Math.random() * 10 + 15,
+              repeat: Infinity,
+              ease: "easeInOut"
+            }}
+          />
+        ))}
       </div>
 
       <div className="relative container mx-auto px-4">
-        {/* Hero Content */}
-        <div className="text-center mb-24">
+        {/* Titre principal */}
+        <div className="hero-title-wrapper">
+          <div className="hero-title-glow"></div>
+          <motion.h2 
+            className="hero-title"
+            initial={{ opacity: 0, scale: 0.9 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
+          >
+            <span className="title-line-1">Notre Force,</span>
+            <span className="title-line-2">Notre Team</span>
+          </motion.h2>
+        </div>
+
+        {/* Cartes d'équipe en grille 3-2 */}
+        <div className="team-cards-container">
+          {/* Première ligne - 3 cartes */}
+          <div className="team-cards-grid">
+            {teamMembers.slice(0, 3).map((member, index) => (
+              <motion.div
+                key={member.name}
+                className={`team-card team-card-${index}`}
+                initial={{ opacity: 0, y: 50, rotateY: -10 }}
+                whileInView={{ opacity: 1, y: 0, rotateY: 0 }}
+                viewport={{ once: true }}
+                transition={{ 
+                  duration: 0.8, 
+                  delay: index * 0.1,
+                  type: "spring",
+                  stiffness: 100
+                }}
+                whileHover={{ 
+                  scale: 1.05,
+                  y: -10,
+                  zIndex: 100,
+                  transition: { duration: 0.3 }
+                }}
+              >
+                <img
+                  src={member.image}
+                  alt={`${member.name} ${member.lastName}`}
+                  className="team-card-image"
+                />
+                <div className="team-card-overlay"></div>
+                
+                <Sparkles 
+                  className="sparkle-icon" 
+                  style={{ color: member.color }}
+                  size={24}
+                />
+                
+                <div className="team-card-content">
+                  <h3 className="team-member-name">{member.name}</h3>
+                  <h4 className="team-member-lastname">{member.lastName}</h4>
+                  <div className="team-member-role">
+                    {member.role}
+                  </div>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+
+          {/* Deuxième ligne - 2 cartes */}
+          <div className="team-cards-grid row-two">
+            {teamMembers.slice(3, 5).map((member, index) => (
+              <motion.div
+                key={member.name}
+                className={`team-card team-card-${index + 3}`}
+                initial={{ opacity: 0, y: 50, rotateY: -10 }}
+                whileInView={{ opacity: 1, y: 0, rotateY: 0 }}
+                viewport={{ once: true }}
+                transition={{ 
+                  duration: 0.8, 
+                  delay: (index + 3) * 0.1,
+                  type: "spring",
+                  stiffness: 100
+                }}
+                whileHover={{ 
+                  scale: 1.05,
+                  y: -10,
+                  zIndex: 100,
+                  transition: { duration: 0.3 }
+                }}
+              >
+                <img
+                  src={member.image}
+                  alt={`${member.name} ${member.lastName}`}
+                  className="team-card-image"
+                />
+                <div className="team-card-overlay"></div>
+                
+                <Sparkles 
+                  className="sparkle-icon" 
+                  style={{ color: member.color }}
+                  size={24}
+                />
+                
+                <div className="team-card-content">
+                  <h3 className="team-member-name">{member.name}</h3>
+                  <h4 className="team-member-lastname">{member.lastName}</h4>
+                  <div className="team-member-role">
+                    {member.role}
+                  </div>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+
+        {/* Fin de section épique SANS rayons rotatifs */}
+        <div className="section-finale">
+          {/* Particules flottantes */}
+          <div className="finale-particles">
+            {[...Array(20)].map((_, i) => (
+              <div 
+                key={i}
+                className="finale-particle"
+                style={{
+                  left: `${Math.random() * 100}%`,
+                  top: `${Math.random() * 100}%`,
+                  '--x': `${(Math.random() - 0.5) * 200}px`,
+                  '--y': `${(Math.random() - 0.5) * 200}px`,
+                  animationDelay: `${Math.random() * 15}s`
+                } as React.CSSProperties}
+              />
+            ))}
+          </div>
+
+          {/* Titre final */}
+          <motion.div 
+            className="finale-title"
+            initial={{ opacity: 0, scale: 0.8 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 1, type: "spring" }}
+          >
+            <h3 className="finale-line-1">Ensemble, nous créons</h3>
+            <h3 className="finale-line-2">L'EXCELLENCE</h3>
+          </motion.div>
+
+          {/* CTA final */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
-            className="relative mb-16"
+            transition={{ duration: 0.8, delay: 0.3 }}
           >
-            <div className="absolute -inset-12 rounded-full bg-gradient-to-r from-pink-500/10 via-purple-500/10 to-blue-500/10 blur-3xl" />
-            
-            <h2 className="relative text-4xl sm:text-6xl md:text-8xl lg:text-9xl font-bold tracking-tight leading-[0.9]">
-              <span className="block bg-gradient-to-b from-white via-white to-white/70 bg-clip-text text-transparent">
-                La Team
-              </span>
-            </h2>
+            <a href="/equipe" className="cta-button">
+              <span className="cta-text">DÉCOUVRIR NOTRE HISTOIRE</span>
+              <ArrowRight className="cta-icon" />
+            </a>
           </motion.div>
-
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            className="text-lg md:text-xl text-white/80 leading-relaxed max-w-4xl mx-auto"
-          >
-            Une équipe passionnée qui met son expertise au service de votre talent.
-            Découvrez les visages et les compétences qui font la force de Tiny Team.
-          </motion.p>
         </div>
-
-        {/* Team Section */}
-        <div className="relative mb-32">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
-            className="text-center mb-20"
-          >
-            <h3 className="text-3xl md:text-6xl font-bold mb-6">
-              <span className="block text-gradient from-white via-blue-100 to-white">
-                L'équipe qui fait
-              </span>
-              <span className="block text-gradient from-pink-300 via-pink-200 to-pink-300 mt-2">
-                la différence
-              </span>
-            </h3>
-            <p className="text-lg text-white/70 max-w-3xl mx-auto leading-relaxed">
-              Cinq expertises complémentaires, cinq personnalités uniques,
-              une passion commune pour l'excellence artistique.
-            </p>
-          </motion.div>
-
-          {/* Team Cards - Responsive Overlapping Layout */}
-          <div className="flex flex-col items-center lg:block">
-            {/* Mobile: Single Column, Tablet: 2 columns */}
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:hidden gap-8 w-full max-w-2xl">
-              {teamMembers.map((member, index) => (
-                <TeamMemberCard key={member.name} member={member} index={index} />
-              ))}
-            </div>
-            
-            {/* Desktop: Overlapping Layout */}
-            <div className="hidden lg:flex justify-center items-center overflow-x-auto pb-8">
-              <div className="flex -space-x-16 px-8">
-                {teamMembers.map((member, index) => (
-                  <TeamMemberCard key={member.name} member={member} index={index} />
-                ))}
-              </div>
-            </div>
-          </div>
-        </div>
-
-        {/* Transition vers MissionSection */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8 }}
-          className="text-center mb-20"
-        >
-          <div className="relative inline-block">
-            <div className="absolute -inset-8 rounded-full bg-gradient-to-r from-pink-500/10 via-purple-500/10 to-blue-500/10 blur-3xl" />
-            <h3 className="relative text-2xl sm:text-3xl md:text-5xl font-bold">
-              <span className="text-gradient from-white via-blue-100 to-white">
-                Découvrez comment nous transformons
-              </span>
-              <span className="block text-gradient from-pink-300 via-pink-200 to-pink-300 mt-2">
-                votre potentiel en succès
-              </span>
-            </h3>
-          </div>
-          
-          <motion.p
-            initial={{ opacity: 0, y: 10 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            className="text-lg text-white/70 max-w-2xl mx-auto mt-6 leading-relaxed"
-          >
-            Une méthode éprouvée, une équipe passionnée, 
-            des résultats qui parlent d'eux-mêmes.
-          </motion.p>
-        </motion.div>
-
-        {/* Final CTA */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8, delay: 0.8 }}
-          className="text-center space-y-8"
-        >
-          <div className="flex justify-center">
-            <Link
-              to="/equipe"
-              className="group inline-flex items-center gap-2 px-8 py-4 rounded-full bg-gradient-to-r from-pink-500 to-purple-500 text-white font-semibold hover:from-pink-600 hover:to-purple-600 transition-all duration-300 hover:shadow-2xl hover:shadow-purple-500/25"
-            >
-              <span>Rencontrer l'équipe complète</span>
-              <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" />
-            </Link>
-          </div>
-        </motion.div>
       </div>
     </section>
   );

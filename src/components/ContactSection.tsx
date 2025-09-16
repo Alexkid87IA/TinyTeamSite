@@ -1,91 +1,239 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Link } from 'react-router-dom';
 import { ArrowRight, Sparkles } from 'lucide-react';
+import './ContactSection.css';
 
 export const ContactSection = () => {
   return (
-    <section className="relative py-32 bg-[#0A0F29] overflow-hidden">
-      {/* Background simple */}
-      <div className="absolute inset-0">
-        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-purple-500/5 to-pink-500/10" />
+    <section className="contact-section">
+      {/* Effets de fond animes */}
+      <div className="contact-bg-effects">
+        {/* Grille cyberpunk */}
+        <div className="cyber-grid" />
+        
+        {/* Orbes flottants */}
+        <div className="floating-orbs">
+          <div className="orb orb-1" />
+          <div className="orb orb-2" />
+          <div className="orb orb-3" />
+        </div>
+        
+        {/* Particules brillantes */}
+        <div className="sparkle-field">
+          {[...Array(30)].map((_, i) => (
+            <div
+              key={i}
+              className="sparkle"
+              style={{
+                left: `${Math.random() * 100}%`,
+                top: `${Math.random() * 100}%`,
+                animationDelay: `${Math.random() * 6}s`,
+                animationDuration: `${4 + Math.random() * 4}s`
+              }}
+            />
+          ))}
+        </div>
       </div>
 
       <div className="relative container mx-auto px-4">
-        <div className="max-w-4xl mx-auto text-center">
-          {/* Titre */}
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
-            className="mb-12"
-          >
-            <h2 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-6">
-              <span className="text-white">Prêt à </span>
-              <span className="bg-gradient-to-r from-pink-400 to-purple-400 bg-clip-text text-transparent">
-                faire vibrer
-              </span>
-              <span className="text-white"> les scènes ?</span>
-            </h2>
+        {/* Header spectaculaire */}
+        <div className="contact-header">
+          <div className="header-container">
+            <div className="title-glow-bg" />
             
-            <p className="text-lg sm:text-xl text-white/70 max-w-2xl mx-auto">
-              Que vous soyez artiste, programmateur ou marque, 
-              nous sommes là pour donner vie à vos projets les plus ambitieux.
-            </p>
-          </motion.div>
-
-          {/* Boutons CTA */}
-          <motion.div
+            <motion.h2 
+              className="contact-title"
+              initial={{ opacity: 0, scale: 0.9 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8 }}
+            >
+              <span className="title-line-1">Pret a</span>
+              <span className="title-line-2">faire vibrer</span>
+              <span className="title-line-3">
+                les scenes
+                <span className="title-question" dangerouslySetInnerHTML={{ __html: '&nbsp;&#63;' }} />
+              </span>
+            </motion.h2>
+          </div>
+          
+          <motion.p 
+            className="contact-subtitle"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            className="flex flex-col sm:flex-row gap-4 justify-center"
+            transition={{ duration: 0.8, delay: 0.3 }}
           >
-            {/* Bouton principal */}
-            <Link
-              to="/contact"
-              className="group relative inline-flex items-center gap-2 px-8 py-4 rounded-full overflow-hidden"
-            >
-              <div className="absolute inset-0 bg-gradient-to-r from-pink-500 to-purple-500 transition-all duration-300 group-hover:scale-110" />
-              <span className="relative text-white font-semibold text-lg">
-                Discutons de votre projet
-              </span>
-              <ArrowRight className="relative w-5 h-5 text-white group-hover:translate-x-1 transition-transform" />
-            </Link>
+            Que vous soyez artiste, programmateur ou marque, 
+            nous sommes la pour donner vie a vos projets les plus ambitieux.
+          </motion.p>
+        </div>
 
-            {/* Bouton secondaire */}
-            <Link
-              to="/artistes"
-              className="group inline-flex items-center gap-2 px-8 py-4 rounded-full border border-white/20 hover:border-white/40 transition-all"
+        {/* Boutons CTA spectaculaires */}
+        <div className="cta-container">
+          <motion.div 
+            className="cta-buttons"
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8, delay: 0.5 }}
+          >
+            {/* Bouton principal EXPLOSIF */}
+            <a
+              href="/contact"
+              className="cta-primary group"
             >
-              <Sparkles className="w-5 h-5 text-white/70 group-hover:text-white transition-colors" />
-              <span className="text-white/70 group-hover:text-white font-medium transition-colors">
-                Découvrir nos artistes
+              <span className="relative z-10 font-black">
+                DISCUTONS DE VOTRE PROJET
               </span>
-            </Link>
+              <ArrowRight className="cta-icon relative z-10" />
+            </a>
+
+            {/* Bouton secondaire glassmorphism */}
+            <a
+              href="/artistes"
+              className="cta-secondary group"
+            >
+              <Sparkles className="cta-icon" />
+              <span>Decouvrir nos artistes</span>
+            </a>
           </motion.div>
 
-          {/* Info de contact rapide */}
-          <motion.div
+          {/* Info de contact rapide avec animation */}
+          <motion.div 
+            className="quick-contact"
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.8, delay: 0.4 }}
-            className="mt-12 text-center"
+            transition={{ duration: 0.8, delay: 0.7 }}
           >
-            <p className="text-white/50 text-sm">
-              Ou contactez-nous directement : 
-              <a 
-                href="mailto:contact@tinyteam.fr" 
-                className="text-pink-400 hover:text-pink-300 ml-2 transition-colors"
-              >
-                contact@tinyteam.fr
-              </a>
+            <p className="quick-contact-text">
+              Ou contactez-nous directement :
             </p>
+            <a 
+              href="mailto:contact@tinyteam.fr" 
+              className="contact-email group"
+            >
+              <span className="relative">
+                contact@tinyteam.fr
+              </span>
+            </a>
           </motion.div>
         </div>
+
+        {/* Elements decoratifs animes */}
+        <motion.div 
+          className="absolute -top-20 left-10 w-40 h-40"
+          animate={{
+            rotate: [0, 360],
+            scale: [1, 1.2, 1],
+          }}
+          transition={{
+            duration: 20,
+            repeat: Infinity,
+            ease: "linear"
+          }}
+        >
+          <div className="w-full h-full border-2 border-pink-500/20 rounded-full" />
+        </motion.div>
+
+        <motion.div 
+          className="absolute -bottom-20 right-10 w-60 h-60"
+          animate={{
+            rotate: [0, -360],
+            scale: [1, 0.8, 1],
+          }}
+          transition={{
+            duration: 25,
+            repeat: Infinity,
+            ease: "linear"
+          }}
+        >
+          <div className="w-full h-full border-2 border-cyan-500/20 rounded-full" />
+        </motion.div>
+
+        {/* Triangles flottants */}
+        {[...Array(3)].map((_, i) => (
+          <motion.div
+            key={i}
+            className="absolute"
+            style={{
+              left: `${20 + i * 30}%`,
+              top: `${Math.random() * 100}%`,
+            }}
+            animate={{
+              y: [-20, 20, -20],
+              rotate: [0, 180, 360],
+              opacity: [0.3, 0.6, 0.3],
+            }}
+            transition={{
+              duration: 10 + i * 2,
+              repeat: Infinity,
+              ease: "easeInOut",
+              delay: i * 0.5,
+            }}
+          >
+            <div 
+              className="w-0 h-0"
+              style={{
+                borderLeft: '20px solid transparent',
+                borderRight: '20px solid transparent',
+                borderBottom: `35px solid ${['rgba(236, 72, 153, 0.2)', 'rgba(168, 85, 247, 0.2)', 'rgba(0, 255, 255, 0.2)'][i]}`,
+              }}
+            />
+          </motion.div>
+        ))}
+
+        {/* Lignes animees decoratives */}
+        <motion.div
+          className="absolute top-1/2 left-0 w-full h-px"
+          initial={{ scaleX: 0, opacity: 0 }}
+          whileInView={{ scaleX: 1, opacity: 0.2 }}
+          viewport={{ once: true }}
+          transition={{ duration: 2, delay: 1 }}
+        >
+          <div className="w-full h-full bg-gradient-to-r from-transparent via-pink-500 to-transparent" />
+        </motion.div>
+
+        <motion.div
+          className="absolute top-1/3 left-0 w-full h-px"
+          initial={{ scaleX: 0, opacity: 0 }}
+          whileInView={{ scaleX: 1, opacity: 0.1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 2, delay: 1.2 }}
+        >
+          <div className="w-full h-full bg-gradient-to-r from-transparent via-cyan-500 to-transparent" />
+        </motion.div>
+
+        {/* Effet de particules supplementaires */}
+        <motion.div
+          className="absolute inset-0 pointer-events-none"
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+        >
+          {[...Array(15)].map((_, i) => (
+            <motion.div
+              key={`particle-${i}`}
+              className="absolute w-1 h-1 bg-white rounded-full"
+              style={{
+                left: `${Math.random() * 100}%`,
+                top: `${Math.random() * 100}%`,
+              }}
+              animate={{
+                y: [0, -100, 0],
+                opacity: [0, 1, 0],
+                scale: [0, 1, 0],
+              }}
+              transition={{
+                duration: 3 + Math.random() * 2,
+                repeat: Infinity,
+                delay: Math.random() * 3,
+                ease: "easeOut",
+              }}
+            />
+          ))}
+        </motion.div>
       </div>
     </section>
   );

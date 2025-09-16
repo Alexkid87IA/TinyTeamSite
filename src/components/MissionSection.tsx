@@ -1,254 +1,276 @@
-import React from 'react';
-import { motion } from 'framer-motion';
-import { ArrowRight, Star, Shield, Rocket, Layout, Globe, Calendar } from 'lucide-react';
+import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
+import { motion, AnimatePresence } from 'framer-motion';
+import { Star, Shield, Rocket, Layout, Globe, Calendar, ChevronDown, ArrowRight } from 'lucide-react';
+import './MissionSection.css';
 
-const missions = [
+// Données des services
+const servicesData = [
   {
     id: "production",
+    number: "01",
     title: "Production",
     subtitle: "De l'idée à la scène",
-    description: "Une approche globale de la production artistique. Nous gérons tous les aspects techniques et créatifs pour que vous puissiez vous concentrer sur votre art.",
+    description: "Une approche globale de la production artistique. Nous transformons vos idées en spectacles vivants mémorables avec une expertise technique et créative sans faille.",
     icon: Star,
     features: [
-      "Direction artistique",
-      "Production exécutive",
-      "Mise en scène professionnelle",
-      "Gestion technique"
-    ],
-    color: 'from-yellow-400 to-orange-400'
+      { title: "Direction artistique", desc: "Vision créative unique" },
+      { title: "Production exécutive", desc: "Gestion complète du projet" },
+      { title: "Mise en scène", desc: "Scénographie professionnelle" },
+      { title: "Gestion technique", desc: "Support son, lumière, vidéo" }
+    ]
   },
   {
     id: "management",
+    number: "02",
     title: "Management",
     subtitle: "Votre carrière entre de bonnes mains",
-    description: "Un accompagnement complet et personnalisé pour développer votre carrière et maximiser votre potentiel artistique.",
+    description: "Un accompagnement sur mesure pour propulser votre carrière. Nous gérons tous les aspects administratifs et stratégiques pour que vous puissiez vous concentrer sur votre art.",
     icon: Shield,
     features: [
-      "Développement de carrière",
-      "Stratégie artistique",
-      "Gestion administrative",
-      "Relations professionnelles"
-    ],
-    color: 'from-blue-400 to-indigo-400'
+      { title: "Développement carrière", desc: "Stratégie à long terme" },
+      { title: "Négociations", desc: "Contrats et partenariats" },
+      { title: "Gestion administrative", desc: "Paperasse simplifiée" },
+      { title: "Relations pro", desc: "Réseau d'experts" }
+    ]
   },
   {
     id: "digital",
+    number: "03",
     title: "Digital",
     subtitle: "Votre présence en ligne",
-    description: "Maîtrisez les enjeux du numérique et développez votre présence en ligne. Une stratégie digitale complète pour maximiser votre impact.",
+    description: "Maîtrisez les enjeux du numérique avec une stratégie digitale complète. Nous créons et gérons votre image en ligne pour maximiser votre impact et votre audience.",
     icon: Rocket,
     features: [
-      "Stratégie réseaux sociaux",
-      "Création de contenus",
-      "Community management",
-      "Marketing digital"
-    ],
-    color: 'from-purple-400 to-pink-400'
+      { title: "Réseaux sociaux", desc: "Instagram, TikTok, YouTube" },
+      { title: "Création contenus", desc: "Photos, vidéos, stories" },
+      { title: "Community management", desc: "Engagement des fans" },
+      { title: "Marketing digital", desc: "Campagnes ciblées" }
+    ]
   },
   {
     id: "communication",
+    number: "04",
     title: "Communication",
     subtitle: "Votre image, notre expertise",
-    description: "Développez une image forte et cohérente qui vous distingue dans l'univers du spectacle vivant.",
+    description: "Développez une image forte et cohérente. Nous créons une identité visuelle unique qui vous distingue et raconte votre histoire dans l'univers du spectacle vivant.",
     icon: Layout,
     features: [
-      "Relations presse",
-      "Identité visuelle",
-      "Communication événementielle",
-      "Relations publiques"
-    ],
-    color: 'from-pink-400 to-rose-400'
+      { title: "Relations presse", desc: "Médias nationaux" },
+      { title: "Identité visuelle", desc: "Logo, charte graphique" },
+      { title: "Com événementielle", desc: "Lancement de spectacles" },
+      { title: "Relations publiques", desc: "Image de marque" }
+    ]
   },
   {
     id: "diffusion",
+    number: "05",
     title: "Diffusion & Tournées",
     subtitle: "Rayonnez sur toutes les scènes",
-    description: "Portez votre spectacle aux quatre coins de la France avec une organisation millimétrée et un réseau de salles partenaires.",
+    description: "Portez votre spectacle partout en France. Organisation millimétrée, réseau de salles partenaires et support technique pour des tournées réussies.",
     icon: Globe,
     features: [
-      "Booking national",
-      "Gestion de tournées",
-      "Relations salles",
-      "Support technique"
-    ],
-    color: 'from-green-400 to-teal-400'
+      { title: "Booking national", desc: "300+ salles partenaires" },
+      { title: "Gestion tournées", desc: "Logistique complète" },
+      { title: "Relations salles", desc: "Négociation, contrats" },
+      { title: "Support technique", desc: "Équipe sur place" }
+    ]
   },
   {
     id: "evenements",
+    number: "06",
     title: "Événements Spéciaux",
     subtitle: "Des moments uniques",
-    description: "Créez des moments inoubliables pour des occasions exceptionnelles avec notre expertise événementielle.",
+    description: "Créez des moments inoubliables pour vos événements privés ou corporatifs. Production sur mesure, coordination complète et expertise événementielle premium.",
     icon: Calendar,
     features: [
-      "Conception événementielle",
-      "Production sur mesure",
-      "Coordination complète",
-      "Gestion technique"
-    ],
-    color: 'from-orange-400 to-red-400'
+      { title: "Conception sur mesure", desc: "Événements uniques" },
+      { title: "Production complète", desc: "Clé en main" },
+      { title: "Coordination", desc: "Gestion A à Z" },
+      { title: "Technique premium", desc: "Équipement haut de gamme" }
+    ]
   }
 ];
 
-const MissionCard = ({ mission, index }) => {
-  const Icon = mission.icon;
+const ServicePanel = ({ service, index, isActive, onClick }) => {
+  const Icon = service.icon;
   
   return (
     <motion.div
-      initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
+      className={`service-panel ${isActive ? 'active' : ''}`}
+      data-service={service.id}
+      style={{ '--index': index } as React.CSSProperties}
+      initial={{ opacity: 0, x: -50 }}
+      animate={{ opacity: 1, x: 0 }}
       transition={{ duration: 0.5, delay: index * 0.1 }}
-      className="min-h-[calc(100vh-6rem)] md:min-h-screen flex items-center justify-center py-12 md:py-20"
     >
-      <div className="w-full max-w-5xl mx-auto px-4">
-        <div className="relative">
-          <div className="relative">
-            {/* Title Section with Icon */}
-            <div className="flex flex-col md:flex-row items-center gap-4 md:gap-6 mb-8 md:mb-12">
-              <div className="relative group">
-                <div className={`absolute inset-0 bg-gradient-to-br ${mission.color} opacity-20 blur-xl group-hover:opacity-40 transition-opacity`} />
-                <div className={`relative w-16 h-16 md:w-24 md:h-24 rounded-2xl md:rounded-3xl bg-gradient-to-br ${mission.color} p-0.5`}>
-                  <div className="w-full h-full rounded-2xl md:rounded-3xl bg-gray-900 flex items-center justify-center">
-                    <Icon className="w-8 h-8 md:w-12 md:h-12 text-white" />
-                  </div>
-                </div>
-              </div>
-
-              <div className="text-center md:text-left">
-                <h2 className="text-4xl md:text-6xl lg:text-8xl font-bold tracking-tight">
-                  <span className="block bg-gradient-to-b from-white via-white to-white/70 bg-clip-text text-transparent">
-                    {mission.title}
-                  </span>
-                </h2>
-                <span className="text-xl md:text-2xl lg:text-3xl block mt-2 md:mt-4 bg-gradient-to-r from-pink-300 via-pink-200 to-pink-300 bg-clip-text text-transparent">
-                  {mission.subtitle}
-                </span>
-              </div>
+      <div className="panel-container">
+        {/* Effet de lumière */}
+        <div className="light-sweep" />
+        
+        {/* Header cliquable */}
+        <div className="panel-header" onClick={onClick}>
+          {/* Numéro en arrière-plan - AMÉLIORÉ */}
+          <div className="panel-number-bg">{service.number}</div>
+          
+          {/* Icône animée */}
+          <div className="panel-icon-wrapper">
+            <div className="panel-icon-bg" />
+            <div className="panel-icon">
+              <Icon />
             </div>
-
-            <div className="mb-8 md:mb-12">
-              <p className="text-base md:text-xl text-white/70 leading-relaxed">
-                {mission.description}
-              </p>
-            </div>
-
-            {/* Features Grid */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6 mb-8 md:mb-12">
-              {mission.features.map((feature, i) => (
-                <motion.div
-                  key={i}
-                  initial={{ opacity: 0, x: -20 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ duration: 0.8, delay: i * 0.1 }}
-                  className="group"
-                >
-                  <div className="relative glass-card rounded-xl md:rounded-2xl p-4 md:p-6 backdrop-blur-xl overflow-hidden">
-                    <div className="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
-                    <div className="relative flex items-center gap-3">
-                      <div className="w-1.5 h-1.5 rounded-full bg-pink-400/40" />
-                      <span className="text-sm md:text-lg text-white/80 group-hover:text-white transition-colors duration-300">
-                        {feature}
-                      </span>
-                    </div>
-                  </div>
-                </motion.div>
-              ))}
-            </div>
-
-            {/* CTA Button */}
-            <a
-              href={`/services/${mission.id}`}
-              className="inline-flex items-center gap-2 md:gap-3 px-6 md:px-8 py-3 md:py-4 rounded-xl bg-gradient-to-r from-pink-400 to-pink-500 text-black font-semibold hover:from-pink-300 hover:to-pink-400 transition-all duration-300 group"
-            >
-              <span className="text-sm md:text-base">En savoir plus</span>
-              <ArrowRight className="w-4 h-4 md:w-5 md:h-5 group-hover:translate-x-1 transition-transform duration-300" />
-            </a>
+          </div>
+          
+          {/* Infos */}
+          <div className="panel-info">
+            <h3 className="panel-title">{service.title}</h3>
+            <p className="panel-subtitle">{service.subtitle}</p>
+          </div>
+          
+          {/* Toggle button */}
+          <div className="panel-toggle">
+            <ChevronDown />
           </div>
         </div>
+        
+        {/* Contenu expansible */}
+        <AnimatePresence>
+          {isActive && (
+            <motion.div 
+              className="panel-content"
+              initial={{ height: 0, opacity: 0 }}
+              animate={{ height: 'auto', opacity: 1 }}
+              exit={{ height: 0, opacity: 0 }}
+              transition={{ duration: 0.3 }}
+            >
+              <div className="content-inner">
+                <p className="panel-description">{service.description}</p>
+                
+                {/* Grille de features */}
+                <div className="features-grid">
+                  {service.features.map((feature, i) => (
+                    <motion.div
+                      key={i}
+                      className="feature-card"
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ delay: i * 0.05 }}
+                    >
+                      <h4 className="feature-title">{feature.title}</h4>
+                      <p className="feature-desc">{feature.desc}</p>
+                    </motion.div>
+                  ))}
+                </div>
+                
+                {/* CTA */}
+                <Link to={`/services/${service.id}`} className="panel-cta">
+                  <span>En savoir plus</span>
+                  <ArrowRight size={20} />
+                </Link>
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
       </div>
     </motion.div>
   );
 };
 
 export const MissionSection = () => {
+  const [activePanel, setActivePanel] = useState<string | null>(null);
+  
+  const togglePanel = (serviceId: string) => {
+    setActivePanel(activePanel === serviceId ? null : serviceId);
+  };
+  
   return (
-    <section className="relative bg-[#0A0F29] overflow-hidden">
-      <div className="absolute inset-0">
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(44,62,153,0.15),transparent_70%)]" />
-        {/* Particules flottantes */}
-        <div className="absolute inset-0">
-          {[...Array(30)].map((_, i) => (
+    <section className="mission-section">
+      {/* Effets de fond */}
+      <div className="mission-background">
+        {/* Grille animée */}
+        <div className="grid-lines" />
+        
+        {/* Vagues de couleur */}
+        <div className="color-waves">
+          {[
+            { color: 'rgba(255, 0, 255, 0.3)', delay: '0s' },
+            { color: 'rgba(0, 255, 255, 0.3)', delay: '10s' },
+            { color: 'rgba(255, 255, 0, 0.3)', delay: '20s' }
+          ].map((wave, i) => (
             <motion.div
               key={i}
-              className="absolute w-1 h-1 bg-white/20 rounded-full"
-              initial={{
-                x: Math.random() * 100 + "%",
-                y: Math.random() * 100 + "%",
-                opacity: 0
-              }}
-              animate={{
-                y: [null, `${Math.random() * 30 - 15}%`],
-                opacity: [0, 0.5, 0]
-              }}
-              transition={{
-                duration: Math.random() * 5 + 3,
-                repeat: Infinity,
-                repeatDelay: Math.random() * 2
+              className="wave"
+              style={{
+                '--wave-color': wave.color,
+                animationDelay: wave.delay
+              } as React.CSSProperties}
+            />
+          ))}
+        </div>
+        
+        {/* Étoiles scintillantes */}
+        <div className="stars">
+          {[...Array(50)].map((_, i) => (
+            <div
+              key={i}
+              className="star"
+              style={{
+                left: `${Math.random() * 100}%`,
+                top: `${Math.random() * 100}%`,
+                animationDelay: `${Math.random() * 3}s`
               }}
             />
           ))}
         </div>
       </div>
-
-      <div className="relative pt-20 md:pt-32 text-center">
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          className="relative px-2 md:px-0"
+      
+      {/* Header spectaculaire */}
+      <div className="mission-header">
+        <div className="title-container">
+          <div className="title-glow" />
+          <h2 className="main-title">
+            <span className="title-word-1">Nos</span>
+            <span className="title-word-2">Services</span>
+          </h2>
+        </div>
+        
+        <motion.p 
+          className="subtitle"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8, delay: 0.3 }}
         >
-          <motion.div
-            initial={{ scale: 0.95, opacity: 0 }}
-            animate={{ scale: 1, opacity: 1 }}
-            className="absolute -inset-x-4 -inset-y-8 md:-inset-y-16 bg-gradient-to-r from-pink-500/10 via-pink-500/5 to-pink-500/10 rounded-[40px] blur-3xl"
-          />
-          <motion.div
-            initial={{ y: 20, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            className="relative"
-          >
-            <h2 className="text-4xl sm:text-6xl md:text-8xl lg:text-9xl font-bold tracking-tight leading-[0.9] md:leading-[0.9]">
-              <span className="inline-block bg-gradient-to-b from-white via-white to-white/70 bg-clip-text text-transparent">
-                Une team au service
-              </span>
-              <br />
-              <span className="inline-block bg-gradient-to-r from-pink-300 via-pink-200 to-pink-300 bg-clip-text text-transparent">
-                de votre carrière
-              </span>
-            </h2>
-          </motion.div>
-        </motion.div>
+          Six expertises pour propulser votre talent
+        </motion.p>
       </div>
-
-      <div className="relative">
-        {missions.map((mission, index) => (
-          <MissionCard
-            key={index}
-            mission={mission}
+      
+      {/* CASCADE de services */}
+      <div className="services-cascade">
+        {servicesData.map((service, index) => (
+          <ServicePanel
+            key={service.id}
+            service={service}
             index={index}
+            isActive={activePanel === service.id}
+            onClick={() => togglePanel(service.id)}
           />
         ))}
       </div>
-
-      {/* CTA Section en bas */}
-      <div className="relative text-center pb-20 md:pb-32">
-        <a
-          href="/services"
-          className="inline-flex items-center gap-3 px-8 py-4 rounded-full bg-white/10 backdrop-blur-sm border border-white/20 text-white font-medium hover:bg-white/20 transition-all duration-300 group"
-        >
+      
+      {/* Footer avec CTA */}
+      <motion.div 
+        className="section-footer"
+        initial={{ opacity: 0, y: 30 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.8 }}
+      >
+        <Link to="/services" className="footer-cta">
           <span>Découvrir tous nos services</span>
-          <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-        </a>
-      </div>
+          <ArrowRight size={24} />
+        </Link>
+      </motion.div>
     </section>
   );
 };

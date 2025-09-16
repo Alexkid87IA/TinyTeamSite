@@ -1,26 +1,29 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import { Mail, ArrowUpRight } from 'lucide-react';
+import { ArrowRight, Instagram, Linkedin, Music2, Youtube, Heart } from 'lucide-react';
+import './Footer.css';
 
-const footerLinks = [
+// Configuration des liens
+const footerNavigation = [
+  {
+    title: 'Services',
+    links: [
+      { label: 'Production', href: '/services#production' },
+      { label: 'Management', href: '/services#management' },
+      { label: 'Digital', href: '/services#digital' },
+      { label: 'Communication', href: '/services#communication' },
+      { label: 'Diffusion & Tournées', href: '/services#diffusion' },
+      { label: 'Événements Spéciaux', href: '/services#evenements' },
+    ],
+  },
   {
     title: 'Navigation',
     links: [
       { label: 'Nos artistes', href: '/artistes' },
       { label: 'Nos services', href: '/services' },
+      { label: 'À propos', href: '/about' },
       { label: 'Contact', href: '/contact' },
-    ],
-  },
-  {
-    title: 'Services',
-    links: [
-      { label: 'Production', href: '/services#production' },
-      { label: 'Diffusion & Tournées', href: '/services#diffusion' },
-      { label: 'Digital', href: '/services#digital' },
-      { label: 'Communication', href: '/services#communication' },
-      { label: 'Management', href: '/services#management' },
-      { label: 'Événements', href: '/services#evenements' },
     ],
   },
   {
@@ -29,256 +32,197 @@ const footerLinks = [
       { label: 'Artistes', href: '/artiste' },
       { label: 'Programmateurs', href: '/programmateur' },
       { label: 'Marques', href: '/marque' },
+      { label: 'Partenaires', href: '/partenaires' },
     ],
   },
 ];
 
 export const Footer = () => {
   const currentYear = new Date().getFullYear();
-
+  
   return (
-    <footer className="relative bg-[#0A0F29] overflow-hidden">
-      {/* Ligne animée du haut */}
-      <div className="absolute top-0 left-0 right-0 h-px">
-        <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent" />
-        <motion.div
-          className="absolute inset-0 bg-gradient-to-r from-transparent via-pink-400/50 to-transparent"
-          animate={{
-            x: ['-100%', '100%'],
-          }}
-          transition={{
-            duration: 8,
-            repeat: Infinity,
-            ease: "linear"
-          }}
-        />
+    <footer className="footer-ultra">
+      {/* Ligne néon supérieure */}
+      <div className="footer-neon-line" />
+      
+      {/* Effets de fond */}
+      <div className="footer-bg-effects">
+        <div className="footer-glow footer-glow-1" />
+        <div className="footer-glow footer-glow-2" />
       </div>
-
-      {/* Background effets */}
-      <div className="absolute inset-0">
-        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-purple-500/5 to-pink-500/5" />
-        <motion.div
-          className="absolute bottom-0 left-0 w-96 h-96 bg-purple-500/10 rounded-full blur-3xl"
-          animate={{
-            scale: [1, 1.2, 1],
-            opacity: [0.3, 0.5, 0.3],
-          }}
-          transition={{
-            duration: 10,
-            repeat: Infinity,
-            ease: "easeInOut"
-          }}
-        />
-        <motion.div
-          className="absolute bottom-0 right-0 w-96 h-96 bg-pink-500/10 rounded-full blur-3xl"
-          animate={{
-            scale: [1.2, 1, 1.2],
-            opacity: [0.3, 0.5, 0.3],
-          }}
-          transition={{
-            duration: 10,
-            repeat: Infinity,
-            ease: "easeInOut",
-            delay: 5
-          }}
-        />
-      </div>
-
-      <div className="relative container mx-auto px-4 pt-24 pb-12">
-        {/* Section principale */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 mb-20">
-          
-          {/* Colonne Logo et Description */}
-          <motion.div 
-            className="lg:col-span-4"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-          >
-            {/* Logo */}
-            <Link to="/" className="inline-block mb-8 group">
-              <div className="relative">
-                <div className="absolute -inset-4 bg-gradient-to-r from-pink-500/20 to-purple-500/20 rounded-full blur-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                <img 
-                  src="https://res.cloudinary.com/diqco2njt/image/upload/v1746189362/Logo_TT_blanc_th9klb.png"
-                  alt="Tiny Team"
-                  className="relative h-24 md:h-28 w-auto group-hover:scale-105 transition-transform duration-300"
-                />
-              </div>
-            </Link>
-
-            {/* Tagline */}
-            <h2 className="text-2xl md:text-3xl font-bold text-white mb-4">
-              Révélons ensemble
-              <span className="block bg-gradient-to-r from-pink-400 to-purple-400 bg-clip-text text-transparent">
-                votre potentiel créatif
-              </span>
-            </h2>
-            
-            <p className="text-white/60 leading-relaxed mb-8 max-w-md">
-              Nous accompagnons les artistes du spectacle vivant avec passion et expertise. 
-              Une équipe dédiée pour transformer vos rêves en succès.
-            </p>
-
-            {/* Email de contact */}
-            <a
-              href="mailto:contact@tinyteam.fr"
-              className="group inline-flex items-center gap-3 text-white/60 hover:text-white transition-colors duration-300"
-            >
-              <div className="w-10 h-10 rounded-xl bg-white/5 group-hover:bg-white/10 flex items-center justify-center transition-all duration-300">
-                <Mail className="w-5 h-5" />
-              </div>
-              <span className="text-sm">contact@tinyteam.fr</span>
-            </a>
-          </motion.div>
-
-          {/* Espacement */}
-          <div className="lg:col-span-2" />
-
-          {/* Colonnes de liens */}
-          {footerLinks.map((column, index) => (
-            <motion.div
-              key={column.title}
-              className="lg:col-span-2"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: 0.1 + index * 0.05 }}
-            >
-              <h3 className="text-white font-semibold mb-4">{column.title}</h3>
-              <ul className="space-y-3">
-                {column.links.map((link) => (
-                  <li key={link.label}>
-                    <Link
-                      to={link.href}
-                      className="group relative inline-flex items-center gap-1 text-white/60 hover:text-white transition-all duration-300 text-sm"
-                    >
-                      <span className="relative">
-                        {link.label}
-                        <span className="absolute -bottom-0.5 left-0 h-px w-0 bg-gradient-to-r from-pink-400 to-purple-400 transition-all duration-300 group-hover:w-full" />
-                      </span>
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </motion.div>
-          ))}
-        </div>
-
-        {/* Section Réseaux Sociaux et Crédits */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
+      
+      {/* Container principal */}
+      <div className="footer-container">
+        
+        {/* Hero Section */}
+        <motion.div 
+          className="footer-hero"
+          initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.6, delay: 0.3 }}
-          className="flex flex-col md:flex-row items-center justify-between gap-8 py-8 border-t border-white/10"
+          transition={{ duration: 0.8 }}
         >
-          {/* Réseaux sociaux */}
-          <div className="flex items-center gap-6">
-            <span className="text-white/40 text-sm">Suivez-nous</span>
-            <div className="flex gap-3">
-              {/* Instagram Tiny Team */}
-              <motion.a
-                href="https://www.instagram.com/latinyteam/?hl=fr"
-                target="_blank"
-                rel="noopener noreferrer"
-                whileHover={{ scale: 1.1, rotate: 5 }}
-                whileTap={{ scale: 0.95 }}
-                className="group relative"
-              >
-                <div className="absolute -inset-2 rounded-full bg-gradient-to-r from-pink-500/20 to-purple-500/20 blur-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                <div className="relative w-12 h-12 rounded-full bg-white/5 group-hover:bg-white/10 border border-white/10 group-hover:border-white/20 flex items-center justify-center transition-all duration-300">
-                  <span className="text-xs font-bold text-white/60 group-hover:text-white transition-colors duration-300">
-                    IG
-                  </span>
-                </div>
-              </motion.a>
-
-              {/* LinkedIn */}
-              <motion.a
-                href="https://www.linkedin.com/in/b%C3%A9n%C3%A9dicte-lecoq-426083138/"
-                target="_blank"
-                rel="noopener noreferrer"
-                whileHover={{ scale: 1.1, rotate: -5 }}
-                whileTap={{ scale: 0.95 }}
-                className="group relative"
-              >
-                <div className="absolute -inset-2 rounded-full bg-gradient-to-r from-blue-500/20 to-purple-500/20 blur-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                <div className="relative w-12 h-12 rounded-full bg-white/5 group-hover:bg-white/10 border border-white/10 group-hover:border-white/20 flex items-center justify-center transition-all duration-300">
-                  <span className="text-xs font-bold text-white/60 group-hover:text-white transition-colors duration-300">
-                    IN
-                  </span>
-                </div>
-              </motion.a>
-            </div>
+          {/* Logo */}
+          <div className="footer-logo-section">
+            <Link to="/" className="footer-logo-link">
+              <img 
+                src="https://res.cloudinary.com/diqco2njt/image/upload/v1746189362/Logo_TT_blanc_th9klb.png"
+                alt="Tiny Team"
+                className="footer-logo-img"
+              />
+            </Link>
           </div>
-
-          {/* Made with love by alexkid */}
-          <a 
-            href="https://www.instagram.com/alex______kid/?hl=fr"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="px-4 py-2 rounded-full bg-gradient-to-r from-pink-500/10 to-purple-500/10 border border-white/10 hover:border-white/20 transition-all duration-300 group"
-          >
-            <span className="text-xs text-white/60 group-hover:text-white/80 transition-colors duration-300">
-              Made with ❤️ by 
-              <span className="text-pink-400 ml-1 font-semibold">alexkid</span>
-            </span>
-          </a>
+          
+          {/* Tagline */}
+          <div className="footer-tagline">
+            <h2 className="tagline-line-1">Révélons ensemble</h2>
+            <h3 className="tagline-line-2">Votre potentiel créatif</h3>
+          </div>
+          
+          <p className="footer-subtitle">
+            Nous accompagnons les artistes du spectacle vivant avec passion et 
+            expertise. Une équipe dédiée pour transformer vos rêves en succès.
+          </p>
         </motion.div>
-
-        {/* Bottom bar */}
-        <motion.div
+        
+        {/* Navigation Grid */}
+        <motion.div 
+          className="footer-nav-section"
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8, delay: 0.2 }}
+        >
+          <div className="footer-nav-grid">
+            {footerNavigation.map((section, index) => (
+              <div key={section.title} className="footer-nav-column">
+                <h4 className="nav-column-title">{section.title}</h4>
+                <ul className="footer-nav-list">
+                  {section.links.map((link) => (
+                    <li key={link.label} className="footer-nav-item">
+                      <Link to={link.href} className="footer-nav-link">
+                        {link.label}
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))}
+          </div>
+        </motion.div>
+        
+        {/* CTA Section */}
+        <motion.div 
+          className="footer-cta-section"
+          initial={{ opacity: 0, scale: 0.95 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8, delay: 0.3 }}
+        >
+          <div className="footer-cta-card">
+            <h3 className="cta-title">Prêt à révéler votre talent ?</h3>
+            <p className="cta-subtitle">
+              Contactez-nous pour discuter de votre projet artistique
+            </p>
+            <Link to="/contact" className="footer-cta-button">
+              <span>Parlons de votre projet</span>
+              <ArrowRight size={20} />
+            </Link>
+          </div>
+        </motion.div>
+        
+        {/* Social Links */}
+        <motion.div 
+          className="footer-social-section"
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.6, delay: 0.4 }}
-          className="pt-8 border-t border-white/5"
+          transition={{ duration: 0.8, delay: 0.4 }}
         >
-          <div className="flex flex-col md:flex-row justify-between items-center gap-4">
-            <p className="text-white/40 text-xs text-center md:text-left">
+          <div className="social-links-row">
+            <motion.a
+              href="https://www.instagram.com/latinyteam/?hl=fr"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="footer-social-link"
+              data-network="instagram"
+              whileHover={{ y: -4 }}
+              whileTap={{ scale: 0.95 }}
+            >
+              <Instagram />
+            </motion.a>
+            
+            <motion.a
+              href="https://www.linkedin.com/in/bénédicte-lecoq-426083138/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="footer-social-link"
+              data-network="linkedin"
+              whileHover={{ y: -4 }}
+              whileTap={{ scale: 0.95 }}
+            >
+              <Linkedin />
+            </motion.a>
+            
+            <motion.a
+              href="#"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="footer-social-link"
+              data-network="tiktok"
+              whileHover={{ y: -4 }}
+              whileTap={{ scale: 0.95 }}
+            >
+              <Music2 />
+            </motion.a>
+            
+            <motion.a
+              href="#"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="footer-social-link"
+              data-network="youtube"
+              whileHover={{ y: -4 }}
+              whileTap={{ scale: 0.95 }}
+            >
+              <Youtube />
+            </motion.a>
+          </div>
+        </motion.div>
+        
+        {/* Bottom Bar */}
+        <div className="footer-bottom">
+          <div className="footer-bottom-content">
+            <p className="footer-copyright">
               © {currentYear} Tiny Team. Tous droits réservés.
             </p>
             
-            <div className="flex items-center gap-6">
-              <Link 
-                to="/mentions-legales" 
-                className="text-white/40 hover:text-white/60 text-xs transition-colors duration-300"
-              >
+            <div className="footer-legal">
+              <Link to="/mentions-legales" className="footer-legal-link">
                 Mentions légales
               </Link>
-              <Link 
-                to="/confidentialite" 
-                className="text-white/40 hover:text-white/60 text-xs transition-colors duration-300"
-              >
+              <Link to="/confidentialite" className="footer-legal-link">
                 Confidentialité
               </Link>
-              <Link 
-                to="/cookies" 
-                className="text-white/40 hover:text-white/60 text-xs transition-colors duration-300"
-              >
+              <Link to="/cookies" className="footer-legal-link">
                 Cookies
               </Link>
             </div>
+            
+            <a 
+              href="https://www.instagram.com/alex______kid/?hl=fr"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="footer-credit"
+            >
+              <span>Made with</span>
+              <Heart size={14} />
+              <span>by</span>
+              <span className="footer-credit-name">alexkid</span>
+            </a>
           </div>
-        </motion.div>
-
-        {/* Ligne animée du bas */}
-        <motion.div
-          className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-pink-400 via-purple-400 to-pink-400"
-          animate={{
-            backgroundPosition: ['0% 50%', '100% 50%', '0% 50%'],
-          }}
-          transition={{
-            duration: 10,
-            repeat: Infinity,
-            ease: "linear"
-          }}
-          style={{
-            backgroundSize: '200% 100%',
-          }}
-        />
+        </div>
+        
       </div>
     </footer>
   );

@@ -1,0 +1,769 @@
+/* MissionSection.css - Design CASCADE VERTICALE avec effets néon */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;900&display=swap');
+
+/* ====================================
+   VARIABLES
+   ==================================== */
+:root {
+    --neon-pink: #ff00ff;
+    --neon-cyan: #00ffff;
+    --neon-yellow: #ffff00;
+    --neon-purple: #a855f7;
+    --neon-orange: #ff8800;
+    --neon-green: #00ff88;
+    --bg-dark: #0A0F29;
+}
+
+/* ====================================
+   SECTION PRINCIPALE
+   ==================================== */
+.mission-section {
+    position: relative;
+    min-height: 100vh;
+    padding: 8rem 0;
+    background: linear-gradient(180deg, #16213e 0%, #0f0f23 30%, #0a0a1a 70%, #070710 100%);
+    overflow: hidden;
+}
+
+/* ====================================
+   EFFETS DE FOND ANIMÉS
+   ==================================== */
+.mission-background {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+}
+
+/* Grille animée en arrière-plan */
+.grid-lines {
+    position: absolute;
+    inset: 0;
+    opacity: 0.1;
+    background-image: 
+        linear-gradient(var(--neon-cyan) 1px, transparent 1px),
+        linear-gradient(90deg, var(--neon-cyan) 1px, transparent 1px);
+    background-size: 100px 100px;
+    animation: gridMove 20s linear infinite;
+}
+
+@keyframes gridMove {
+    0% { transform: translate(0, 0); }
+    100% { transform: translate(100px, 100px); }
+}
+
+/* Vagues de couleur */
+.color-waves {
+    position: absolute;
+    inset: 0;
+    opacity: 0.15;
+}
+
+.wave {
+    position: absolute;
+    width: 200%;
+    height: 200%;
+    top: -50%;
+    left: -50%;
+    background: radial-gradient(ellipse at center, var(--wave-color) 0%, transparent 40%);
+    animation: waveRotate 30s linear infinite;
+    filter: blur(60px);
+}
+
+@keyframes waveRotate {
+    0% { transform: rotate(0deg) scale(1); }
+    50% { transform: rotate(180deg) scale(1.2); }
+    100% { transform: rotate(360deg) scale(1); }
+}
+
+/* Étoiles scintillantes */
+.stars {
+    position: absolute;
+    inset: 0;
+}
+
+.star {
+    position: absolute;
+    width: 2px;
+    height: 2px;
+    background: white;
+    border-radius: 50%;
+    animation: twinkle 3s ease-in-out infinite;
+}
+
+@keyframes twinkle {
+    0%, 100% { opacity: 0; transform: scale(0.5); }
+    50% { opacity: 1; transform: scale(1); }
+}
+
+/* ====================================
+   HEADER SPECTACULAIRE
+   ==================================== */
+.mission-header {
+    text-align: center;
+    margin-bottom: 6rem;
+    position: relative;
+    z-index: 10;
+    padding: 0 2rem;
+}
+
+.title-container {
+    position: relative;
+    display: inline-block;
+    max-width: 100%;
+    padding: 0 1rem;
+}
+
+.title-glow {
+    position: absolute;
+    inset: -60px;
+    background: radial-gradient(circle, rgba(255, 0, 255, 0.3), transparent 50%);
+    filter: blur(60px);
+    animation: glowPulse 4s ease-in-out infinite;
+    pointer-events: none;
+}
+
+@keyframes glowPulse {
+    0%, 100% { opacity: 0.3; transform: scale(0.9); }
+    50% { opacity: 0.6; transform: scale(1.1); }
+}
+
+.main-title {
+    font-size: clamp(3rem, 8vw, 7rem);
+    font-weight: 900;
+    font-style: italic;
+    text-transform: uppercase;
+    line-height: 0.9;
+    letter-spacing: -0.02em;
+    position: relative;
+    padding-right: 0.2em;
+}
+
+.title-word-1 {
+    display: block;
+    background: linear-gradient(180deg, white 0%, rgba(255, 255, 255, 0.8) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    filter: drop-shadow(0 0 30px rgba(255, 255, 255, 0.3));
+    animation: slideFromLeft 1s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.title-word-2 {
+    display: block;
+    font-size: 1.2em;
+    margin-top: -0.1em;
+    padding-right: 0.1em;
+    background: linear-gradient(90deg, 
+        var(--neon-pink) 0%, 
+        var(--neon-cyan) 25%, 
+        var(--neon-yellow) 50%, 
+        var(--neon-purple) 75%, 
+        var(--neon-pink) 100%);
+    background-size: 200% 100%;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    filter: drop-shadow(0 0 60px var(--neon-pink));
+    animation: 
+        slideFromRight 1s cubic-bezier(0.16, 1, 0.3, 1) 0.2s backwards,
+        gradientSlide 3s linear infinite;
+}
+
+@keyframes slideFromLeft {
+    from { opacity: 0; transform: translateX(-100px); }
+    to { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes slideFromRight {
+    from { opacity: 0; transform: translateX(100px); }
+    to { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes gradientSlide {
+    0% { background-position: 0% 50%; }
+    100% { background-position: 200% 50%; }
+}
+
+.subtitle {
+    margin-top: 2rem;
+    font-size: clamp(1rem, 2.5vw, 1.5rem);
+    color: rgba(255, 255, 255, 0.6);
+    font-weight: 300;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    animation: fadeInUp 1s ease-out 0.8s backwards;
+}
+
+@keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* ====================================
+   CASCADE DE SERVICES
+   ==================================== */
+.services-cascade {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 2rem;
+    position: relative;
+    z-index: 10;
+}
+
+/* Service Panel */
+.service-panel {
+    position: relative;
+    margin-bottom: 2rem;
+    opacity: 0;
+    animation: panelReveal 0.8s ease-out forwards;
+    animation-delay: calc(var(--index) * 0.1s);
+}
+
+@keyframes panelReveal {
+    from {
+        opacity: 0;
+        transform: translateX(-50px) scale(0.95);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0) scale(1);
+    }
+}
+
+.panel-container {
+    position: relative;
+    background: rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(20px);
+    border-radius: 2rem;
+    overflow: visible; /* Changé de hidden à visible pour les numéros */
+    transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+    border: 2px solid transparent;
+    background-image: 
+        linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), 
+        linear-gradient(135deg, var(--service-color-1), var(--service-color-2));
+    background-origin: border-box;
+    background-clip: padding-box, border-box;
+}
+
+/* Couleurs par service */
+.service-panel[data-service="production"] {
+    --service-color-1: var(--neon-yellow);
+    --service-color-2: var(--neon-orange);
+}
+
+.service-panel[data-service="management"] {
+    --service-color-1: var(--neon-cyan);
+    --service-color-2: var(--neon-purple);
+}
+
+.service-panel[data-service="digital"] {
+    --service-color-1: var(--neon-purple);
+    --service-color-2: var(--neon-pink);
+}
+
+.service-panel[data-service="communication"] {
+    --service-color-1: var(--neon-pink);
+    --service-color-2: #ff00aa;
+}
+
+.service-panel[data-service="diffusion"] {
+    --service-color-1: var(--neon-green);
+    --service-color-2: var(--neon-cyan);
+}
+
+.service-panel[data-service="evenements"] {
+    --service-color-1: var(--neon-orange);
+    --service-color-2: #ff0044;
+}
+
+/* État hover/actif */
+.panel-container:hover,
+.service-panel.active .panel-container {
+    transform: scale(1.02);
+    box-shadow: 
+        0 20px 60px rgba(0, 0, 0, 0.4),
+        0 0 100px var(--service-color-1),
+        inset 0 0 50px rgba(255, 255, 255, 0.1);
+}
+
+/* Header du panel */
+.panel-header {
+    padding: 2rem 3rem;
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    cursor: pointer;
+    position: relative;
+    overflow: visible; /* Changé pour permettre au numéro de sortir */
+}
+
+/* Numéro géant amélioré */
+.panel-number-bg {
+    position: absolute;
+    right: 2rem; /* Ajusté pour éviter la troncature */
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 8rem; /* Légèrement réduit */
+    font-weight: 900;
+    line-height: 1;
+    font-style: italic;
+    pointer-events: none;
+    transition: all 0.5s;
+    z-index: 1;
+    /* Effet de dégradé sur le numéro */
+    background: linear-gradient(
+        135deg,
+        rgba(255, 255, 255, 0.03) 0%,
+        rgba(255, 255, 255, 0.08) 50%,
+        rgba(255, 255, 255, 0.03) 100%
+    );
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    /* Ombre douce pour améliorer la visibilité */
+    filter: drop-shadow(0 0 30px rgba(255, 255, 255, 0.05));
+}
+
+.panel-container:hover .panel-number-bg,
+.service-panel.active .panel-number-bg {
+    opacity: 1;
+    transform: translateY(-50%) scale(1.05);
+    background: linear-gradient(
+        135deg,
+        var(--service-color-1) 0%,
+        var(--service-color-2) 100%
+    );
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    filter: drop-shadow(0 0 40px var(--service-color-1));
+}
+
+/* Icône avec animation */
+.panel-icon-wrapper {
+    position: relative;
+    width: 80px;
+    height: 80px;
+    flex-shrink: 0;
+    z-index: 2; /* Au-dessus du numéro */
+}
+
+.panel-icon-bg {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, var(--service-color-1), var(--service-color-2));
+    border-radius: 1.5rem;
+    animation: iconSpin 20s linear infinite;
+}
+
+@keyframes iconSpin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+.panel-icon {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--bg-dark);
+    border-radius: 1.5rem;
+    transform: scale(0.85);
+    transition: transform 0.3s;
+}
+
+.panel-container:hover .panel-icon,
+.service-panel.active .panel-icon {
+    transform: scale(0.95);
+}
+
+.panel-icon svg {
+    width: 40px;
+    height: 40px;
+    color: white;
+    filter: drop-shadow(0 0 20px currentColor);
+}
+
+/* Contenu du header */
+.panel-info {
+    flex: 1;
+    z-index: 2; /* Au-dessus du numéro */
+}
+
+.panel-title {
+    font-size: 2.5rem;
+    font-weight: 900;
+    text-transform: uppercase;
+    color: white;
+    margin-bottom: 0.5rem;
+    letter-spacing: -0.02em;
+    transition: all 0.3s;
+}
+
+.panel-container:hover .panel-title,
+.service-panel.active .panel-title {
+    background: linear-gradient(135deg, var(--service-color-1), var(--service-color-2));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    filter: drop-shadow(0 0 30px var(--service-color-1));
+}
+
+.panel-subtitle {
+    font-size: 1.1rem;
+    color: rgba(255, 255, 255, 0.5);
+    font-style: italic;
+}
+
+/* Indicateur expand/collapse */
+.panel-toggle {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s;
+    z-index: 2; /* Au-dessus du numéro */
+}
+
+.panel-toggle svg {
+    width: 24px;
+    height: 24px;
+    color: white;
+    transition: transform 0.3s;
+}
+
+.service-panel.active .panel-toggle svg {
+    transform: rotate(180deg);
+}
+
+.panel-container:hover .panel-toggle,
+.service-panel.active .panel-toggle {
+    background: linear-gradient(135deg, var(--service-color-1), var(--service-color-2));
+    box-shadow: 0 0 30px var(--service-color-1);
+}
+
+/* Contenu expansible */
+.panel-content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.service-panel.active .panel-content {
+    max-height: 500px;
+}
+
+.content-inner {
+    padding: 0 3rem 3rem;
+}
+
+.panel-description {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    color: rgba(255, 255, 255, 0.8);
+    margin-bottom: 2rem;
+}
+
+/* Grille de features */
+.features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+    margin-bottom: 2rem;
+}
+
+.feature-card {
+    padding: 1.25rem;
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 1rem;
+    transition: all 0.3s;
+    position: relative;
+    overflow: hidden;
+}
+
+.feature-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 4px;
+    height: 100%;
+    background: linear-gradient(135deg, var(--service-color-1), var(--service-color-2));
+}
+
+.feature-card:hover {
+    transform: translateX(10px);
+    background: rgba(255, 255, 255, 0.08);
+    border-color: var(--service-color-1);
+}
+
+.feature-title {
+    font-weight: 700;
+    color: white;
+    margin-bottom: 0.5rem;
+    font-size: 0.95rem;
+}
+
+.feature-desc {
+    font-size: 0.85rem;
+    color: rgba(255, 255, 255, 0.6);
+    line-height: 1.4;
+}
+
+/* CTA du panel */
+.panel-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 1rem 2rem;
+    background: linear-gradient(135deg, var(--service-color-1), var(--service-color-2));
+    color: var(--bg-dark);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    border-radius: 9999px;
+    text-decoration: none;
+    transition: all 0.3s;
+    position: relative;
+    overflow: hidden;
+}
+
+.panel-cta::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: rgba(255, 255, 255, 0.3);
+    transform: translateX(-100%);
+    transition: transform 0.3s;
+}
+
+.panel-cta:hover::before {
+    transform: translateX(0);
+}
+
+.panel-cta:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 40px var(--service-color-1);
+}
+
+/* Effet de lumière qui traverse */
+.light-sweep {
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, 
+        transparent 0%, 
+        rgba(255, 255, 255, 0.1) 50%, 
+        transparent 100%);
+    transition: left 0.8s;
+    pointer-events: none;
+}
+
+.panel-container:hover .light-sweep {
+    left: 100%;
+}
+
+/* ====================================
+   FOOTER DE SECTION
+   ==================================== */
+.section-footer {
+    text-align: center;
+    margin-top: 6rem;
+    position: relative;
+    z-index: 10;
+}
+
+.footer-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 1.5rem 4rem;
+    font-size: 1.25rem;
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    text-decoration: none;
+    color: white;
+    border-radius: 9999px;
+    position: relative;
+    overflow: hidden;
+    background: rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(10px);
+    border: 3px solid transparent;
+    background-image: 
+        linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), 
+        linear-gradient(135deg, var(--neon-pink), var(--neon-purple));
+    background-origin: border-box;
+    background-clip: padding-box, border-box;
+    box-shadow: 
+        0 0 40px rgba(255, 0, 255, 0.3),
+        0 0 80px rgba(168, 85, 247, 0.2);
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.footer-cta:hover {
+    transform: translateY(-5px) scale(1.05);
+    box-shadow: 
+        0 0 60px rgba(255, 0, 255, 0.5),
+        0 0 120px rgba(168, 85, 247, 0.4),
+        0 20px 40px rgba(0, 0, 0, 0.3);
+}
+
+/* ====================================
+   RESPONSIVE
+   ==================================== */
+@media (max-width: 768px) {
+    .mission-section {
+        padding: 4rem 0;
+    }
+    
+    .main-title {
+        font-size: clamp(2.5rem, 12vw, 4rem);
+    }
+    
+    .title-word-2 {
+        font-size: 1.15em;
+    }
+    
+    .mission-header {
+        margin-bottom: 3rem;
+        padding: 0 1rem;
+    }
+    
+    .title-glow {
+        inset: -40px;
+    }
+    
+    .services-cascade {
+        padding: 0 1rem;
+    }
+    
+    .panel-header {
+        padding: 1.5rem;
+        gap: 1rem;
+    }
+    
+    .panel-icon-wrapper {
+        width: 60px;
+        height: 60px;
+    }
+    
+    .panel-icon svg {
+        width: 30px;
+        height: 30px;
+    }
+    
+    .panel-title {
+        font-size: 1.5rem;
+    }
+    
+    .panel-subtitle {
+        font-size: 0.9rem;
+    }
+    
+    .panel-number-bg {
+        font-size: 5rem; /* Réduit pour mobile */
+        right: 1rem;
+    }
+    
+    .panel-toggle {
+        width: 40px;
+        height: 40px;
+    }
+    
+    .content-inner {
+        padding: 0 1.5rem 1.5rem;
+    }
+    
+    .features-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .footer-cta {
+        padding: 1.25rem 2.5rem;
+        font-size: 1rem;
+    }
+}
+
+/* Très petits écrans */
+@media (max-width: 380px) {
+    .main-title {
+        font-size: clamp(2rem, 11vw, 3rem);
+    }
+    
+    .title-word-2 {
+        font-size: 1.1em;
+    }
+    
+    .subtitle {
+        font-size: 0.85rem;
+    }
+    
+    .panel-title {
+        font-size: 1.3rem;
+    }
+    
+    .panel-subtitle {
+        font-size: 0.8rem;
+    }
+    
+    .panel-icon-wrapper {
+        width: 50px;
+        height: 50px;
+    }
+    
+    .panel-icon svg {
+        width: 25px;
+        height: 25px;
+    }
+    
+    .panel-number-bg {
+        font-size: 4rem; /* Encore plus petit pour très petits écrans */
+        right: 0.5rem;
+    }
+}
+
+/* Tablette */
+@media (min-width: 769px) and (max-width: 1024px) {
+    .main-title {
+        font-size: clamp(4rem, 8vw, 6rem);
+    }
+    
+    .panel-title {
+        font-size: 2rem;
+    }
+    
+    .panel-number-bg {
+        font-size: 6rem;
+        right: 1.5rem;
+    }
+    
+    .features-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* Grand écran */
+@media (min-width: 1920px) {
+    .services-cascade {
+        max-width: 1600px;
+    }
+    
+    .main-title {
+        font-size: 8rem;
+    }
+    
+    .panel-number-bg {
+        font-size: 10rem;
+        right: 3rem;
+    }
+}

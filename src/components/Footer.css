@@ -1,0 +1,540 @@
+/* Footer.css - Design ULTRA MODERNE avec effets néon raffinés */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+
+/* ====================================
+   VARIABLES
+   ==================================== */
+:root {
+    --neon-pink: #ff00ff;
+    --neon-cyan: #00ffff;
+    --neon-yellow: #ffff00;
+    --neon-purple: #a855f7;
+    --neon-blue: #0088ff;
+    --bg-footer: #0a0a1a;
+    --bg-card: rgba(255, 255, 255, 0.03);
+}
+
+/* ====================================
+   FOOTER CONTAINER
+   ==================================== */
+.footer-ultra {
+    position: relative;
+    background: linear-gradient(180deg, #0f0f23 0%, var(--bg-footer) 100%);
+    overflow: hidden;
+    padding: 120px 0 0;
+}
+
+/* ====================================
+   LIGNES NÉON ANIMÉES
+   ==================================== */
+.footer-neon-line {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(90deg,
+        transparent,
+        var(--neon-pink),
+        var(--neon-purple),
+        var(--neon-cyan),
+        transparent
+    );
+    filter: drop-shadow(0 0 20px var(--neon-pink));
+}
+
+.footer-neon-line::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: inherit;
+    animation: slideNeon 4s linear infinite;
+}
+
+@keyframes slideNeon {
+    0% { transform: translateX(-100%); }
+    100% { transform: translateX(100%); }
+}
+
+/* ====================================
+   EFFET DE FOND SUBTIL
+   ==================================== */
+.footer-bg-effects {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    overflow: hidden;
+}
+
+.footer-glow {
+    position: absolute;
+    width: 600px;
+    height: 600px;
+    border-radius: 50%;
+    filter: blur(100px);
+    opacity: 0.1;
+}
+
+.footer-glow-1 {
+    background: var(--neon-purple);
+    top: -300px;
+    left: -300px;
+    animation: glowFloat 20s ease-in-out infinite;
+}
+
+.footer-glow-2 {
+    background: var(--neon-cyan);
+    bottom: -300px;
+    right: -300px;
+    animation: glowFloat 20s ease-in-out infinite reverse;
+}
+
+@keyframes glowFloat {
+    0%, 100% { transform: translate(0, 0); }
+    50% { transform: translate(50px, -50px); }
+}
+
+/* ====================================
+   CONTAINER PRINCIPAL
+   ==================================== */
+.footer-container {
+    position: relative;
+    z-index: 10;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 40px;
+}
+
+/* ====================================
+   HEADER SPECTACULAIRE
+   ==================================== */
+.footer-hero {
+    text-align: center;
+    margin-bottom: 100px;
+    position: relative;
+}
+
+/* Logo animé */
+.footer-logo-section {
+    margin-bottom: 60px;
+    position: relative;
+    display: inline-block;
+}
+
+.footer-logo-link {
+    display: block;
+    position: relative;
+    transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.footer-logo-link:hover {
+    transform: scale(1.05);
+}
+
+.footer-logo-img {
+    height: 80px;
+    width: auto;
+    filter: brightness(1.2) drop-shadow(0 10px 40px rgba(255, 255, 255, 0.2));
+}
+
+/* Tagline épuré et puissant */
+.footer-tagline {
+    margin-bottom: 40px;
+}
+
+.tagline-line-1 {
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    font-weight: 800;
+    font-style: italic;
+    text-transform: uppercase;
+    color: white;
+    letter-spacing: -0.03em;
+    line-height: 1;
+    margin-bottom: 10px;
+    text-shadow: 0 0 40px rgba(255, 255, 255, 0.3);
+}
+
+.tagline-line-2 {
+    font-size: clamp(3rem, 6vw, 5rem);
+    font-weight: 900;
+    font-style: italic;
+    text-transform: uppercase;
+    line-height: 0.9;
+    background: linear-gradient(90deg,
+        var(--neon-cyan) 0%,
+        var(--neon-purple) 33%,
+        var(--neon-pink) 66%,
+        var(--neon-yellow) 100%
+    );
+    background-size: 200% 100%;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    animation: textGradientSlide 4s linear infinite;
+    filter: drop-shadow(0 0 60px var(--neon-purple));
+}
+
+@keyframes textGradientSlide {
+    0% { background-position: 0% 50%; }
+    100% { background-position: 200% 50%; }
+}
+
+.footer-subtitle {
+    font-size: 1.125rem;
+    color: rgba(255, 255, 255, 0.5);
+    max-width: 600px;
+    margin: 0 auto;
+    line-height: 1.6;
+    font-weight: 400;
+}
+
+/* ====================================
+   GRILLE DE NAVIGATION
+   ==================================== */
+.footer-nav-section {
+    margin-bottom: 80px;
+}
+
+.footer-nav-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 60px;
+    padding: 60px;
+    background: var(--bg-card);
+    backdrop-filter: blur(20px);
+    border-radius: 30px;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    position: relative;
+    overflow: hidden;
+}
+
+.footer-nav-grid::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, 
+        transparent 0%, 
+        rgba(255, 0, 255, 0.02) 50%, 
+        transparent 100%
+    );
+    pointer-events: none;
+}
+
+.footer-nav-column {
+    position: relative;
+}
+
+.nav-column-title {
+    font-size: 0.875rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: rgba(255, 255, 255, 0.3);
+    margin-bottom: 24px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.nav-column-title::before {
+    content: '';
+    width: 24px;
+    height: 2px;
+    background: linear-gradient(90deg, var(--neon-cyan), transparent);
+}
+
+.footer-nav-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.footer-nav-item {
+    margin-bottom: 16px;
+}
+
+.footer-nav-link {
+    color: rgba(255, 255, 255, 0.7);
+    text-decoration: none;
+    font-size: 1rem;
+    font-weight: 500;
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    display: inline-block;
+    position: relative;
+    padding-left: 0;
+}
+
+.footer-nav-link::before {
+    content: '→';
+    position: absolute;
+    left: -20px;
+    opacity: 0;
+    color: var(--neon-cyan);
+    transition: all 0.3s;
+}
+
+.footer-nav-link:hover {
+    color: white;
+    padding-left: 24px;
+}
+
+.footer-nav-link:hover::before {
+    left: 0;
+    opacity: 1;
+}
+
+/* ====================================
+   CTA SECTION
+   ==================================== */
+.footer-cta-section {
+    margin-bottom: 80px;
+    text-align: center;
+}
+
+.footer-cta-card {
+    background: linear-gradient(135deg, 
+        rgba(255, 0, 255, 0.05), 
+        rgba(0, 255, 255, 0.05)
+    );
+    backdrop-filter: blur(20px);
+    border-radius: 30px;
+    padding: 60px;
+    border: 2px solid transparent;
+    background-image: 
+        linear-gradient(var(--bg-footer), var(--bg-footer)), 
+        linear-gradient(135deg, var(--neon-pink), var(--neon-cyan));
+    background-origin: border-box;
+    background-clip: padding-box, border-box;
+    position: relative;
+    overflow: hidden;
+}
+
+.cta-title {
+    font-size: 2.5rem;
+    font-weight: 800;
+    color: white;
+    margin-bottom: 16px;
+    line-height: 1.1;
+}
+
+.cta-subtitle {
+    font-size: 1.125rem;
+    color: rgba(255, 255, 255, 0.6);
+    margin-bottom: 40px;
+}
+
+.footer-cta-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    padding: 18px 40px;
+    background: linear-gradient(135deg, var(--neon-pink), var(--neon-purple));
+    color: white;
+    font-weight: 700;
+    font-size: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    text-decoration: none;
+    border-radius: 999px;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    box-shadow: 
+        0 4px 30px rgba(255, 0, 255, 0.3),
+        inset 0 1px 0 rgba(255, 255, 255, 0.2);
+}
+
+.footer-cta-button::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, transparent, rgba(255, 255, 255, 0.3));
+    transform: translateX(-100%);
+    transition: transform 0.6s;
+}
+
+.footer-cta-button:hover {
+    transform: translateY(-2px) scale(1.02);
+    box-shadow: 
+        0 8px 40px rgba(255, 0, 255, 0.4),
+        inset 0 1px 0 rgba(255, 255, 255, 0.3);
+}
+
+.footer-cta-button:hover::before {
+    transform: translateX(100%);
+}
+
+/* ====================================
+   RÉSEAUX SOCIAUX
+   ==================================== */
+.footer-social-section {
+    text-align: center;
+    padding: 60px 0;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.social-links-row {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 24px;
+    margin-bottom: 40px;
+}
+
+.footer-social-link {
+    width: 56px;
+    height: 56px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 16px;
+    color: rgba(255, 255, 255, 0.6);
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    position: relative;
+    overflow: hidden;
+}
+
+.footer-social-link::before {
+    content: '';
+    position: absolute;
+    inset: -50%;
+    background: radial-gradient(circle, var(--social-color), transparent 70%);
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.footer-social-link:hover {
+    transform: translateY(-4px) scale(1.05);
+    color: white;
+    border-color: var(--social-color);
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.footer-social-link:hover::before {
+    opacity: 0.3;
+}
+
+.footer-social-link svg {
+    width: 24px;
+    height: 24px;
+    position: relative;
+    z-index: 1;
+}
+
+/* Couleurs des réseaux */
+.footer-social-link[data-network="instagram"] { --social-color: var(--neon-pink); }
+.footer-social-link[data-network="linkedin"] { --social-color: var(--neon-blue); }
+.footer-social-link[data-network="tiktok"] { --social-color: var(--neon-purple); }
+.footer-social-link[data-network="youtube"] { --social-color: #ff0000; }
+
+/* ====================================
+   BOTTOM BAR
+   ==================================== */
+.footer-bottom {
+    padding: 30px 0;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.footer-bottom-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 30px;
+}
+
+.footer-copyright {
+    color: rgba(255, 255, 255, 0.3);
+    font-size: 0.875rem;
+}
+
+.footer-legal {
+    display: flex;
+    gap: 30px;
+}
+
+.footer-legal-link {
+    color: rgba(255, 255, 255, 0.3);
+    text-decoration: none;
+    font-size: 0.875rem;
+    transition: color 0.3s;
+}
+
+.footer-legal-link:hover {
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.footer-credit {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 20px;
+    background: rgba(255, 0, 255, 0.05);
+    border: 1px solid rgba(255, 0, 255, 0.2);
+    border-radius: 999px;
+    color: rgba(255, 255, 255, 0.5);
+    text-decoration: none;
+    font-size: 0.875rem;
+    transition: all 0.3s;
+}
+
+.footer-credit:hover {
+    background: rgba(255, 0, 255, 0.1);
+    border-color: var(--neon-pink);
+    color: white;
+}
+
+.footer-credit-name {
+    font-weight: 700;
+    color: var(--neon-pink);
+}
+
+/* ====================================
+   RESPONSIVE
+   ==================================== */
+@media (max-width: 768px) {
+    .footer-ultra {
+        padding: 80px 0 0;
+    }
+    
+    .footer-container {
+        padding: 0 20px;
+    }
+    
+    .footer-hero {
+        margin-bottom: 60px;
+    }
+    
+    .tagline-line-1 {
+        font-size: 2rem;
+    }
+    
+    .tagline-line-2 {
+        font-size: 2.5rem;
+    }
+    
+    .footer-nav-grid {
+        padding: 40px 30px;
+        gap: 40px;
+    }
+    
+    .footer-cta-card {
+        padding: 40px 30px;
+    }
+    
+    .cta-title {
+        font-size: 1.75rem;
+    }
+    
+    .footer-bottom-content {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .footer-legal {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+}
