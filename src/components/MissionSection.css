@@ -1,4 +1,4 @@
-/* MissionSection.css - Version corrigée avec S visible et bouton amélioré - Tailles desktop réduites */
+/* MissionSection.css - Version corrigée avec S visible et bouton amélioré */
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;900&display=swap');
 
 /* ====================================
@@ -30,13 +30,6 @@
         #070710 100%);
     overflow-x: hidden;
     overflow-y: visible;
-}
-
-/* AJUSTEMENT DESKTOP : Réduction du padding sur desktop */
-@media (min-width: 1024px) {
-    .mission-section {
-        padding: 4rem 1rem 3.2rem; /* RÉDUIT de 5rem 1rem 4rem */
-    }
 }
 
 /* ====================================
@@ -88,7 +81,7 @@
 }
 
 /* ====================================
-   HEADER - CORRECTION DU S TRONQUÉ
+   HEADER - TITRE CENTRÉ CORRECTEMENT
    ==================================== */
 .mission-header {
     text-align: center;
@@ -97,14 +90,7 @@
     z-index: 10;
     width: 100%;
     max-width: 100%;
-    overflow: visible !important; /* Force l'overflow visible */
-}
-
-/* AJUSTEMENT DESKTOP : Réduction du margin sur desktop */
-@media (min-width: 1024px) {
-    .mission-header {
-        margin-bottom: 3.2rem; /* RÉDUIT de 4rem */
-    }
+    overflow: visible !important;
 }
 
 .title-container {
@@ -125,15 +111,10 @@
     letter-spacing: -0.02em;
     position: relative;
     margin: 0 auto;
-    display: block;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     text-align: center;
-}
-
-/* AJUSTEMENT DESKTOP : Réduction du titre sur desktop */
-@media (min-width: 1024px) {
-    .main-title {
-        font-size: 5rem; /* RÉDUIT de 6rem max à 5rem (-17%) */
-    }
 }
 
 .title-word-1 {
@@ -145,11 +126,10 @@
 }
 
 .title-word-2 {
-    display: inline-block; /* Changé pour permettre le padding horizontal */
+    display: block;
     font-size: 1.25em;
     position: relative;
-    padding: 0 0.5em; /* PADDING HORIZONTAL pour éviter la troncature du S */
-    margin-left: -0.25em; /* Décale légèrement à gauche pour centrer visuellement */
+    padding: 0 0.5em; /* Ajout de padding horizontal pour éviter la troncature */
     background: linear-gradient(270deg, 
         var(--neon-pink) 0%, 
         var(--neon-cyan) 20%, 
@@ -187,15 +167,6 @@
     animation: fadeInUp 1s ease-out 0.5s both;
 }
 
-/* AJUSTEMENT DESKTOP : Réduction du subtitle sur desktop */
-@media (min-width: 1024px) {
-    .subtitle {
-        margin-top: 1.5rem; /* RÉDUIT de 1.8rem */
-        font-size: 1.1rem; /* RÉDUIT de 1.3rem max */
-        letter-spacing: 0.12em; /* RÉDUIT de 0.15em */
-    }
-}
-
 @keyframes fadeInUp {
     from { 
         opacity: 0;
@@ -218,23 +189,9 @@
     z-index: 10;
 }
 
-/* AJUSTEMENT DESKTOP : Réduction du container sur desktop */
-@media (min-width: 1024px) {
-    .services-cascade {
-        max-width: 950px; /* RÉDUIT de 1100px */
-    }
-}
-
 .service-panel {
     margin-bottom: 1.2rem;
     animation: slideInLeft 0.6s ease-out both;
-}
-
-/* AJUSTEMENT DESKTOP : Réduction du margin sur desktop */
-@media (min-width: 1024px) {
-    .service-panel {
-        margin-bottom: 1rem; /* RÉDUIT de 1.2rem */
-    }
 }
 
 .service-panel:nth-child(1) { animation-delay: 0.1s; }
@@ -267,13 +224,6 @@
     transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     border: 2px solid transparent;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
-}
-
-/* AJUSTEMENT DESKTOP : Réduction du border-radius sur desktop */
-@media (min-width: 1024px) {
-    .panel-container {
-        border-radius: 1.2rem; /* RÉDUIT de 1.5rem */
-    }
 }
 
 /* Couleurs et gradients par service */
@@ -328,13 +278,6 @@
     transition: opacity 0.4s ease;
 }
 
-/* AJUSTEMENT DESKTOP : Ajustement du border-radius before sur desktop */
-@media (min-width: 1024px) {
-    .panel-container::before {
-        border-radius: 1.2rem; /* RÉDUIT pour correspondre au container */
-    }
-}
-
 .panel-container:hover::before,
 .service-panel.active .panel-container::before {
     opacity: 1;
@@ -359,24 +302,8 @@
     transition: all 0.3s ease;
 }
 
-/* AJUSTEMENT DESKTOP : Réduction du header sur desktop */
-@media (min-width: 1024px) {
-    .panel-header {
-        padding: 1.5rem 1.6rem 1.5rem 5rem; /* RÉDUIT de 1.8rem 2rem 1.8rem 6rem */
-        min-height: 85px; /* RÉDUIT de 100px */
-        gap: 1.2rem; /* RÉDUIT de 1.5rem */
-    }
-}
-
 .panel-header:hover {
     padding-left: 6.3rem;
-}
-
-/* AJUSTEMENT DESKTOP : Ajustement du hover padding sur desktop */
-@media (min-width: 1024px) {
-    .panel-header:hover {
-        padding-left: 5.2rem; /* RÉDUIT proportionnellement */
-    }
 }
 
 /* Badge numéro avec effet glass */
@@ -397,17 +324,6 @@
     color: var(--bg-dark);
     transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
-}
-
-/* AJUSTEMENT DESKTOP : Réduction du badge sur desktop */
-@media (min-width: 1024px) {
-    .panel-number {
-        width: 46px; /* RÉDUIT de 54px */
-        height: 46px;
-        font-size: 1.2rem; /* RÉDUIT de 1.4rem */
-        left: 1.2rem; /* RÉDUIT de 1.5rem */
-        border-radius: 0.8rem; /* RÉDUIT de 1rem */
-    }
 }
 
 .panel-number::after {
@@ -442,14 +358,6 @@
     position: relative;
 }
 
-/* AJUSTEMENT DESKTOP : Réduction de l'icône wrapper sur desktop */
-@media (min-width: 1024px) {
-    .panel-icon-wrapper {
-        width: 46px; /* RÉDUIT de 54px */
-        height: 46px;
-    }
-}
-
 .panel-icon {
     width: 100%;
     height: 100%;
@@ -465,14 +373,6 @@
     color: white;
     opacity: 0.9;
     transition: all 0.3s ease;
-}
-
-/* AJUSTEMENT DESKTOP : Réduction de l'icône svg sur desktop */
-@media (min-width: 1024px) {
-    .panel-icon svg {
-        width: 26px; /* RÉDUIT de 30px */
-        height: 26px;
-    }
 }
 
 .panel-container:hover .panel-icon svg {
@@ -495,14 +395,6 @@
     transition: all 0.3s ease;
 }
 
-/* AJUSTEMENT DESKTOP : Réduction du titre sur desktop */
-@media (min-width: 1024px) {
-    .panel-title {
-        font-size: 1.5rem; /* RÉDUIT de 1.8rem (-17%) */
-        margin-bottom: 0.25rem; /* RÉDUIT de 0.3rem */
-    }
-}
-
 .panel-container:hover .panel-title {
     text-shadow: 0 0 20px var(--service-color-1);
 }
@@ -512,13 +404,6 @@
     color: rgba(255, 255, 255, 0.6);
     font-style: italic;
     transition: all 0.3s ease;
-}
-
-/* AJUSTEMENT DESKTOP : Réduction du subtitle sur desktop */
-@media (min-width: 1024px) {
-    .panel-subtitle {
-        font-size: 0.85rem; /* RÉDUIT de 1rem */
-    }
 }
 
 .panel-container:hover .panel-subtitle {
@@ -539,27 +424,11 @@
     border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
-/* AJUSTEMENT DESKTOP : Réduction du toggle sur desktop */
-@media (min-width: 1024px) {
-    .panel-toggle {
-        width: 35px; /* RÉDUIT de 40px */
-        height: 35px;
-    }
-}
-
 .panel-toggle svg {
     width: 22px;
     height: 22px;
     color: white;
     transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-/* AJUSTEMENT DESKTOP : Réduction du toggle svg sur desktop */
-@media (min-width: 1024px) {
-    .panel-toggle svg {
-        width: 20px; /* RÉDUIT de 22px */
-        height: 20px;
-    }
 }
 
 .panel-container:hover .panel-toggle {
@@ -587,13 +456,6 @@
     animation: fadeIn 0.5s ease;
 }
 
-/* AJUSTEMENT DESKTOP : Réduction du padding inner sur desktop */
-@media (min-width: 1024px) {
-    .content-inner {
-        padding: 0 1.6rem 1.6rem; /* RÉDUIT de 0 2rem 2rem */
-    }
-}
-
 @keyframes fadeIn {
     from { opacity: 0; }
     to { opacity: 1; }
@@ -606,28 +468,12 @@
     margin-bottom: 1.5rem;
 }
 
-/* AJUSTEMENT DESKTOP : Réduction de la description sur desktop */
-@media (min-width: 1024px) {
-    .panel-description {
-        font-size: 0.9rem; /* RÉDUIT de 1.05rem */
-        margin-bottom: 1.2rem; /* RÉDUIT de 1.5rem */
-    }
-}
-
 /* Grille de features */
 .features-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     gap: 1rem;
     margin-bottom: 1.8rem;
-}
-
-/* AJUSTEMENT DESKTOP : Réduction de la grille sur desktop */
-@media (min-width: 1024px) {
-    .features-grid {
-        gap: 0.8rem; /* RÉDUIT de 1rem */
-        margin-bottom: 1.5rem; /* RÉDUIT de 1.8rem */
-    }
 }
 
 .feature-card {
@@ -640,14 +486,6 @@
     transition: all 0.3s ease;
     position: relative;
     overflow: hidden;
-}
-
-/* AJUSTEMENT DESKTOP : Réduction de la feature card sur desktop */
-@media (min-width: 1024px) {
-    .feature-card {
-        padding: 0.8rem; /* RÉDUIT de 1rem */
-        border-radius: 0.6rem; /* RÉDUIT de 0.8rem */
-    }
 }
 
 .feature-card::before {
@@ -680,24 +518,9 @@
     font-size: 0.95rem;
 }
 
-/* AJUSTEMENT DESKTOP : Réduction du feature title sur desktop */
-@media (min-width: 1024px) {
-    .feature-title {
-        font-size: 0.85rem; /* RÉDUIT de 0.95rem */
-        margin-bottom: 0.25rem; /* RÉDUIT de 0.3rem */
-    }
-}
-
 .feature-desc {
     font-size: 0.8rem;
     color: rgba(255, 255, 255, 0.6);
-}
-
-/* AJUSTEMENT DESKTOP : Réduction de la feature desc sur desktop */
-@media (min-width: 1024px) {
-    .feature-desc {
-        font-size: 0.75rem; /* RÉDUIT de 0.8rem */
-    }
 }
 
 /* CTA Panel */
@@ -717,15 +540,6 @@
     transition: all 0.3s ease;
     position: relative;
     overflow: hidden;
-}
-
-/* AJUSTEMENT DESKTOP : Réduction du panel CTA sur desktop */
-@media (min-width: 1024px) {
-    .panel-cta {
-        padding: 0.65rem 1.5rem; /* RÉDUIT de 0.8rem 1.8rem */
-        font-size: 0.75rem; /* RÉDUIT de 0.85rem */
-        gap: 0.4rem; /* RÉDUIT de 0.5rem */
-    }
 }
 
 .panel-cta::before {
@@ -753,7 +567,7 @@
 }
 
 /* ====================================
-   FOOTER CTA - DESIGN ÉLÉGANT NÉON
+   FOOTER CTA
    ==================================== */
 .section-footer {
     text-align: center;
@@ -763,19 +577,8 @@
     z-index: 10;
 }
 
-/* AJUSTEMENT DESKTOP : Réduction du footer sur desktop */
-@media (min-width: 1024px) {
-    .section-footer {
-        margin-top: 4rem; /* RÉDUIT de 5rem */
-        padding: 1.6rem; /* RÉDUIT de 2rem */
-    }
-}
-
-/* Force le style sur TOUS les éléments avec cette classe */
 .footer-cta,
-a.footer-cta,
-.section-footer .footer-cta,
-.section-footer a.footer-cta {
+a.footer-cta {
     display: inline-flex !important;
     align-items: center !important;
     gap: 0.8rem !important;
@@ -791,7 +594,6 @@ a.footer-cta,
     transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1) !important;
     overflow: hidden !important;
     
-    /* Gradient néon violet/rose cohérent avec le design */
     background: linear-gradient(135deg, 
         #a855f7 0%, 
         #ec4899 50%,
@@ -799,28 +601,13 @@ a.footer-cta,
     background-size: 200% 200% !important;
     animation: gradientShift 3s ease infinite !important;
     
-    /* Bordure subtile */
     border: 2px solid rgba(168, 85, 247, 0.3) !important;
     
-    /* Ombres néon élégantes */
     box-shadow: 
         0 0 30px rgba(168, 85, 247, 0.3),
         0 0 20px rgba(236, 72, 153, 0.3),
         0 4px 20px rgba(0, 0, 0, 0.3),
         inset 0 1px 1px rgba(255, 255, 255, 0.1) !important;
-}
-
-/* AJUSTEMENT DESKTOP : Réduction du footer CTA sur desktop */
-@media (min-width: 1024px) {
-    .footer-cta,
-    a.footer-cta,
-    .section-footer .footer-cta,
-    .section-footer a.footer-cta {
-        padding: 1rem 2.3rem !important; /* RÉDUIT de 1.2rem 2.8rem */
-        font-size: 0.95rem !important; /* RÉDUIT de 1.1rem */
-        gap: 0.65rem !important; /* RÉDUIT de 0.8rem */
-        letter-spacing: 0.08em !important; /* RÉDUIT de 0.1em */
-    }
 }
 
 @keyframes gradientShift {
@@ -829,7 +616,6 @@ a.footer-cta,
     100% { background-position: 0% 50%; }
 }
 
-/* Effet de brillance au survol */
 .footer-cta::before,
 a.footer-cta::before {
     content: '';
@@ -853,7 +639,6 @@ a.footer-cta:hover::before {
     left: 100%;
 }
 
-/* Texte et icône avec z-index élevé */
 .footer-cta span,
 a.footer-cta span {
     position: relative !important;
@@ -873,20 +658,8 @@ a.footer-cta svg {
     color: #FFFFFF !important;
 }
 
-/* AJUSTEMENT DESKTOP : Réduction des icônes svg sur desktop */
-@media (min-width: 1024px) {
-    .footer-cta svg,
-    a.footer-cta svg {
-        width: 18px !important; /* RÉDUIT de 20px */
-        height: 18px !important;
-    }
-}
-
-/* État hover - Plus lumineux */
 .footer-cta:hover,
-a.footer-cta:hover,
-.section-footer .footer-cta:hover,
-.section-footer a.footer-cta:hover {
+a.footer-cta:hover {
     transform: translateY(-3px) scale(1.05) !important;
     background: linear-gradient(135deg, 
         #c084fc 0%, 
@@ -908,7 +681,6 @@ a.footer-cta:hover svg {
     transform: translateX(5px) !important;
 }
 
-/* État actif */
 .footer-cta:active,
 a.footer-cta:active {
     transform: translateY(-1px) !important;
@@ -923,7 +695,7 @@ a.footer-cta:active {
 }
 
 /* ====================================
-   RESPONSIVE - PAS DE CHANGEMENT
+   RESPONSIVE
    ==================================== */
 @media (max-width: 768px) {
     .mission-section {
@@ -941,8 +713,6 @@ a.footer-cta:active {
     
     .title-word-2 {
         font-size: 1.15em;
-        padding: 0 0.3em; /* Un peu moins de padding sur mobile */
-        margin-left: -0.15em;
     }
     
     .subtitle {
@@ -994,13 +764,27 @@ a.footer-cta:active {
     }
     
     .footer-cta {
-        padding: 1rem 2rem;
-        font-size: 0.95rem;
+        padding: 1rem 2rem !important;
+        font-size: 0.95rem !important;
     }
     
     .footer-cta svg {
-        width: 18px;
-        height: 18px;
+        width: 18px !important;
+        height: 18px !important;
+    }
+}
+
+@media (min-width: 1024px) {
+    .main-title {
+        font-size: 5.5rem;
+    }
+    
+    .title-word-1 {
+        margin-bottom: -0.1em;
+    }
+    
+    .title-word-2 {
+        font-size: 1.2em;
     }
 }
 

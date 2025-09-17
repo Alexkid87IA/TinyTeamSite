@@ -76,7 +76,7 @@
 }
 
 /* ====================================
-   TITRE PRINCIPAL
+   TITRE PRINCIPAL - OPTIMISÉ POUR MOBILE
    ==================================== */
 .hero-title-wrapper {
     text-align: center;
@@ -657,26 +657,34 @@
 }
 
 /* ====================================
-   RESPONSIVE - PAS DE CHANGEMENT
+   RESPONSIVE - CORRECTIONS TITRE MOBILE
    ==================================== */
 @media (max-width: 768px) {
     .story-section {
         padding: 3rem 0 5rem;
     }
     
-    .hero-title {
-        font-size: clamp(2.5rem, 12vw, 3.5rem);
-        margin-bottom: 1rem;
-    }
-    
-    .title-line-1,
-    .title-line-2 {
-        white-space: nowrap;
-    }
-    
     .hero-title-wrapper {
         margin-bottom: 3rem;
         padding: 0 1rem;
+    }
+    
+    .hero-title {
+        font-size: clamp(2.2rem, 9vw, 3.5rem); /* Réduit pour mobile */
+        margin-bottom: 1rem;
+    }
+    
+    .title-line-1 {
+        font-size: 1em;
+        letter-spacing: -0.03em; /* Resserre les lettres */
+        white-space: normal; /* Permet le passage à la ligne si nécessaire */
+    }
+    
+    .title-line-2 {
+        font-size: 1em; /* Réduit pour s'adapter */
+        letter-spacing: -0.03em; /* Resserre les lettres */
+        padding: 0 0.2em; /* Petit padding pour éviter la coupure */
+        white-space: normal; /* Permet le passage à la ligne si nécessaire */
     }
     
     .team-cards-container {
@@ -708,17 +716,45 @@
         padding: 0.4rem 0.8rem;
     }
     
+    /* CORRECTIONS SECTION FINALE MOBILE */
+    .section-finale {
+        padding: 2.5rem 1.5rem; /* Réduit le padding */
+        margin: 2rem 0 0; /* Réduit le margin-top */
+    }
+    
+    .finale-title {
+        margin-bottom: 2rem; /* Réduit l'espacement */
+    }
+    
     .finale-line-1 {
-        font-size: 1.5rem;
+        font-size: 0.9rem; /* Plus petit */
+        letter-spacing: 0.1em; /* Moins espacé */
+        margin-bottom: 0.5rem; /* Moins d'espace */
     }
     
     .finale-line-2 {
-        font-size: 3rem;
+        font-size: 2.2rem; /* Beaucoup plus petit pour mobile */
+        letter-spacing: -0.03em; /* Resserre les lettres */
+        line-height: 0.95; /* Réduit l'interligne */
     }
     
     .cta-button {
-        padding: 1rem 2rem;
-        font-size: 0.875rem;
+        padding: 0.9rem 1.8rem; /* Légèrement plus petit */
+        font-size: 0.8rem;
+        margin-top: 1.5rem; /* Ajout d'un margin-top si nécessaire */
+    }
+}
+
+/* AJUSTEMENT POUR TRÈS PETITS ÉCRANS */
+@media (max-width: 380px) {
+    .hero-title {
+        font-size: 2rem; /* Encore plus petit pour très petits écrans */
+    }
+    
+    .title-line-1,
+    .title-line-2 {
+        font-size: 0.95em;
+        letter-spacing: -0.04em;
     }
 }
 

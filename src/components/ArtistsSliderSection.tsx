@@ -63,7 +63,6 @@ const topRow = [...artistsData.slice(0, 5), ...artistsData.slice(0, 5), ...artis
 const bottomRow = [...artistsData.slice(5, 10), ...artistsData.slice(5, 10), ...artistsData.slice(5, 10)];
 
 export const ArtistsSliderSection = () => {
-  const [hoveredCard, setHoveredCard] = useState<string | null>(null);
   const [activeIndex, setActiveIndex] = useState(0);
   const carouselRef = useRef<HTMLDivElement>(null);
   const [isMobile, setIsMobile] = useState(false);
@@ -208,64 +207,54 @@ export const ArtistsSliderSection = () => {
             {/* Rangée du haut - défile vers la droite */}
             <div className="river-row row-right">
               {topRow.map((artist, index) => (
-                <motion.div
+                <Link
                   key={`top-${index}`}
-                  className={`poster-card ${hoveredCard === `top-${index}` ? 'hovered' : ''}`}
-                  onMouseEnter={() => setHoveredCard(`top-${index}`)}
-                  onMouseLeave={() => setHoveredCard(null)}
-                  whileHover={{ scale: 1.05, y: -10 }}
-                  transition={{ duration: 0.3 }}
+                  to={`/artiste/${artist.id}`}
+                  className="poster-card"
                 >
-                  <Link to={`/artiste/${artist.id}`}>
-                    <img 
-                      src={artist.image} 
-                      alt={artist.name} 
-                      className="poster-image"
-                      loading="lazy"
-                    />
-                    <div className="poster-overlay" />
-                    <div className="poster-content">
-                      <h3 className="poster-name">{artist.name}</h3>
-                      <button className="poster-button">
-                        Découvrir
-                        <ChevronRight size={16} />
-                      </button>
-                    </div>
-                    <div className="poster-shine" />
-                  </Link>
-                </motion.div>
+                  <img 
+                    src={artist.image} 
+                    alt={artist.name} 
+                    className="poster-image"
+                    loading="lazy"
+                  />
+                  <div className="poster-overlay" />
+                  <div className="poster-content">
+                    <h3 className="poster-name">{artist.name}</h3>
+                    <span className="poster-button">
+                      Découvrir
+                      <ChevronRight size={16} />
+                    </span>
+                  </div>
+                  <div className="poster-shine" />
+                </Link>
               ))}
             </div>
             
             {/* Rangée du bas - défile vers la gauche */}
             <div className="river-row row-left">
               {bottomRow.map((artist, index) => (
-                <motion.div
+                <Link
                   key={`bottom-${index}`}
-                  className={`poster-card ${hoveredCard === `bottom-${index}` ? 'hovered' : ''}`}
-                  onMouseEnter={() => setHoveredCard(`bottom-${index}`)}
-                  onMouseLeave={() => setHoveredCard(null)}
-                  whileHover={{ scale: 1.05, y: -10 }}
-                  transition={{ duration: 0.3 }}
+                  to={`/artiste/${artist.id}`}
+                  className="poster-card"
                 >
-                  <Link to={`/artiste/${artist.id}`}>
-                    <img 
-                      src={artist.image} 
-                      alt={artist.name} 
-                      className="poster-image"
-                      loading="lazy"
-                    />
-                    <div className="poster-overlay" />
-                    <div className="poster-content">
-                      <h3 className="poster-name">{artist.name}</h3>
-                      <button className="poster-button">
-                        Découvrir
-                        <ChevronRight size={16} />
-                      </button>
-                    </div>
-                    <div className="poster-shine" />
-                  </Link>
-                </motion.div>
+                  <img 
+                    src={artist.image} 
+                    alt={artist.name} 
+                    className="poster-image"
+                    loading="lazy"
+                  />
+                  <div className="poster-overlay" />
+                  <div className="poster-content">
+                    <h3 className="poster-name">{artist.name}</h3>
+                    <span className="poster-button">
+                      Découvrir
+                      <ChevronRight size={16} />
+                    </span>
+                  </div>
+                  <div className="poster-shine" />
+                </Link>
               ))}
             </div>
           </motion.div>

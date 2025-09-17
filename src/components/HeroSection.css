@@ -1,4 +1,4 @@
-/* HeroSection.css - Version finale avec responsive corrigé et tailles desktop réduites */
+/* HeroSection.css - Version complète avec design mobile unifié */
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;900&display=swap');
 
 :root {
@@ -6,8 +6,11 @@
     --primary-purple: #a855f7;
     --bg-dark: #0a0a1f;
     --bg-dark-secondary: #16213e;
-    --poster-size-desktop: 270px; /* RÉDUIT de 320px à 270px (-15%) */
-    --poster-size-mobile: 200px;
+    --poster-size-desktop: 270px;
+    --poster-size-mobile: 120px;
+    --neon-pink: #ff00ff;
+    --neon-cyan: #00ffff;
+    --neon-yellow: #ffff00;
 }
 
 * {
@@ -32,13 +35,6 @@ body {
     align-items: center;
     justify-content: center;
     padding: 100px 20px 40px;
-}
-
-/* AJUSTEMENT DESKTOP : Réduction du padding sur desktop */
-@media (min-width: 1024px) {
-    .hero-section {
-        padding: 85px 20px 35px; /* RÉDUIT de 100px à 85px */
-    }
 }
 
 /* Particules flottantes animées */
@@ -99,13 +95,6 @@ body {
     display: flex;
     gap: 2rem;
     width: max-content;
-}
-
-/* AJUSTEMENT DESKTOP : Réduction du gap sur desktop */
-@media (min-width: 1024px) {
-    .carousel-track {
-        gap: 1.6rem; /* RÉDUIT de 2rem à 1.6rem */
-    }
 }
 
 .carousel-track.top-row {
@@ -201,14 +190,6 @@ body {
     gap: 2rem;
 }
 
-/* AJUSTEMENT DESKTOP : Réduction du gap et max-width sur desktop */
-@media (min-width: 1024px) {
-    .main-content {
-        max-width: 1200px; /* RÉDUIT de 1400px à 1200px */
-        gap: 1.6rem; /* RÉDUIT de 2rem à 1.6rem */
-    }
-}
-
 /* Badge */
 .badge {
     display: inline-flex;
@@ -222,13 +203,6 @@ body {
     animation: fadeInUp 0.8s ease-out;
     position: relative;
     overflow: hidden;
-}
-
-/* AJUSTEMENT DESKTOP : Réduction du padding du badge sur desktop */
-@media (min-width: 1024px) {
-    .badge {
-        padding: 0.6rem 1.2rem; /* RÉDUIT de 0.75rem 1.5rem */
-    }
 }
 
 @keyframes shimmer {
@@ -307,17 +281,6 @@ body {
     animation: epicGradient 3s ease infinite;
 }
 
-/* AJUSTEMENT DESKTOP : Réduction des tailles de titres sur desktop uniquement */
-@media (min-width: 1024px) {
-    .title-tiny {
-        font-size: 3.2rem; /* RÉDUIT de 4rem max à 3.2rem (-20%) */
-    }
-    
-    .title-big {
-        font-size: 8rem; /* RÉDUIT de 10rem max à 8rem (-20%) */
-    }
-}
-
 @keyframes epicGradient {
     0%, 100% { 
         background-position: 0% 50%;
@@ -357,14 +320,6 @@ body {
     border: none;
 }
 
-/* AJUSTEMENT DESKTOP : Réduction du padding des boutons sur desktop */
-@media (min-width: 1024px) {
-    .btn {
-        padding: 1rem 2.4rem; /* RÉDUIT de 1.25rem 3rem */
-        font-size: 0.9rem; /* RÉDUIT de 1rem à 0.9rem */
-    }
-}
-
 .btn-primary {
     background: rgba(0, 0, 0, 0.3);
     backdrop-filter: blur(10px);
@@ -398,7 +353,7 @@ body {
     border-color: rgba(255, 255, 255, 0.2);
 }
 
-/* CARTES - OPTIMISÉ POUR DESKTOP ET MOBILE */
+/* CARTES DESKTOP */
 .cards-wrapper {
     width: 100%;
     animation: fadeInUp 0.8s ease-out 0.6s both;
@@ -411,14 +366,6 @@ body {
     gap: 2rem;
     max-width: 1100px;
     margin: 0 auto;
-}
-
-/* AJUSTEMENT DESKTOP : Réduction FORTE des cartes sur desktop */
-@media (min-width: 1024px) {
-    .cards {
-        max-width: 850px; /* ENCORE PLUS RÉDUIT de 900px à 850px */
-        gap: 1.25rem; /* RÉDUIT de 1.5rem à 1.25rem */
-    }
 }
 
 .card {
@@ -437,14 +384,6 @@ body {
     min-width: 0;
 }
 
-/* AJUSTEMENT DESKTOP : Réduction FORTE du padding des cartes sur desktop */
-@media (min-width: 1024px) {
-    .card {
-        padding: 1rem 0.8rem; /* ENCORE PLUS RÉDUIT */
-        border-radius: 18px; /* Légèrement réduit */
-    }
-}
-
 .card:hover {
     transform: translateY(-10px) scale(1.02);
     border-color: rgba(236, 72, 153, 0.3);
@@ -460,14 +399,6 @@ body {
     margin-bottom: 0.75rem;
 }
 
-/* AJUSTEMENT DESKTOP : Réduction des textes des cartes sur desktop */
-@media (min-width: 1024px) {
-    .card-label {
-        font-size: 0.65rem; /* RÉDUIT de 0.75rem - PLUS FORT */
-        margin-bottom: 0.5rem; /* RÉDUIT de 0.75rem - PLUS FORT */
-    }
-}
-
 .card-title {
     font-size: 1.25rem;
     font-weight: 700;
@@ -478,33 +409,7 @@ body {
     justify-content: center;
     gap: 0.5rem;
     transition: all 0.3s;
-    text-transform: uppercase; /* AJOUT pour forcer les majuscules */
-}
-
-/* AJUSTEMENT DESKTOP : Réduction FORTE du titre des cartes sur desktop */
-@media (min-width: 1024px) {
-    .card-title {
-        font-size: 0.75rem !important; /* TRÈS RÉDUIT - de 1.25rem à 0.75rem (-40%) */
-        gap: 0.25rem; /* RÉDUIT encore plus */
-        font-weight: 600; /* Légèrement moins gras */
-        letter-spacing: 0.03em; /* Espacement minimal */
-        line-height: 1.2;
-    }
-    
-    .card-title span:first-child {
-        font-size: 0.75rem !important; /* Même taille pour uniformité */
-    }
-}
-
-/* AJUSTEMENT POUR TRÈS GRANDS ÉCRANS */
-@media (min-width: 1440px) {
-    .card-title {
-        font-size: 0.8rem !important;
-    }
-    
-    .card-title span:first-child {
-        font-size: 0.8rem !important;
-    }
+    text-transform: uppercase;
 }
 
 .card:hover .card-title {
@@ -527,117 +432,299 @@ body {
     to { opacity: 1; transform: translateY(0); }
 }
 
-/* RESPONSIVE TABLETTE - PAS DE CHANGEMENT */
-@media (max-width: 1024px) {
-    .main-content {
-        max-width: 900px;
-    }
-    
-    .cards {
-        grid-template-columns: repeat(2, 1fr);
-        max-width: 700px;
-    }
-    
-    .title-tiny {
-        font-size: 2.5rem;
-    }
-    
-    .title-big {
-        font-size: 5rem;
-    }
+/* Classes pour masquer/afficher selon l'écran */
+.desktop-only {
+    display: block;
 }
 
-/* RESPONSIVE MOBILE - PAS DE CHANGEMENT */
+.mobile-only {
+    display: none;
+}
+
+/* =====================================
+   MOBILE DESIGN - REFONTE COMPLÈTE
+   ===================================== */
 @media (max-width: 768px) {
-    .hero-section {
-        padding: 80px 15px 30px;
-        min-height: 100dvh;
+    /* Reset et base */
+    .desktop-only {
+        display: none !important;
+    }
+    
+    .mobile-only {
+        display: block !important;
     }
 
+    /* Section principale optimisée */
+    .hero-section {
+        padding: 50px 15px 30px;
+        min-height: 100vh;
+        min-height: 100dvh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    /* Rivière d'affiches optimisée */
     .background-carousel {
-        opacity: 0.35;
+        opacity: 0.2;
+    }
+    
+    .carousel-track {
+        gap: 0.8rem;
+    }
+    
+    .carousel-track.top-row {
+        top: 8%;
+        animation-duration: 35s;
+    }
+    
+    .carousel-track.bottom-row {
+        top: 55%;
+        animation-duration: 30s;
     }
 
     .poster-card {
         width: var(--poster-size-mobile);
         height: calc(var(--poster-size-mobile) * 1.4);
+        border-radius: 12px;
     }
 
+    /* Overlay plus prononcé */
     .overlay {
         background: radial-gradient(
             ellipse at center,
-            rgba(10, 10, 31, 0.3) 0%,
-            rgba(10, 10, 31, 0.7) 50%,
-            rgba(10, 10, 31, 0.9) 100%
+            rgba(10, 10, 31, 0.5) 0%,
+            rgba(10, 10, 31, 0.8) 40%,
+            rgba(10, 10, 31, 0.95) 100%
         );
     }
 
+    /* Contenu principal compact */
+    .main-content {
+        gap: 1rem;
+        width: 100%;
+        max-width: 100%;
+        padding: 0;
+    }
+
+    /* Badge compact */
     .badge {
         padding: 0.5rem 1rem;
+        font-size: 0.75rem;
+        backdrop-filter: blur(10px);
+        background: rgba(255,255,255,0.08);
+        border: 1px solid rgba(255,255,255,0.15);
+    }
+
+    .badge-dot {
+        width: 6px;
+        height: 6px;
     }
 
     .badge-text {
-        font-size: 0.7rem;
+        font-size: 0.65rem;
+        letter-spacing: 0.03em;
+    }
+
+    /* Titres ajustés */
+    .titles-container {
+        margin: 0.5rem 0;
     }
 
     .title-tiny {
-        font-size: 2rem;
+        font-size: 1.75rem;
+        margin-bottom: 0.1rem;
+        letter-spacing: -0.01em;
     }
 
     .title-big {
-        font-size: 3rem;
+        font-size: 2.5rem;
+        letter-spacing: -0.02em;
+        padding: 0 0.1em;
     }
 
+    /* BOUTONS MOBILES UNIFORMISÉS */
     .buttons {
         width: 100%;
-        max-width: 350px;
+        max-width: 340px;
         flex-direction: column;
+        gap: 0.75rem;
+        margin: 1rem 0;
     }
 
     .btn {
         width: 100%;
         padding: 1rem 2rem;
-        font-size: 0.85rem;
+        font-size: 0.875rem;
+        letter-spacing: 0.08em;
+        border-radius: 100px;
+        background: rgba(255, 255, 255, 0.05);
+        backdrop-filter: blur(10px);
+        border: 2px solid rgba(255,255,255,0.1);
+        color: white;
+        text-align: center;
+        justify-content: center;
     }
 
-    .cards-wrapper {
-        padding: 0 15px;
+    /* Bouton primaire avec gradient */
+    .btn-primary {
+        background: linear-gradient(135deg, 
+            rgba(236, 72, 153, 0.2) 0%, 
+            rgba(168, 85, 247, 0.2) 100%);
+        border: 2px solid transparent;
+        background-image: 
+            linear-gradient(135deg, rgba(236, 72, 153, 0.2), rgba(168, 85, 247, 0.2)), 
+            linear-gradient(135deg, #ec4899, #a855f7);
+        background-origin: border-box;
+        background-clip: padding-box, border-box;
+        box-shadow: 0 4px 20px rgba(236, 72, 153, 0.2);
     }
 
-    .cards {
-        grid-template-columns: 1fr;
-        gap: 1rem;
-        max-width: 320px;
+    .btn-secondary {
+        background: rgba(255, 255, 255, 0.05);
+        border: 2px solid rgba(255,255,255,0.1);
     }
 
-    .card {
-        padding: 1.5rem 1rem;
+    /* CARTES MOBILES - DESIGN MODERNE */
+    .mobile-cards {
+        width: 100%;
+        max-width: 340px;
+        display: flex;
+        flex-direction: column;
+        gap: 0.75rem;
+        margin: 1rem auto 0;
+        animation: fadeInUp 0.8s ease-out 0.6s both;
     }
 
-    .card-title {
+    .mobile-card {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 1.2rem 1.5rem;
+        background: linear-gradient(135deg, 
+            rgba(255, 255, 255, 0.03) 0%, 
+            rgba(255, 255, 255, 0.01) 100%);
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(255,255,255,0.08);
+        border-radius: 20px;
+        color: white;
+        text-decoration: none;
+        transition: all 0.3s ease;
+        position: relative;
+        overflow: hidden;
+    }
+
+    /* Gradient unique pour chaque carte */
+    .mobile-card:nth-child(1)::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(135deg, 
+            rgba(255, 0, 255, 0.08) 0%, 
+            rgba(236, 72, 153, 0.08) 100%);
+        opacity: 0;
+        transition: opacity 0.3s ease;
+    }
+
+    .mobile-card:nth-child(2)::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(135deg, 
+            rgba(0, 255, 255, 0.08) 0%, 
+            rgba(59, 130, 246, 0.08) 100%);
+        opacity: 0;
+        transition: opacity 0.3s ease;
+    }
+
+    .mobile-card:nth-child(3)::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(135deg, 
+            rgba(255, 255, 0, 0.08) 0%, 
+            rgba(255, 136, 0, 0.08) 100%);
+        opacity: 0;
+        transition: opacity 0.3s ease;
+    }
+
+    /* Hover effects */
+    .mobile-card:hover::before {
+        opacity: 1;
+    }
+
+    .mobile-card:nth-child(1):hover {
+        border-color: rgba(236, 72, 153, 0.3);
+        transform: translateX(5px);
+        box-shadow: 0 10px 30px rgba(236, 72, 153, 0.15);
+    }
+
+    .mobile-card:nth-child(2):hover {
+        border-color: rgba(59, 130, 246, 0.3);
+        transform: translateX(5px);
+        box-shadow: 0 10px 30px rgba(59, 130, 246, 0.15);
+    }
+
+    .mobile-card:nth-child(3):hover {
+        border-color: rgba(255, 136, 0, 0.3);
+        transform: translateX(5px);
+        box-shadow: 0 10px 30px rgba(255, 136, 0, 0.15);
+    }
+
+    .mobile-card-content {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        gap: 0.2rem;
+        position: relative;
+        z-index: 2;
+    }
+
+    .mobile-card-title {
         font-size: 1rem;
+        font-weight: 800;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        color: white;
+    }
+
+    .mobile-card-desc {
+        font-size: 0.7rem;
+        color: rgba(255, 255, 255, 0.5);
+        text-transform: none;
+        letter-spacing: 0;
+    }
+
+    .mobile-card-arrow {
+        font-size: 1.2rem;
+        color: rgba(255, 255, 255, 0.4);
+        transition: all 0.3s ease;
+        position: relative;
+        z-index: 2;
+    }
+
+    .mobile-card:hover .mobile-card-arrow {
+        transform: translateX(3px);
+        color: rgba(255, 255, 255, 0.8);
     }
 }
 
-/* TRÈS PETITS ÉCRANS - PAS DE CHANGEMENT */
+/* Très petits écrans */
 @media (max-width: 380px) {
     .title-tiny {
-        font-size: 1.75rem;
+        font-size: 1.5rem;
     }
 
     .title-big {
-        font-size: 2.5rem;
+        font-size: 2.2rem;
     }
-
-    .card {
-        padding: 1.25rem 0.75rem;
+    
+    .btn {
+        padding: 0.9rem 1.5rem;
+        font-size: 0.8rem;
     }
-
-    .card-label {
-        font-size: 0.65rem;
-    }
-
-    .card-title {
-        font-size: 0.85rem;
+    
+    .mobile-selector {
+        max-width: 300px;
     }
 }

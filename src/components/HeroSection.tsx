@@ -3,8 +3,9 @@ import './HeroSection.css';
 
 export const HeroSection = () => {
   const [showPopup, setShowPopup] = useState(false);
+  const [showMobileMenu, setShowMobileMenu] = useState(false);
 
-  const handleShowreelClick = (e) => {
+  const handleShowreelClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
     e.preventDefault();
     setShowPopup(true);
     setTimeout(() => setShowPopup(false), 3000);
@@ -15,13 +16,13 @@ export const HeroSection = () => {
     const tracks = document.querySelectorAll('.carousel-track');
     if (!tracks.length) return;
 
-    const handleMouseEnter = (e) => {
-      const target = e.currentTarget;
+    const handleMouseEnter = (e: Event) => {
+      const target = e.currentTarget as HTMLElement;
       target.style.animationPlayState = 'paused';
     };
     
-    const handleMouseLeave = (e) => {
-      const target = e.currentTarget;
+    const handleMouseLeave = (e: Event) => {
+      const target = e.currentTarget as HTMLElement;
       target.style.animationPlayState = 'running';
     };
 
@@ -37,6 +38,24 @@ export const HeroSection = () => {
       });
     };
   }, []);
+
+  // Fermer le menu si on clique ailleurs
+  useEffect(() => {
+    const handleClickOutside = (e: MouseEvent) => {
+      const target = e.target as HTMLElement;
+      if (!target.closest('.mobile-selector')) {
+        setShowMobileMenu(false);
+      }
+    };
+
+    if (showMobileMenu) {
+      document.addEventListener('click', handleClickOutside);
+    }
+
+    return () => {
+      document.removeEventListener('click', handleClickOutside);
+    };
+  }, [showMobileMenu]);
 
   // Liste des artistes avec leurs images
   const artistPosters = [
@@ -120,8 +139,8 @@ export const HeroSection = () => {
           </a>
         </div>
 
-        {/* Cartes */}
-        <div className="cards-wrapper">
+        {/* Cartes pour desktop - restent identiques */}
+        <div className="cards-wrapper desktop-only">
           <div className="cards">
             <a href="/artiste" className="card">
               <p className="card-label">Vous êtes</p>
@@ -147,6 +166,33 @@ export const HeroSection = () => {
               </h3>
             </a>
           </div>
+        </div>
+
+        {/* Cartes mobile - directement visibles */}
+        <div className="mobile-cards mobile-only">
+          <a href="/artiste" className="mobile-card">
+            <div className="mobile-card-content">
+              <span className="mobile-card-title">Artiste</span>
+              <span className="mobile-card-desc">Rejoignez notre famille</span>
+            </div>
+            <span className="mobile-card-arrow">→</span>
+          </a>
+          
+          <a href="/programmateur" className="mobile-card">
+            <div className="mobile-card-content">
+              <span className="mobile-card-title">Programmateur</span>
+              <span className="mobile-card-desc">Découvrez nos talents</span>
+            </div>
+            <span className="mobile-card-arrow">→</span>
+          </a>
+          
+          <a href="/entreprise" className="mobile-card">
+            <div className="mobile-card-content">
+              <span className="mobile-card-title">Entreprise</span>
+              <span className="mobile-card-desc">Events sur mesure</span>
+            </div>
+            <span className="mobile-card-arrow">→</span>
+          </a>
         </div>
       </div>
 
