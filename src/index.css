@@ -182,5 +182,130 @@
   }
 }
 
-/* ===== IMPORT DES CORRECTIONS MOBILES ===== */
-@import './styles/mobile-fixes.css';
+/* ===== CORRECTIONS MOBILES CRITIQUES - FOND UNIFORME ===== */
+@media (max-width: 768px) {
+  /* Force le fond uniforme sur TOUTES les sections */
+  body,
+  main,
+  #root,
+  section,
+  .hero-section,
+  .artists-slider-section,
+  .story-section,
+  .mission-section,
+  .contact-section,
+  .footer,
+  div[class*="section"] {
+    background: #0a0a1f !important;
+    background-color: #0a0a1f !important;
+    background-image: none !important;
+  }
+  
+  /* Supprime TOUS les effets de fond et gradients */
+  .hero-section::before,
+  .hero-section::after,
+  .story-bg-effects,
+  .mission-background,
+  .contact-bg-effects,
+  .gradient-mesh,
+  .gradient-radial-1,
+  .gradient-radial-2,
+  .gradient-radial-3,
+  .bg-gradient-overlay,
+  div[class*="gradient"],
+  div[class*="bg-"],
+  div[class*="background"],
+  *::before,
+  *::after {
+    background-image: none !important;
+    opacity: 0 !important;
+    display: none !important;
+  }
+  
+  /* Garde visible les éléments importants */
+  .panel-container::before,
+  .panel-number::after,
+  .feature-card::before,
+  .footer-cta::before {
+    display: block !important;
+    opacity: 1 !important;
+  }
+  
+  /* Espacement section Mission */
+  .mission-section {
+    padding-top: 6rem !important;
+    padding-bottom: 4rem !important;
+  }
+  
+  /* Espacement header Mission */
+  .mission-header {
+    margin-bottom: 3rem !important;
+    padding: 0 1rem !important;
+  }
+  
+  /* Titre "Nos Services" */
+  .mission-header .main-title {
+    font-size: 3rem !important;
+    line-height: 1.1 !important;
+    margin-bottom: 1.5rem !important;
+  }
+  
+  .mission-header .title-word-1 {
+    color: white !important;
+  }
+  
+  .mission-header .title-word-2 {
+    background: linear-gradient(45deg, #ec4899, #a855f7, #3b82f6) !important;
+    background-clip: text !important;
+    -webkit-background-clip: text !important;
+    -webkit-text-fill-color: transparent !important;
+  }
+  
+  /* Sous-titre */
+  .mission-header .subtitle {
+    text-align: center !important;
+    font-size: 1rem !important;
+    color: rgba(255, 255, 255, 0.7) !important;
+  }
+  
+  /* Panneaux de services */
+  .services-cascade {
+    padding: 0 1rem !important;
+  }
+  
+  .service-panel {
+    margin-bottom: 1rem !important;
+  }
+  
+  .panel-header {
+    padding: 1.2rem 3rem 1.2rem 4rem !important;
+    min-height: 75px !important;
+  }
+  
+  .panel-number {
+    width: 35px !important;
+    height: 35px !important;
+    left: 0.8rem !important;
+    font-size: 0.9rem !important;
+  }
+  
+  .panel-title {
+    font-size: 1rem !important;
+    line-height: 1.2 !important;
+  }
+  
+  .panel-subtitle {
+    font-size: 0.7rem !important;
+    line-height: 1.2 !important;
+  }
+  
+  .panel-toggle {
+    width: 30px !important;
+    height: 30px !important;
+    right: 0.8rem !important;
+  }
+  
+  .panel-icon-wrapper {
+    display: none !important;
+  }
+}
