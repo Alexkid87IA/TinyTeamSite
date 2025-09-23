@@ -1,12 +1,13 @@
-/* ArtistsSliderSection.css - VERSION SIMPLE MOBILE */
+/* ArtistsSliderSection.css - Version harmonisée avec HeroSection */
 
 :root {
+    --primary-pink: #ec4899;
+    --primary-purple: #a855f7;
+    --bg-dark: #0a0a1f;
+    --bg-dark-secondary: #16213e;
     --neon-pink: #ff00ff;
     --neon-cyan: #00ffff;
     --neon-yellow: #ffff00;
-    --neon-purple: #a855f7;
-    --primary-pink: #ec4899;
-    --bg-dark: #0a0a1a;
 }
 
 /* ====================================
@@ -16,12 +17,50 @@
     position: relative;
     min-height: 100vh;
     padding: 120px 20px 80px;
-    background: linear-gradient(180deg, #16213e 0%, #0f0f23 30%, #0a0a1a 70%, #070710 100%);
+    /* MÊME FOND QUE HEROSECTION */
+    background: linear-gradient(180deg, #1a1a2e 0%, #0f0f23 50%, #16213e 100%);
     overflow: hidden;
 }
 
 /* ====================================
-   EFFETS DE FOND
+   PARTICULES FLOTTANTES (comme HeroSection)
+   ==================================== */
+.artists-slider-section::before,
+.artists-slider-section::after {
+    content: '';
+    position: absolute;
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    filter: blur(40px);
+    animation: float 20s infinite ease-in-out;
+    pointer-events: none;
+    z-index: 1;
+}
+
+.artists-slider-section::before {
+    background: radial-gradient(circle, rgba(236,72,153,0.15) 0%, transparent 70%);
+    top: 20%;
+    left: -100px;
+    animation-delay: 0s;
+}
+
+.artists-slider-section::after {
+    background: radial-gradient(circle, rgba(168,85,247,0.15) 0%, transparent 70%);
+    bottom: 20%;
+    right: -100px;
+    animation-delay: 10s;
+    animation-duration: 25s;
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0) rotate(0deg); }
+    33% { transform: translateY(-20px) rotate(120deg); }
+    66% { transform: translateY(10px) rotate(240deg); }
+}
+
+/* ====================================
+   EFFETS DE FOND ADDITIONNELS
    ==================================== */
 .artists-background {
     position: absolute;
@@ -113,7 +152,7 @@
 }
 
 /* ====================================
-   HEADER
+   HEADER - Style identique à l'original
    ==================================== */
 .section-header {
     text-align: center;
@@ -152,7 +191,7 @@
 .artists-title-line-1 {
     display: block;
     color: white;
-    margin-bottom: -0.05em; /* Espacement réduit, presque collé comme TINY TEAM / BIG DREAMS */
+    margin-bottom: -0.05em;
     animation: slideInLeft 1s cubic-bezier(0.16, 1, 0.3, 1);
     line-height: 1;
 }
@@ -288,16 +327,16 @@
 .mask-left {
     left: 0;
     background: linear-gradient(to right, 
-        #0a0a1a 0%, 
-        rgba(10, 10, 26, 0.8) 50%, 
+        #0f0f23 0%, 
+        rgba(15, 15, 35, 0.8) 50%, 
         transparent 100%);
 }
 
 .mask-right {
     right: 0;
     background: linear-gradient(to left, 
-        #0a0a1a 0%, 
-        rgba(10, 10, 26, 0.8) 50%, 
+        #0f0f23 0%, 
+        rgba(15, 15, 35, 0.8) 50%, 
         transparent 100%);
 }
 
@@ -352,6 +391,33 @@
     box-shadow: 
         0 30px 60px rgba(0, 0, 0, 0.5),
         0 0 80px rgba(236, 72, 153, 0.4);
+}
+
+/* Badge de diffusion - TOUJOURS VISIBLE */
+.diffusion-badge {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: rgba(0, 0, 0, 0.85);
+    backdrop-filter: blur(10px);
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 0.65rem;
+    color: rgba(255, 255, 255, 0.95);
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    z-index: 5;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    transition: all 0.3s ease;
+}
+
+.poster-card:hover .diffusion-badge {
+    background: rgba(236, 72, 153, 0.9);
+    border-color: rgba(255, 255, 255, 0.4);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.4);
 }
 
 .poster-image {
@@ -436,13 +502,6 @@
 }
 
 /* ====================================
-   GRILLE MOBILE SIMPLE VERTICALE 
-   ==================================== */
-.mobile-vertical-grid {
-    display: none;
-}
-
-/* ====================================
    CTA SECTION
    ==================================== */
 .section-cta {
@@ -492,18 +551,42 @@
     to { opacity: 1; transform: translateY(0); }
 }
 
+/* Cacher la grille mobile par défaut */
+.mobile-vertical-grid {
+    display: none;
+}
+
 /* ====================================
-   MOBILE - VERSION SIMPLE VERTICALE
+   MOBILE - EXPÉRIENCE EXTRAORDINAIRE
    ==================================== */
 @media (max-width: 768px) {
     .artists-slider-section {
         padding: 80px 0 60px;
-        min-height: auto;
+        min-height: 100vh;
+        min-height: 100dvh;
+    }
+
+    /* Particules adaptées mobile */
+    .artists-slider-section::before,
+    .artists-slider-section::after {
+        width: 120px;
+        height: 120px;
+        filter: blur(30px);
+    }
+
+    .artists-slider-section::before {
+        top: 10%;
+        left: -60px;
+    }
+
+    .artists-slider-section::after {
+        bottom: 10%;
+        right: -60px;
     }
     
     .section-header {
-        margin-bottom: 2rem;
-        padding: 0 1.5rem;
+        margin-bottom: 2.5rem;
+        padding: 0 20px;
     }
     
     .title-glow {
@@ -537,86 +620,213 @@
         display: none;
     }
     
-    /* Cache la rivière desktop */
-    .artists-river {
+    /* Cache les effets desktop */
+    .artists-river,
+    .artists-background {
         display: none;
     }
     
-    /* GRILLE MOBILE SIMPLE */
+    /* GRILLE MOBILE EXTRAORDINAIRE */
     .mobile-vertical-grid {
         display: block;
-        padding: 0 1rem;
-        margin-top: 2rem;
+        padding: 0 15px;
+        margin-top: 1rem;
     }
     
     .mobile-grid-container {
         display: flex;
         flex-direction: column;
-        gap: 1.5rem;
+        gap: 1.2rem;
     }
     
-    /* CARTE MOBILE SIMPLE */
+    /* CARTE MOBILE SPECTACULAIRE */
     .mobile-artist-card {
         position: relative;
         width: 100%;
-        border-radius: 1rem;
+        border-radius: 24px;
         overflow: hidden;
-        background: #000;
         text-decoration: none;
         display: block;
+        background: linear-gradient(135deg, rgba(0,0,0,0.3) 0%, rgba(0,0,0,0.1) 100%);
+        backdrop-filter: blur(20px);
+        border: 1px solid rgba(255,255,255,0.05);
+        transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        animation: mobileCardEntry 0.6s ease-out backwards;
+    }
+
+    @keyframes mobileCardEntry {
+        from {
+            opacity: 0;
+            transform: translateY(30px) scale(0.95);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+        }
+    }
+
+    .mobile-artist-card:nth-child(1) { animation-delay: 0.1s; }
+    .mobile-artist-card:nth-child(2) { animation-delay: 0.2s; }
+    .mobile-artist-card:nth-child(3) { animation-delay: 0.3s; }
+    .mobile-artist-card:nth-child(4) { animation-delay: 0.4s; }
+    .mobile-artist-card:nth-child(5) { animation-delay: 0.5s; }
+    .mobile-artist-card:nth-child(6) { animation-delay: 0.6s; }
+    .mobile-artist-card:nth-child(7) { animation-delay: 0.7s; }
+    .mobile-artist-card:nth-child(8) { animation-delay: 0.8s; }
+    .mobile-artist-card:nth-child(9) { animation-delay: 0.9s; }
+    .mobile-artist-card:nth-child(10) { animation-delay: 1s; }
+    
+    /* Container de l'image avec ratio aspect */
+    .mobile-image-container {
+        position: relative;
+        width: 100%;
+        overflow: hidden;
+        background: linear-gradient(135deg, #1a1a2e 0%, #0f0f23 100%);
     }
     
-    /* Image affichée en entier */
+    /* Image optimisée - affichage complet */
     .mobile-card-image {
         width: 100%;
         height: auto;
         display: block;
+        transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
     }
-    
-    /* PAS D'OVERLAY */
-    /* Contenu en bas avec fond noir */
-    .mobile-card-content {
-        background: rgba(0, 0, 0, 0.95);
-        padding: 1.5rem;
-        text-align: center;
-    }
-    
-    .mobile-card-name {
-        font-size: 1.8rem;
-        font-weight: 900;
-        color: white;
-        margin-bottom: 1rem;
+
+    /* Badge diffusion mobile */
+    .mobile-diffusion-badge {
+        position: absolute;
+        top: 12px;
+        right: 12px;
+        background: rgba(0, 0, 0, 0.85);
+        backdrop-filter: blur(20px);
+        padding: 8px 14px;
+        border-radius: 20px;
+        font-size: 0.65rem;
+        color: rgba(255, 255, 255, 0.95);
+        font-weight: 700;
+        letter-spacing: 0.03em;
         text-transform: uppercase;
-        letter-spacing: -0.02em;
+        border: 1px solid rgba(255, 255, 255, 0.3);
+        z-index: 3;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+    }
+
+    /* Overlay gradient optimisé */
+    .mobile-card-overlay {
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(
+            to top,
+            rgba(0, 0, 0, 0.9) 0%,
+            rgba(0, 0, 0, 0.5) 25%,
+            rgba(0, 0, 0, 0.2) 50%,
+            transparent 70%
+        );
+        pointer-events: none;
     }
     
+    /* BOUTON FLOTTANT EXTRAORDINAIRE */
     .mobile-card-button {
+        position: absolute;
+        bottom: 1.2rem;
+        left: 50%;
+        transform: translateX(-50%);
         display: inline-flex;
         align-items: center;
+        justify-content: center;
         gap: 0.5rem;
-        padding: 0.9rem 2rem;
-        background: white;
-        color: #0a0a1a;
-        border: none;
+        padding: 1rem 2.5rem;
+        background: linear-gradient(135deg, 
+            rgba(236, 72, 153, 0.95) 0%, 
+            rgba(168, 85, 247, 0.95) 100%);
+        color: white;
+        border: 2px solid rgba(255,255,255,0.3);
         border-radius: 9999px;
-        font-weight: 700;
-        font-size: 0.9rem;
+        font-weight: 800;
+        font-size: 0.95rem;
         text-transform: uppercase;
         letter-spacing: 0.1em;
+        backdrop-filter: blur(10px);
+        box-shadow: 
+            0 0 25px rgba(236, 72, 153, 0.5),
+            0 12px 25px rgba(0, 0, 0, 0.4);
+        transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        z-index: 2;
+    }
+
+    /* Animation au survol/touch */
+    .mobile-artist-card:active .mobile-card-image {
+        transform: scale(1.08);
+    }
+
+    .mobile-artist-card:active .mobile-card-button {
+        transform: translateX(-50%) translateY(-3px) scale(1.05);
+        background: linear-gradient(135deg, 
+            #ec4899 0%, 
+            #a855f7 100%);
+        box-shadow: 
+            0 0 35px rgba(236, 72, 153, 0.7),
+            0 15px 30px rgba(0, 0, 0, 0.5);
+    }
+
+    /* Effet de brillance animé */
+    @keyframes mobileCardShine {
+        0% { transform: translateX(-150%) skewX(-25deg); }
+        100% { transform: translateX(250%) skewX(-25deg); }
+    }
+
+    .mobile-card-shine {
+        position: absolute;
+        top: 0;
+        left: -150%;
+        width: 50%;
+        height: 100%;
+        background: linear-gradient(90deg, 
+            transparent, 
+            rgba(255,255,255,0.15), 
+            transparent);
+        pointer-events: none;
+        z-index: 4;
+    }
+
+    .mobile-artist-card:nth-child(odd) .mobile-card-shine {
+        animation: mobileCardShine 6s ease-in-out infinite;
+    }
+
+    .mobile-artist-card:nth-child(even) .mobile-card-shine {
+        animation: mobileCardShine 6s ease-in-out infinite;
+        animation-delay: 3s;
     }
     
-    /* CTA Section */
+    /* CTA Section mobile */
     .section-cta {
         margin-top: 2.5rem;
-        padding: 0 1.5rem;
+        padding: 0 20px;
     }
     
     .main-cta-button {
-        padding: 1.2rem 2rem;
-        font-size: 0.95rem;
         width: 100%;
-        max-width: none;
+        max-width: 360px;
+        margin: 0 auto;
+        padding: 1.1rem 2rem;
+        font-size: 0.9rem;
         justify-content: center;
+        background: linear-gradient(135deg, 
+            rgba(236, 72, 153, 0.25) 0%, 
+            rgba(168, 85, 247, 0.25) 100%);
+        border: 2px solid transparent;
+        background-image: 
+            linear-gradient(135deg, rgba(236, 72, 153, 0.25), rgba(168, 85, 247, 0.25)), 
+            linear-gradient(135deg, #ec4899, #a855f7);
+        background-origin: border-box;
+        background-clip: padding-box, border-box;
+    }
+
+    .main-cta-button:active {
+        transform: scale(0.98);
+        box-shadow: 
+            0 0 30px rgba(236, 72, 153, 0.5),
+            0 0 60px rgba(168, 85, 247, 0.3);
     }
 }
 
@@ -638,13 +848,19 @@
         font-size: 1.5rem;
     }
     
-    .mobile-card-name {
-        font-size: 1.5rem;
+    .mobile-card-button {
+        padding: 0.9rem 2rem;
+        font-size: 0.85rem;
     }
     
-    .mobile-card-button {
-        padding: 0.8rem 1.8rem;
+    .mobile-diffusion-badge {
+        font-size: 0.6rem;
+        padding: 6px 10px;
+    }
+    
+    .main-cta-button {
         font-size: 0.85rem;
+        padding: 1rem 1.8rem;
     }
 }
 

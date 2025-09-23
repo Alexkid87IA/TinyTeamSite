@@ -41,10 +41,10 @@ export const ContactSection = () => {
           </p>
         </div>
 
-        {/* Cartes de contact */}
+        {/* Cartes de contact - LIENS CORRIGÉS */}
         <div className="contact-cards">
           {/* Carte Artiste */}
-          <a href="/contact?type=artiste" className="contact-card card-artiste">
+          <a href="/artiste" className="contact-card card-artiste">
             <div className="card-shine"></div>
             <div className="card-badge">
               <span className="card-badge-text">Pour les talents</span>
@@ -61,7 +61,7 @@ export const ContactSection = () => {
           </a>
 
           {/* Carte Programmateur */}
-          <a href="/contact?type=programmateur" className="contact-card card-programmateur">
+          <a href="/programmateur" className="contact-card card-programmateur">
             <div className="card-shine"></div>
             <div className="card-badge">
               <span className="card-badge-text">Pour les salles</span>
@@ -78,7 +78,7 @@ export const ContactSection = () => {
           </a>
 
           {/* Carte Entreprise */}
-          <a href="/contact?type=entreprise" className="contact-card card-entreprise">
+          <a href="/marque" className="contact-card card-entreprise">
             <div className="card-shine"></div>
             <div className="card-badge">
               <span className="card-badge-text">Pour les marques</span>

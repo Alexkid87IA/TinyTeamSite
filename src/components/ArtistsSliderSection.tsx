@@ -1,58 +1,67 @@
 import React, { useState, useEffect } from 'react';
-import { ChevronRight, MousePointer2 } from 'lucide-react';
 import './ArtistsSliderSection.css';
 
-// Liste des artistes
+// Liste des artistes avec leurs informations de diffusion (Urbain en dernier)
 const artistsData = [
-  {
-    id: "urbain",
-    name: "Urbain",
-    image: "https://static.eno.do/x/fs-200359-default/9fb343deaad6dbe750cd731b4c0564b8/media.jpg"
-  },
   {
     id: "marc-antoine",
     name: "Marc-Antoine Le Bret",
-    image: "https://static.eno.do/x/fs-200360-default/a0c4d924ae52585a517dd76531300e5b/media.jpg"
+    image: "https://static.eno.do/x/fs-200360-default/a0c4d924ae52585a517dd76531300e5b/media.jpg",
+    diffusion: "Doudou Production"
   },
   {
     id: "djal",
     name: "D'Jal",
-    image: "https://static.eno.do/x/fs-200362-default/0743597244e1da871493bfbf5d13b7f7/media.jpg"
+    image: "https://static.eno.do/x/fs-200362-default/0743597244e1da871493bfbf5d13b7f7/media.jpg",
+    diffusion: null
   },
   {
     id: "morgane",
     name: "Morgane Berling",
-    image: "https://i.imgur.com/munE7s3.jpeg"
+    image: "https://i.imgur.com/munE7s3.jpeg",
+    diffusion: "Les Derniers couchés"
   },
   {
     id: "thomas",
     name: "Thomas Angelvy",
-    image: "https://static.eno.do/x/fs-200364-default/2cf3c8b262adfc3c6e72e95639c39cf8/media.jpg"
+    image: "https://static.eno.do/x/fs-200364-default/2cf3c8b262adfc3c6e72e95639c39cf8/media.jpg",
+    diffusion: "ProdVocation"
   },
   {
     id: "lucie",
     name: "Lucie Carbone",
-    image: "https://static.eno.do/x/fs-200365-default/cda1d9f46d486a0ba2357daa5a79f6bd/media.jpg"
+    image: "https://static.eno.do/x/fs-200365-default/cda1d9f46d486a0ba2357daa5a79f6bd/media.jpg",
+    diffusion: null
   },
   {
     id: "edouard",
     name: "Edouard Deloignon",
-    image: "https://static.eno.do/x/fs-200366-default/cdc3aba992ae1735c4a9b7a3fd8befc4/media.jpg"
+    image: "https://static.eno.do/x/fs-200366-default/cdc3aba992ae1735c4a9b7a3fd8befc4/media.jpg",
+    diffusion: "Dan Bolender Production"
   },
   {
     id: "julien",
     name: "Julien Santini",
-    image: "https://26.staticbtf.eno.do/v1/29-default/caa1da7f867fc1ad334621eba4d80b76/media.jpg"
+    image: "https://26.staticbtf.eno.do/v1/29-default/caa1da7f867fc1ad334621eba4d80b76/media.jpg",
+    diffusion: null
   },
   {
     id: "sophie-alex",
     name: "Sophie & Alex",
-    image: "https://i.imgur.com/ht3EucF.jpeg"
+    image: "https://i.imgur.com/ht3EucF.jpeg",
+    diffusion: null
   },
   {
     id: "djamel",
     name: "Djamel Comedy Club",
-    image: "https://26.staticbtf.eno.do/v1/30-default/975e3fdd1700df5c9bd53662949e3fda/media.jpg"
+    image: "https://26.staticbtf.eno.do/v1/30-default/975e3fdd1700df5c9bd53662949e3fda/media.jpg",
+    diffusion: null
+  },
+  {
+    id: "urbain",
+    name: "Urbain",
+    image: "https://static.eno.do/x/fs-200359-default/9fb343deaad6dbe750cd731b4c0564b8/media.jpg",
+    diffusion: null
   }
 ];
 
@@ -76,7 +85,8 @@ export const ArtistsSliderSection = () => {
   }, []);
 
   // Fonction pour naviguer vers la page artiste
-  const handleArtistClick = (artistId: string) => {
+  const handleArtistClick = (e, artistId) => {
+    e.preventDefault();
     // Pour React Router, utilisez :
     // navigate(`/artiste/${artistId}`);
     
@@ -84,38 +94,74 @@ export const ArtistsSliderSection = () => {
     window.location.href = `/artiste/${artistId}`;
   };
 
+  // Composant ChevronRight simplifié
+  const ChevronRight = ({ size = 16 }) => (
+    <svg 
+      width={size} 
+      height={size} 
+      viewBox="0 0 24 24" 
+      fill="none" 
+      stroke="currentColor" 
+      strokeWidth="2" 
+      strokeLinecap="round" 
+      strokeLinejoin="round"
+    >
+      <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+  );
+
+  // Composant MousePointer2 simplifié
+  const MousePointer2 = () => (
+    <svg 
+      width="20" 
+      height="20" 
+      viewBox="0 0 24 24" 
+      fill="none" 
+      stroke="currentColor" 
+      strokeWidth="2"
+      strokeLinecap="round" 
+      strokeLinejoin="round"
+      className="indicator-icon"
+      style={{ display: 'inline-block', marginRight: '8px', verticalAlign: 'middle' }}
+    >
+      <path d="M5 12l6-6v3h8v6h-8v3z"/>
+    </svg>
+  );
+
   return (
     <section className="artists-slider-section">
-      {/* Effets de fond spectaculaires */}
-      <div className="artists-background">
-        {/* Grille animée */}
-        <div className="artists-grid" />
-        
-        {/* Orbes de lumière */}
-        <div className="artists-orb orb-1" />
-        <div className="artists-orb orb-2" />
-        <div className="artists-orb orb-3" />
-        
-        {/* Étoiles scintillantes */}
-        <div className="artists-stars">
-          {[...Array(40)].map((_, i) => (
-            <div
-              key={i}
-              className="star"
-              style={{
-                left: `${Math.random() * 100}%`,
-                top: `${Math.random() * 100}%`,
-                animationDelay: `${Math.random() * 3}s`
-              }}
-            />
-          ))}
+      {/* Effets de fond spectaculaires (desktop uniquement) */}
+      {!isMobile && (
+        <div className="artists-background">
+          {/* Grille animée */}
+          <div className="artists-grid" />
+          
+          {/* Orbes de lumière */}
+          <div className="artists-orb orb-1" />
+          <div className="artists-orb orb-2" />
+          <div className="artists-orb orb-3" />
+          
+          {/* Étoiles scintillantes */}
+          <div className="artists-stars">
+            {[...Array(40)].map((_, i) => (
+              <div
+                key={i}
+                className="star"
+                style={{
+                  left: `${Math.random() * 100}%`,
+                  top: `${Math.random() * 100}%`,
+                  animationDelay: `${Math.random() * 3}s`
+                }}
+              />
+            ))}
+          </div>
         </div>
-      </div>
+      )}
 
       {/* Contenu principal */}
       <div className="artists-main-content">
         
-        {/* Header épique */}
+        {/* Header avec exactement le même texte que l'original */}
         <div className="section-header">
           <div className="title-glow" />
           
@@ -154,7 +200,13 @@ export const ArtistsSliderSection = () => {
                   key={`top-${index}`}
                   href={`/artiste/${artist.id}`}
                   className="poster-card"
+                  onClick={(e) => handleArtistClick(e, artist.id)}
                 >
+                  {artist.diffusion && (
+                    <div className="diffusion-badge">
+                      Diffusion : {artist.diffusion}
+                    </div>
+                  )}
                   <img 
                     src={artist.image} 
                     alt={artist.name} 
@@ -169,7 +221,6 @@ export const ArtistsSliderSection = () => {
                       <ChevronRight size={16} />
                     </span>
                   </div>
-                  <div className="poster-shine" />
                 </a>
               ))}
             </div>
@@ -181,7 +232,13 @@ export const ArtistsSliderSection = () => {
                   key={`bottom-${index}`}
                   href={`/artiste/${artist.id}`}
                   className="poster-card"
+                  onClick={(e) => handleArtistClick(e, artist.id)}
                 >
+                  {artist.diffusion && (
+                    <div className="diffusion-badge">
+                      Diffusion : {artist.diffusion}
+                    </div>
+                  )}
                   <img 
                     src={artist.image} 
                     alt={artist.name} 
@@ -196,14 +253,13 @@ export const ArtistsSliderSection = () => {
                       <ChevronRight size={16} />
                     </span>
                   </div>
-                  <div className="poster-shine" />
                 </a>
               ))}
             </div>
           </div>
         )}
 
-        {/* VERSION MOBILE : Grille verticale simple */}
+        {/* VERSION MOBILE : Grille verticale extraordinaire */}
         {isMobile && (
           <div className="mobile-vertical-grid">
             <div className="mobile-grid-container">
@@ -212,26 +268,33 @@ export const ArtistsSliderSection = () => {
                   key={artist.id}
                   href={`/artiste/${artist.id}`}
                   className="mobile-artist-card"
+                  onClick={(e) => handleArtistClick(e, artist.id)}
                 >
-                  <img 
-                    src={artist.image} 
-                    alt={artist.name} 
-                    className="mobile-card-image"
-                    loading="lazy"
-                  />
-                  <div className="mobile-card-overlay" />
-                  <div className="mobile-card-content">
-                    <h3 className="mobile-card-name">{artist.name}</h3>
+                  <div className="mobile-image-container">
+                    {artist.diffusion && (
+                      <div className="mobile-diffusion-badge">
+                        Diffusion : {artist.diffusion}
+                      </div>
+                    )}
+                    <img 
+                      src={artist.image} 
+                      alt={artist.name} 
+                      className="mobile-card-image"
+                      loading="lazy"
+                    />
+                    <div className="mobile-card-overlay" />
+                    {/* Bouton Découvrir flottant - PAS de nom d'artiste */}
                     <button 
                       className="mobile-card-button"
                       onClick={(e) => {
-                        e.preventDefault();
-                        handleArtistClick(artist.id);
+                        e.stopPropagation();
+                        handleArtistClick(e, artist.id);
                       }}
                     >
                       Découvrir
                       <ChevronRight size={16} />
                     </button>
+                    <div className="mobile-card-shine" />
                   </div>
                 </a>
               ))}
@@ -249,12 +312,19 @@ export const ArtistsSliderSection = () => {
 
         {/* Indicateur d'interaction (desktop uniquement) */}
         {!isMobile && (
-          <div className="interaction-indicator">
-            <MousePointer2 className="indicator-icon" />
+          <div className="interaction-indicator" style={{
+            textAlign: 'center',
+            marginTop: '2rem',
+            color: 'rgba(255, 255, 255, 0.4)',
+            fontSize: '0.875rem',
+            fontWeight: '300',
+            letterSpacing: '0.05em'
+          }}>
+            <MousePointer2 />
             <span>Survolez une affiche pour en savoir plus</span>
           </div>
         )}
       </div>
     </section>
   );
-};
+}

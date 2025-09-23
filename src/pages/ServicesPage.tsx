@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { Navigation } from '../components/Navigation';
 import { Footer } from '../components/Footer';
 import './ServicesPage.css';
@@ -50,6 +50,12 @@ const services = [
 ];
 
 export const ServicesPage = () => {
+  const navigate = useNavigate();
+
+  const handleContactClick = () => {
+    navigate('/contact');
+  };
+
   return (
     <div className="services-page">
       <Navigation />
@@ -93,33 +99,37 @@ export const ServicesPage = () => {
         <div className="services-container">
           <div className="services-grid">
             {services.map((service, index) => (
-              <Link 
-                to={`/services/${service.id}`} 
+              <div 
                 key={service.id}
                 className={`service-card ${service.color}`}
                 style={{ animationDelay: `${index * 0.1}s` }}
+                onClick={() => navigate(`/services/${service.id}`)}
               >
                 <div className="service-icon">{service.icon}</div>
                 <h3 className="service-title">{service.title}</h3>
                 <p className="service-description">{service.description}</p>
                 <div className="service-arrow">→</div>
-              </Link>
+              </div>
             ))}
           </div>
         </div>
       </section>
       
-      {/* CTA Section */}
-      <section className="services-cta">
+      {/* CTA Section avec bouton intégré dans le markup de manière plus simple */}
+      <section className="services-cta" style={{ minHeight: '400px', paddingBottom: '100px' }}>
         <div className="services-container">
           <h2 className="cta-title">Prêt à collaborer ?</h2>
           <p className="cta-subtitle">
             Contactez-nous pour discuter de votre projet et découvrir comment nous pouvons vous aider.
           </p>
-          <Link to="/contact" className="cta-button">
-            <span>Discutons de votre projet</span>
-            <span className="button-arrow">→</span>
-          </Link>
+          <p style={{ marginTop: '3rem' }}>
+            <a 
+              href="/contact" 
+              className="cta-button"
+            >
+              Discutons de votre projet →
+            </a>
+          </p>
         </div>
       </section>
       
