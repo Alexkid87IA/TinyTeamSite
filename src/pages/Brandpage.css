@@ -1,0 +1,312 @@
+/* BrandPage.css - Animations et transitions de page */
+
+.brand-page {
+  position: relative;
+  background: #000;
+}
+
+/* Overlay de transition */
+.transition-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: radial-gradient(circle at center, rgba(236, 72, 153, 0.2) 0%, rgba(0, 0, 0, 0.95) 100%);
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: overlayFadeIn 0.8s ease-out;
+  backdrop-filter: blur(10px);
+}
+
+@keyframes overlayFadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* Loader de transition */
+.transition-loader {
+  text-align: center;
+  animation: loaderPulse 0.8s ease-out;
+}
+
+@keyframes loaderPulse {
+  0% {
+    transform: scale(0);
+    opacity: 0;
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.loader-circle {
+  width: 100px;
+  height: 100px;
+  margin: 0 auto 30px;
+  border: 3px solid rgba(255, 255, 255, 0.1);
+  border-top-color: #ec4899;
+  border-radius: 50%;
+  animation: spin 1.5s linear infinite;
+}
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.loader-text {
+  font-size: 18px;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.8);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  animation: fadeInUp 0.5s ease 0.3s both;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Container des sections */
+.sections-container {
+  opacity: 0;
+  transform: translateY(100px);
+  transition: all 1s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.sections-container.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Indicateur de parcours */
+.path-indicator {
+  position: relative;
+  padding: 80px 20px 40px;
+  text-align: center;
+  background: linear-gradient(180deg, #000 0%, transparent 100%);
+  animation: indicatorSlideDown 0.8s ease-out;
+}
+
+@keyframes indicatorSlideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.indicator-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 15px;
+  padding: 20px 40px;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0.02) 100%);
+  backdrop-filter: blur(20px);
+  border-radius: 100px;
+  border: 2px solid rgba(255, 255, 255, 0.1);
+  position: relative;
+  overflow: hidden;
+  animation: badgePulse 2s ease-in-out infinite;
+}
+
+@keyframes badgePulse {
+  0%, 100% {
+    transform: scale(1);
+    box-shadow: 0 0 30px rgba(236, 72, 153, 0.3);
+  }
+  50% {
+    transform: scale(1.02);
+    box-shadow: 0 0 50px rgba(236, 72, 153, 0.5);
+  }
+}
+
+.indicator-badge.content {
+  border-color: rgba(236, 72, 153, 0.3);
+  background: linear-gradient(135deg, rgba(236, 72, 153, 0.1) 0%, rgba(168, 85, 247, 0.05) 100%);
+}
+
+.indicator-badge.event {
+  border-color: rgba(255, 136, 0, 0.3);
+  background: linear-gradient(135deg, rgba(255, 136, 0, 0.1) 0%, rgba(255, 215, 0, 0.05) 100%);
+}
+
+.indicator-badge::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -100%;
+  width: 50%;
+  height: 200%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+  transform: rotate(25deg);
+  animation: shimmer 3s infinite;
+}
+
+@keyframes shimmer {
+  0% { left: -100%; }
+  100% { left: 200%; }
+}
+
+.indicator-icon {
+  font-size: 32px;
+  animation: iconBounce 2s ease-in-out infinite;
+}
+
+@keyframes iconBounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-5px); }
+}
+
+.indicator-text {
+  font-size: 20px;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: white;
+}
+
+/* Animations des sections content */
+.content-sections > * {
+  animation: sectionFadeIn 1s ease-out;
+  animation-fill-mode: both;
+}
+
+.content-sections > *:nth-child(1) { animation-delay: 0.2s; }
+.content-sections > *:nth-child(2) { animation-delay: 0.4s; }
+.content-sections > *:nth-child(3) { animation-delay: 0.6s; }
+
+/* Animations des sections event */
+.event-sections > * {
+  animation: sectionFadeIn 1s ease-out;
+  animation-fill-mode: both;
+}
+
+.event-sections > *:nth-child(1) { animation-delay: 0.2s; }
+.event-sections > *:nth-child(2) { animation-delay: 0.4s; }
+.event-sections > *:nth-child(3) { animation-delay: 0.6s; }
+
+@keyframes sectionFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Animation du scroll reveal pour Hero */
+.brand-hero-section .choice-card,
+.brand-hero-section .mobile-card {
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.brand-hero-section .choice-card:active,
+.brand-hero-section .mobile-card:active {
+  transform: scale(0.95);
+}
+
+/* Effet de clic avec onde */
+.brand-hero-section .choice-card::after,
+.brand-hero-section .mobile-card::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.5) 0%, transparent 70%);
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  transition: width 0.6s ease, height 0.6s ease, opacity 0.6s ease;
+  opacity: 0;
+}
+
+.brand-hero-section .choice-card:active::after,
+.brand-hero-section .mobile-card:active::after {
+  width: 300%;
+  height: 300%;
+  opacity: 1;
+}
+
+/* Transition de sortie du Hero */
+.brand-hero-section {
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.brand-hero-section.exiting {
+  opacity: 0.5;
+  transform: scale(0.98);
+}
+
+/* Animation de révélation progressive */
+@keyframes revealFromBottom {
+  from {
+    clip-path: inset(100% 0 0 0);
+  }
+  to {
+    clip-path: inset(0 0 0 0);
+  }
+}
+
+.sections-container.visible .content-sections,
+.sections-container.visible .event-sections {
+  animation: revealFromBottom 1.2s ease-out;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .path-indicator {
+    padding: 60px 15px 30px;
+  }
+  
+  .indicator-badge {
+    padding: 15px 25px;
+  }
+  
+  .indicator-icon {
+    font-size: 24px;
+  }
+  
+  .indicator-text {
+    font-size: 16px;
+  }
+  
+  .loader-circle {
+    width: 80px;
+    height: 80px;
+  }
+  
+  .loader-text {
+    font-size: 14px;
+  }
+}

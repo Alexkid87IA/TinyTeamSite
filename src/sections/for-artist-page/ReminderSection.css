@@ -1,0 +1,177 @@
+/* ReminderSection.css - Design Minimaliste et Direct */
+
+.reminder-section {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #000;
+  position: relative;
+  padding: 80px 20px;
+  overflow: hidden;
+}
+
+.reminder-section .section-content {
+  max-width: 900px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 10;
+}
+
+.reminder-content {
+  text-align: center;
+}
+
+/* Deux vérités simples */
+.reminder-statement {
+  margin-bottom: 80px;
+}
+
+.statement-line-1,
+.statement-line-2 {
+  font-size: clamp(36px, 6vw, 64px);
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+}
+
+.statement-line-1 {
+  color: #fff;
+  margin-bottom: 20px;
+  opacity: 0;
+  transform: translateX(-40px);
+  animation: slideFromLeft 0.8s ease forwards;
+}
+
+.statement-line-2 {
+  color: rgba(255, 255, 255, 0.4);
+  opacity: 0;
+  transform: translateX(40px);
+  animation: slideFromRight 0.8s ease 0.4s forwards;
+  text-decoration: line-through;
+  text-decoration-color: rgba(236, 72, 153, 0.5);
+  text-decoration-thickness: 3px;
+}
+
+@keyframes slideFromLeft {
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideFromRight {
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Choix final */
+.reminder-choice {
+  font-size: clamp(20px, 3vw, 32px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+
+.choice-text {
+  color: rgba(255, 255, 255, 0.3);
+  font-weight: 300;
+  opacity: 0;
+  animation: fadeIn 0.6s ease 1s forwards;
+  position: relative;
+}
+
+.choice-or {
+  color: rgba(255, 255, 255, 0.2);
+  font-size: 0.8em;
+  font-style: italic;
+  opacity: 0;
+  animation: fadeIn 0.6s ease 1.3s forwards;
+}
+
+.choice-action {
+  color: #ec4899;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  opacity: 0;
+  transform: scale(0.8);
+  animation: popIn 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55) 1.6s forwards;
+  text-shadow: 0 0 40px rgba(236, 72, 153, 0.6);
+  font-size: 1.2em;
+  padding: 16px 32px;
+  border: 2px solid #ec4899;
+  border-radius: 100px;
+  position: relative;
+  overflow: hidden;
+}
+
+.choice-action::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(236, 72, 153, 0.1);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.3s ease;
+}
+
+.choice-action:hover::before {
+  transform: scaleX(1);
+}
+
+@keyframes fadeIn {
+  to { opacity: 1; }
+}
+
+@keyframes popIn {
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* Effet de glitch subtil sur le deuxième statement */
+@keyframes glitch {
+  0%, 100% { 
+    transform: translateX(0); 
+  }
+  20% { 
+    transform: translateX(-2px); 
+  }
+  40% { 
+    transform: translateX(2px); 
+  }
+}
+
+.statement-line-2:hover {
+  animation: glitch 0.3s ease-in-out;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .reminder-section {
+    padding: 60px 20px;
+  }
+  
+  .statement-line-1,
+  .statement-line-2 {
+    font-size: 28px;
+  }
+  
+  .reminder-statement {
+    margin-bottom: 60px;
+  }
+  
+  .reminder-choice {
+    font-size: 18px;
+  }
+  
+  .choice-action {
+    font-size: 1.1em;
+    padding: 12px 24px;
+  }
+}

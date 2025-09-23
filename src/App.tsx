@@ -12,11 +12,12 @@ import { BrandPage } from './pages/BrandPage';
 import { TeamStoriesPage } from './pages/TeamStoriesPage';
 import { ShowPage } from './pages/ShowPage';
 import { EventsPage } from './pages/EventsPage';
-import { TeamPage } from './pages/TeamPage';
+import TeamPage from './pages/TeamPage';  // CHANGÉ : Sans accolades car c'est un export default
 import { ServicesPage } from './pages/ServicesPage';
 import { ServiceDetailPage } from './pages/ServiceDetailPage';
 import { ArtistsPage } from './pages/ArtistsPage';
 import { ContactPage } from './pages/ContactPage';
+import { ForArtistPage } from './pages/ForArtistPage';
 import { ScrollToTop } from './utils/scrollToTop';
 
 function HomePage() {
@@ -39,6 +40,9 @@ function App() {
       <ScrollToTop />
       <Routes>
         <Route path="/" element={<HomePage />} />
+        {/* Route exacte pour /artiste -> votre page story */}
+        <Route path="/artiste" element={<ForArtistPage />} />
+        {/* Route avec paramètre pour les profils individuels */}
         <Route path="/artiste/:id" element={<ArtistProfilePage />} />
         <Route path="/programmateur" element={<ProducerPage />} />
         <Route path="/marque" element={<BrandPage />} />

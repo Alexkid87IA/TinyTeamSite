@@ -1,39 +1,29 @@
-/* MissionSection.css - Version corrigée avec S visible et bouton amélioré */
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;900&display=swap');
+/* MissionSection.css - VERSION 2 COHÉRENTE AVEC LE DESIGN */
 
-/* ====================================
-   VARIABLES
-   ==================================== */
 :root {
     --neon-pink: #ff00ff;
     --neon-cyan: #00ffff;
     --neon-yellow: #ffff00;
     --neon-purple: #a855f7;
-    --neon-orange: #ff8800;
     --neon-green: #00ff88;
-    --neon-blue: #0099ff;
-    --bg-dark: #0A0F29;
-    --bg-darker: #070710;
+    --neon-orange: #ff8800;
+    --primary-pink: #ec4899;
+    --bg-dark: #0a0a1a;
 }
 
 /* ====================================
-   SECTION PRINCIPALE
+   SECTION PRINCIPALE - MÊME STYLE
    ==================================== */
 .mission-section {
     position: relative;
     min-height: 100vh;
-    padding: 5rem 1rem 4rem;
-    background: linear-gradient(180deg, 
-        #1a1f3a 0%, 
-        #0f0f23 25%, 
-        #0a0a1a 60%, 
-        #070710 100%);
-    overflow-x: hidden;
-    overflow-y: visible;
+    padding: 120px 20px 80px;
+    background: linear-gradient(180deg, #16213e 0%, #0f0f23 30%, #0a0a1a 70%, #070710 100%);
+    overflow: hidden;
 }
 
 /* ====================================
-   EFFETS DE FOND
+   EFFETS DE FOND - IDENTIQUES
    ==================================== */
 .mission-background {
     position: absolute;
@@ -41,657 +31,393 @@
     pointer-events: none;
 }
 
-.bg-gradient-overlay {
+.mission-grid {
     position: absolute;
     inset: 0;
-    background: radial-gradient(
-        ellipse at 50% 30%, 
-        rgba(236, 72, 153, 0.15) 0%, 
-        rgba(168, 85, 247, 0.1) 25%, 
-        transparent 60%
-    );
-    animation: pulseGlow 8s ease-in-out infinite;
+    background-image: 
+        linear-gradient(rgba(236, 72, 153, 0.1) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(168, 85, 247, 0.1) 1px, transparent 1px);
+    background-size: 70px 70px;
+    animation: missionGridMove 25s linear infinite;
+    opacity: 0.3;
 }
 
-@keyframes pulseGlow {
-    0%, 100% { opacity: 0.6; }
-    50% { opacity: 1; }
+@keyframes missionGridMove {
+    0% { transform: translate(0, 0); }
+    100% { transform: translate(70px, 70px); }
 }
 
-/* Particules flottantes */
-.floating-particles {
+.mission-orb {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(100px);
+    animation: missionFloatOrb 30s ease-in-out infinite;
+}
+
+.mission-orb-1 {
+    width: 420px;
+    height: 420px;
+    background: radial-gradient(circle, rgba(236, 72, 153, 0.3), transparent 70%);
+    top: 10%;
+    left: -200px;
+}
+
+.mission-orb-2 {
+    width: 340px;
+    height: 340px;
+    background: radial-gradient(circle, rgba(168, 85, 247, 0.3), transparent 70%);
+    bottom: 10%;
+    right: -200px;
+    animation-delay: 15s;
+}
+
+.mission-orb-3 {
+    width: 300px;
+    height: 300px;
+    background: radial-gradient(circle, rgba(0, 255, 255, 0.2), transparent 70%);
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    animation-delay: 10s;
+}
+
+@keyframes missionFloatOrb {
+    0%, 100% { transform: translate(0, 0) scale(1); }
+    33% { transform: translate(100px, -100px) scale(1.1); }
+    66% { transform: translate(-100px, 50px) scale(0.9); }
+}
+
+.mission-stars {
     position: absolute;
     inset: 0;
-    overflow: hidden;
 }
 
-.particle {
+.mission-star {
     position: absolute;
     width: 2px;
     height: 2px;
     background: white;
     border-radius: 50%;
-    opacity: 0.3;
-    animation: float 20s infinite linear;
+    animation: missionTwinkle 3s ease-in-out infinite;
 }
 
-@keyframes float {
-    from { transform: translateY(100vh) translateX(0); }
-    to { transform: translateY(-100px) translateX(100px); }
+@keyframes missionTwinkle {
+    0%, 100% { opacity: 0; transform: scale(0.5); }
+    50% { opacity: 1; transform: scale(1); }
 }
 
 /* ====================================
-   HEADER - TITRE CENTRÉ CORRECTEMENT
+   CONTENU PRINCIPAL
+   ==================================== */
+.mission-main-content {
+    position: relative;
+    z-index: 10;
+}
+
+/* ====================================
+   HEADER - STYLE COHÉRENT
    ==================================== */
 .mission-header {
     text-align: center;
-    margin-bottom: 4rem;
+    margin-bottom: 3.2rem;
+    max-width: 1000px;
+    margin-left: auto;
+    margin-right: auto;
     position: relative;
-    z-index: 10;
-    width: 100%;
-    max-width: 100%;
-    overflow: visible !important;
 }
 
-.title-container {
-    position: relative;
-    display: block;
-    width: 100%;
-    padding: 0;
-    margin: 0 auto;
-    overflow: visible !important;
+.mission-title-glow {
+    position: absolute;
+    inset: -80px;
+    background: radial-gradient(circle, rgba(236, 72, 153, 0.4), transparent 40%);
+    filter: blur(100px);
+    animation: missionGlow 4s ease-in-out infinite;
+    pointer-events: none;
 }
 
-.main-title {
-    font-size: clamp(3rem, 8vw, 6rem);
+@keyframes missionGlow {
+    0%, 100% { opacity: 0.5; transform: scale(0.8); }
+    50% { opacity: 1; transform: scale(1.2); }
+}
+
+.mission-title {
+    font-size: 5.5rem;
     font-weight: 900;
     font-style: italic;
     text-transform: uppercase;
-    line-height: 0.85;
+    line-height: 0.9;
     letter-spacing: -0.02em;
+    margin-bottom: 1.6rem;
     position: relative;
-    margin: 0 auto;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
 }
 
-.title-word-1 {
+/* CLASSES UNIQUES MISSION */
+.mission-title-line-1 {
     display: block;
     color: white;
-    opacity: 0.95;
-    margin-bottom: -0.15em;
-    text-shadow: 0 4px 20px rgba(255, 255, 255, 0.1);
+    margin-bottom: -0.05em;
+    animation: missionSlideInLeft 1s cubic-bezier(0.16, 1, 0.3, 1);
+    line-height: 1;
 }
 
-.title-word-2 {
-    display: block;
-    font-size: 1.25em;
-    position: relative;
-    padding: 0 0.5em; /* Ajout de padding horizontal pour éviter la troncature */
-    background: linear-gradient(270deg, 
-        var(--neon-pink) 0%, 
-        var(--neon-cyan) 20%, 
-        var(--neon-yellow) 40%, 
-        var(--neon-purple) 60%, 
-        var(--neon-green) 80%, 
-        var(--neon-pink) 100%);
-    background-size: 300% 100%;
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
+.mission-title-line-2 {
+    display: inline-block;
+    font-size: 1.2em;
+    padding-right: 0.2em;
+    margin-top: -0.2em;
+    background-image: linear-gradient(90deg, 
+        rgb(255, 0, 255) 0%,
+        rgb(0, 255, 255) 25%,
+        rgb(255, 255, 0) 50%,
+        rgb(255, 0, 255) 75%,
+        rgb(0, 255, 255) 100%);
+    background-size: 200% 100%;
     background-clip: text;
-    filter: drop-shadow(0 0 30px var(--neon-pink)) 
-            drop-shadow(0 0 60px var(--neon-cyan));
-    animation: gradientSlide 6s linear infinite,
-               glowPulse 3s ease-in-out infinite;
+    -webkit-background-clip: text;
+    color: transparent;
+    -webkit-text-fill-color: transparent;
+    filter: drop-shadow(0 0 60px rgba(236, 72, 153, 0.8));
+    animation: 
+        missionSlideInRight 1s cubic-bezier(0.16, 1, 0.3, 1) 0.2s backwards,
+        missionGradientSlide 3s linear infinite;
 }
 
-@keyframes gradientSlide {
+@keyframes missionSlideInLeft {
+    from { opacity: 0; transform: translateX(-100px); }
+    to { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes missionSlideInRight {
+    from { opacity: 0; transform: translateX(100px); }
+    to { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes missionGradientSlide {
     0% { background-position: 0% 50%; }
-    100% { background-position: 300% 50%; }
+    100% { background-position: 200% 50%; }
 }
 
-@keyframes glowPulse {
-    0%, 100% { filter: drop-shadow(0 0 30px var(--neon-pink)) drop-shadow(0 0 60px var(--neon-cyan)); }
-    50% { filter: drop-shadow(0 0 40px var(--neon-pink)) drop-shadow(0 0 80px var(--neon-cyan)); }
-}
-
-.subtitle {
-    margin-top: 1.8rem;
-    font-size: clamp(1rem, 2.5vw, 1.3rem);
+.mission-subtitle {
+    font-size: 1.25rem;
     color: rgba(255, 255, 255, 0.7);
-    font-weight: 300;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    animation: fadeInUp 1s ease-out 0.5s both;
-}
-
-@keyframes fadeInUp {
-    from { 
-        opacity: 0;
-        transform: translateY(20px);
-    }
-    to { 
-        opacity: 1;
-        transform: translateY(0);
-    }
+    font-weight: 400;
+    letter-spacing: 0.02em;
+    margin-top: 1rem;
+    animation: missionFadeInUp 0.8s ease-out 0.4s both;
 }
 
 /* ====================================
-   CASCADE DE SERVICES
+   SERVICES ACCORDÉON
    ==================================== */
-.services-cascade {
-    max-width: 1100px;
-    margin: 0 auto;
-    padding: 0 2rem;
+.mission-services {
+    max-width: 900px;
+    margin: 3rem auto;
+    padding: 0 1rem;
+}
+
+.mission-service-panel {
     position: relative;
-    z-index: 10;
-}
-
-.service-panel {
-    margin-bottom: 1.2rem;
-    animation: slideInLeft 0.6s ease-out both;
-}
-
-.service-panel:nth-child(1) { animation-delay: 0.1s; }
-.service-panel:nth-child(2) { animation-delay: 0.2s; }
-.service-panel:nth-child(3) { animation-delay: 0.3s; }
-.service-panel:nth-child(4) { animation-delay: 0.4s; }
-.service-panel:nth-child(5) { animation-delay: 0.5s; }
-.service-panel:nth-child(6) { animation-delay: 0.6s; }
-
-@keyframes slideInLeft {
-    from { 
-        opacity: 0;
-        transform: translateX(-50px);
-    }
-    to { 
-        opacity: 1;
-        transform: translateX(0);
-    }
-}
-
-.panel-container {
-    position: relative;
-    background: linear-gradient(135deg, 
-        rgba(0, 0, 0, 0.5) 0%, 
-        rgba(0, 0, 0, 0.3) 100%);
-    backdrop-filter: blur(20px) saturate(150%);
-    -webkit-backdrop-filter: blur(20px) saturate(150%);
-    border-radius: 1.5rem;
+    background: rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(10px);
+    border: 2px solid rgba(255, 255, 255, 0.1);
+    border-radius: 1rem;
+    margin-bottom: 1rem;
     overflow: hidden;
-    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-    border: 2px solid transparent;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-/* Couleurs et gradients par service */
-.service-panel[data-service="production"] {
-    --service-color-1: var(--neon-yellow);
-    --service-color-2: var(--neon-orange);
-    --service-gradient: linear-gradient(135deg, var(--neon-yellow), var(--neon-orange));
+.mission-service-panel:hover {
+    transform: translateY(-3px);
+    border-color: var(--panel-color);
+    box-shadow: 
+        0 20px 40px rgba(0, 0, 0, 0.3),
+        0 0 40px var(--panel-color);
 }
 
-.service-panel[data-service="management"] {
-    --service-color-1: var(--neon-cyan);
-    --service-color-2: var(--neon-blue);
-    --service-gradient: linear-gradient(135deg, var(--neon-cyan), var(--neon-blue));
+.mission-service-panel.active {
+    border-color: var(--panel-color);
+    background: rgba(0, 0, 0, 0.5);
 }
 
-.service-panel[data-service="digital"] {
-    --service-color-1: var(--neon-purple);
-    --service-color-2: var(--neon-pink);
-    --service-gradient: linear-gradient(135deg, var(--neon-purple), var(--neon-pink));
-}
+/* Couleurs par service */
+.mission-panel-production { --panel-color: #ffff00; }
+.mission-panel-management { --panel-color: #00ffff; }
+.mission-panel-digital { --panel-color: #a855f7; }
+.mission-panel-communication { --panel-color: #ff00ff; }
+.mission-panel-diffusion { --panel-color: #00ff88; }
+.mission-panel-evenements { --panel-color: #ff8800; }
 
-.service-panel[data-service="communication"] {
-    --service-color-1: var(--neon-pink);
-    --service-color-2: #ff0080;
-    --service-gradient: linear-gradient(135deg, var(--neon-pink), #ff0080);
-}
-
-.service-panel[data-service="diffusion"] {
-    --service-color-1: var(--neon-green);
-    --service-color-2: var(--neon-cyan);
-    --service-gradient: linear-gradient(135deg, var(--neon-green), var(--neon-cyan));
-}
-
-.service-panel[data-service="evenements"] {
-    --service-color-1: var(--neon-orange);
-    --service-color-2: #ff0055;
-    --service-gradient: linear-gradient(135deg, var(--neon-orange), #ff0055);
-}
-
-/* Bordure gradient animée */
-.panel-container::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    border-radius: 1.5rem;
-    padding: 2px;
-    background: var(--service-gradient);
-    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-    -webkit-mask-composite: xor;
-    mask-composite: exclude;
-    opacity: 0.5;
-    transition: opacity 0.4s ease;
-}
-
-.panel-container:hover::before,
-.service-panel.active .panel-container::before {
-    opacity: 1;
-}
-
-.panel-container:hover,
-.service-panel.active .panel-container {
-    transform: translateY(-5px) scale(1.02);
-    box-shadow: 0 15px 50px rgba(0, 0, 0, 0.4),
-                0 0 40px var(--service-color-1, rgba(255, 255, 255, 0.1));
-}
-
-/* Header du panel */
-.panel-header {
-    padding: 1.8rem 2rem 1.8rem 6rem;
+.mission-panel-header {
+    padding: 1.5rem 2rem;
     display: flex;
     align-items: center;
     gap: 1.5rem;
     cursor: pointer;
     position: relative;
-    min-height: 100px;
-    transition: all 0.3s ease;
 }
 
-.panel-header:hover {
-    padding-left: 6.3rem;
-}
-
-/* Badge numéro avec effet glass */
-.panel-number {
-    position: absolute;
-    left: 1.5rem;
-    top: 50%;
-    transform: translateY(-50%);
-    width: 54px;
-    height: 54px;
-    border-radius: 1rem;
-    background: var(--service-gradient);
-    display: flex;
-    align-items: center;
-    justify-content: center;
+.mission-acte-badge {
+    padding: 0.5rem 1rem;
+    background: var(--panel-color);
+    color: #0a0a1a;
+    border-radius: 9999px;
+    font-size: 0.75rem;
     font-weight: 900;
-    font-size: 1.4rem;
-    color: var(--bg-dark);
-    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
 }
 
-.panel-number::after {
-    content: '';
-    position: absolute;
-    inset: -2px;
-    border-radius: 1rem;
-    background: var(--service-gradient);
-    opacity: 0;
-    z-index: -1;
-    filter: blur(10px);
-    transition: opacity 0.4s ease;
-}
-
-.panel-container:hover .panel-number,
-.service-panel.active .panel-number {
-    transform: translateY(-50%) scale(1.15) rotate(5deg);
-}
-
-.panel-container:hover .panel-number::after,
-.service-panel.active .panel-number::after {
-    opacity: 0.7;
-}
-
-/* Icône avec animation */
-.panel-icon-wrapper {
-    width: 54px;
-    height: 54px;
+.mission-service-icon {
+    width: 48px;
+    height: 48px;
     display: flex;
     align-items: center;
     justify-content: center;
-    position: relative;
-}
-
-.panel-icon {
-    width: 100%;
-    height: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 0.75rem;
+    color: var(--panel-color);
     transition: all 0.3s ease;
 }
 
-.panel-icon svg {
-    width: 30px;
-    height: 30px;
-    color: white;
-    opacity: 0.9;
-    transition: all 0.3s ease;
+.mission-panel-header:hover .mission-service-icon {
+    background: rgba(255, 255, 255, 0.1);
+    transform: scale(1.1) rotate(5deg);
 }
 
-.panel-container:hover .panel-icon svg {
-    transform: scale(1.1);
-    filter: drop-shadow(0 0 10px var(--service-color-1));
-}
-
-/* Textes */
-.panel-info {
+.mission-service-info {
     flex: 1;
 }
 
-.panel-title {
-    font-size: 1.8rem;
+.mission-service-title {
+    font-size: 1.5rem;
     font-weight: 900;
     text-transform: uppercase;
     color: white;
-    margin-bottom: 0.3rem;
+    margin-bottom: 0.25rem;
     letter-spacing: -0.02em;
-    transition: all 0.3s ease;
 }
 
-.panel-container:hover .panel-title {
-    text-shadow: 0 0 20px var(--service-color-1);
-}
-
-.panel-subtitle {
+.mission-service-subtitle {
     font-size: 1rem;
     color: rgba(255, 255, 255, 0.6);
     font-style: italic;
+}
+
+.mission-chevron {
+    width: 24px;
+    height: 24px;
+    color: rgba(255, 255, 255, 0.5);
     transition: all 0.3s ease;
 }
 
-.panel-container:hover .panel-subtitle {
-    color: rgba(255, 255, 255, 0.8);
-}
-
-/* Toggle button */
-.panel-toggle {
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    background: rgba(255, 255, 255, 0.1);
-    backdrop-filter: blur(10px);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: all 0.3s ease;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-}
-
-.panel-toggle svg {
-    width: 22px;
-    height: 22px;
-    color: white;
-    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.panel-container:hover .panel-toggle {
-    background: rgba(255, 255, 255, 0.15);
-    transform: scale(1.1);
-}
-
-.service-panel.active .panel-toggle svg {
+.mission-chevron.rotated {
     transform: rotate(180deg);
+    color: var(--panel-color);
 }
 
-/* Contenu expansible */
-.panel-content {
+.mission-panel-content {
     max-height: 0;
     overflow: hidden;
-    transition: max-height 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: max-height 0.5s cubic-bezier(0.23, 1, 0.32, 1);
 }
 
-.service-panel.active .panel-content {
-    max-height: 800px;
+.mission-panel-content.expanded {
+    max-height: 500px;
 }
 
-.content-inner {
+.mission-content-inner {
     padding: 0 2rem 2rem;
-    animation: fadeIn 0.5s ease;
 }
 
-@keyframes fadeIn {
-    from { opacity: 0; }
-    to { opacity: 1; }
-}
-
-.panel-description {
-    font-size: 1.05rem;
-    line-height: 1.7;
-    color: rgba(255, 255, 255, 0.8);
+.mission-service-story {
+    font-size: 1.125rem;
+    line-height: 1.8;
+    color: rgba(255, 255, 255, 0.85);
     margin-bottom: 1.5rem;
+    font-weight: 300;
 }
 
-/* Grille de features */
-.features-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 1rem;
-    margin-bottom: 1.8rem;
-}
-
-.feature-card {
-    padding: 1rem;
-    background: linear-gradient(135deg, 
-        rgba(255, 255, 255, 0.05) 0%, 
-        rgba(255, 255, 255, 0.02) 100%);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 0.8rem;
-    transition: all 0.3s ease;
-    position: relative;
-    overflow: hidden;
-}
-
-.feature-card::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 2px;
-    background: var(--service-gradient);
-    transition: left 0.5s ease;
-}
-
-.feature-card:hover::before {
-    left: 0;
-}
-
-.feature-card:hover {
-    background: linear-gradient(135deg, 
-        rgba(255, 255, 255, 0.08) 0%, 
-        rgba(255, 255, 255, 0.04) 100%);
-    transform: translateY(-3px);
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-}
-
-.feature-title {
-    font-weight: 700;
-    color: white;
-    margin-bottom: 0.3rem;
-    font-size: 0.95rem;
-}
-
-.feature-desc {
-    font-size: 0.8rem;
-    color: rgba(255, 255, 255, 0.6);
-}
-
-/* CTA Panel */
-.panel-cta {
+.mission-service-link {
     display: inline-flex;
     align-items: center;
     gap: 0.5rem;
-    padding: 0.8rem 1.8rem;
-    background: var(--service-gradient);
-    color: var(--bg-dark);
+    padding: 0.75rem 1.5rem;
+    background: var(--panel-color);
+    color: #0a0a1a;
     font-weight: 700;
+    font-size: 0.875rem;
     text-transform: uppercase;
-    letter-spacing: 0.05em;
-    font-size: 0.85rem;
-    border-radius: 50px;
+    letter-spacing: 0.08em;
+    border-radius: 9999px;
     text-decoration: none;
     transition: all 0.3s ease;
-    position: relative;
-    overflow: hidden;
 }
 
-.panel-cta::before {
-    content: '';
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 0;
-    height: 0;
-    background: rgba(255, 255, 255, 0.3);
-    border-radius: 50%;
-    transform: translate(-50%, -50%);
-    transition: width 0.6s ease, height 0.6s ease;
-}
-
-.panel-cta:hover::before {
-    width: 300px;
-    height: 300px;
-}
-
-.panel-cta:hover {
+.mission-service-link:hover {
     transform: scale(1.05);
-    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3),
-                0 0 30px var(--service-color-1);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
 }
 
 /* ====================================
-   FOOTER CTA
+   SECTION FINALE
    ==================================== */
-.section-footer {
+.mission-outro {
     text-align: center;
-    margin-top: 5rem;
-    padding: 2rem;
+    margin-top: 4rem;
+    padding: 4rem 2rem;
+}
+
+.mission-outro-quote {
+    font-size: 2rem;
+    font-weight: 300;
+    font-style: italic;
+    color: rgba(255, 255, 255, 0.8);
+    margin-bottom: 2rem;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* CTA BUTTON - IDENTIQUE AUX AUTRES */
+.mission-cta-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.8rem;
+    padding: 1.2rem 3.2rem;
+    font-size: 1rem;
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    text-decoration: none;
+    color: white;
+    border-radius: 9999px;
     position: relative;
-    z-index: 10;
-}
-
-.footer-cta,
-a.footer-cta {
-    display: inline-flex !important;
-    align-items: center !important;
-    gap: 0.8rem !important;
-    padding: 1.2rem 2.8rem !important;
-    font-size: 1.1rem !important;
-    font-weight: 800 !important;
-    text-transform: uppercase !important;
-    letter-spacing: 0.1em !important;
-    text-decoration: none !important;
-    color: white !important;
-    border-radius: 60px !important;
-    position: relative !important;
-    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1) !important;
-    overflow: hidden !important;
-    
-    background: linear-gradient(135deg, 
-        #a855f7 0%, 
-        #ec4899 50%,
-        #a855f7 100%) !important;
-    background-size: 200% 200% !important;
-    animation: gradientShift 3s ease infinite !important;
-    
-    border: 2px solid rgba(168, 85, 247, 0.3) !important;
-    
+    overflow: hidden;
+    background: rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(10px);
+    border: 3px solid transparent;
+    background-image: 
+        linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), 
+        linear-gradient(135deg, #ec4899, #a855f7);
+    background-origin: border-box;
+    background-clip: padding-box, border-box;
     box-shadow: 
-        0 0 30px rgba(168, 85, 247, 0.3),
-        0 0 20px rgba(236, 72, 153, 0.3),
-        0 4px 20px rgba(0, 0, 0, 0.3),
-        inset 0 1px 1px rgba(255, 255, 255, 0.1) !important;
+        0 0 40px rgba(236, 72, 153, 0.3),
+        0 0 80px rgba(168, 85, 247, 0.2);
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-@keyframes gradientShift {
-    0% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
-    100% { background-position: 0% 50%; }
-}
-
-.footer-cta::before,
-a.footer-cta::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(
-        90deg,
-        transparent 0%,
-        rgba(255, 255, 255, 0.2) 50%,
-        transparent 100%
-    );
-    transition: left 0.6s ease;
-    z-index: 1;
-}
-
-.footer-cta:hover::before,
-a.footer-cta:hover::before {
-    left: 100%;
-}
-
-.footer-cta span,
-a.footer-cta span {
-    position: relative !important;
-    z-index: 2 !important;
-    font-weight: 800 !important;
-    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2) !important;
-    color: #FFFFFF !important;
-}
-
-.footer-cta svg,
-a.footer-cta svg {
-    position: relative !important;
-    z-index: 2 !important;
-    width: 20px !important;
-    height: 20px !important;
-    transition: all 0.3s ease !important;
-    color: #FFFFFF !important;
-}
-
-.footer-cta:hover,
-a.footer-cta:hover {
-    transform: translateY(-3px) scale(1.05) !important;
-    background: linear-gradient(135deg, 
-        #c084fc 0%, 
-        #f472b6 50%,
-        #c084fc 100%) !important;
-    animation: none !important;
-    
-    border-color: rgba(236, 72, 153, 0.5) !important;
-    
+.mission-cta-button:hover {
+    transform: translateY(-5px) scale(1.05);
     box-shadow: 
-        0 0 50px rgba(168, 85, 247, 0.5),
-        0 0 30px rgba(236, 72, 153, 0.5),
-        0 8px 30px rgba(0, 0, 0, 0.3),
-        inset 0 1px 1px rgba(255, 255, 255, 0.2) !important;
+        0 0 60px rgba(236, 72, 153, 0.6),
+        0 0 120px rgba(168, 85, 247, 0.4),
+        0 20px 40px rgba(0, 0, 0, 0.3);
 }
 
-.footer-cta:hover svg,
-a.footer-cta:hover svg {
-    transform: translateX(5px) !important;
-}
-
-.footer-cta:active,
-a.footer-cta:active {
-    transform: translateY(-1px) !important;
-    background: linear-gradient(135deg, 
-        #9333ea 0%, 
-        #db2777 50%,
-        #9333ea 100%) !important;
-    box-shadow: 
-        0 0 25px rgba(168, 85, 247, 0.4),
-        0 0 15px rgba(236, 72, 153, 0.4),
-        0 4px 20px rgba(0, 0, 0, 0.3) !important;
+@keyframes missionFadeInUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
 }
 
 /* ====================================
@@ -699,111 +425,82 @@ a.footer-cta:active {
    ==================================== */
 @media (max-width: 768px) {
     .mission-section {
-        padding: 3rem 0.5rem;
+        padding: 80px 0 60px;
     }
     
     .mission-header {
-        margin-bottom: 3rem;
-        padding: 0;
+        margin-bottom: 2rem;
+        padding: 0 1.5rem;
     }
     
-    .main-title {
-        font-size: clamp(2.5rem, 12vw, 4rem);
+    .mission-title-glow {
+        display: none;
     }
     
-    .title-word-2 {
-        font-size: 1.15em;
+    .mission-title {
+        font-size: 3rem;
+        margin-bottom: 1rem;
     }
     
-    .subtitle {
-        font-size: clamp(0.85rem, 3vw, 1.1rem);
-        padding: 0 1rem;
-    }
-    
-    .services-cascade {
-        padding: 0 1rem;
-    }
-    
-    .panel-header {
-        padding: 1.5rem 1rem 1.5rem 5rem;
-        min-height: 90px;
-    }
-    
-    .panel-number {
-        width: 45px;
-        height: 45px;
-        left: 1rem;
-        font-size: 1.1rem;
-    }
-    
-    .panel-icon-wrapper {
-        width: 45px;
-        height: 45px;
-    }
-    
-    .panel-icon svg {
-        width: 24px;
-        height: 24px;
-    }
-    
-    .panel-title {
-        font-size: 1.3rem;
-    }
-    
-    .panel-subtitle {
-        font-size: 0.85rem;
-    }
-    
-    .panel-toggle {
-        width: 35px;
-        height: 35px;
-    }
-    
-    .features-grid {
-        grid-template-columns: 1fr;
-    }
-    
-    .footer-cta {
-        padding: 1rem 2rem !important;
-        font-size: 0.95rem !important;
-    }
-    
-    .footer-cta svg {
-        width: 18px !important;
-        height: 18px !important;
-    }
-}
-
-@media (min-width: 1024px) {
-    .main-title {
-        font-size: 5.5rem;
-    }
-    
-    .title-word-1 {
-        margin-bottom: -0.1em;
-    }
-    
-    .title-word-2 {
+    .mission-title-line-2 {
         font-size: 1.2em;
     }
-}
-
-@media (min-width: 1400px) {
-    .services-cascade {
-        max-width: 1300px;
+    
+    .mission-subtitle {
+        font-size: 1rem;
+        padding: 0 1rem;
     }
     
-    .main-title {
-        font-size: 7rem;
+    .mission-services {
+        padding: 0 1rem;
     }
     
-    .panel-header {
-        padding: 2rem 2.5rem 2rem 7rem;
+    .mission-panel-header {
+        padding: 1.25rem 1.5rem;
+        gap: 1rem;
+        flex-wrap: wrap;
     }
     
-    .panel-number {
-        width: 60px;
-        height: 60px;
+    .mission-acte-badge {
+        padding: 0.4rem 0.8rem;
+        font-size: 0.65rem;
+    }
+    
+    .mission-service-icon {
+        width: 40px;
+        height: 40px;
+    }
+    
+    .mission-service-title {
+        font-size: 1.25rem;
+    }
+    
+    .mission-service-subtitle {
+        font-size: 0.875rem;
+    }
+    
+    .mission-service-story {
+        font-size: 1rem;
+    }
+    
+    .mission-content-inner {
+        padding: 0 1.5rem 1.5rem;
+    }
+    
+    .mission-outro {
+        padding: 2.5rem 1.5rem;
+        margin-top: 2rem;
+    }
+    
+    .mission-outro-quote {
         font-size: 1.5rem;
+    }
+    
+    .mission-cta-button {
+        padding: 1.2rem 2rem;
+        font-size: 0.95rem;
+        width: 100%;
+        max-width: none;
+        justify-content: center;
     }
 }

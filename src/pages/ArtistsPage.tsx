@@ -1,26 +1,26 @@
 import React from 'react';
 import { Navigation } from '../components/Navigation';
 import { Footer } from '../components/Footer';
-import { ArtistsHeroSection } from '../sections/artists-page/HeroSection';
-import { ArtistsListSection } from '../sections/artists-page/ArtistsListSection';
-import { ArtistsCTASection } from '../sections/artists-page/CTASection';
+import { HeroSection } from '../sections/artists-page-v2/HeroSection';
+import { ArtistsGridSection } from '../sections/artists-page-v2/ArtistsGridSection';
+import { CTASection } from '../sections/artists-page-v2/CTASection';
 
 export const ArtistsPage = () => {
   return (
-    <main className="min-h-screen bg-[#0A0F29]">
+    <main className="min-h-screen bg-black">
       <Navigation />
       
-      {/* Hero simple - Présentation */}
-      <ArtistsHeroSection />
+      {/* Hero avec les images d'artistes en fond */}
+      <HeroSection />
       
-      {/* Catalogue des artistes - Le cœur de la page */}
-      <ArtistsListSection 
+      {/* Grille d'artistes avec rivière qui défile */}
+      <ArtistsGridSection 
         selectedCategory="Tous"
         searchTerm=""
       />
       
-      {/* CTA pour programmateurs et bookings */}
-      <ArtistsCTASection />
+      {/* Call to action final */}
+      <CTASection />
       
       <Footer />
     </main>

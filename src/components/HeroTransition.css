@@ -1,0 +1,295 @@
+/* HeroTransition.css - Animations de transition pour les choix homepage */
+
+/* Overlay de transition */
+.hero-transition-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: radial-gradient(circle at center, 
+    var(--overlay-color, rgba(236, 72, 153, 0.2)) 0%, 
+    rgba(0, 0, 0, 0.95) 100%);
+  z-index: 99999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: heroOverlayFadeIn 0.6s ease-out;
+  backdrop-filter: blur(15px);
+  pointer-events: all;
+}
+
+@keyframes heroOverlayFadeIn {
+  from {
+    opacity: 0;
+    backdrop-filter: blur(0px);
+  }
+  to {
+    opacity: 1;
+    backdrop-filter: blur(15px);
+  }
+}
+
+/* Container du loader */
+.hero-loader-container {
+  text-align: center;
+  animation: heroLoaderScale 0.8s ease-out;
+}
+
+@keyframes heroLoaderScale {
+  0% {
+    transform: scale(0);
+    opacity: 0;
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+/* Loader principal */
+.hero-loader-circle {
+  width: 120px;
+  height: 120px;
+  margin: 0 auto 35px;
+  position: relative;
+}
+
+/* Cercles concentriques animés */
+.hero-loader-ring {
+  position: absolute;
+  inset: 0;
+  border: 3px solid rgba(255, 255, 255, 0.1);
+  border-radius: 50%;
+  animation: heroRingPulse 2s ease-in-out infinite;
+}
+
+.hero-loader-ring:nth-child(1) {
+  border-top-color: var(--ring-color, #ec4899);
+  animation: heroRingSpin 1.5s linear infinite;
+}
+
+.hero-loader-ring:nth-child(2) {
+  inset: 10px;
+  border-top-color: var(--ring-color-2, #a855f7);
+  animation: heroRingSpin 2s linear infinite reverse;
+}
+
+.hero-loader-ring:nth-child(3) {
+  inset: 20px;
+  border-top-color: var(--ring-color-3, #3b82f6);
+  animation: heroRingSpin 2.5s linear infinite;
+}
+
+@keyframes heroRingSpin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes heroRingPulse {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.05);
+    opacity: 0.8;
+  }
+}
+
+/* Icône centrale du loader */
+.hero-loader-icon {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 32px;
+  animation: heroIconFloat 2s ease-in-out infinite;
+}
+
+@keyframes heroIconFloat {
+  0%, 100% {
+    transform: translate(-50%, -50%) translateY(0);
+  }
+  50% {
+    transform: translate(-50%, -50%) translateY(-5px);
+  }
+}
+
+/* Texte du loader */
+.hero-loader-text {
+  font-size: 20px;
+  font-weight: 700;
+  color: white;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-bottom: 10px;
+  opacity: 0;
+  animation: heroTextFade 0.5s ease 0.3s forwards;
+}
+
+.hero-loader-subtext {
+  font-size: 14px;
+  font-weight: 400;
+  color: rgba(255, 255, 255, 0.6);
+  letter-spacing: 0.05em;
+  opacity: 0;
+  animation: heroTextFade 0.5s ease 0.5s forwards;
+}
+
+@keyframes heroTextFade {
+  to {
+    opacity: 1;
+  }
+}
+
+/* Progress bar */
+.hero-progress-bar {
+  width: 200px;
+  height: 3px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 3px;
+  margin: 20px auto 0;
+  overflow: hidden;
+  opacity: 0;
+  animation: heroTextFade 0.5s ease 0.7s forwards;
+}
+
+.hero-progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, 
+    var(--progress-color-1, #ec4899), 
+    var(--progress-color-2, #a855f7));
+  border-radius: 3px;
+  animation: heroProgressFill 1.5s ease-out forwards;
+  box-shadow: 0 0 10px var(--progress-color-1, #ec4899);
+}
+
+@keyframes heroProgressFill {
+  from {
+    width: 0%;
+  }
+  to {
+    width: 100%;
+  }
+}
+
+/* Particules flottantes */
+.hero-particles {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.hero-particle {
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  background: white;
+  border-radius: 50%;
+  opacity: 0;
+}
+
+.hero-particle:nth-child(1) {
+  left: 20%;
+  animation: heroParticleFloat 3s ease-in-out infinite;
+}
+
+.hero-particle:nth-child(2) {
+  left: 40%;
+  animation: heroParticleFloat 3s ease-in-out 0.5s infinite;
+}
+
+.hero-particle:nth-child(3) {
+  left: 60%;
+  animation: heroParticleFloat 3s ease-in-out 1s infinite;
+}
+
+.hero-particle:nth-child(4) {
+  left: 80%;
+  animation: heroParticleFloat 3s ease-in-out 1.5s infinite;
+}
+
+@keyframes heroParticleFloat {
+  0% {
+    opacity: 0;
+    transform: translateY(100px);
+  }
+  20% {
+    opacity: 1;
+  }
+  80% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-100px);
+  }
+}
+
+/* Variantes de couleur selon le choix */
+.hero-transition-overlay.artiste {
+  --overlay-color: rgba(255, 0, 255, 0.2);
+  --ring-color: #ff00ff;
+  --ring-color-2: #ec4899;
+  --ring-color-3: #ff00aa;
+  --progress-color-1: #ff00ff;
+  --progress-color-2: #ec4899;
+}
+
+.hero-transition-overlay.programmateur {
+  --overlay-color: rgba(0, 255, 255, 0.2);
+  --ring-color: #00ffff;
+  --ring-color-2: #3b82f6;
+  --ring-color-3: #0099ff;
+  --progress-color-1: #00ffff;
+  --progress-color-2: #3b82f6;
+}
+
+.hero-transition-overlay.entreprise {
+  --overlay-color: rgba(255, 215, 0, 0.2);
+  --ring-color: #ffd700;
+  --ring-color-2: #ff8800;
+  --ring-color-3: #ff6b00;
+  --progress-color-1: #ffd700;
+  --progress-color-2: #ff8800;
+}
+
+/* Animation de sortie */
+.hero-transition-overlay.fade-out {
+  animation: heroOverlayFadeOut 0.5s ease-out forwards;
+}
+
+@keyframes heroOverlayFadeOut {
+  to {
+    opacity: 0;
+    backdrop-filter: blur(0px);
+  }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .hero-loader-circle {
+    width: 100px;
+    height: 100px;
+  }
+  
+  .hero-loader-icon {
+    font-size: 28px;
+  }
+  
+  .hero-loader-text {
+    font-size: 18px;
+  }
+  
+  .hero-loader-subtext {
+    font-size: 12px;
+  }
+  
+  .hero-progress-bar {
+    width: 160px;
+  }
+}

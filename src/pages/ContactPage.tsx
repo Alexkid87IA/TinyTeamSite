@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-import { motion } from 'framer-motion';
 import { Navigation } from '../components/Navigation';
 import { Footer } from '../components/Footer';
-import { Mail, Phone, MapPin, Send, CheckCircle, AlertCircle } from 'lucide-react';
+import { Mail, Send, CheckCircle, AlertCircle, Zap, Star } from 'lucide-react';
+import './ContactPage.css';
 
 export const ContactPage = () => {
   const [formData, setFormData] = useState({
@@ -21,7 +21,7 @@ export const ContactPage = () => {
   // IMPORTANT : Remplace cette URL par ton endpoint Formspree
   const FORMSPREE_URL = "https://formspree.io/f/TON_ID_ICI"; // ← CHANGE ICI !
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setStatus({ submitting: true, submitted: false, error: false });
 
@@ -38,7 +38,6 @@ export const ContactPage = () => {
         setStatus({ submitting: false, submitted: true, error: false });
         setFormData({ name: '', email: '', subject: '', message: '' });
         
-        // Réinitialiser le message de succès après 5 secondes
         setTimeout(() => {
           setStatus({ submitting: false, submitted: false, error: false });
         }, 5000);
@@ -50,16 +49,15 @@ export const ContactPage = () => {
     }
   };
 
-  const handleChange = (e) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setFormData({
       ...formData,
       [e.target.name]: e.target.value
     });
   };
 
-  // Pré-remplir le sujet selon le type d'utilisateur
-  const setUserType = (type) => {
-    const subjects = {
+  const setUserType = (type: string) => {
+    const subjects: { [key: string]: string } = {
       artist: "Je suis artiste - Demande d'accompagnement",
       programmer: "Je suis programmateur - Recherche d'artistes",
       brand: "Je représente une marque - Collaboration"
@@ -71,258 +69,260 @@ export const ContactPage = () => {
     });
   };
 
+  // Générer les particules de fond
+  const particles = Array.from({ length: 30 }, (_, i) => ({
+    id: i,
+    left: `${Math.random() * 100}%`,
+    top: `${Math.random() * 100}%`,
+    delay: `${Math.random() * 5}s`,
+    duration: `${15 + Math.random() * 10}s`
+  }));
+
   return (
-    <main className="min-h-screen bg-[#0A0F29]">
+    <main className="contact-page">
       <Navigation />
 
-      {/* Hero Section */}
-      <section className="relative pt-32 pb-20 overflow-hidden">
-        {/* Background simple */}
-        <div className="absolute inset-0">
-          <div className="absolute inset-0 bg-gradient-to-b from-purple-500/10 via-transparent to-transparent" />
+      {/* Hero Section avec style spectaculaire */}
+      <section className="contact-hero">
+        {/* Effets de fond */}
+        <div className="hero-background">
+          <div className="hero-grid" />
+          <div className="hero-orb orb-1" />
+          <div className="hero-orb orb-2" />
+          <div className="hero-particles">
+            {particles.map(p => (
+              <div
+                key={p.id}
+                className="particle"
+                style={{
+                  left: p.left,
+                  top: p.top,
+                  animationDelay: p.delay,
+                  animationDuration: p.duration
+                }}
+              />
+            ))}
+          </div>
         </div>
 
-        <div className="relative container mx-auto px-4">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="text-center max-w-4xl mx-auto"
-          >
-            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-6">
-              <span className="text-white">Parlons de </span>
-              <span className="bg-gradient-to-r from-pink-400 to-purple-400 bg-clip-text text-transparent">
-                votre projet
-              </span>
-            </h1>
-            <p className="text-lg sm:text-xl text-white/70 max-w-2xl mx-auto">
-              Une question ? Un projet ? Une collaboration ? 
-              Nous sommes là pour vous accompagner.
-            </p>
-          </motion.div>
+        <div className="hero-content">
+          <h1 className="contact-title">
+            <span className="title-line-1">Parlons de</span>
+            <span className="title-line-2">votre projet</span>
+          </h1>
+          <p className="contact-subtitle">
+            Une question ? Un projet ? Une collaboration ?
+            <span className="subtitle-emphasis">Nous sommes là pour vous.</span>
+          </p>
         </div>
       </section>
 
-      {/* Contact Section */}
-      <section className="relative py-20">
-        <div className="container mx-auto px-4">
-          <div className="max-w-6xl mx-auto">
-            <div className="grid lg:grid-cols-2 gap-12">
-              
-              {/* Informations de contact */}
-              <motion.div
-                initial={{ opacity: 0, x: -20 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.6, delay: 0.2 }}
-                className="space-y-8"
-              >
-                <div>
-                  <h2 className="text-2xl md:text-3xl font-bold text-white mb-4">
-                    Contactez-nous
-                  </h2>
-                  <p className="text-white/70">
-                    Notre équipe est à votre écoute pour répondre à toutes vos questions
-                    et vous accompagner dans vos projets.
-                  </p>
-                </div>
+      {/* Section Contact */}
+      <section className="contact-section">
+        <div className="contact-container">
+          <div className="contact-grid">
+            
+            {/* Colonne gauche - Informations */}
+            <div className="contact-info">
+              <div className="info-header">
+                <h2 className="info-title">
+                  <span className="info-title-1">Contactez</span>
+                  <span className="info-title-2">Nous</span>
+                </h2>
+                <p className="info-description">
+                  Notre équipe est à votre écoute pour répondre à toutes vos questions
+                  et vous accompagner dans vos projets.
+                </p>
+              </div>
 
-                {/* Boutons pour pré-remplir le sujet */}
-                <div>
-                  <p className="text-white/60 text-sm mb-3">Vous êtes :</p>
-                  <div className="flex flex-wrap gap-3">
-                    <button
-                      onClick={() => setUserType('artist')}
-                      className="px-4 py-2 rounded-lg bg-white/10 hover:bg-white/20 text-white text-sm transition-all"
-                    >
-                      🎭 Artiste
-                    </button>
-                    <button
-                      onClick={() => setUserType('programmer')}
-                      className="px-4 py-2 rounded-lg bg-white/10 hover:bg-white/20 text-white text-sm transition-all"
-                    >
-                      🎪 Programmateur
-                    </button>
-                    <button
-                      onClick={() => setUserType('brand')}
-                      className="px-4 py-2 rounded-lg bg-white/10 hover:bg-white/20 text-white text-sm transition-all"
-                    >
-                      🚀 Marque
-                    </button>
-                  </div>
-                </div>
-
-                {/* Informations de contact */}
-                <div className="space-y-4">
-                  <a
-                    href="mailto:contact@tinyteam.fr"
-                    className="flex items-center gap-4 p-4 rounded-xl bg-white/5 hover:bg-white/10 transition-all group"
+              {/* Sélecteurs de type */}
+              <div className="user-type-selector">
+                <p className="selector-label">Vous êtes :</p>
+                <div className="selector-buttons">
+                  <button
+                    onClick={() => setUserType('artist')}
+                    className="type-button"
+                    data-type="artist"
                   >
-                    <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-pink-500 to-purple-500 flex items-center justify-center">
-                      <Mail className="w-6 h-6 text-white" />
-                    </div>
-                    <div>
-                      <p className="text-white/60 text-sm">Email</p>
-                      <p className="text-white group-hover:text-pink-400 transition-colors">
-                        contact@tinyteam.fr
-                      </p>
-                    </div>
-                  </a>
+                    <Star size={16} />
+                    <span>Artiste</span>
+                  </button>
+                  <button
+                    onClick={() => setUserType('programmer')}
+                    className="type-button"
+                    data-type="programmer"
+                  >
+                    <Zap size={16} />
+                    <span>Programmateur</span>
+                  </button>
+                  <button
+                    onClick={() => setUserType('brand')}
+                    className="type-button"
+                    data-type="brand"
+                  >
+                    <Star size={16} />
+                    <span>Marque</span>
+                  </button>
                 </div>
+              </div>
 
-                {/* Réseaux sociaux (optionnel) */}
-                <div>
-                  <p className="text-white/60 text-sm mb-3">Suivez-nous</p>
-                  <div className="flex gap-4">
-                    <a
-                      href="https://instagram.com/tinyteam"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="w-10 h-10 rounded-lg bg-white/10 hover:bg-white/20 flex items-center justify-center text-white transition-all"
-                    >
-                      <span className="text-sm">IG</span>
-                    </a>
-                    <a
-                      href="https://linkedin.com/company/tinyteam"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="w-10 h-10 rounded-lg bg-white/10 hover:bg-white/20 flex items-center justify-center text-white transition-all"
-                    >
-                      <span className="text-sm">IN</span>
-                    </a>
+              {/* Informations de contact */}
+              <div className="contact-details">
+                <a
+                  href="mailto:contact@tinyteam.fr"
+                  className="contact-card"
+                >
+                  <div className="card-icon">
+                    <Mail size={24} />
                   </div>
+                  <div className="card-content">
+                    <span className="card-label">Email</span>
+                    <span className="card-value">contact@tinyteam.fr</span>
+                  </div>
+                  <div className="card-glow" />
+                </a>
+              </div>
+
+              {/* Stats */}
+              <div className="contact-stats">
+                <div className="stat">
+                  <span className="stat-number">24h</span>
+                  <span className="stat-label">Réponse garantie</span>
                 </div>
-              </motion.div>
-
-              {/* Formulaire */}
-              <motion.div
-                initial={{ opacity: 0, x: 20 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.6, delay: 0.3 }}
-              >
-                <div className="glass-card rounded-2xl p-6 md:p-8">
-                  <form onSubmit={handleSubmit} className="space-y-6">
-                    {/* Nom */}
-                    <div>
-                      <label htmlFor="name" className="block text-sm font-medium text-white/70 mb-2">
-                        Votre nom *
-                      </label>
-                      <input
-                        type="text"
-                        id="name"
-                        name="name"
-                        required
-                        value={formData.name}
-                        onChange={handleChange}
-                        className="w-full px-4 py-3 rounded-xl bg-white/5 border border-white/10 focus:border-pink-500/50 focus:outline-none text-white placeholder-white/30 transition-all"
-                        placeholder="Jean Dupont"
-                      />
-                    </div>
-
-                    {/* Email */}
-                    <div>
-                      <label htmlFor="email" className="block text-sm font-medium text-white/70 mb-2">
-                        Votre email *
-                      </label>
-                      <input
-                        type="email"
-                        id="email"
-                        name="email"
-                        required
-                        value={formData.email}
-                        onChange={handleChange}
-                        className="w-full px-4 py-3 rounded-xl bg-white/5 border border-white/10 focus:border-pink-500/50 focus:outline-none text-white placeholder-white/30 transition-all"
-                        placeholder="jean@example.com"
-                      />
-                    </div>
-
-                    {/* Sujet */}
-                    <div>
-                      <label htmlFor="subject" className="block text-sm font-medium text-white/70 mb-2">
-                        Sujet
-                      </label>
-                      <input
-                        type="text"
-                        id="subject"
-                        name="subject"
-                        value={formData.subject}
-                        onChange={handleChange}
-                        className="w-full px-4 py-3 rounded-xl bg-white/5 border border-white/10 focus:border-pink-500/50 focus:outline-none text-white placeholder-white/30 transition-all"
-                        placeholder="L'objet de votre message"
-                      />
-                    </div>
-
-                    {/* Message */}
-                    <div>
-                      <label htmlFor="message" className="block text-sm font-medium text-white/70 mb-2">
-                        Votre message *
-                      </label>
-                      <textarea
-                        id="message"
-                        name="message"
-                        required
-                        rows={6}
-                        value={formData.message}
-                        onChange={handleChange}
-                        className="w-full px-4 py-3 rounded-xl bg-white/5 border border-white/10 focus:border-pink-500/50 focus:outline-none text-white placeholder-white/30 transition-all resize-none"
-                        placeholder="Parlez-nous de votre projet..."
-                      />
-                    </div>
-
-                    {/* Bouton Submit */}
-                    <button
-                      type="submit"
-                      disabled={status.submitting || status.submitted}
-                      className="w-full py-4 rounded-xl bg-gradient-to-r from-pink-500 to-purple-500 text-white font-semibold hover:from-pink-400 hover:to-purple-400 transition-all disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
-                    >
-                      {status.submitting ? (
-                        <>
-                          <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin" />
-                          Envoi en cours...
-                        </>
-                      ) : status.submitted ? (
-                        <>
-                          <CheckCircle className="w-5 h-5" />
-                          Message envoyé !
-                        </>
-                      ) : (
-                        <>
-                          <Send className="w-5 h-5" />
-                          Envoyer le message
-                        </>
-                      )}
-                    </button>
-
-                    {/* Messages d'état */}
-                    {status.submitted && (
-                      <motion.div
-                        initial={{ opacity: 0, y: 10 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        className="p-4 rounded-lg bg-green-500/10 border border-green-500/20"
-                      >
-                        <p className="text-green-400 text-sm flex items-center gap-2">
-                          <CheckCircle className="w-4 h-4" />
-                          Merci ! Nous vous répondrons dans les plus brefs délais.
-                        </p>
-                      </motion.div>
-                    )}
-
-                    {status.error && (
-                      <motion.div
-                        initial={{ opacity: 0, y: 10 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        className="p-4 rounded-lg bg-red-500/10 border border-red-500/20"
-                      >
-                        <p className="text-red-400 text-sm flex items-center gap-2">
-                          <AlertCircle className="w-4 h-4" />
-                          Une erreur est survenue. Veuillez réessayer ou nous contacter directement par email.
-                        </p>
-                      </motion.div>
-                    )}
-                  </form>
+                <div className="stat">
+                  <span className="stat-number">100%</span>
+                  <span className="stat-label">À votre écoute</span>
                 </div>
-              </motion.div>
+              </div>
+            </div>
+
+            {/* Colonne droite - Formulaire */}
+            <div className="contact-form-wrapper">
+              <form onSubmit={handleSubmit} className="contact-form">
+                {/* Nom */}
+                <div className="form-group">
+                  <label htmlFor="name" className="form-label">
+                    Votre nom *
+                  </label>
+                  <input
+                    type="text"
+                    id="name"
+                    name="name"
+                    required
+                    value={formData.name}
+                    onChange={handleChange}
+                    className="form-input"
+                    placeholder="Jean Dupont"
+                  />
+                  <div className="input-glow" />
+                </div>
+
+                {/* Email */}
+                <div className="form-group">
+                  <label htmlFor="email" className="form-label">
+                    Votre email *
+                  </label>
+                  <input
+                    type="email"
+                    id="email"
+                    name="email"
+                    required
+                    value={formData.email}
+                    onChange={handleChange}
+                    className="form-input"
+                    placeholder="jean@example.com"
+                  />
+                  <div className="input-glow" />
+                </div>
+
+                {/* Sujet */}
+                <div className="form-group">
+                  <label htmlFor="subject" className="form-label">
+                    Sujet
+                  </label>
+                  <input
+                    type="text"
+                    id="subject"
+                    name="subject"
+                    value={formData.subject}
+                    onChange={handleChange}
+                    className="form-input"
+                    placeholder="L'objet de votre message"
+                  />
+                  <div className="input-glow" />
+                </div>
+
+                {/* Message */}
+                <div className="form-group">
+                  <label htmlFor="message" className="form-label">
+                    Votre message *
+                  </label>
+                  <textarea
+                    id="message"
+                    name="message"
+                    required
+                    rows={6}
+                    value={formData.message}
+                    onChange={handleChange}
+                    className="form-textarea"
+                    placeholder="Parlez-nous de votre projet..."
+                  />
+                  <div className="input-glow" />
+                </div>
+
+                {/* Bouton Submit */}
+                <button
+                  type="submit"
+                  disabled={status.submitting || status.submitted}
+                  className="submit-button"
+                >
+                  {status.submitting ? (
+                    <>
+                      <div className="spinner" />
+                      <span>Envoi en cours...</span>
+                    </>
+                  ) : status.submitted ? (
+                    <>
+                      <CheckCircle size={20} />
+                      <span>Message envoyé !</span>
+                    </>
+                  ) : (
+                    <>
+                      <Send size={20} />
+                      <span>Envoyer le message</span>
+                      <Send size={20} className="icon-right" />
+                    </>
+                  )}
+                </button>
+
+                {/* Messages d'état */}
+                {status.submitted && (
+                  <div className="status-message success">
+                    <CheckCircle size={16} />
+                    <span>Merci ! Nous vous répondrons dans les plus brefs délais.</span>
+                  </div>
+                )}
+
+                {status.error && (
+                  <div className="status-message error">
+                    <AlertCircle size={16} />
+                    <span>Une erreur est survenue. Veuillez réessayer.</span>
+                  </div>
+                )}
+              </form>
             </div>
           </div>
+        </div>
+      </section>
+
+      {/* CTA Final */}
+      <section className="contact-cta">
+        <div className="cta-content">
+          <h2 className="cta-title">
+            <span className="cta-line-1">Prêt à créer</span>
+            <span className="cta-line-2">l'extraordinaire ?</span>
+          </h2>
+          <div className="cta-divider" />
         </div>
       </section>
 

@@ -1,0 +1,351 @@
+/* ServiceDetailPage.css - Styles pour la page de détail service */
+
+.service-detail-page {
+  min-height: 100vh;
+  background: #0a0a1a;
+  color: white;
+  font-family: 'Inter', sans-serif;
+}
+
+/* Container */
+.service-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* Error State */
+.error-container {
+  min-height: 60vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 120px 20px;
+}
+
+.error-container h1 {
+  font-size: 3rem;
+  margin-bottom: 2rem;
+  color: white;
+}
+
+/* ====================================
+   HERO SECTION
+   ==================================== */
+.service-hero {
+  position: relative;
+  min-height: 60vh;
+  padding: 120px 20px 80px;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+}
+
+.hero-background {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.hero-gradient {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at top, rgba(236, 72, 153, 0.15) 0%, transparent 70%);
+}
+
+/* Back Link */
+.back-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: rgba(255, 255, 255, 0.6);
+  text-decoration: none;
+  margin-bottom: 40px;
+  transition: color 0.3s ease;
+  font-size: 1rem;
+}
+
+.back-link:hover {
+  color: white;
+}
+
+/* Hero Content */
+.hero-content {
+  max-width: 800px;
+}
+
+.service-icon-large {
+  font-size: 5rem;
+  margin-bottom: 2rem;
+  display: inline-block;
+  animation: bounceIn 0.8s ease;
+}
+
+@keyframes bounceIn {
+  0% {
+    transform: scale(0);
+    opacity: 0;
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.service-title {
+  font-size: clamp(2.5rem, 6vw, 4rem);
+  font-weight: 900;
+  margin-bottom: 1.5rem;
+  line-height: 1.1;
+  background: linear-gradient(135deg, #fff, rgba(255, 255, 255, 0.8));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.service-description {
+  font-size: 1.25rem;
+  color: rgba(255, 255, 255, 0.7);
+  line-height: 1.6;
+  max-width: 700px;
+}
+
+/* ====================================
+   CONTENT SECTION
+   ==================================== */
+.service-content {
+  padding: 80px 20px;
+  background: linear-gradient(180deg, #0a0a1a 0%, #0f0f23 50%, #0a0a1a 100%);
+}
+
+.content-grid {
+  display: grid;
+  grid-template-columns: 1fr 400px;
+  gap: 60px;
+  align-items: start;
+}
+
+/* Left Column */
+.content-left {
+  display: flex;
+  flex-direction: column;
+  gap: 60px;
+}
+
+.section-block h2 {
+  font-size: 2rem;
+  font-weight: 800;
+  margin-bottom: 1.5rem;
+  color: white;
+}
+
+.long-description p {
+  font-size: 1.1rem;
+  color: rgba(255, 255, 255, 0.7);
+  line-height: 1.7;
+  margin-bottom: 1.5rem;
+}
+
+/* Process List */
+.process-list {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.process-step {
+  display: flex;
+  gap: 20px;
+  position: relative;
+}
+
+.step-number {
+  flex-shrink: 0;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #ec4899, #a855f7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 1.2rem;
+}
+
+.process-step:not(:last-child) .step-number::after {
+  content: '';
+  position: absolute;
+  left: 19px;
+  top: 40px;
+  width: 2px;
+  height: calc(100% + 10px);
+  background: linear-gradient(180deg, #ec4899, transparent);
+  opacity: 0.3;
+}
+
+.step-content h3 {
+  font-size: 1.25rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+  color: white;
+}
+
+.step-content p {
+  color: rgba(255, 255, 255, 0.6);
+  line-height: 1.5;
+}
+
+/* Right Column */
+.content-right {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  position: sticky;
+  top: 100px;
+}
+
+/* Feature Card */
+.feature-card {
+  padding: 35px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 20px;
+  backdrop-filter: blur(10px);
+}
+
+.feature-card h2 {
+  font-size: 1.5rem;
+  font-weight: 800;
+  margin-bottom: 1.5rem;
+  color: white;
+}
+
+.feature-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.feature-list li {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  font-size: 1rem;
+  color: rgba(255, 255, 255, 0.7);
+  line-height: 1.5;
+}
+
+.check-icon {
+  flex-shrink: 0;
+  color: #10b981;
+  font-size: 1.2rem;
+  font-weight: 700;
+  margin-top: -2px;
+}
+
+/* CTA Card */
+.cta-card {
+  padding: 35px;
+  background: linear-gradient(135deg, rgba(236, 72, 153, 0.1), rgba(168, 85, 247, 0.1));
+  border: 1px solid rgba(236, 72, 153, 0.2);
+  border-radius: 20px;
+  text-align: center;
+}
+
+.cta-card h3 {
+  font-size: 1.5rem;
+  font-weight: 800;
+  margin-bottom: 1rem;
+  color: white;
+}
+
+.cta-card p {
+  font-size: 1rem;
+  color: rgba(255, 255, 255, 0.7);
+  margin-bottom: 1.5rem;
+  line-height: 1.5;
+}
+
+.cta-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 14px 28px;
+  background: linear-gradient(135deg, #ec4899, #a855f7);
+  color: white;
+  text-decoration: none;
+  border-radius: 50px;
+  font-size: 1rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  transition: all 0.3s ease;
+}
+
+.cta-button:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 20px 40px rgba(236, 72, 153, 0.3);
+}
+
+/* ====================================
+   RESPONSIVE
+   ==================================== */
+@media (max-width: 1024px) {
+  .content-grid {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+  
+  .content-right {
+    position: static;
+    max-width: 600px;
+  }
+}
+
+@media (max-width: 768px) {
+  .service-hero {
+    min-height: 50vh;
+    padding: 100px 15px 60px;
+  }
+  
+  .service-icon-large {
+    font-size: 3.5rem;
+  }
+  
+  .service-title {
+    font-size: 2rem;
+  }
+  
+  .service-description {
+    font-size: 1.1rem;
+  }
+  
+  .service-content {
+    padding: 60px 15px;
+  }
+  
+  .content-grid {
+    gap: 30px;
+  }
+  
+  .section-block h2 {
+    font-size: 1.5rem;
+  }
+  
+  .feature-card,
+  .cta-card {
+    padding: 25px;
+  }
+  
+  .cta-button {
+    padding: 12px 24px;
+    font-size: 0.9rem;
+  }
+}

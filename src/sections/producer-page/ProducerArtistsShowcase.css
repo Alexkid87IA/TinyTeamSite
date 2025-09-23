@@ -1,0 +1,836 @@
+/* ProducerArtistsShowcase.css - Style rivière d'artistes comme ArtistsSliderSection */
+
+.producer-artists-showcase {
+  position: relative;
+  min-height: 100vh;
+  padding: 120px 20px 80px;
+  background: linear-gradient(180deg, #16213e 0%, #0f0f23 30%, #0a0a1a 70%, #070710 100%);
+  overflow: hidden;
+}
+
+/* ====================================
+   EFFETS DE FOND SPECTACULAIRES
+   ==================================== */
+.showcase-background {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+/* Grille animée néon */
+.showcase-grid {
+  position: absolute;
+  inset: 0;
+  background-image: 
+    linear-gradient(rgba(236, 72, 153, 0.1) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(168, 85, 247, 0.1) 1px, transparent 1px);
+  background-size: 70px 70px;
+  animation: gridMove 25s linear infinite;
+  opacity: 0.3;
+}
+
+@keyframes gridMove {
+  0% { transform: translate(0, 0); }
+  100% { transform: translate(70px, 70px); }
+}
+
+/* Orbes lumineux */
+.showcase-orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(100px);
+  animation: floatOrb 30s ease-in-out infinite;
+}
+
+.orb-1 {
+  width: 420px;
+  height: 420px;
+  background: radial-gradient(circle, rgba(236, 72, 153, 0.3), transparent 70%);
+  top: 10%;
+  left: -200px;
+}
+
+.orb-2 {
+  width: 340px;
+  height: 340px;
+  background: radial-gradient(circle, rgba(168, 85, 247, 0.3), transparent 70%);
+  bottom: 10%;
+  right: -200px;
+  animation-delay: 15s;
+}
+
+.orb-3 {
+  width: 300px;
+  height: 300px;
+  background: radial-gradient(circle, rgba(0, 255, 255, 0.2), transparent 70%);
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  animation-delay: 10s;
+}
+
+@keyframes floatOrb {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  33% { transform: translate(100px, -100px) scale(1.1); }
+  66% { transform: translate(-100px, 50px) scale(0.9); }
+}
+
+/* Particules flottantes */
+.showcase-particles {
+  position: absolute;
+  inset: 0;
+}
+
+.particle {
+  position: absolute;
+  width: 2px;
+  height: 2px;
+  background: white;
+  border-radius: 50%;
+  animation: twinkle 3s ease-in-out infinite;
+}
+
+@keyframes twinkle {
+  0%, 100% { opacity: 0; transform: scale(0.5); }
+  50% { opacity: 1; transform: scale(1); }
+}
+
+/* ====================================
+   CONTENU PRINCIPAL
+   ==================================== */
+.showcase-content {
+  position: relative;
+  z-index: 10;
+}
+
+/* Header */
+.showcase-header {
+  text-align: center;
+  margin-bottom: 3.2rem;
+  max-width: 1000px;
+  margin-left: auto;
+  margin-right: auto;
+  position: relative;
+}
+
+/* Badge animé */
+.showcase-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.5rem;
+  border-radius: 9999px;
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  margin-bottom: 2rem;
+  animation: fadeInUp 0.8s ease-out;
+  position: relative;
+  overflow: hidden;
+}
+
+.badge-pulse {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #ec4899;
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.5; transform: scale(1.2); }
+}
+
+.badge-text {
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 0.875rem;
+  font-weight: 500;
+  letter-spacing: 0.05em;
+}
+
+/* Effet de glow derrière le titre */
+.title-glow {
+  position: absolute;
+  inset: -80px;
+  background: radial-gradient(circle, rgba(236, 72, 153, 0.4), transparent 40%);
+  filter: blur(100px);
+  animation: glow 4s ease-in-out infinite;
+  pointer-events: none;
+}
+
+@keyframes glow {
+  0%, 100% { opacity: 0.5; transform: scale(0.8); }
+  50% { opacity: 1; transform: scale(1.2); }
+}
+
+/* Titres spectaculaires */
+.showcase-titles {
+  margin-bottom: 1.5rem;
+  animation: fadeInUp 0.8s ease-out 0.2s both;
+  font-size: 5.5rem;
+  font-weight: 900;
+  font-style: italic;
+  text-transform: uppercase;
+  line-height: 0.9;
+  letter-spacing: -0.02em;
+  margin-bottom: 1.6rem;
+  position: relative;
+}
+
+.title-small {
+  display: block;
+  color: white;
+  margin-bottom: -0.1em;
+  animation: slideInLeft 1s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.title-large {
+  display: block;
+  font-size: 1.2em;
+  padding-right: 0.2em;
+  background: linear-gradient(90deg, 
+    #ff00ff 0%, 
+    #00ffff 25%, 
+    #ffff00 50%, 
+    #ff00ff 75%, 
+    #00ffff 100%);
+  background-size: 200% 100%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  filter: drop-shadow(0 0 60px rgba(236, 72, 153, 0.8));
+  animation: 
+    slideInRight 1s cubic-bezier(0.16, 1, 0.3, 1) 0.2s backwards,
+    gradientSlide 3s linear infinite;
+}
+
+@keyframes slideInLeft {
+  from { opacity: 0; transform: translateX(-100px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes slideInRight {
+  from { opacity: 0; transform: translateX(100px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes gradientSlide {
+  0% { background-position: 0% 50%; }
+  100% { background-position: 200% 50%; }
+}
+
+/* Sous-titre */
+.showcase-subtitle {
+  font-size: 1.25rem;
+  color: rgba(255, 255, 255, 0.7);
+  font-weight: 400;
+  letter-spacing: 0.02em;
+  margin-bottom: 1rem;
+  max-width: 750px;
+  margin-left: auto;
+  margin-right: auto;
+  animation: fadeInUp 0.8s ease-out 0.4s both;
+}
+
+/* Hint d'interaction */
+.section-hint {
+  font-size: 0.8rem;
+  color: rgba(255, 255, 255, 0.4);
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  font-weight: 300;
+  margin-top: 1.6rem;
+  animation: fadeInUp 1s ease-out 0.7s backwards;
+  position: relative;
+  padding: 0.8rem 1.6rem;
+  display: inline-block;
+}
+
+.section-hint::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 9999px;
+  background: rgba(255, 255, 255, 0.02);
+  z-index: -1;
+}
+
+/* ====================================
+   RIVIÈRE D'ARTISTES (2 rangées)
+   ==================================== */
+.artists-river {
+  position: relative;
+  margin: 0 -2rem;
+  padding: 2.4rem 0;
+}
+
+/* Masques de dégradé */
+.mask-left,
+.mask-right {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 8rem;
+  z-index: 10;
+  pointer-events: none;
+}
+
+.mask-left {
+  left: 0;
+  background: linear-gradient(to right, 
+    #0a0a1a 0%, 
+    rgba(10, 10, 26, 0.8) 50%, 
+    transparent 100%);
+}
+
+.mask-right {
+  right: 0;
+  background: linear-gradient(to left, 
+    #0a0a1a 0%, 
+    rgba(10, 10, 26, 0.8) 50%, 
+    transparent 100%);
+}
+
+/* Rangées avec espacement optimisé */
+.river-row {
+  display: flex;
+  gap: 1.6rem;
+  margin-bottom: 1.6rem;
+  width: fit-content;
+}
+
+.row-right {
+  animation: scrollRight 60s linear infinite;
+}
+
+.row-left {
+  animation: scrollLeft 55s linear infinite;
+}
+
+@keyframes scrollRight {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+@keyframes scrollLeft {
+  from { transform: translateX(-50%); }
+  to { transform: translateX(0); }
+}
+
+/* ====================================
+   CARTES D'ARTISTES STYLE POSTER
+   ==================================== */
+.poster-card {
+  display: block;
+  flex-shrink: 0;
+  width: 270px;
+  height: 400px;
+  border-radius: 1.2rem;
+  overflow: hidden;
+  position: relative;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  cursor: pointer;
+  background: rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(10px);
+  border: 2px solid rgba(255, 255, 255, 0.1);
+  text-decoration: none;
+}
+
+.poster-card:hover {
+  transform: scale(1.05) translateY(-10px);
+  z-index: 20;
+  border-color: #ec4899;
+  box-shadow: 
+    0 30px 60px rgba(0, 0, 0, 0.5),
+    0 0 80px rgba(236, 72, 153, 0.4);
+}
+
+.poster-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+  filter: brightness(0.9);
+}
+
+.poster-card:hover .poster-image {
+  transform: scale(1.15);
+  filter: brightness(1.1);
+}
+
+/* Overlay gradient */
+.poster-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to top,
+    rgba(0, 0, 0, 0.95) 0%,
+    rgba(0, 0, 0, 0.7) 30%,
+    rgba(0, 0, 0, 0.3) 60%,
+    transparent 100%
+  );
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  pointer-events: none;
+}
+
+.poster-card:hover .poster-overlay {
+  opacity: 1;
+}
+
+/* Contenu de la carte */
+.poster-content {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 2rem 1.6rem 1.6rem;
+  transform: translateY(30px);
+  opacity: 0;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.poster-card:hover .poster-content {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+.poster-name {
+  font-size: 1.5rem;
+  font-weight: 900;
+  color: white;
+  margin-bottom: 1rem;
+  text-transform: uppercase;
+  letter-spacing: -0.02em;
+  text-shadow: 0 0 30px rgba(255, 255, 255, 0.5);
+}
+
+.poster-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.8rem 1.6rem;
+  background: white;
+  color: #0a0a1a;
+  border: none;
+  border-radius: 9999px;
+  font-weight: 700;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.poster-button:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 30px rgba(255, 255, 255, 0.5);
+}
+
+/* Effet de brillance */
+.poster-shine {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    105deg,
+    transparent 40%,
+    rgba(255, 255, 255, 0.2) 50%,
+    transparent 60%
+  );
+  transform: translateX(-100%);
+  transition: transform 0.8s ease-in-out;
+  pointer-events: none;
+}
+
+.poster-card:hover .poster-shine {
+  transform: translateX(100%);
+}
+
+/* Badge de disponibilité */
+.card-info {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  margin-bottom: 0.8rem;
+  font-size: 0.75rem;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.card-availability {
+  color: #00ff88;
+  font-weight: 600;
+  padding: 0.2rem 0.6rem;
+  background: rgba(0, 255, 136, 0.1);
+  border: 1px solid rgba(0, 255, 136, 0.3);
+  border-radius: 20px;
+}
+
+/* ====================================
+   CTA SECTION NÉON
+   ==================================== */
+.showcase-cta {
+  text-align: center;
+  margin-top: 3.2rem;
+  animation: fadeInUp 1s ease-out 1s backwards;
+}
+
+.main-cta-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.8rem;
+  padding: 1.2rem 3.2rem;
+  font-size: 1rem;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  text-decoration: none;
+  color: white;
+  border-radius: 9999px;
+  position: relative;
+  overflow: hidden;
+  background: rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(10px);
+  border: 3px solid transparent;
+  background-image: 
+    linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), 
+    linear-gradient(135deg, #ec4899, #a855f7);
+  background-origin: border-box;
+  background-clip: padding-box, border-box;
+  box-shadow: 
+    0 0 40px rgba(236, 72, 153, 0.3),
+    0 0 80px rgba(168, 85, 247, 0.2),
+    inset 0 0 20px rgba(236, 72, 153, 0.1);
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  animation: ctaPulse 3s ease-in-out infinite;
+}
+
+@keyframes ctaPulse {
+  0%, 100% {
+    box-shadow: 
+      0 0 40px rgba(236, 72, 153, 0.3),
+      0 0 80px rgba(168, 85, 247, 0.2),
+      inset 0 0 20px rgba(236, 72, 153, 0.1);
+  }
+  50% {
+    box-shadow: 
+      0 0 60px rgba(236, 72, 153, 0.5),
+      0 0 100px rgba(168, 85, 247, 0.3),
+      inset 0 0 30px rgba(236, 72, 153, 0.2);
+  }
+}
+
+.main-cta-button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, 
+    transparent, 
+    rgba(255, 255, 255, 0.3), 
+    transparent);
+  transition: left 0.6s;
+}
+
+.main-cta-button:hover::before {
+  left: 100%;
+}
+
+.main-cta-button:hover {
+  transform: translateY(-5px) scale(1.05);
+  box-shadow: 
+    0 0 60px rgba(236, 72, 153, 0.6),
+    0 0 120px rgba(168, 85, 247, 0.4),
+    0 20px 40px rgba(0, 0, 0, 0.3);
+}
+
+.cta-arrow {
+  font-size: 1.25rem;
+  transition: transform 0.3s ease;
+}
+
+.main-cta-button:hover .cta-arrow {
+  transform: translateX(5px);
+}
+
+.cta-subtitle {
+  margin-top: 1rem;
+  font-size: 0.875rem;
+  color: rgba(255, 255, 255, 0.6);
+  font-style: italic;
+}
+
+/* Indicateur d'interaction */
+.interaction-indicator {
+  text-align: center;
+  margin-top: 1.6rem;
+  color: rgba(255, 255, 255, 0.4);
+  font-size: 0.8rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  animation: fadeInUp 1s ease-out 1.2s backwards;
+}
+
+.indicator-icon {
+  width: 18px;
+  height: 18px;
+  color: #ec4899;
+  animation: bounce 2s ease-in-out infinite;
+}
+
+@keyframes bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ====================================
+   RESPONSIVE
+   ==================================== */
+
+/* Mobile */
+@media (max-width: 768px) {
+  .producer-artists-showcase {
+    padding: 100px 15px 60px;
+  }
+
+  .showcase-header {
+    margin-bottom: 3rem;
+    padding: 0 1rem;
+  }
+
+  .title-glow {
+    inset: -50px;
+  }
+
+  .showcase-titles {
+    font-size: clamp(2.5rem, 12vw, 4rem);
+    margin-bottom: 1.5rem;
+  }
+
+  .title-large {
+    font-size: 1.15em;
+  }
+
+  .showcase-subtitle {
+    font-size: 1rem;
+  }
+
+  .section-hint {
+    display: none;
+  }
+
+  /* Masquer la rivière desktop */
+  .artists-river {
+    display: none;
+  }
+
+  /* Afficher le carousel mobile */
+  .mobile-carousel {
+    display: block;
+    position: relative;
+    margin: 0 -1rem;
+    padding: 2rem 0;
+  }
+
+  .carousel-container {
+    display: flex;
+    gap: 1rem;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    padding: 0 1rem;
+  }
+
+  .carousel-container::-webkit-scrollbar {
+    display: none;
+  }
+
+  .carousel-card {
+    flex: 0 0 85%;
+    scroll-snap-align: center;
+    scroll-snap-stop: always;
+  }
+
+  .poster-card {
+    width: 100%;
+    height: 450px;
+    border-radius: 1rem;
+    transform: scale(0.95);
+    transition: transform 0.3s ease;
+  }
+
+  .poster-card.active {
+    transform: scale(1);
+  }
+
+  .poster-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 20%;
+  }
+
+  .poster-content {
+    transform: translateY(0);
+    opacity: 1;
+    padding: 2rem 1.5rem;
+    background: linear-gradient(
+      to top,
+      rgba(0, 0, 0, 0.98) 0%,
+      rgba(0, 0, 0, 0.9) 30%,
+      rgba(0, 0, 0, 0.6) 60%,
+      rgba(0, 0, 0, 0.2) 80%,
+      transparent 100%
+    );
+  }
+
+  .poster-name {
+    font-size: 1.6rem;
+    margin-bottom: 1rem;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.8);
+  }
+
+  .poster-button {
+    padding: 0.85rem 1.75rem;
+    font-size: 0.9rem;
+    background: rgba(255, 255, 255, 0.95);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+  }
+
+  /* Indicateurs de pagination */
+  .carousel-indicators {
+    display: flex;
+    justify-content: center;
+    gap: 0.5rem;
+    margin-top: 1.5rem;
+  }
+
+  .indicator-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.3);
+    transition: all 0.3s;
+    cursor: pointer;
+  }
+
+  .indicator-dot.active {
+    width: 24px;
+    border-radius: 4px;
+    background: #ec4899;
+    box-shadow: 0 0 10px #ec4899;
+  }
+
+  .showcase-cta {
+    margin-top: 3rem;
+    padding: 0 1rem;
+  }
+
+  .main-cta-button {
+    padding: 1.25rem 2.5rem;
+    font-size: 1rem;
+    width: 100%;
+    justify-content: center;
+  }
+
+  .interaction-indicator {
+    display: none;
+  }
+}
+
+/* Très petits écrans */
+@media (max-width: 380px) {
+  .showcase-titles {
+    font-size: 2rem;
+  }
+
+  .title-large {
+    font-size: 1.1em;
+  }
+
+  .showcase-subtitle {
+    font-size: 0.875rem;
+  }
+
+  .poster-card {
+    width: 100%;
+    height: 400px;
+  }
+
+  .poster-image {
+    object-position: center 15%;
+  }
+
+  .poster-name {
+    font-size: 1.4rem;
+  }
+
+  .poster-button {
+    padding: 0.75rem 1.5rem;
+    font-size: 0.85rem;
+  }
+
+  .main-cta-button {
+    padding: 1rem 2rem;
+    font-size: 0.9rem;
+  }
+}
+
+/* Tablette */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .producer-artists-showcase {
+    padding: 6rem 1.5rem;
+  }
+
+  .showcase-titles {
+    font-size: 5rem;
+  }
+
+  .poster-card {
+    width: 280px;
+    height: 420px;
+  }
+
+  .mask-left,
+  .mask-right {
+    width: 8rem;
+  }
+}
+
+/* Grand écran */
+@media (min-width: 1920px) {
+  .showcase-titles {
+    font-size: 8rem;
+  }
+
+  .poster-card {
+    width: 360px;
+    height: 540px;
+  }
+
+  .poster-name {
+    font-size: 2rem;
+  }
+}
+
+/* Préférences de mouvement réduit */
+@media (prefers-reduced-motion: reduce) {
+  .river-row,
+  .showcase-grid,
+  .showcase-orb,
+  .particle,
+  .indicator-icon {
+    animation: none !important;
+  }
+}

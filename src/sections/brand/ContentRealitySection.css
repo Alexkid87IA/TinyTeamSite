@@ -1,0 +1,315 @@
+/* ContentRealitySection.css - Comparaison Attentes vs Réalité */
+
+.content-reality-section {
+  min-height: 100vh;
+  background: #0a0a0a;
+  padding: 100px 20px;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Container principal */
+.reality-main-container {
+  max-width: 1400px;
+  width: 100%;
+  margin: 0 auto;
+  position: relative;
+  z-index: 10;
+}
+
+/* Split screen container */
+.comparison-split {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  gap: 0;
+  min-height: 600px;
+  margin-bottom: 80px;
+}
+
+/* Panel gauche - Espérances */
+.expectations-panel {
+  background: linear-gradient(135deg, 
+    rgba(147, 51, 234, 0.15) 0%,
+    rgba(236, 72, 153, 0.1) 50%,
+    rgba(147, 51, 234, 0.05) 100%);
+  padding: 60px 40px;
+  border-radius: 30px 0 0 30px;
+  position: relative;
+  opacity: 0;
+  transform: translateX(-50px);
+  animation: slideFromLeft 0.8s ease forwards;
+}
+
+@keyframes slideFromLeft {
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Panel droit - Réalité */
+.reality-panel {
+  background: #000;
+  padding: 60px 40px;
+  border-radius: 0 30px 30px 0;
+  position: relative;
+  opacity: 0;
+  transform: translateX(50px);
+  animation: slideFromRight 0.8s ease forwards;
+  animation-delay: 0.2s;
+}
+
+@keyframes slideFromRight {
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Titres des panels */
+.panel-heading {
+  font-size: clamp(24px, 3vw, 32px);
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 50px;
+  text-align: center;
+}
+
+.expectations-panel .panel-heading {
+  color: #ec4899;
+  text-shadow: 0 0 30px rgba(236, 72, 153, 0.5);
+}
+
+.reality-panel .panel-heading {
+  color: rgba(255, 255, 255, 0.4);
+}
+
+/* Grille des métriques */
+.metrics-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 30px;
+  padding: 0;
+}
+
+/* Carte métrique */
+.metric-box {
+  background: rgba(147, 51, 234, 0.1);
+  border-radius: 24px;
+  padding: 35px 25px;
+  text-align: center;
+  border: 1px solid rgba(147, 51, 234, 0.2);
+  backdrop-filter: blur(10px);
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.reality-panel .metric-box {
+  background: rgba(255, 255, 255, 0.02);
+  border-color: rgba(255, 255, 255, 0.08);
+}
+
+.metric-box:hover {
+  transform: translateY(-8px) scale(1.02);
+}
+
+.expectations-panel .metric-box:hover {
+  box-shadow: 0 20px 40px rgba(236, 72, 153, 0.3);
+  background: rgba(236, 72, 153, 0.15);
+}
+
+.reality-panel .metric-box:hover {
+  box-shadow: 0 20px 40px rgba(255, 68, 68, 0.2);
+}
+
+/* Icône de métrique */
+.metric-icon {
+  font-size: 48px;
+  margin-bottom: 20px;
+  display: block;
+  animation: iconBounce 3s ease-in-out infinite;
+}
+
+@keyframes iconBounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+.reality-panel .metric-icon {
+  filter: grayscale(0.5);
+  animation: none;
+}
+
+/* Valeur de métrique */
+.metric-number {
+  font-size: 42px;
+  font-weight: 900;
+  margin-bottom: 10px;
+  line-height: 1;
+}
+
+.expectations-panel .metric-number {
+  color: #ec4899;
+  text-shadow: 0 0 20px rgba(236, 72, 153, 0.4);
+}
+
+.reality-panel .metric-number {
+  color: #ff4444;
+  text-shadow: 0 0 20px rgba(255, 68, 68, 0.5);
+}
+
+/* Description de métrique */
+.metric-desc {
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.7);
+  font-weight: 400;
+}
+
+.reality-panel .metric-desc {
+  color: rgba(255, 255, 255, 0.4);
+}
+
+/* Séparateur central VS */
+.versus-separator {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  width: 100px;
+}
+
+.versus-badge {
+  width: 70px;
+  height: 70px;
+  background: #000;
+  border: 3px solid rgba(255, 255, 255, 0.2);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 900;
+  font-size: 22px;
+  color: rgba(255, 255, 255, 0.4);
+  z-index: 10;
+  position: relative;
+}
+
+.versus-line {
+  position: absolute;
+  width: 2px;
+  height: 100%;
+  background: linear-gradient(180deg, 
+    transparent 0%, 
+    rgba(255, 255, 255, 0.1) 20%, 
+    rgba(255, 255, 255, 0.1) 80%, 
+    transparent 100%);
+}
+
+/* Footer message */
+.bottom-section {
+  text-align: center;
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 40px 20px;
+  opacity: 0;
+  animation: fadeUp 0.8s ease 0.6s forwards;
+}
+
+@keyframes fadeUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.bottom-title {
+  font-size: clamp(40px, 6vw, 72px);
+  font-weight: 900;
+  line-height: 1;
+  margin-bottom: 40px;
+}
+
+.bottom-line-1 {
+  color: white;
+  display: block;
+  margin-bottom: 0;
+  line-height: 1.1;
+}
+
+.bottom-line-2 {
+  background: linear-gradient(135deg, #00ffff, #00bfff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  display: block;
+  line-height: 1.1;
+  margin-top: -5px;
+}
+
+.bottom-text {
+  font-size: 20px;
+  color: rgba(255, 255, 255, 0.5);
+  font-weight: 300;
+  line-height: 1.5;
+}
+
+/* Mobile responsive */
+@media (max-width: 1024px) {
+  .comparison-split {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+  
+  .expectations-panel {
+    border-radius: 30px;
+  }
+  
+  .reality-panel {
+    border-radius: 30px;
+  }
+  
+  .versus-separator {
+    display: none;
+  }
+}
+
+@media (max-width: 768px) {
+  .content-reality-section {
+    padding: 60px 15px;
+  }
+  
+  .expectations-panel,
+  .reality-panel {
+    padding: 40px 20px;
+  }
+  
+  .metrics-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+  
+  .metric-box {
+    padding: 25px 20px;
+  }
+  
+  .metric-icon {
+    font-size: 40px;
+  }
+  
+  .metric-number {
+    font-size: 32px;
+  }
+  
+  .bottom-title {
+    font-size: 36px;
+  }
+  
+  .bottom-text {
+    font-size: 16px;
+  }
+}

@@ -1,0 +1,263 @@
+/* FinalCTASection.css - Design Brutal et Direct */
+
+.final-cta-section {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #000;
+  padding: 40px 20px;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Lignes diagonales en fond */
+.final-cta-section::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: 
+    repeating-linear-gradient(
+      45deg,
+      transparent,
+      transparent 100px,
+      rgba(236, 72, 153, 0.02) 100px,
+      rgba(236, 72, 153, 0.02) 101px
+    );
+}
+
+.final-cta-section .section-content {
+  max-width: 800px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 10;
+}
+
+.cta-content {
+  text-align: center;
+  padding: 60px 20px;
+}
+
+/* Message en deux parties */
+.split-message {
+  margin-bottom: 40px;
+}
+
+.cta-line-1 {
+  font-size: clamp(40px, 7vw, 72px);
+  font-weight: 900;
+  color: #fff;
+  letter-spacing: -0.03em;
+  line-height: 1;
+  margin-bottom: 8px;
+  opacity: 0;
+  animation: slideInLeft 0.6s ease forwards;
+}
+
+.cta-line-2 {
+  font-size: clamp(40px, 7vw, 72px);
+  font-weight: 900;
+  background: linear-gradient(90deg, #ec4899, #ff00ff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  letter-spacing: -0.03em;
+  line-height: 1;
+  opacity: 0;
+  animation: slideInRight 0.6s ease 0.2s forwards;
+}
+
+@keyframes slideInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Ligne de séparation */
+.divider-line {
+  width: 100px;
+  height: 4px;
+  background: linear-gradient(90deg, transparent, #ec4899, transparent);
+  margin: 40px auto;
+  opacity: 0;
+  animation: expandWidth 0.8s ease 0.4s forwards;
+}
+
+@keyframes expandWidth {
+  from {
+    width: 0;
+    opacity: 0;
+  }
+  to {
+    width: 100px;
+    opacity: 1;
+  }
+}
+
+/* Punchline */
+.cta-punchline {
+  font-size: clamp(32px, 5vw, 48px);
+  color: rgba(255, 255, 255, 0.9);
+  font-weight: 300;
+  font-style: italic;
+  margin-bottom: 60px;
+  letter-spacing: 0.02em;
+  opacity: 0;
+  animation: fadeInUp 0.8s ease 0.6s forwards;
+}
+
+/* Bouton CTA agressif */
+.cta-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 16px;
+  padding: 24px 48px;
+  background: #fff;
+  color: #000;
+  font-size: 16px;
+  font-weight: 900;
+  text-decoration: none;
+  border: none;
+  letter-spacing: 0.1em;
+  position: relative;
+  transition: all 0.3s ease;
+  opacity: 0;
+  animation: scaleIn 0.6s ease 0.8s forwards;
+  overflow: hidden;
+}
+
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.button-icon-left,
+.button-icon-right {
+  color: #ec4899;
+  animation: pulse 1.5s ease-in-out infinite;
+}
+
+.button-icon-right {
+  animation-delay: 0.75s;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.6;
+    transform: scale(0.9);
+  }
+}
+
+/* Effet hover brutal */
+.cta-button::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, #ec4899, #ff00ff);
+  transform: translateX(-100%);
+  transition: transform 0.3s ease;
+}
+
+.cta-button:hover::before {
+  transform: translateX(0);
+}
+
+.cta-button:hover {
+  color: #fff;
+}
+
+.cta-button:hover .button-text,
+.cta-button:hover .button-icon-left,
+.cta-button:hover .button-icon-right {
+  position: relative;
+  z-index: 2;
+  color: #fff;
+}
+
+/* Indicateur de confiance */
+.trust-indicator {
+  margin-top: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  opacity: 0;
+  animation: fadeIn 1s ease 1s forwards;
+}
+
+.trust-number {
+  font-size: 32px;
+  font-weight: 900;
+  color: #ec4899;
+  text-shadow: 0 0 20px rgba(236, 72, 153, 0.5);
+}
+
+.trust-text {
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.6);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+@keyframes fadeIn {
+  to { opacity: 1; }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .cta-line-1,
+  .cta-line-2 {
+    font-size: 36px;
+  }
+  
+  .cta-punchline {
+    font-size: 28px;
+    margin-bottom: 40px;
+  }
+  
+  .cta-button {
+    padding: 20px 32px;
+    font-size: 14px;
+  }
+  
+  .trust-number {
+    font-size: 24px;
+  }
+}

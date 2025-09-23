@@ -1,0 +1,322 @@
+/* RevelationSection.css - Transfert de Tâches Minimaliste */
+
+.revelation-section {
+  min-height: 100vh;
+  background: #000;
+  padding: 80px 20px;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+}
+
+.revelation-section .section-content {
+  max-width: 1000px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 10;
+  width: 100%;
+}
+
+.revelation-header {
+  text-align: center;
+  margin-bottom: 80px;
+  opacity: 0;
+  animation: fadeIn 0.8s ease forwards;
+}
+
+.revelation-title {
+  font-size: clamp(32px, 5vw, 48px);
+  font-weight: 600;
+  color: #fff;
+  letter-spacing: -0.02em;
+}
+
+/* Container des colonnes */
+.columns-container {
+  display: grid;
+  grid-template-columns: 1fr 60px 1fr;
+  gap: 20px;
+  margin-bottom: 80px;
+  align-items: start;
+  max-width: 900px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Colonnes */
+.column {
+  text-align: center;
+}
+
+.column-title {
+  font-size: 24px;
+  font-weight: 700;
+  margin-bottom: 30px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  opacity: 0;
+  animation: fadeInUp 0.6s ease 0.3s forwards;
+  height: 30px; /* Hauteur fixe pour aligner */
+}
+
+.left-column .column-title {
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.right-column .column-title {
+  color: #ec4899;
+}
+
+/* Liste de tâches */
+.task-list {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.task-item {
+  font-size: 18px;
+  padding: 16px 20px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  transition: all 0.5s ease;
+  opacity: 0;
+  animation: fadeIn 0.5s ease 0.5s forwards;
+  height: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+/* Tâches qui se transfèrent */
+.left-column .task-item.transferred {
+  opacity: 0.2;
+  transform: scale(0.95);
+  text-decoration: line-through;
+  background: rgba(255, 255, 255, 0.02);
+  color: rgba(255, 255, 255, 0.3);
+}
+
+/* Tâches qui arrivent à droite */
+.right-column .task-item {
+  opacity: 0;
+  transform: translateX(-20px);
+  background: transparent;
+  border-color: transparent;
+}
+
+.right-column .task-item.visible {
+  opacity: 1;
+  transform: translateX(0);
+  background: rgba(236, 72, 153, 0.1);
+  border-color: rgba(236, 72, 153, 0.3);
+  color: rgba(255, 255, 255, 0.9);
+}
+
+/* Flèches de transfert */
+.transfer-arrows {
+  display: flex;
+  flex-direction: column;
+  gap: 36px;
+  padding-top: 60px;
+  align-items: center;
+  justify-content: flex-start;
+  height: 100%;
+}
+
+.arrow {
+  font-size: 28px;
+  color: rgba(255, 255, 255, 0.1);
+  opacity: 0;
+  transform: translateX(-10px);
+  transition: all 0.3s ease;
+  height: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.arrow.active {
+  color: #ec4899;
+  opacity: 1;
+  transform: translateX(0);
+  animation: arrowPulse 0.5s ease;
+}
+
+@keyframes arrowPulse {
+  0% { transform: translateX(-10px) scale(1); }
+  50% { transform: translateX(5px) scale(1.2); }
+  100% { transform: translateX(0) scale(1); }
+}
+
+/* Résultat final */
+.revelation-result {
+  text-align: center;
+  opacity: 0;
+  animation: fadeInScale 0.8s ease 3s forwards;
+  margin-top: 100px;
+}
+
+.result-text {
+  font-size: clamp(24px, 3vw, 32px);
+  color: rgba(255, 255, 255, 0.5);
+  font-weight: 300;
+  letter-spacing: 0.05em;
+}
+
+.result-highlight {
+  color: #fff;
+  font-weight: 900;
+  font-size: clamp(60px, 10vw, 120px);
+  display: block;
+  margin-top: 20px;
+  text-transform: uppercase;
+  letter-spacing: -0.02em;
+  background: linear-gradient(90deg, #fff, #ec4899, #fff);
+  background-size: 200% 100%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: 
+    textGlow 3s linear infinite,
+    scaleIn 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55) 3.5s both;
+  text-shadow: 
+    0 0 40px rgba(255, 255, 255, 0.5),
+    0 0 80px rgba(236, 72, 153, 0.3);
+  filter: drop-shadow(0 0 30px rgba(236, 72, 153, 0.6));
+}
+
+@keyframes textGlow {
+  0% { background-position: 0% 50%; }
+  100% { background-position: 200% 50%; }
+}
+
+@keyframes scaleIn {
+  from {
+    transform: scale(0);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes fadeIn {
+  to { opacity: 1; }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInScale {
+  from {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .revelation-section {
+    padding: 60px 20px;
+  }
+  
+  .revelation-header {
+    margin-bottom: 40px;
+  }
+  
+  .revelation-title {
+    font-size: 28px;
+  }
+  
+  /* Sur mobile, on empile les colonnes verticalement */
+  .columns-container {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    align-items: stretch;
+  }
+  
+  /* Masquer complètement la flèche sur mobile */
+  .transfer-arrow {
+    display: none !important;
+  }
+  
+  /* Séparateur entre les colonnes */
+  .left-column {
+    order: 1;
+    padding-bottom: 40px;
+    border-bottom: 2px dashed rgba(255, 255, 255, 0.1);
+  }
+  
+  /* Flèche simple après VOUS */
+  .left-column::after {
+    content: '↓';
+    display: block;
+    text-align: center;
+    font-size: 32px;
+    color: #ec4899;
+    margin-top: 30px;
+    animation: bounce 2s ease-in-out infinite;
+  }
+  
+  @keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(10px); }
+  }
+  
+  .right-column {
+    order: 2;
+  }
+  
+  .column {
+    max-width: 100%;
+    width: 100%;
+  }
+  
+  .column-title {
+    font-size: 20px;
+    margin-bottom: 20px;
+  }
+  
+  .task-item {
+    font-size: 16px;
+    padding: 12px 16px;
+    height: auto;
+    min-height: 48px;
+  }
+  
+  /* Résultat amélioré sur mobile */
+  .revelation-result {
+    margin-top: 60px;
+  }
+  
+  .result-text {
+    font-size: 18px;
+    color: rgba(255, 255, 255, 0.6);
+    margin-bottom: 16px;
+  }
+  
+  .result-highlight {
+    font-size: clamp(48px, 12vw, 64px);
+    font-weight: 900;
+    line-height: 1;
+    padding: 0 10px;
+  }
+}

@@ -1,413 +1,330 @@
-/* StorySection.css - Styles complets et organisés - Tailles desktop réduites */
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;900&display=swap');
+/* StorySection.css - VERSION 2 COHÉRENTE AVEC ARTISTS */
 
-/* ====================================
-   VARIABLES GLOBALES
-   ==================================== */
 :root {
-    --primary-pink: #ec4899;
-    --primary-purple: #a855f7;
-    --primary-blue: #3b82f6;
-    --primary-cyan: #06b6d4;
-    --primary-teal: #14b8a6;
-    --bg-dark: #0A0F29;
     --neon-pink: #ff00ff;
     --neon-cyan: #00ffff;
     --neon-yellow: #ffff00;
+    --neon-purple: #a855f7;
+    --neon-green: #00ff88;
+    --primary-pink: #ec4899;
+    --primary-blue: #3b82f6;
+    --bg-dark: #0A0F29;
 }
 
 /* ====================================
-   SECTION PRINCIPALE
+   SECTION PRINCIPALE - MÊME STYLE QU'ARTISTS
    ==================================== */
 .story-section {
     position: relative;
-    padding: 5rem 0 8rem;
-    background: var(--bg-dark);
-    overflow: hidden;
     min-height: 100vh;
-}
-
-/* AJUSTEMENT DESKTOP : Réduction du padding sur desktop */
-@media (min-width: 1024px) {
-    .story-section {
-        padding: 4rem 0 6.5rem; /* RÉDUIT de 5rem 0 8rem */
-    }
+    padding: 120px 20px 80px;
+    background: linear-gradient(180deg, #16213e 0%, #0f0f23 30%, #0a0a1a 70%, #070710 100%);
+    overflow: hidden;
 }
 
 /* ====================================
-   EFFETS DE FOND
+   EFFETS DE FOND - IDENTIQUES À ARTISTS
    ==================================== */
-.story-bg-effects {
+.story-background {
     position: absolute;
     inset: 0;
     pointer-events: none;
 }
 
-.gradient-mesh {
+.story-grid {
     position: absolute;
     inset: 0;
+    background-image: 
+        linear-gradient(rgba(236, 72, 153, 0.1) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(168, 85, 247, 0.1) 1px, transparent 1px);
+    background-size: 70px 70px;
+    animation: storyGridMove 25s linear infinite;
     opacity: 0.3;
-    background: linear-gradient(45deg, #ec4899, #a855f7, #3b82f6, #ec4899);
-    background-size: 400% 400%;
-    animation: meshAnimation 20s linear infinite;
 }
 
-.gradient-radial-1 {
+@keyframes storyGridMove {
+    0% { transform: translate(0, 0); }
+    100% { transform: translate(70px, 70px); }
+}
+
+.story-orb {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(100px);
+    animation: storyFloatOrb 30s ease-in-out infinite;
+}
+
+.story-orb-1 {
+    width: 420px;
+    height: 420px;
+    background: radial-gradient(circle, rgba(236, 72, 153, 0.3), transparent 70%);
+    top: 10%;
+    left: -200px;
+}
+
+.story-orb-2 {
+    width: 340px;
+    height: 340px;
+    background: radial-gradient(circle, rgba(168, 85, 247, 0.3), transparent 70%);
+    bottom: 10%;
+    right: -200px;
+    animation-delay: 15s;
+}
+
+.story-orb-3 {
+    width: 300px;
+    height: 300px;
+    background: radial-gradient(circle, rgba(0, 255, 255, 0.2), transparent 70%);
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    animation-delay: 10s;
+}
+
+@keyframes storyFloatOrb {
+    0%, 100% { transform: translate(0, 0) scale(1); }
+    33% { transform: translate(100px, -100px) scale(1.1); }
+    66% { transform: translate(-100px, 50px) scale(0.9); }
+}
+
+.story-stars {
     position: absolute;
     inset: 0;
-    background: radial-gradient(ellipse at center, rgba(236,72,153,0.08), transparent 50%);
 }
 
-.gradient-radial-2 {
+.story-star {
     position: absolute;
-    inset: 0;
-    background: radial-gradient(circle at 80% 20%, rgba(168,85,247,0.08), transparent 50%);
+    width: 2px;
+    height: 2px;
+    background: white;
+    border-radius: 50%;
+    animation: storyTwinkle 3s ease-in-out infinite;
 }
 
-.gradient-radial-3 {
-    position: absolute;
-    inset: 0;
-    background: radial-gradient(circle at 20% 80%, rgba(59,130,246,0.08), transparent 50%);
-}
-
-@keyframes meshAnimation {
-    0% { background-position: 0% 0%; }
-    100% { background-position: 100% 100%; }
+@keyframes storyTwinkle {
+    0%, 100% { opacity: 0; transform: scale(0.5); }
+    50% { opacity: 1; transform: scale(1); }
 }
 
 /* ====================================
-   TITRE PRINCIPAL - OPTIMISÉ POUR MOBILE
+   CONTENU PRINCIPAL
    ==================================== */
-.hero-title-wrapper {
+.story-main-content {
+    position: relative;
+    z-index: 10;
+}
+
+/* ====================================
+   HEADER - MÊME STYLE QU'ARTISTS
+   ==================================== */
+.story-header {
     text-align: center;
-    margin-bottom: 6rem;
+    margin-bottom: 3.2rem;
+    max-width: 1000px;
+    margin-left: auto;
+    margin-right: auto;
     position: relative;
-    padding: 0 2rem;
-    width: 100%;
-    overflow: visible;
 }
 
-/* AJUSTEMENT DESKTOP : Réduction du margin sur desktop */
-@media (min-width: 1024px) {
-    .hero-title-wrapper {
-        margin-bottom: 5rem; /* RÉDUIT de 6rem */
-    }
-}
-
-.hero-title-glow {
+.story-title-glow {
     position: absolute;
-    inset: -3rem;
-    background: radial-gradient(circle, rgba(236,72,153,0.2), transparent 40%);
-    filter: blur(60px);
-    animation: glowPulse 4s ease-in-out infinite;
+    inset: -80px;
+    background: radial-gradient(circle, rgba(236, 72, 153, 0.4), transparent 40%);
+    filter: blur(100px);
+    animation: storyGlow 4s ease-in-out infinite;
+    pointer-events: none;
 }
 
-/* AJUSTEMENT DESKTOP : Réduction du glow sur desktop */
-@media (min-width: 1024px) {
-    .hero-title-glow {
-        inset: -2.5rem; /* RÉDUIT de -3rem */
-        filter: blur(50px); /* RÉDUIT de 60px */
-    }
+@keyframes storyGlow {
+    0%, 100% { opacity: 0.5; transform: scale(0.8); }
+    50% { opacity: 1; transform: scale(1.2); }
 }
 
-.hero-title {
-    position: relative;
-    font-size: clamp(3rem, 8vw, 7rem);
+.story-title {
+    font-size: 5.5rem;
     font-weight: 900;
     font-style: italic;
     text-transform: uppercase;
     line-height: 0.9;
     letter-spacing: -0.02em;
-    display: block;
-    margin: 0 auto;
-    max-width: 100%;
-    white-space: nowrap;
+    margin-bottom: 1.6rem;
+    position: relative;
 }
 
-/* AJUSTEMENT DESKTOP : Réduction du titre sur desktop */
-@media (min-width: 1024px) {
-    .hero-title {
-        font-size: 5.5rem; /* RÉDUIT de 7rem max à 5.5rem (-21%) */
-    }
+/* CLASSES UNIQUES POUR ÉVITER TOUT CONFLIT */
+.story-hero-line-1 {
+    display: block;
+    color: white;
+    margin-bottom: -0.05em;
+    animation: storySlideInLeft 1s cubic-bezier(0.16, 1, 0.3, 1);
+    line-height: 1;
 }
 
-.title-line-1 {
-    display: block;
-    background: linear-gradient(180deg, white, rgba(255,255,255,0.9));
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    margin-bottom: -0.1em;
-    filter: drop-shadow(0 0 20px rgba(255,255,255,0.3));
-    animation: slideInLeft 1s cubic-bezier(0.16, 1, 0.3, 1);
-    white-space: nowrap;
-}
-
-.title-line-2 {
-    display: block;
+.story-hero-line-2 {
+    display: inline-block;
     font-size: 1.2em;
-    background: linear-gradient(135deg, 
-        #ff00ff 0%,
-        #00ffff 20%,
-        #ffff00 40%,
-        #ff00ff 60%,
-        #00ffff 80%,
-        #ff00ff 100%);
-    background-size: 300% 300%;
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
+    padding-right: 0.2em;
+    margin-top: -0.2em;
+    background-image: linear-gradient(90deg, 
+        rgb(255, 0, 255) 0%,
+        rgb(0, 255, 255) 25%,
+        rgb(255, 255, 0) 50%,
+        rgb(255, 0, 255) 75%,
+        rgb(0, 255, 255) 100%);
+    background-size: 200% 100%;
     background-clip: text;
-    filter: drop-shadow(0 0 40px rgba(236, 72, 153, 0.6))
-           drop-shadow(0 0 80px rgba(168, 85, 247, 0.4));
+    -webkit-background-clip: text;
+    color: transparent;
+    -webkit-text-fill-color: transparent;
+    filter: drop-shadow(0 0 60px rgba(236, 72, 153, 0.8));
     animation: 
-        slideInRight 1s cubic-bezier(0.16, 1, 0.3, 1) 0.2s backwards,
-        rainbowShift 4s linear infinite,
-        textGlow 2s ease-in-out infinite;
-    white-space: nowrap;
+        storySlideInRight 1s cubic-bezier(0.16, 1, 0.3, 1) 0.2s backwards,
+        storyGradientSlide 3s linear infinite;
 }
 
-@keyframes glowPulse {
-    0%, 100% { opacity: 0.5; transform: scale(1); }
-    50% { opacity: 0.8; transform: scale(1.1); }
-}
-
-@keyframes slideInLeft {
-    from { opacity: 0; transform: translateX(-50px); }
+@keyframes storySlideInLeft {
+    from { opacity: 0; transform: translateX(-100px); }
     to { opacity: 1; transform: translateX(0); }
 }
 
-@keyframes slideInRight {
-    from { opacity: 0; transform: translateX(50px); }
+@keyframes storySlideInRight {
+    from { opacity: 0; transform: translateX(100px); }
     to { opacity: 1; transform: translateX(0); }
 }
 
-@keyframes rainbowShift {
+@keyframes storyGradientSlide {
     0% { background-position: 0% 50%; }
-    100% { background-position: 100% 50%; }
-}
-
-@keyframes textGlow {
-    0%, 100% {
-        filter: drop-shadow(0 0 40px rgba(236, 72, 153, 0.6))
-               drop-shadow(0 0 80px rgba(168, 85, 247, 0.4));
-    }
-    50% {
-        filter: drop-shadow(0 0 60px rgba(236, 72, 153, 0.8))
-               drop-shadow(0 0 100px rgba(168, 85, 247, 0.6));
-    }
+    100% { background-position: 200% 50%; }
 }
 
 /* ====================================
-   CARTES D'ÉQUIPE - GRILLE 3-2
+   GRILLE DE CARTES TEAM
    ==================================== */
-.team-cards-container {
-    width: 100%;
-    max-width: 1400px;
-    margin: 0 auto 6rem;
+.story-team-grid {
+    max-width: 1200px;
+    margin: 0 auto;
     padding: 0 2rem;
 }
 
-/* AJUSTEMENT DESKTOP : Réduction du container sur desktop */
-@media (min-width: 1024px) {
-    .team-cards-container {
-        max-width: 1200px; /* RÉDUIT de 1400px */
-        margin: 0 auto 5rem; /* RÉDUIT margin-bottom de 6rem à 5rem */
-    }
-}
-
-.team-cards-grid {
+.story-grid-row {
     display: grid;
+    gap: 2rem;
+    margin-bottom: 2rem;
+}
+
+.story-grid-three {
     grid-template-columns: repeat(3, 1fr);
-    gap: 2.5rem;
-    margin-bottom: 2.5rem;
 }
 
-/* AJUSTEMENT DESKTOP : Réduction du gap sur desktop */
-@media (min-width: 1024px) {
-    .team-cards-grid {
-        gap: 2rem; /* RÉDUIT de 2.5rem */
-        margin-bottom: 2rem; /* RÉDUIT de 2.5rem */
-    }
-}
-
-.team-cards-grid.row-two {
+.story-grid-two {
     grid-template-columns: repeat(2, 1fr);
-    max-width: 900px;
+    max-width: 800px;
     margin: 0 auto;
 }
 
-/* AJUSTEMENT DESKTOP : Réduction de la row-two sur desktop */
-@media (min-width: 1024px) {
-    .team-cards-grid.row-two {
-        max-width: 750px; /* RÉDUIT de 900px */
-    }
-}
-
-.team-card {
+/* ====================================
+   CARTE TEAM - STYLE POSTER NÉON
+   ==================================== */
+.story-team-card {
     position: relative;
     width: 100%;
-    height: 500px;
-    border-radius: 1.5rem;
+    height: 450px;
+    border-radius: 1.2rem;
     overflow: hidden;
-    background: linear-gradient(135deg, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.2));
-    backdrop-filter: blur(20px);
-    border: 2px solid transparent;
-    background-image: 
-        linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), 
-        linear-gradient(135deg, var(--card-color-1), var(--card-color-2));
-    background-origin: border-box;
-    background-clip: padding-box, border-box;
+    background: rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(10px);
+    border: 2px solid rgba(255, 255, 255, 0.1);
     transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
     cursor: pointer;
 }
 
-/* AJUSTEMENT DESKTOP : Réduction des cartes sur desktop */
-@media (min-width: 1024px) {
-    .team-card {
-        height: 420px; /* RÉDUIT de 500px à 420px (-16%) */
-        border-radius: 1.2rem; /* RÉDUIT de 1.5rem */
-    }
-}
-
-/* Couleurs des cartes */
-.team-card-0 {
-    --card-color-1: #ff00ff;
-    --card-color-2: #ec4899;
-}
-
-.team-card-1 {
-    --card-color-1: #a855f7;
-    --card-color-2: #ff00ff;
-}
-
-.team-card-2 {
-    --card-color-1: #00ffff;
-    --card-color-2: #3b82f6;
-}
-
-.team-card-3 {
-    --card-color-1: #ffff00;
-    --card-color-2: #00ffff;
-}
-
-.team-card-4 {
-    --card-color-1: #14b8a6;
-    --card-color-2: #00ff88;
-}
-
-.team-card:hover {
-    transform: translateY(-15px) scale(1.08);
+.story-team-card:hover {
+    transform: scale(1.05) translateY(-10px);
+    z-index: 20;
+    border-color: var(--card-accent);
     box-shadow: 
         0 30px 60px rgba(0, 0, 0, 0.5),
-        0 0 80px var(--card-color-1),
-        inset 0 0 30px rgba(255, 255, 255, 0.1);
-    z-index: 100;
-    border-color: var(--card-color-1);
+        0 0 80px var(--card-accent);
 }
 
-/* AJUSTEMENT DESKTOP : Réduction de l'effet hover sur desktop */
-@media (min-width: 1024px) {
-    .team-card:hover {
-        transform: translateY(-12px) scale(1.06); /* RÉDUIT l'effet */
-    }
-}
+/* Couleurs personnalisées par membre */
+.story-card-benedicte { --card-accent: #ff00ff; }
+.story-card-isabelle { --card-accent: #00ffff; }
+.story-card-elodie { --card-accent: #00ffff; }
+.story-card-jeremy { --card-accent: #ffff00; }
+.story-card-margaux { --card-accent: #00ff88; }
 
-.team-card-image {
-    position: absolute;
-    inset: 0;
+.story-card-image {
     width: 100%;
     height: 100%;
     object-fit: cover;
     transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
-    filter: brightness(1.1) contrast(1.05);
+    filter: brightness(0.9);
 }
 
-.team-card:hover .team-card-image {
+.story-team-card:hover .story-card-image {
     transform: scale(1.15);
-    filter: brightness(1.2) contrast(1.1);
+    filter: brightness(1.1);
 }
 
-.team-card-overlay {
+.story-card-overlay {
     position: absolute;
     inset: 0;
     background: linear-gradient(
         to top,
-        rgba(0,0,0,0.95) 0%,
-        rgba(0,0,0,0.7) 25%,
-        rgba(0,0,0,0.3) 50%,
+        rgba(0, 0, 0, 0.95) 0%,
+        rgba(0, 0, 0, 0.7) 30%,
+        rgba(0, 0, 0, 0.3) 60%,
         transparent 100%
     );
-    transition: all 0.4s;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    pointer-events: none;
 }
 
-.team-card-content {
+.story-team-card:hover .story-card-overlay {
+    opacity: 1;
+}
+
+.story-card-content {
     position: absolute;
     bottom: 0;
     left: 0;
     right: 0;
-    padding: 2rem 1.5rem 1.5rem;
-    transform: translateY(10px);
+    padding: 2rem 1.6rem 1.6rem;
+    transform: translateY(30px);
+    opacity: 0;
     transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    text-align: center;
 }
 
-/* AJUSTEMENT DESKTOP : Réduction du padding content sur desktop */
-@media (min-width: 1024px) {
-    .team-card-content {
-        padding: 1.6rem 1.2rem 1.2rem; /* RÉDUIT de 2rem 1.5rem 1.5rem */
-    }
+.story-team-card:hover .story-card-content {
+    transform: translateY(0);
+    opacity: 1;
 }
 
-.team-card:hover .team-card-content {
-    transform: translateY(-5px);
-}
-
-.team-member-name {
-    font-size: 1.1rem;
-    font-weight: 900;
+.story-member-name {
+    font-size: 1rem;
+    font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 0.15em;
-    color: white;
-    line-height: 1;
-    margin-bottom: 0.25rem;
-    text-shadow: 0 0 30px rgba(255,255,255,0.5);
+    color: rgba(255, 255, 255, 0.9);
+    margin-bottom: 0.5rem;
+    text-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
 }
 
-/* AJUSTEMENT DESKTOP : Réduction du nom sur desktop */
-@media (min-width: 1024px) {
-    .team-member-name {
-        font-size: 0.95rem; /* RÉDUIT de 1.1rem */
-        letter-spacing: 0.12em; /* RÉDUIT de 0.15em */
-    }
-}
-
-.team-member-lastname {
-    font-size: 1.8rem;
+.story-member-lastname {
+    font-size: 2rem;
     font-weight: 900;
     font-style: italic;
     text-transform: uppercase;
     letter-spacing: -0.02em;
-    background: linear-gradient(135deg, 
-        var(--card-color-1) 0%,
-        var(--card-color-2) 50%,
-        var(--card-color-1) 100%);
-    background-size: 200% 200%;
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
+    color: var(--card-accent);
+    text-shadow: 0 0 30px var(--card-accent);
     margin-bottom: 1rem;
-    animation: gradientShift 3s ease-in-out infinite;
-    filter: drop-shadow(0 0 20px var(--card-color-1));
 }
 
-/* AJUSTEMENT DESKTOP : Réduction du lastname sur desktop */
-@media (min-width: 1024px) {
-    .team-member-lastname {
-        font-size: 1.5rem; /* RÉDUIT de 1.8rem (-17%) */
-        margin-bottom: 0.8rem; /* RÉDUIT de 1rem */
-    }
-}
-
-.team-member-role {
+.story-member-role {
     display: inline-block;
     padding: 0.5rem 1rem;
     border-radius: 9999px;
@@ -416,373 +333,159 @@
     text-transform: uppercase;
     letter-spacing: 0.1em;
     color: white;
-    background: rgba(255,255,255,0.1);
+    background: rgba(255, 255, 255, 0.1);
     backdrop-filter: blur(20px);
-    border: 1px solid rgba(255,255,255,0.2);
-    transition: all 0.3s;
-}
-
-/* AJUSTEMENT DESKTOP : Réduction du role sur desktop */
-@media (min-width: 1024px) {
-    .team-member-role {
-        padding: 0.4rem 0.8rem; /* RÉDUIT de 0.5rem 1rem */
-        font-size: 0.65rem; /* RÉDUIT de 0.7rem */
-    }
-}
-
-.team-card:hover .team-member-role {
-    background: rgba(255,255,255,0.15);
-    border-color: var(--card-color-1);
-    box-shadow: 0 0 20px var(--card-color-1);
-}
-
-.sparkle-icon {
-    position: absolute;
-    top: 1.5rem;
-    right: 1.5rem;
-    opacity: 0;
-    transform: scale(0) rotate(0);
-    transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
-    filter: drop-shadow(0 0 10px currentColor);
-}
-
-/* AJUSTEMENT DESKTOP : Réduction de l'icône sur desktop */
-@media (min-width: 1024px) {
-    .sparkle-icon {
-        top: 1.2rem; /* RÉDUIT de 1.5rem */
-        right: 1.2rem;
-    }
-}
-
-.team-card:hover .sparkle-icon {
-    opacity: 1;
-    transform: scale(1) rotate(360deg);
-    animation: sparkleGlow 2s ease-in-out infinite;
-}
-
-@keyframes sparkleGlow {
-    0%, 100% { filter: drop-shadow(0 0 10px currentColor); }
-    50% { filter: drop-shadow(0 0 20px currentColor) drop-shadow(0 0 30px currentColor); }
-}
-
-@keyframes gradientShift {
-    0%, 100% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
+    border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
 /* ====================================
    SECTION FINALE
    ==================================== */
-.section-finale {
-    position: relative;
+.story-finale {
     text-align: center;
-    margin: 4rem 0 0;
+    margin-top: 4rem;
     padding: 4rem 2rem;
-    overflow: visible;
 }
 
-/* AJUSTEMENT DESKTOP : Réduction de la section finale sur desktop */
-@media (min-width: 1024px) {
-    .section-finale {
-        margin: 3.2rem 0 0; /* RÉDUIT de 4rem */
-        padding: 3.2rem 2rem; /* RÉDUIT de 4rem 2rem */
-    }
-}
-
-/* Titre final */
-.finale-title {
-    position: relative;
-    z-index: 2;
+.story-finale-title {
     margin-bottom: 3rem;
 }
 
-/* AJUSTEMENT DESKTOP : Réduction du margin sur desktop */
-@media (min-width: 1024px) {
-    .finale-title {
-        margin-bottom: 2.4rem; /* RÉDUIT de 3rem */
-    }
-}
-
-.finale-line-1 {
-    font-size: clamp(1rem, 2vw, 1.25rem);
+.story-finale-line-1 {
+    font-size: 1.25rem;
     font-weight: 600;
     text-transform: uppercase;
     letter-spacing: 0.15em;
-    color: rgba(255,255,255,0.6);
+    color: rgba(255, 255, 255, 0.6);
     margin-bottom: 0.75rem;
-    animation: fadeInUp 0.8s ease-out;
+    display: block;
 }
 
-/* AJUSTEMENT DESKTOP : Réduction de finale-line-1 sur desktop */
-@media (min-width: 1024px) {
-    .finale-line-1 {
-        font-size: 1.05rem; /* RÉDUIT de 1.25rem max */
-        margin-bottom: 0.6rem; /* RÉDUIT de 0.75rem */
-    }
-}
-
-.finale-line-2 {
-    font-size: clamp(2.5rem, 6vw, 4.5rem);
+.story-finale-line-2 {
+    font-size: 4.5rem;
     font-weight: 900;
     font-style: italic;
     text-transform: uppercase;
     line-height: 1;
     letter-spacing: -0.02em;
-    position: relative;
-    display: inline-block;
-    /* Option 1: Blanc pur - simple et élégant */
-    color: white;
-    
-    /* Option 2: Dégradé doré luxueux (décommentez pour activer) */
-    /* background: linear-gradient(135deg, #ffd700 0%, #ffed4e 50%, #ffa500 100%);
+    background: linear-gradient(135deg, 
+        #FFD700 0%, 
+        #FFED4E 25%, 
+        #FFA500 50%,
+        #FFD700 75%,
+        #FFED4E 100%);
+    background-size: 200% 200%;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
-    background-clip: text; */
-    
-    /* Option 3: Dégradé argent métallique (décommentez pour activer) */
-    /* background: linear-gradient(135deg, #e8e8e8 0%, #ffffff 50%, #c0c0c0 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text; */
-    
-    /* Option 4: Dégradé cyan néon (décommentez pour activer) */
-    /* background: linear-gradient(135deg, #00ffff 0%, #00e5ff 50%, #00acc1 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text; */
-    
-    /* Option 5: Dégradé rouge passion (décommentez pour activer) */
-    /* background: linear-gradient(135deg, #ff4444 0%, #ff6b6b 50%, #ee5a6f 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text; */
-    
-    animation: fadeInUp 0.8s ease-out 0.2s backwards;
+    background-clip: text;
+    filter: drop-shadow(0 0 40px #FFD700);
+    animation: storyGoldShine 3s linear infinite;
+    display: block;
 }
 
-/* AJUSTEMENT DESKTOP : Réduction de finale-line-2 sur desktop */
-@media (min-width: 1024px) {
-    .finale-line-2 {
-        font-size: 3.6rem; /* RÉDUIT de 4.5rem max à 3.6rem (-20%) */
-    }
+@keyframes storyGoldShine {
+    0% { background-position: 0% 50%; }
+    100% { background-position: 200% 50%; }
 }
 
-@keyframes fadeInUp {
-    from { 
-        opacity: 0; 
-        transform: translateY(20px); 
-    }
-    to { 
-        opacity: 1; 
-        transform: translateY(0); 
-    }
-}
-
-/* ====================================
-   BOUTON CTA
-   ==================================== */
-.cta-button {
+/* CTA BUTTON - STYLE IDENTIQUE À ARTISTS */
+.story-cta-button {
     display: inline-flex;
     align-items: center;
-    gap: 0.75rem;
-    padding: 1rem 2rem;
-    border-radius: 100px;
-    font-weight: 600;
-    font-size: 0.875rem;
+    gap: 0.8rem;
+    padding: 1.2rem 3.2rem;
+    font-size: 1rem;
+    font-weight: 900;
     text-transform: uppercase;
-    letter-spacing: 0.1em;
+    letter-spacing: 0.08em;
     text-decoration: none;
     color: white;
+    border-radius: 9999px;
     position: relative;
     overflow: hidden;
-    transition: all 0.3s ease;
-    z-index: 10;
-    background: linear-gradient(135deg, rgba(0,0,0,0.3) 0%, rgba(0,0,0,0.1) 100%);
-    backdrop-filter: blur(20px);
-    border: 1px solid rgba(255,255,255,0.1);
+    background: rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(10px);
+    border: 3px solid transparent;
+    background-image: 
+        linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), 
+        linear-gradient(135deg, #ec4899, #a855f7);
+    background-origin: border-box;
+    background-clip: padding-box, border-box;
+    box-shadow: 
+        0 0 40px rgba(236, 72, 153, 0.3),
+        0 0 80px rgba(168, 85, 247, 0.2);
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-/* AJUSTEMENT DESKTOP : Réduction du CTA sur desktop */
-@media (min-width: 1024px) {
-    .cta-button {
-        padding: 0.8rem 1.6rem; /* RÉDUIT de 1rem 2rem */
-        font-size: 0.8rem; /* RÉDUIT de 0.875rem */
-        gap: 0.6rem; /* RÉDUIT de 0.75rem */
-    }
+.story-cta-button:hover {
+    transform: translateY(-5px) scale(1.05);
+    box-shadow: 
+        0 0 60px rgba(236, 72, 153, 0.6),
+        0 0 120px rgba(168, 85, 247, 0.4),
+        0 20px 40px rgba(0, 0, 0, 0.3);
 }
 
-.cta-text {
-    position: relative;
-    z-index: 2;
-    display: inline-block;
-}
-
-.cta-icon {
-    width: 18px;
-    height: 18px;
-    transition: transform 0.3s ease;
-    position: relative;
-    z-index: 2;
-}
-
-/* AJUSTEMENT DESKTOP : Réduction de l'icône sur desktop */
-@media (min-width: 1024px) {
-    .cta-icon {
-        width: 16px; /* RÉDUIT de 18px */
-        height: 16px;
-    }
-}
-
-/* Effet gradient subtil au hover */
-.cta-button::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(135deg, rgba(236,72,153,0.2), rgba(168,85,247,0.2));
-    opacity: 0;
-    transition: opacity 0.3s ease;
-}
-
-.cta-button:hover::before {
-    opacity: 1;
-}
-
-.cta-button:hover {
-    transform: translateY(-2px);
-    border-color: rgba(236,72,153,0.3);
-}
-
-.cta-button:hover .cta-icon {
-    transform: translateX(4px);
+@keyframes storyFadeInUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
 }
 
 /* ====================================
-   RESPONSIVE - CORRECTIONS TITRE MOBILE
+   RESPONSIVE
    ==================================== */
 @media (max-width: 768px) {
     .story-section {
-        padding: 3rem 0 5rem;
+        padding: 80px 0 60px;
     }
     
-    .hero-title-wrapper {
-        margin-bottom: 3rem;
-        padding: 0 1rem;
+    .story-header {
+        margin-bottom: 2rem;
+        padding: 0 1.5rem;
     }
     
-    .hero-title {
-        font-size: clamp(2.2rem, 9vw, 3.5rem); /* Réduit pour mobile */
+    .story-title-glow {
+        display: none;
+    }
+    
+    .story-title {
+        font-size: 3rem;
         margin-bottom: 1rem;
     }
     
-    .title-line-1 {
-        font-size: 1em;
-        letter-spacing: -0.03em; /* Resserre les lettres */
-        white-space: normal; /* Permet le passage à la ligne si nécessaire */
+    .story-hero-line-2 {
+        font-size: 1.2em;
     }
     
-    .title-line-2 {
-        font-size: 1em; /* Réduit pour s'adapter */
-        letter-spacing: -0.03em; /* Resserre les lettres */
-        padding: 0 0.2em; /* Petit padding pour éviter la coupure */
-        white-space: normal; /* Permet le passage à la ligne si nécessaire */
-    }
-    
-    .team-cards-container {
-        padding: 0 1rem;
-    }
-    
-    .team-cards-grid,
-    .team-cards-grid.row-two {
+    .story-grid-three,
+    .story-grid-two {
         grid-template-columns: 1fr;
         gap: 1.5rem;
     }
     
-    .team-card {
-        height: 420px;
+    .story-team-card {
+        height: 400px;
         max-width: 380px;
         margin: 0 auto;
     }
     
-    .team-member-name {
-        font-size: 1rem;
-    }
-    
-    .team-member-lastname {
+    .story-member-lastname {
         font-size: 1.5rem;
     }
     
-    .team-member-role {
-        font-size: 0.65rem;
-        padding: 0.4rem 0.8rem;
+    .story-finale {
+        padding: 2.5rem 1.5rem;
+        margin-top: 2rem;
     }
     
-    /* CORRECTIONS SECTION FINALE MOBILE */
-    .section-finale {
-        padding: 2.5rem 1.5rem; /* Réduit le padding */
-        margin: 2rem 0 0; /* Réduit le margin-top */
+    .story-finale-line-2 {
+        font-size: 2.5rem;
     }
     
-    .finale-title {
-        margin-bottom: 2rem; /* Réduit l'espacement */
-    }
-    
-    .finale-line-1 {
-        font-size: 0.9rem; /* Plus petit */
-        letter-spacing: 0.1em; /* Moins espacé */
-        margin-bottom: 0.5rem; /* Moins d'espace */
-    }
-    
-    .finale-line-2 {
-        font-size: 2.2rem; /* Beaucoup plus petit pour mobile */
-        letter-spacing: -0.03em; /* Resserre les lettres */
-        line-height: 0.95; /* Réduit l'interligne */
-    }
-    
-    .cta-button {
-        padding: 0.9rem 1.8rem; /* Légèrement plus petit */
-        font-size: 0.8rem;
-        margin-top: 1.5rem; /* Ajout d'un margin-top si nécessaire */
-    }
-}
-
-/* AJUSTEMENT POUR TRÈS PETITS ÉCRANS */
-@media (max-width: 380px) {
-    .hero-title {
-        font-size: 2rem; /* Encore plus petit pour très petits écrans */
-    }
-    
-    .title-line-1,
-    .title-line-2 {
-        font-size: 0.95em;
-        letter-spacing: -0.04em;
-    }
-}
-
-@media (min-width: 769px) and (max-width: 1024px) {
-    .hero-title {
-        font-size: clamp(3.5rem, 7vw, 5rem);
-    }
-    
-    .team-cards-grid {
-        grid-template-columns: repeat(2, 1fr);
-    }
-    
-    .team-cards-grid.row-two {
-        grid-template-columns: repeat(2, 1fr);
-    }
-    
-    .team-card {
-        height: 450px;
-    }
-}
-
-@media (min-width: 1920px) {
-    .hero-title {
-        font-size: 8rem;
-    }
-    
-    .team-card {
+    .story-cta-button {
+        padding: 1.2rem 2rem;
+        font-size: 0.95rem;
         width: 100%;
-        height: 550px;
+        max-width: none;
+        justify-content: center;
     }
 }

@@ -1,0 +1,581 @@
+/* ServicesPage.css - Style cohérent avec les autres pages */
+
+.services-page {
+  min-height: 100vh;
+  background: #0a0a1a;
+  color: white;
+  font-family: 'Inter', sans-serif;
+  overflow-x: hidden;
+}
+
+/* ====================================
+   HERO SECTION - Style comme vos autres pages
+   ==================================== */
+.services-hero {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 120px 20px 80px;
+  overflow: hidden;
+  background: radial-gradient(ellipse at top left, 
+    rgba(236, 72, 153, 0.15) 0%, 
+    transparent 40%),
+    radial-gradient(ellipse at bottom right, 
+    rgba(59, 130, 246, 0.1) 0%, 
+    transparent 40%),
+    linear-gradient(180deg, #0a0a1a 0%, #1a0f2e 100%);
+}
+
+/* Background animé */
+.hero-background {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+
+.hero-gradient {
+  position: absolute;
+  inset: 0;
+  opacity: 0.6;
+}
+
+/* Particles plus visibles et animées */
+.hero-particles {
+  position: absolute;
+  inset: 0;
+}
+
+.particle {
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  background: white;
+  border-radius: 50%;
+  opacity: 0;
+  filter: blur(0.5px);
+  animation: floatParticle 15s linear infinite;
+}
+
+.particle:nth-child(odd) {
+  width: 2px;
+  height: 2px;
+  animation-duration: 20s;
+}
+
+.particle:nth-child(3n) {
+  background: #ec4899;
+  box-shadow: 0 0 10px #ec4899;
+}
+
+.particle:nth-child(5n) {
+  background: #3b82f6;
+  box-shadow: 0 0 10px #3b82f6;
+}
+
+@keyframes floatParticle {
+  0% {
+    transform: translateY(100vh) scale(0);
+    opacity: 0;
+  }
+  10% {
+    opacity: 0.8;
+  }
+  90% {
+    opacity: 0.8;
+  }
+  100% {
+    transform: translateY(-100vh) scale(1);
+    opacity: 0;
+  }
+}
+
+/* Container */
+.services-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+  position: relative;
+  z-index: 10;
+}
+
+/* Hero Content - Style comme TeamPage */
+.hero-content {
+  text-align: center;
+  position: relative;
+  z-index: 10;
+}
+
+.services-title {
+  margin-bottom: 3rem;
+  animation: fadeInUp 0.8s ease;
+}
+
+/* Titre principal style moderne */
+.services-page .title-line-1 {
+  display: block !important;
+  font-size: clamp(3.5rem, 8vw, 6rem) !important;
+  font-weight: 900 !important;
+  color: white !important;
+  text-transform: uppercase !important;
+  letter-spacing: -0.02em !important;
+  margin-bottom: -0.2em !important;
+  line-height: 1 !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+
+.services-page .title-line-2 {
+  display: block !important;
+  font-size: clamp(4rem, 10vw, 7rem) !important;
+  font-weight: 900 !important;
+  font-style: italic !important;
+  text-transform: uppercase !important;
+  letter-spacing: -0.03em !important;
+  line-height: 0.9 !important;
+  background: linear-gradient(135deg, 
+    #ec4899 0%, 
+    #a855f7 25%,
+    #3b82f6 50%,
+    #10b981 75%,
+    #ec4899 100%) !important;
+  background-size: 200% 200% !important;
+  -webkit-background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+  background-clip: text !important;
+  animation: gradientMove 4s ease infinite !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+  filter: drop-shadow(0 0 30px rgba(236, 72, 153, 0.5)) !important;
+}
+
+@keyframes gradientMove {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.services-subtitle {
+  font-size: 1.3rem;
+  color: rgba(255, 255, 255, 0.7);
+  max-width: 700px;
+  margin: 0 auto;
+  line-height: 1.8;
+  animation: fadeInUp 0.8s ease 0.3s backwards;
+  font-weight: 400;
+  letter-spacing: 0.02em;
+}
+
+/* ====================================
+   SERVICES GRID - Style moderne glass
+   ==================================== */
+.services-grid-section {
+  padding: 100px 20px;
+  background: linear-gradient(180deg, 
+    #1a0f2e 0%, 
+    #0a0a1a 100%);
+  position: relative;
+}
+
+/* Effet de grille en fond */
+.services-grid-section::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: 
+    linear-gradient(rgba(236, 72, 153, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(59, 130, 246, 0.03) 1px, transparent 1px);
+  background-size: 50px 50px;
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+  gap: 35px;
+  max-width: 1200px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
+}
+
+/* Service Card - Style glass moderne */
+.service-card {
+  display: flex;
+  flex-direction: column;
+  padding: 50px 40px;
+  background: linear-gradient(135deg, 
+    rgba(255, 255, 255, 0.08) 0%, 
+    rgba(255, 255, 255, 0.02) 100%);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 30px;
+  text-decoration: none;
+  color: white;
+  position: relative;
+  transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+  overflow: hidden;
+  cursor: pointer;
+  transform-style: preserve-3d;
+  animation: fadeInUp 0.8s ease backwards;
+}
+
+/* Effet de lumière au top */
+.service-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  height: 1px;
+  background: linear-gradient(90deg, 
+    transparent, 
+    var(--service-color), 
+    transparent);
+  opacity: 0;
+  transition: all 0.5s ease;
+}
+
+/* Effet de glow interne */
+.service-card::after {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(
+    circle at center,
+    color-mix(in srgb, var(--service-color) 15%, transparent),
+    transparent 70%
+  );
+  opacity: 0;
+  transition: opacity 0.5s ease;
+  pointer-events: none;
+}
+
+.service-card:hover {
+  transform: translateY(-10px) rotateX(5deg);
+  background: linear-gradient(135deg, 
+    rgba(255, 255, 255, 0.12) 0%, 
+    rgba(255, 255, 255, 0.05) 100%);
+  border-color: color-mix(in srgb, var(--service-color) 60%, transparent);
+  box-shadow: 
+    0 30px 60px rgba(0, 0, 0, 0.5),
+    0 0 60px color-mix(in srgb, var(--service-color) 30%, transparent),
+    inset 0 0 30px color-mix(in srgb, var(--service-color) 10%, transparent);
+}
+
+.service-card:hover::before {
+  opacity: 1;
+  height: 3px;
+  filter: blur(1px);
+}
+
+.service-card:hover::after {
+  opacity: 1;
+}
+
+/* Couleurs des services avec néon */
+.service-pink { --service-color: #ff00ff; }
+.service-blue { --service-color: #00ffff; }
+.service-purple { --service-color: #a855f7; }
+.service-cyan { --service-color: #06b6d4; }
+.service-yellow { --service-color: #ffff00; }
+.service-green { --service-color: #00ff88; }
+
+/* Contenu de la carte */
+.service-icon {
+  font-size: 4rem;
+  margin-bottom: 2rem;
+  filter: grayscale(0.2) contrast(1.2);
+  transition: all 0.5s ease;
+  position: relative;
+  z-index: 1;
+  display: inline-block;
+  transform-origin: center;
+}
+
+.service-card:hover .service-icon {
+  filter: grayscale(0) saturate(1.5) brightness(1.2);
+  transform: scale(1.2) rotate(10deg);
+  text-shadow: 0 0 30px var(--service-color);
+}
+
+.service-title {
+  font-size: 1.8rem;
+  font-weight: 800;
+  margin-bottom: 1.2rem;
+  color: white;
+  transition: all 0.5s ease;
+  position: relative;
+  z-index: 1;
+  text-transform: uppercase;
+  letter-spacing: -0.02em;
+}
+
+.service-card:hover .service-title {
+  color: white;
+  text-shadow: 
+    0 0 20px var(--service-color),
+    0 0 40px var(--service-color);
+}
+
+.service-description {
+  font-size: 1.1rem;
+  color: rgba(255, 255, 255, 0.7);
+  line-height: 1.7;
+  flex-grow: 1;
+  margin-bottom: 2rem;
+  position: relative;
+  z-index: 1;
+  transition: color 0.5s ease;
+}
+
+.service-card:hover .service-description {
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.service-arrow {
+  font-size: 2rem;
+  color: rgba(255, 255, 255, 0.4);
+  align-self: flex-end;
+  transition: all 0.5s ease;
+  position: relative;
+  z-index: 1;
+  font-weight: bold;
+}
+
+.service-card:hover .service-arrow {
+  color: var(--service-color);
+  transform: translateX(15px);
+  text-shadow: 0 0 20px var(--service-color);
+}
+
+/* ====================================
+   CTA SECTION - Style moderne
+   ==================================== */
+.services-cta {
+  padding: 140px 20px;
+  text-align: center;
+  background: radial-gradient(ellipse at center bottom, 
+    rgba(236, 72, 153, 0.1) 0%, 
+    transparent 60%),
+    linear-gradient(180deg, #0a0a1a 0%, #1a0f2e 100%);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Animation de pulse en fond */
+.services-cta::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 800px;
+  height: 800px;
+  background: radial-gradient(
+    circle,
+    rgba(236, 72, 153, 0.15),
+    transparent 70%
+  );
+  transform: translate(-50%, -50%);
+  animation: pulse 4s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    transform: translate(-50%, -50%) scale(0.8);
+    opacity: 0.3;
+  }
+  50% {
+    transform: translate(-50%, -50%) scale(1.2);
+    opacity: 0.1;
+  }
+}
+
+.cta-title {
+  font-size: clamp(3rem, 6vw, 4.5rem);
+  font-weight: 900;
+  margin-bottom: 1.5rem;
+  color: white;
+  text-transform: uppercase;
+  letter-spacing: -0.02em;
+  position: relative;
+  z-index: 1;
+}
+
+.cta-subtitle {
+  font-size: 1.4rem;
+  color: rgba(255, 255, 255, 0.7);
+  margin-bottom: 3.5rem;
+  max-width: 700px;
+  margin-left: auto;
+  margin-right: auto;
+  line-height: 1.7;
+  position: relative;
+  z-index: 1;
+}
+
+/* Bouton style moderne avec gradient animé */
+.cta-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  padding: 22px 50px;
+  background: linear-gradient(135deg, 
+    #ec4899, 
+    #a855f7,
+    #3b82f6);
+  background-size: 200% 200%;
+  color: white;
+  text-decoration: none;
+  border-radius: 100px;
+  font-size: 1.2rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  transition: all 0.4s ease;
+  position: relative;
+  z-index: 1;
+  overflow: hidden;
+  animation: gradientMove 3s ease infinite;
+  box-shadow: 0 10px 40px rgba(236, 72, 153, 0.3);
+}
+
+.cta-button::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, 
+    #a855f7, 
+    #3b82f6,
+    #10b981);
+  transform: translate(-50%, -50%) scale(0);
+  transition: transform 0.5s ease;
+  border-radius: 100px;
+  z-index: -1;
+}
+
+.cta-button:hover {
+  transform: translateY(-4px) scale(1.05);
+  box-shadow: 
+    0 20px 60px rgba(236, 72, 153, 0.5),
+    0 0 60px rgba(168, 85, 247, 0.3);
+}
+
+.cta-button:hover::before {
+  transform: translate(-50%, -50%) scale(1.1);
+}
+
+.button-arrow {
+  font-size: 1.5rem;
+  transition: transform 0.3s ease;
+  font-weight: bold;
+}
+
+.cta-button:hover .button-arrow {
+  transform: translateX(8px);
+}
+
+/* Animations */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ====================================
+   RESPONSIVE
+   ==================================== */
+@media (max-width: 1024px) {
+  .services-grid {
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 25px;
+  }
+}
+
+@media (max-width: 768px) {
+  .services-hero {
+    min-height: 85vh;
+    padding: 100px 15px 60px;
+  }
+  
+  .services-page .title-line-1 {
+    font-size: clamp(2.5rem, 10vw, 4rem) !important;
+  }
+  
+  .services-page .title-line-2 {
+    font-size: clamp(3rem, 12vw, 5rem) !important;
+  }
+  
+  .services-subtitle {
+    font-size: 1.1rem;
+  }
+  
+  .services-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+    padding: 0 10px;
+  }
+  
+  .service-card {
+    padding: 40px 30px;
+  }
+  
+  .service-icon {
+    font-size: 3rem;
+  }
+  
+  .service-title {
+    font-size: 1.5rem;
+  }
+  
+  .services-cta {
+    padding: 100px 15px;
+  }
+  
+  .cta-title {
+    font-size: 2.5rem;
+  }
+  
+  .cta-button {
+    padding: 18px 40px;
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .services-page .title-line-1 {
+    font-size: 2.2rem !important;
+  }
+  
+  .services-page .title-line-2 {
+    font-size: 2.8rem !important;
+  }
+  
+  .service-card {
+    padding: 35px 25px;
+    border-radius: 20px;
+  }
+  
+  .service-title {
+    font-size: 1.3rem;
+  }
+  
+  .service-description {
+    font-size: 0.95rem;
+  }
+}

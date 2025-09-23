@@ -1,19 +1,21 @@
 import React from 'react';
 import { Navigation } from '../components/Navigation';
 import { Footer } from '../components/Footer';
-import { ProducerHeroSection } from '../sections/producer-page/HeroSection';
-import { ProducerArtistsSection } from '../sections/producer-page/ArtistsSection';
-import { ProducerCommitmentsSection } from '../sections/producer-page/CommitmentsSection';
-import { ProducerCTASection } from '../sections/producer-page/CTASection';
+import { ProducerArtistsGrid } from '../sections/producer-page/ProducerArtistsGrid';
+import { ProducerArtistsShowcase } from '../sections/producer-page/ProducerArtistsShowcase';
+import { ProducerRealitySection } from '../sections/producer-page/ProducerRealitySection';
+import { ProducerProofSection } from '../sections/producer-page/ProducerProofSection';
+import { ProducerFinalCTA } from '../sections/producer-page/ProducerFinalCTA';
 
 export const ProducerPage = () => {
   return (
-    <main className="min-h-screen bg-[#0A0F29]">
+    <main className="min-h-screen bg-[#000]">
       <Navigation />
-      <ProducerHeroSection />
-      <ProducerArtistsSection />
-      <ProducerCommitmentsSection />
-      <ProducerCTASection />
+      <ProducerArtistsGrid />
+      <ProducerArtistsShowcase />
+      <ProducerRealitySection />
+      <ProducerProofSection />
+      <ProducerFinalCTA />
       <Footer />
     </main>
   );

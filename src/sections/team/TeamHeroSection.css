@@ -1,0 +1,225 @@
+/* TeamHeroSection.css - Hero section styles */
+
+/* ====================================
+   HERO SECTION
+   ==================================== */
+.team-hero {
+  position: relative;
+  min-height: 80vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 120px 20px 60px;
+  overflow: hidden;
+  background: linear-gradient(180deg, #16213e 0%, #0f0f23 30%, #0a0a1a 70%, #070710 100%);
+}
+
+/* Effets de fond utilisant les classes globales */
+.hero-background {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+/* Grille animée - réutilise le pattern global */
+.hero-grid {
+  position: absolute;
+  inset: 0;
+  background-image: 
+    linear-gradient(rgba(236, 72, 153, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(168, 85, 247, 0.05) 1px, transparent 1px);
+  background-size: 60px 60px;
+  opacity: 0.15;
+  animation: globalGridMove 30s linear infinite;
+  pointer-events: none;
+}
+
+/* Orbes de lumière avec les couleurs globales */
+.hero-orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  pointer-events: none;
+  animation: globalFloatOrb 25s ease-in-out infinite;
+}
+
+.orb-1 {
+  width: 420px;
+  height: 420px;
+  background: radial-gradient(circle, rgba(236, 72, 153, 0.3), transparent 70%);
+  top: 10%;
+  left: -200px;
+}
+
+.orb-2 {
+  width: 340px;
+  height: 340px;
+  background: radial-gradient(circle, rgba(168, 85, 247, 0.25), transparent 70%);
+  bottom: 10%;
+  right: -200px;
+  animation-delay: 15s;
+}
+
+.orb-3 {
+  width: 300px;
+  height: 300px;
+  background: radial-gradient(circle, rgba(0, 255, 255, 0.2), transparent 70%);
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  animation-delay: 10s;
+}
+
+/* Animations potentiellement manquantes */
+@keyframes globalGridMove {
+  0% { transform: translate(0, 0); }
+  100% { transform: translate(60px, 60px); }
+}
+
+@keyframes globalFloatOrb {
+  0%, 100% { transform: translateY(0); }
+  33% { transform: translateY(-30px); }
+  66% { transform: translateY(20px); }
+}
+
+@keyframes globalFadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* Particules */
+.hero-particles {
+  position: absolute;
+  inset: 0;
+}
+
+.particle {
+  position: absolute;
+  width: 2px;
+  height: 2px;
+  background: white;
+  border-radius: 50%;
+  animation: twinkle 3s ease-in-out infinite;
+}
+
+@keyframes twinkle {
+  0%, 100% { opacity: 0; transform: scale(0.5); }
+  50% { opacity: 1; transform: scale(1); }
+}
+
+/* Contenu du hero */
+.hero-content {
+  position: relative;
+  z-index: 10;
+  text-align: center;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.team-title {
+  margin-bottom: var(--space-2xl, 3rem);
+  line-height: 0.9;
+  position: relative;
+  z-index: 20;
+}
+
+/* Styles spécifiques pour les lignes de titre */
+.team-hero .team-title .title-line-1 {
+  display: block !important;
+  font-size: clamp(2.5rem, 6vw, 4.5rem) !important;
+  font-weight: 900 !important;
+  font-style: italic !important;
+  text-transform: uppercase !important;
+  color: white !important;
+  letter-spacing: -0.02em !important;
+  margin-bottom: 0.1em !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+  animation: teamFadeIn 0.8s ease-out !important;
+  line-height: 0.9 !important;
+  background: none !important;
+  -webkit-text-fill-color: white !important;
+  text-fill-color: white !important;
+  filter: none !important;
+  padding: 0 !important;
+  transform: translateY(0) !important;
+}
+
+.team-hero .team-title .title-line-2 {
+  display: block !important;
+  font-size: clamp(4rem, 10vw, 7rem) !important;
+  font-weight: 900 !important;
+  font-style: italic !important;
+  text-transform: uppercase !important;
+  background: linear-gradient(90deg, 
+    #ff00ff 0%,
+    #00ffff 25%,
+    #ffff00 50%,
+    #ff00ff 75%,
+    #00ffff 100%) !important;
+  background-size: 200% 100% !important;
+  -webkit-background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+  background-clip: text !important;
+  text-fill-color: transparent !important;
+  filter: drop-shadow(0 0 40px #ff00ff) !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+  animation: 
+    teamFadeIn 0.8s ease-out 0.2s backwards,
+    gradientSlide 3s linear infinite !important;
+  line-height: 0.9 !important;
+  margin-top: -0.1em !important;
+  padding: 0 !important;
+  transform: translateY(0) !important;
+}
+
+@keyframes teamFadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes gradientSlide {
+  0% { background-position: 0% 50%; }
+  100% { background-position: 200% 50%; }
+}
+
+.team-subtitle {
+  font-size: var(--text-xl, 1.25rem);
+  color: rgba(255, 255, 255, 0.6);
+  animation: globalFadeIn 0.8s ease-out 0.4s backwards;
+  max-width: 600px;
+  margin: 0 auto;
+  display: block;
+  line-height: 1.6;
+}
+
+.subtitle-emphasis {
+  display: block;
+  margin-top: var(--space-sm, 0.5rem);
+  font-weight: var(--font-weight-bold, 700);
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 1.2em;
+}
+
+/* ====================================
+   RESPONSIVE
+   ==================================== */
+@media (max-width: 768px) {
+  .team-hero {
+    min-height: 60vh;
+    padding: 100px var(--space-lg, 1.5rem) 40px;
+  }
+  
+  .team-hero .title-line-1 {
+    font-size: var(--text-3xl, 2rem) !important;
+  }
+  
+  .team-hero .title-line-2 {
+    font-size: var(--text-4xl, 3rem) !important;
+  }
+  
+  .team-subtitle {
+    font-size: var(--text-base, 1rem);
+  }
+}

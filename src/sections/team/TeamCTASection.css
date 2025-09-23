@@ -1,0 +1,236 @@
+/* TeamCTASection.css - Section CTA complètement refaite */
+
+.team-cta {
+  padding: 100px 20px;
+  background: #0a0a1a;
+  position: relative;
+  overflow: hidden;
+  text-align: center;
+}
+
+/* Pattern de fond subtil */
+.cta-background-pattern {
+  position: absolute;
+  inset: 0;
+  background-image: 
+    repeating-linear-gradient(
+      45deg,
+      transparent,
+      transparent 100px,
+      rgba(255, 215, 0, 0.01) 100px,
+      rgba(255, 215, 0, 0.01) 101px
+    );
+  pointer-events: none;
+}
+
+/* Contenu principal */
+.cta-content {
+  max-width: 800px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 10;
+}
+
+/* Titre */
+.cta-title {
+  margin-bottom: 40px;
+}
+
+.cta-line-1 {
+  display: block;
+  font-size: 1.2rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: rgba(255, 255, 255, 0.6);
+  margin-bottom: 10px;
+  animation: fadeIn 0.8s ease forwards;
+}
+
+.cta-line-2 {
+  display: block;
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  font-weight: 900;
+  font-style: italic;
+  text-transform: uppercase;
+  line-height: 1;
+  letter-spacing: -0.02em;
+  background: linear-gradient(135deg, #FFD700, #FFED4E, #FFA500);
+  background-size: 200% 200%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  filter: drop-shadow(0 0 30px rgba(255, 215, 0, 0.4));
+  animation: fadeIn 0.8s ease 0.2s backwards, goldShine 3s linear infinite;
+}
+
+@keyframes fadeIn {
+  from { 
+    opacity: 0; 
+    transform: translateY(20px); 
+  }
+  to { 
+    opacity: 1; 
+    transform: translateY(0); 
+  }
+}
+
+@keyframes goldShine {
+  0% { background-position: 0% 50%; }
+  100% { background-position: 200% 50%; }
+}
+
+/* Diviseur */
+.cta-divider {
+  width: 100px;
+  height: 3px;
+  background: linear-gradient(90deg, transparent, #FFD700, #FFA500, transparent);
+  margin: 40px auto;
+  animation: expandWidth 0.8s ease 0.4s backwards;
+}
+
+@keyframes expandWidth {
+  from { 
+    width: 0; 
+    opacity: 0; 
+  }
+  to { 
+    width: 100px; 
+    opacity: 1; 
+  }
+}
+
+/* Container des boutons */
+.cta-buttons {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  flex-wrap: wrap;
+  animation: fadeIn 0.8s ease 0.6s backwards;
+}
+
+/* Style de base des boutons */
+.cta-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 16px 32px;
+  font-size: 1rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  text-decoration: none;
+  color: white;
+  border-radius: 50px;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  cursor: pointer;
+}
+
+/* Bouton Primary */
+.cta-button.primary {
+  background: linear-gradient(135deg, #ec4899, #a855f7);
+  border: 2px solid transparent;
+  box-shadow: 0 10px 30px rgba(236, 72, 153, 0.3);
+}
+
+.cta-button.primary:hover {
+  transform: translateY(-3px) scale(1.05);
+  box-shadow: 
+    0 15px 40px rgba(236, 72, 153, 0.4),
+    0 0 60px rgba(168, 85, 247, 0.2);
+  background: linear-gradient(135deg, #ec4899, #a855f7);
+}
+
+.cta-button.primary::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.2);
+  transform: translate(-50%, -50%);
+  transition: width 0.6s ease, height 0.6s ease;
+}
+
+.cta-button.primary:hover::before {
+  width: 300px;
+  height: 300px;
+}
+
+/* Bouton Secondary */
+.cta-button.secondary {
+  background: transparent;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  backdrop-filter: blur(10px);
+}
+
+.cta-button.secondary:hover {
+  transform: translateY(-3px) scale(1.05);
+  background: rgba(255, 255, 255, 0.1);
+  border-color: #FFD700;
+  box-shadow: 0 10px 30px rgba(255, 215, 0, 0.2);
+}
+
+/* Texte et icônes dans les boutons */
+.button-text {
+  position: relative;
+  z-index: 2;
+}
+
+.button-arrow,
+.button-icon {
+  font-size: 1.2rem;
+  transition: transform 0.3s ease;
+  position: relative;
+  z-index: 2;
+}
+
+.cta-button:hover .button-arrow {
+  transform: translateX(5px);
+}
+
+.cta-button:hover .button-icon {
+  animation: rotate 1s ease;
+}
+
+@keyframes rotate {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .team-cta {
+    padding: 60px 15px;
+  }
+  
+  .cta-line-1 {
+    font-size: 1rem;
+  }
+  
+  .cta-line-2 {
+    font-size: 2rem;
+  }
+  
+  .cta-buttons {
+    flex-direction: column;
+    width: 100%;
+    max-width: 340px;
+    margin: 0 auto;
+  }
+  
+  .cta-button {
+    width: 100%;
+    justify-content: center;
+    padding: 14px 28px;
+    font-size: 0.9rem;
+  }
+  
+  .cta-divider {
+    margin: 30px auto;
+  }
+}

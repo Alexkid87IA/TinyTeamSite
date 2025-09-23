@@ -1,0 +1,273 @@
+/* BrandProofSection.css - Section de preuves adaptative */
+
+.brand-proof-section {
+  min-height: 100vh;
+  background: linear-gradient(180deg, #000 0%, #0a0a1f 50%, #000 100%);
+  padding: 100px 20px;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Background subtle effects */
+.brand-proof-section::before {
+  content: '';
+  position: absolute;
+  width: 800px;
+  height: 800px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255,255,255,0.02) 0%, transparent 70%);
+  filter: blur(100px);
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.proof-container {
+  max-width: 1200px;
+  width: 100%;
+  margin: 0 auto;
+  position: relative;
+  z-index: 10;
+}
+
+/* Header */
+.proof-header {
+  text-align: center;
+  margin-bottom: 80px;
+}
+
+.proof-title {
+  margin-bottom: 20px;
+}
+
+.title-line {
+  font-size: clamp(28px, 5vw, 48px);
+  font-weight: 900;
+  background: linear-gradient(135deg, #fff, rgba(255,255,255,0.8));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-transform: uppercase;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+}
+
+.proof-subtitle {
+  font-size: clamp(16px, 2vw, 20px);
+  color: rgba(255,255,255,0.6);
+  font-weight: 300;
+  margin-top: 20px;
+}
+
+/* Cases Grid */
+.cases-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 30px;
+  margin-bottom: 60px;
+}
+
+/* Case Card */
+.case-card {
+  padding: 35px 25px;
+  background: rgba(0,0,0,0.5);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 24px;
+  transition: all 0.4s ease;
+  opacity: 0;
+  transform: translateY(30px);
+  position: relative;
+  overflow: hidden;
+}
+
+.case-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, #ec4899, #a855f7, #3b82f6);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.case-card:hover::before {
+  opacity: 1;
+}
+
+.case-card.visible {
+  opacity: 1;
+  transform: translateY(0);
+  animation: slideInUp 0.6s ease forwards;
+}
+
+@keyframes slideInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.case-card:hover {
+  transform: translateY(-5px);
+  border-color: rgba(255,255,255,0.15);
+  box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+}
+
+/* Case Header */
+.case-header {
+  margin-bottom: 25px;
+  padding-bottom: 15px;
+  border-bottom: 1px solid rgba(255,255,255,0.05);
+}
+
+.case-client {
+  font-size: 16px;
+  font-weight: 700;
+  color: white;
+  margin-bottom: 5px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.case-type {
+  font-size: 13px;
+  color: rgba(255,255,255,0.5);
+  font-style: italic;
+}
+
+/* Case Metrics */
+.case-metrics {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  margin-bottom: 25px;
+  padding: 20px 0;
+  background: rgba(255,255,255,0.02);
+  border-radius: 15px;
+}
+
+.metric {
+  text-align: center;
+  flex: 1;
+}
+
+.metric-value {
+  font-size: 32px;
+  font-weight: 900;
+  color: white;
+  margin-bottom: 5px;
+  transition: all 0.3s ease;
+}
+
+.case-card:hover .metric-value {
+  transform: scale(1.1);
+  background: linear-gradient(135deg, #ec4899, #a855f7);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.metric-label {
+  font-size: 11px;
+  color: rgba(255,255,255,0.4);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+.metric-separator {
+  font-size: 20px;
+  color: rgba(255,255,255,0.2);
+  padding: 0 10px;
+}
+
+/* Case Result */
+.case-result {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 12px;
+  background: linear-gradient(135deg, rgba(236,72,153,0.1) 0%, rgba(168,85,247,0.1) 100%);
+  border-radius: 50px;
+  transition: all 0.3s ease;
+  min-height: 50px;
+}
+
+.case-card:hover .case-result {
+  background: linear-gradient(135deg, rgba(236,72,153,0.2) 0%, rgba(168,85,247,0.2) 100%);
+}
+
+.result-icon {
+  font-size: 18px;
+  color: #ffd700;
+  filter: drop-shadow(0 0 10px rgba(255, 215, 0, 0.5));
+  flex-shrink: 0;
+}
+
+.result-text {
+  font-size: 13px;
+  font-weight: 700;
+  color: white;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  line-height: 1.2;
+  max-width: 150px;
+  text-align: center;
+}
+
+/* Footer */
+.proof-footer {
+  text-align: center;
+  padding-top: 20px;
+  border-top: 1px solid rgba(255,255,255,0.05);
+}
+
+.footer-note {
+  font-size: 12px;
+  color: rgba(255,255,255,0.3);
+  font-style: italic;
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .cases-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .brand-proof-section {
+    padding: 60px 15px;
+  }
+  
+  .proof-header {
+    margin-bottom: 50px;
+  }
+  
+  .cases-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+  
+  .case-card {
+    padding: 25px 20px;
+  }
+  
+  .metric-value {
+    font-size: 28px;
+  }
+  
+  .case-metrics {
+    padding: 15px 0;
+  }
+}

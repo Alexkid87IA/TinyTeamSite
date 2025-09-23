@@ -1,6 +1,4 @@
-import React, { useState, useRef, useEffect } from 'react';
-import { Link } from 'react-router-dom';
-import { motion } from 'framer-motion';
+import React, { useState, useEffect } from 'react';
 import { ChevronRight, MousePointer2 } from 'lucide-react';
 import './ArtistsSliderSection.css';
 
@@ -58,13 +56,11 @@ const artistsData = [
   }
 ];
 
-// Créer les rangées pour la rivière (tripler pour l'animation infinie)
+// Créer les rangées pour la rivière desktop (tripler pour l'animation infinie)
 const topRow = [...artistsData.slice(0, 5), ...artistsData.slice(0, 5), ...artistsData.slice(0, 5)];
 const bottomRow = [...artistsData.slice(5, 10), ...artistsData.slice(5, 10), ...artistsData.slice(5, 10)];
 
 export const ArtistsSliderSection = () => {
-  const [activeIndex, setActiveIndex] = useState(0);
-  const carouselRef = useRef<HTMLDivElement>(null);
   const [isMobile, setIsMobile] = useState(false);
 
   // Détecter si on est sur mobile
@@ -79,44 +75,13 @@ export const ArtistsSliderSection = () => {
     return () => window.removeEventListener('resize', checkMobile);
   }, []);
 
-  // Gérer le scroll du carousel mobile
-  useEffect(() => {
-    if (!isMobile || !carouselRef.current) return;
-
-    const handleScroll = () => {
-      const container = carouselRef.current;
-      if (!container) return;
-
-      const scrollLeft = container.scrollLeft;
-      const cardWidth = container.offsetWidth * 0.85;
-      const gap = 16; // 1rem en px
-      const scrollUnit = cardWidth + gap;
-      
-      const newIndex = Math.round(scrollLeft / scrollUnit);
-      setActiveIndex(newIndex);
-    };
-
-    const container = carouselRef.current;
-    container.addEventListener('scroll', handleScroll);
-
-    return () => {
-      container.removeEventListener('scroll', handleScroll);
-    };
-  }, [isMobile]);
-
-  // Fonction pour scroller vers une carte spécifique
-  const scrollToCard = (index: number) => {
-    if (!carouselRef.current) return;
+  // Fonction pour naviguer vers la page artiste
+  const handleArtistClick = (artistId: string) => {
+    // Pour React Router, utilisez :
+    // navigate(`/artiste/${artistId}`);
     
-    const container = carouselRef.current;
-    const cardWidth = container.offsetWidth * 0.85;
-    const gap = 16;
-    const scrollPosition = index * (cardWidth + gap);
-    
-    container.scrollTo({
-      left: scrollPosition,
-      behavior: 'smooth'
-    });
+    // Pour une navigation simple :
+    window.location.href = `/artiste/${artistId}`;
   };
 
   return (
@@ -150,56 +115,34 @@ export const ArtistsSliderSection = () => {
       {/* Contenu principal */}
       <div className="artists-main-content">
         
-        {/* Header épique avec animations */}
-        <motion.div 
-          className="section-header"
-          initial={{ opacity: 0, scale: 0.9 }}
-          whileInView={{ opacity: 1, scale: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8 }}
-        >
+        {/* Header épique */}
+        <div className="section-header">
           <div className="title-glow" />
           
           <h2 className="section-title">
-            <span className="title-line-1">Nos</span>
-            <span className="title-line-2">Artistes</span>
+            <span className="artists-title-line-1">Nos</span>
+            <span className="artists-title-line-2">Artistes</span>
           </h2>
           
-          <motion.div 
-            className="slogan-container"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8, delay: 0.3 }}
-          >
+          <div className="slogan-container">
             <span className="slogan-text">
               Des talents d'exception, des univers uniques, une seule passion :
             </span>
             <span className="slogan-emphasis">
               Vous émerveiller
             </span>
-          </motion.div>
+          </div>
           
-          <motion.p 
-            className="section-hint"
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8, delay: 0.5 }}
-          >
-            Survolez les affiches pour découvrir chaque artiste
-          </motion.p>
-        </motion.div>
+          {!isMobile && (
+            <p className="section-hint">
+              Survolez les affiches pour découvrir chaque artiste
+            </p>
+          )}
+        </div>
 
-        {/* Rivière d'artistes pour desktop */}
+        {/* VERSION DESKTOP : Rivière d'artistes */}
         {!isMobile && (
-          <motion.div 
-            className="artists-river"
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 1, delay: 0.4 }}
-          >
+          <div className="artists-river">
             {/* Masques de dégradé */}
             <div className="mask-left" />
             <div className="mask-right" />
@@ -207,9 +150,9 @@ export const ArtistsSliderSection = () => {
             {/* Rangée du haut - défile vers la droite */}
             <div className="river-row row-right">
               {topRow.map((artist, index) => (
-                <Link
+                <a
                   key={`top-${index}`}
-                  to={`/artiste/${artist.id}`}
+                  href={`/artiste/${artist.id}`}
                   className="poster-card"
                 >
                   <img 
@@ -227,16 +170,16 @@ export const ArtistsSliderSection = () => {
                     </span>
                   </div>
                   <div className="poster-shine" />
-                </Link>
+                </a>
               ))}
             </div>
             
             {/* Rangée du bas - défile vers la gauche */}
             <div className="river-row row-left">
               {bottomRow.map((artist, index) => (
-                <Link
+                <a
                   key={`bottom-${index}`}
-                  to={`/artiste/${artist.id}`}
+                  href={`/artiste/${artist.id}`}
                   className="poster-card"
                 >
                   <img 
@@ -254,97 +197,63 @@ export const ArtistsSliderSection = () => {
                     </span>
                   </div>
                   <div className="poster-shine" />
-                </Link>
+                </a>
               ))}
             </div>
-          </motion.div>
+          </div>
         )}
 
-        {/* Carousel mobile avec scroll horizontal */}
+        {/* VERSION MOBILE : Grille verticale simple */}
         {isMobile && (
-          <motion.div 
-            className="mobile-carousel"
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 1, delay: 0.4 }}
-          >
-            <div 
-              className="carousel-container"
-              ref={carouselRef}
-            >
-              {artistsData.map((artist, index) => (
-                <div
+          <div className="mobile-vertical-grid">
+            <div className="mobile-grid-container">
+              {artistsData.map((artist) => (
+                <a
                   key={artist.id}
-                  className="carousel-card"
+                  href={`/artiste/${artist.id}`}
+                  className="mobile-artist-card"
                 >
-                  <motion.div
-                    className={`poster-card ${activeIndex === index ? 'active' : ''}`}
-                    initial={{ opacity: 0, scale: 0.9 }}
-                    animate={{ opacity: 1, scale: activeIndex === index ? 1 : 0.95 }}
-                    transition={{ duration: 0.3 }}
-                  >
-                    <Link to={`/artiste/${artist.id}`}>
-                      <img 
-                        src={artist.image} 
-                        alt={artist.name} 
-                        className="poster-image"
-                        loading="lazy"
-                      />
-                      <div className="poster-overlay" />
-                      <div className="poster-content">
-                        <h3 className="poster-name">{artist.name}</h3>
-                        <button className="poster-button">
-                          Découvrir
-                          <ChevronRight size={16} />
-                        </button>
-                      </div>
-                      <div className="poster-shine" />
-                    </Link>
-                  </motion.div>
-                </div>
+                  <img 
+                    src={artist.image} 
+                    alt={artist.name} 
+                    className="mobile-card-image"
+                    loading="lazy"
+                  />
+                  <div className="mobile-card-overlay" />
+                  <div className="mobile-card-content">
+                    <h3 className="mobile-card-name">{artist.name}</h3>
+                    <button 
+                      className="mobile-card-button"
+                      onClick={(e) => {
+                        e.preventDefault();
+                        handleArtistClick(artist.id);
+                      }}
+                    >
+                      Découvrir
+                      <ChevronRight size={16} />
+                    </button>
+                  </div>
+                </a>
               ))}
             </div>
-
-            {/* Indicateurs de pagination */}
-            <div className="carousel-indicators">
-              {artistsData.map((_, index) => (
-                <button
-                  key={index}
-                  className={`indicator-dot ${activeIndex === index ? 'active' : ''}`}
-                  onClick={() => scrollToCard(index)}
-                  aria-label={`Aller à l'artiste ${index + 1}`}
-                />
-              ))}
-            </div>
-          </motion.div>
+          </div>
         )}
 
-        {/* CTA Section avec animation */}
-        <motion.div 
-          className="section-cta"
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8, delay: 0.6 }}
-        >
-          <Link to="/artistes" className="main-cta-button">
+        {/* CTA Section */}
+        <div className="section-cta">
+          <a href="/artistes" className="main-cta-button">
             <span>Explorer tous nos artistes</span>
             <ChevronRight size={20} />
-          </Link>
-        </motion.div>
+          </a>
+        </div>
 
         {/* Indicateur d'interaction (desktop uniquement) */}
-        <motion.div 
-          className="interaction-indicator"
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8, delay: 0.8 }}
-        >
-          <MousePointer2 className="indicator-icon" />
-          <span>Survolez une affiche pour en savoir plus</span>
-        </motion.div>
+        {!isMobile && (
+          <div className="interaction-indicator">
+            <MousePointer2 className="indicator-icon" />
+            <span>Survolez une affiche pour en savoir plus</span>
+          </div>
+        )}
       </div>
     </section>
   );

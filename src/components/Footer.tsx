@@ -4,8 +4,9 @@ import './Footer.css';
 export const Footer = () => {
   return (
     <footer className="footer">
-      {/* Effets de fond subtils */}
+      {/* Effets de fond spectaculaires */}
       <div className="footer-bg">
+        <div className="footer-grid"></div>
         <div className="footer-gradient"></div>
         <div className="footer-glow-1"></div>
         <div className="footer-glow-2"></div>
@@ -60,11 +61,11 @@ export const Footer = () => {
             <div className="footer-column">
               <h4 className="footer-title">Services</h4>
               <ul className="footer-list">
-                <li><a href="/production">Production artistique</a></li>
-                <li><a href="/management">Management d'artistes</a></li>
-                <li><a href="/strategie">Stratégie digitale</a></li>
-                <li><a href="/communication">Communication</a></li>
-                <li><a href="/diffusion">Diffusion & Booking</a></li>
+                <li><a href="/services/production">Production artistique</a></li>
+                <li><a href="/services/management">Management d'artistes</a></li>
+                <li><a href="/services/strategie">Stratégie digitale</a></li>
+                <li><a href="/services/communication">Communication</a></li>
+                <li><a href="/services/diffusion">Diffusion & Booking</a></li>
               </ul>
             </div>
 
@@ -100,12 +101,6 @@ export const Footer = () => {
                 <path d="m22 7-10 5L2 7"/>
               </svg>
               contact@tinyteam.fr
-            </a>
-            <a href="tel:+33123456789" className="contact-phone">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72"/>
-              </svg>
-              +33 1 23 45 67 89
             </a>
             <p className="contact-address">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">

@@ -1,0 +1,450 @@
+/* BrandFinalCTA.css - Section CTA finale redesignée */
+
+.final-cta-wrapper {
+  min-height: 100vh;
+  background: #0a0a0a;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 20px;
+}
+
+/* Effet de fond animé avec grille */
+.background-grid {
+  position: absolute;
+  inset: 0;
+  background-image: 
+    linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px);
+  background-size: 50px 50px;
+  animation: gridMove 20s linear infinite;
+}
+
+@keyframes gridMove {
+  0% { transform: translate(0, 0); }
+  100% { transform: translate(50px, 50px); }
+}
+
+/* Orbes de lumière flottantes */
+.light-orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(100px);
+  opacity: 0.6;
+  animation: floatOrb 15s ease-in-out infinite;
+}
+
+.orb-1 {
+  width: 400px;
+  height: 400px;
+  background: #ff006e;
+  top: -200px;
+  left: -100px;
+  animation-delay: 0s;
+}
+
+.orb-2 {
+  width: 350px;
+  height: 350px;
+  background: #8b5cf6;
+  bottom: -150px;
+  right: -100px;
+  animation-delay: 5s;
+}
+
+.orb-3 {
+  width: 300px;
+  height: 300px;
+  background: #06ffa5;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  animation-delay: 10s;
+}
+
+@keyframes floatOrb {
+  0%, 100% {
+    transform: translateY(0) scale(1);
+  }
+  33% {
+    transform: translateY(-30px) scale(1.05);
+  }
+  66% {
+    transform: translateY(20px) scale(0.95);
+  }
+}
+
+/* Container principal */
+.cta-main-container {
+  max-width: 900px;
+  width: 100%;
+  position: relative;
+  z-index: 10;
+  text-align: center;
+}
+
+/* Badge animé */
+.urgency-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 20px;
+  background: linear-gradient(135deg, rgba(255,0,110,0.2), rgba(139,92,246,0.2));
+  border: 1px solid rgba(255,255,255,0.2);
+  border-radius: 100px;
+  margin-bottom: 30px;
+  opacity: 0;
+  animation: slideDown 0.8s ease forwards;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.badge-dot {
+  width: 8px;
+  height: 8px;
+  background: #06ffa5;
+  border-radius: 50%;
+  animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.5);
+    opacity: 0.5;
+  }
+}
+
+.badge-text {
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: #06ffa5;
+}
+
+/* Titre principal avec effet de masque */
+.main-headline {
+  margin-bottom: 25px;
+  opacity: 0;
+  animation: fadeInScale 1s ease 0.3s forwards;
+}
+
+@keyframes fadeInScale {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.headline-top {
+  font-size: clamp(40px, 8vw, 72px);
+  font-weight: 900;
+  color: white;
+  line-height: 0.9;
+  margin-bottom: 15px;
+  letter-spacing: -0.03em;
+}
+
+.headline-bottom {
+  font-size: clamp(40px, 8vw, 72px);
+  font-weight: 900;
+  line-height: 0.9;
+  letter-spacing: -0.03em;
+  background: linear-gradient(90deg, #ff006e, #8b5cf6, #06ffa5, #ff006e);
+  background-size: 200% 100%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: gradientSlide 3s linear infinite;
+}
+
+@keyframes gradientSlide {
+  0% { background-position: 0% 50%; }
+  100% { background-position: 200% 50%; }
+}
+
+/* Sous-titre avec effet de typing */
+.sub-headline {
+  font-size: clamp(20px, 3vw, 26px);
+  font-weight: 300;
+  color: rgba(255,255,255,0.6);
+  font-style: italic;
+  margin-bottom: 50px;
+  opacity: 0;
+  animation: typeIn 1s ease 0.6s forwards;
+}
+
+@keyframes typeIn {
+  from {
+    opacity: 0;
+    transform: translateX(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Bouton CTA principal */
+.mega-cta-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  padding: 25px 50px;
+  background: linear-gradient(135deg, #ff006e, #8b5cf6);
+  border: none;
+  border-radius: 100px;
+  font-size: 18px;
+  font-weight: 800;
+  color: white;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  opacity: 0;
+  animation: bounceIn 1s ease 0.9s forwards;
+  box-shadow: 0 20px 40px rgba(255, 0, 110, 0.3);
+}
+
+@keyframes bounceIn {
+  0% {
+    opacity: 0;
+    transform: scale(0.3);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+  70% {
+    transform: scale(0.95);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.mega-cta-button::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.3);
+  transform: translate(-50%, -50%);
+  transition: width 0.6s ease, height 0.6s ease;
+}
+
+.mega-cta-button:hover::before {
+  width: 400px;
+  height: 400px;
+}
+
+.mega-cta-button:hover {
+  transform: translateY(-3px) scale(1.05);
+  box-shadow: 0 30px 60px rgba(255, 0, 110, 0.5);
+}
+
+.button-label {
+  position: relative;
+  z-index: 1;
+}
+
+.button-icon {
+  position: relative;
+  z-index: 1;
+  font-size: 20px;
+  transition: transform 0.3s ease;
+}
+
+.mega-cta-button:hover .button-icon {
+  transform: translateX(5px);
+  animation: arrowBounce 0.6s ease infinite;
+}
+
+@keyframes arrowBounce {
+  0%, 100% { transform: translateX(5px); }
+  50% { transform: translateX(10px); }
+}
+
+/* Garantie avec animation */
+.guarantee-wrapper {
+  margin-top: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+  opacity: 0;
+  animation: fadeUp 0.8s ease 1.2s forwards;
+}
+
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.guarantee-icon {
+  width: 50px;
+  height: 50px;
+  background: linear-gradient(135deg, #06ffa5, #00d084);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  color: #0a0a0a;
+  animation: rotateIcon 3s linear infinite;
+}
+
+@keyframes rotateIcon {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.guarantee-text {
+  color: rgba(255,255,255,0.8);
+  font-size: 16px;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+}
+
+.guarantee-highlight {
+  color: #06ffa5;
+  font-weight: 700;
+}
+
+/* Effet de particules flottantes */
+.floating-elements {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.float-element {
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  background: white;
+  border-radius: 50%;
+  opacity: 0;
+  animation: floatUp 10s linear infinite;
+}
+
+.float-element:nth-child(1) { left: 10%; animation-delay: 0s; }
+.float-element:nth-child(2) { left: 20%; animation-delay: 1s; }
+.float-element:nth-child(3) { left: 35%; animation-delay: 2s; }
+.float-element:nth-child(4) { left: 50%; animation-delay: 3s; }
+.float-element:nth-child(5) { left: 65%; animation-delay: 4s; }
+.float-element:nth-child(6) { left: 80%; animation-delay: 5s; }
+.float-element:nth-child(7) { left: 90%; animation-delay: 6s; }
+.float-element:nth-child(8) { left: 25%; animation-delay: 7s; }
+.float-element:nth-child(9) { left: 75%; animation-delay: 8s; }
+.float-element:nth-child(10) { left: 45%; animation-delay: 9s; }
+
+@keyframes floatUp {
+  0% {
+    opacity: 0;
+    transform: translateY(100vh) scale(0);
+  }
+  10% {
+    opacity: 1;
+    transform: translateY(80vh) scale(1);
+  }
+  90% {
+    opacity: 1;
+    transform: translateY(20vh) scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(0) scale(0);
+  }
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .final-cta-wrapper {
+    padding: 30px 15px;
+  }
+  
+  .headline-top,
+  .headline-bottom {
+    font-size: 36px;
+  }
+  
+  .sub-headline {
+    font-size: 18px;
+    margin-bottom: 35px;
+  }
+  
+  .mega-cta-button {
+    padding: 20px 35px;
+    font-size: 16px;
+  }
+  
+  .guarantee-wrapper {
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  .guarantee-icon {
+    width: 40px;
+    height: 40px;
+    font-size: 20px;
+  }
+  
+  .guarantee-text {
+    font-size: 14px;
+  }
+  
+  .urgency-badge {
+    padding: 6px 16px;
+  }
+  
+  .badge-text {
+    font-size: 10px;
+  }
+}
+
+@media (max-width: 480px) {
+  .headline-top,
+  .headline-bottom {
+    font-size: 28px;
+  }
+  
+  .sub-headline {
+    font-size: 16px;
+  }
+  
+  .mega-cta-button {
+    padding: 18px 30px;
+    font-size: 14px;
+  }
+}

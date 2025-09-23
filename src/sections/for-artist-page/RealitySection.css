@@ -1,0 +1,181 @@
+/* RealitySection.css - Design Brutal Minimaliste */
+
+.reality-section {
+  min-height: 100vh;
+  background: #000;
+  padding: 80px 20px;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+}
+
+.reality-section .section-content {
+  max-width: 800px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 10;
+  width: 100%;
+}
+
+.reality-header {
+  margin-bottom: 60px;
+  opacity: 0;
+  animation: fadeIn 0.8s ease forwards;
+}
+
+.reality-title {
+  font-size: clamp(36px, 5vw, 56px);
+  font-weight: 700;
+  color: #fff;
+  letter-spacing: -0.02em;
+}
+
+/* Liste simple et brutale */
+.task-list {
+  margin-bottom: 80px;
+}
+
+.task-line {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  padding: 20px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  opacity: 0;
+  transform: translateX(-20px);
+  animation: slideIn 0.5s ease forwards;
+}
+
+.task-line:nth-child(1) { animation-delay: 0.2s; }
+.task-line:nth-child(2) { animation-delay: 0.3s; }
+.task-line:nth-child(3) { animation-delay: 0.4s; }
+.task-line:nth-child(4) { animation-delay: 0.5s; }
+.task-line:nth-child(5) { animation-delay: 0.6s; }
+.task-line:nth-child(6) { 
+  animation-delay: 0.7s;
+  border-bottom: 2px solid rgba(236, 72, 153, 0.5);
+}
+
+@keyframes slideIn {
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.task-time {
+  font-size: 18px;
+  font-weight: 700;
+  color: rgba(255, 255, 255, 0.3);
+  min-width: 40px;
+  font-variant-numeric: tabular-nums;
+}
+
+.task-separator {
+  color: rgba(255, 255, 255, 0.1);
+  font-weight: 300;
+}
+
+.task-name {
+  font-size: clamp(20px, 3vw, 28px);
+  color: rgba(255, 255, 255, 0.8);
+  font-weight: 400;
+  flex: 1;
+}
+
+/* Dégradation progressive */
+.task-line:nth-child(1) .task-name { color: rgba(255, 255, 255, 0.9); }
+.task-line:nth-child(2) .task-name { color: rgba(255, 255, 255, 0.8); }
+.task-line:nth-child(3) .task-name { color: rgba(255, 255, 255, 0.7); }
+.task-line:nth-child(4) .task-name { color: rgba(255, 255, 255, 0.6); }
+.task-line:nth-child(5) .task-name { color: rgba(255, 255, 255, 0.5); }
+
+/* Dernière ligne différente */
+.task-line:nth-child(6) .task-name {
+  color: #ec4899;
+  font-style: italic;
+  font-weight: 300;
+}
+
+.task-line:nth-child(6) .task-time {
+  color: #ec4899;
+  opacity: 0.6;
+}
+
+/* Punchline finale */
+.reality-punchline {
+  text-align: center;
+  opacity: 0;
+  animation: fadeInUp 0.8s ease 1.2s forwards;
+}
+
+.punchline-text {
+  font-size: clamp(32px, 5vw, 48px);
+  font-weight: 700;
+  color: rgba(255, 255, 255, 0.9);
+  letter-spacing: -0.02em;
+  position: relative;
+  display: inline-block;
+}
+
+.punchline-text .question-mark {
+  color: #ec4899;
+  display: inline-block;
+  animation: pulsate 2s ease-in-out infinite;
+}
+
+@keyframes pulsate {
+  0%, 100% { 
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% { 
+    opacity: 0.7;
+    transform: scale(1.1);
+  }
+}
+
+@keyframes fadeIn {
+  to { opacity: 1; }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .reality-section {
+    padding: 60px 20px;
+  }
+  
+  .reality-title {
+    font-size: 28px;
+    margin-bottom: 40px;
+  }
+  
+  .task-line {
+    padding: 16px 0;
+    gap: 12px;
+  }
+  
+  .task-time {
+    font-size: 14px;
+  }
+  
+  .task-name {
+    font-size: 18px;
+  }
+  
+  .punchline-text {
+    font-size: 28px;
+  }
+}
