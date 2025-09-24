@@ -89,8 +89,6 @@ const topRow = [...artistsData.slice(0, 5), ...artistsData.slice(0, 5), ...artis
 const bottomRow = [...artistsData.slice(5, 10), ...artistsData.slice(5, 10), ...artistsData.slice(5, 10)];
 
 export const ProducerArtistsShowcase: React.FC = () => {
-  const [activeIndex, setActiveIndex] = useState(0);
-  const carouselRef = useRef<HTMLDivElement>(null);
   const [isMobile, setIsMobile] = useState(false);
 
   // Détecter si on est sur mobile
@@ -105,73 +103,35 @@ export const ProducerArtistsShowcase: React.FC = () => {
     return () => window.removeEventListener('resize', checkMobile);
   }, []);
 
-  // Gérer le scroll du carousel mobile
-  useEffect(() => {
-    if (!isMobile || !carouselRef.current) return;
-
-    const handleScroll = () => {
-      const container = carouselRef.current;
-      if (!container) return;
-
-      const scrollLeft = container.scrollLeft;
-      const cardWidth = container.offsetWidth * 0.85;
-      const gap = 16; // 1rem en px
-      const scrollUnit = cardWidth + gap;
-      
-      const newIndex = Math.round(scrollLeft / scrollUnit);
-      setActiveIndex(newIndex);
-    };
-
-    const container = carouselRef.current;
-    container.addEventListener('scroll', handleScroll);
-
-    return () => {
-      container.removeEventListener('scroll', handleScroll);
-    };
-  }, [isMobile]);
-
-  // Fonction pour scroller vers une carte spécifique
-  const scrollToCard = (index: number) => {
-    if (!carouselRef.current) return;
-    
-    const container = carouselRef.current;
-    const cardWidth = container.offsetWidth * 0.85;
-    const gap = 16;
-    const scrollPosition = index * (cardWidth + gap);
-    
-    container.scrollTo({
-      left: scrollPosition,
-      behavior: 'smooth'
-    });
-  };
-
   return (
     <section id="artists-showcase" className="producer-artists-showcase">
       {/* Effets de fond spectaculaires */}
-      <div className="showcase-background">
-        {/* Grille animée */}
-        <div className="showcase-grid" />
-        
-        {/* Orbes de lumière */}
-        <div className="showcase-orb orb-1" />
-        <div className="showcase-orb orb-2" />
-        <div className="showcase-orb orb-3" />
-        
-        {/* Étoiles scintillantes */}
-        <div className="showcase-particles">
-          {[...Array(40)].map((_, i) => (
-            <div
-              key={i}
-              className="particle"
-              style={{
-                left: `${Math.random() * 100}%`,
-                top: `${Math.random() * 100}%`,
-                animationDelay: `${Math.random() * 3}s`
-              }}
-            />
-          ))}
+      {!isMobile && (
+        <div className="showcase-background">
+          {/* Grille animée */}
+          <div className="showcase-grid" />
+          
+          {/* Orbes de lumière */}
+          <div className="showcase-orb orb-1" />
+          <div className="showcase-orb orb-2" />
+          <div className="showcase-orb orb-3" />
+          
+          {/* Étoiles scintillantes */}
+          <div className="showcase-particles">
+            {[...Array(40)].map((_, i) => (
+              <div
+                key={i}
+                className="particle"
+                style={{
+                  left: `${Math.random() * 100}%`,
+                  top: `${Math.random() * 100}%`,
+                  animationDelay: `${Math.random() * 3}s`
+                }}
+              />
+            ))}
+          </div>
         </div>
-      </div>
+      )}
 
       {/* Contenu principal */}
       <div className="showcase-content">
@@ -196,9 +156,11 @@ export const ProducerArtistsShowcase: React.FC = () => {
             Des artistes confirmés, des spectacles rodés, des salles combles garanties
           </p>
 
-          <p className="section-hint">
-            Survolez les affiches pour découvrir chaque artiste
-          </p>
+          {!isMobile && (
+            <p className="section-hint">
+              Survolez les affiches pour découvrir chaque artiste
+            </p>
+          )}
         </div>
 
         {/* Rivière d'artistes pour desktop */}
@@ -270,53 +232,42 @@ export const ProducerArtistsShowcase: React.FC = () => {
           </div>
         )}
 
-        {/* Carousel mobile avec scroll horizontal */}
+        {/* VERSION MOBILE : Grille verticale extraordinaire */}
         {isMobile && (
-          <div className="mobile-carousel">
-            <div 
-              className="carousel-container"
-              ref={carouselRef}
-            >
-              {artistsData.map((artist, index) => (
-                <div
+          <div className="mobile-vertical-grid">
+            <div className="mobile-grid-container">
+              {artistsData.map((artist) => (
+                <Link
                   key={artist.id}
-                  className="carousel-card"
+                  to={`/artiste/${artist.id}`}
+                  className="mobile-artist-card"
                 >
-                  <div className={`poster-card ${activeIndex === index ? 'active' : ''}`}>
-                    <Link to={`/artiste/${artist.id}`}>
-                      <img 
-                        src={artist.image} 
-                        alt={artist.name} 
-                        className="poster-image"
-                        loading="lazy"
-                      />
-                      <div className="poster-overlay" />
-                      <div className="poster-content">
-                        <div className="card-info">
-                          <span className="card-availability">{artist.availability}</span>
-                        </div>
-                        <h3 className="poster-name">{artist.name}</h3>
-                        <button className="poster-button">
-                          Découvrir
-                          <ChevronRight size={16} />
-                        </button>
+                  <div className="mobile-image-container">
+                    {artist.availability && (
+                      <div className="mobile-availability-badge">
+                        {artist.availability}
                       </div>
-                      <div className="poster-shine" />
-                    </Link>
+                    )}
+                    <img 
+                      src={artist.image} 
+                      alt={artist.name} 
+                      className="mobile-card-image"
+                      loading="lazy"
+                    />
+                    <div className="mobile-card-overlay" />
+                    {/* Bouton Découvrir flottant - PAS de nom d'artiste */}
+                    <button 
+                      className="mobile-card-button"
+                      onClick={(e) => {
+                        e.stopPropagation();
+                      }}
+                    >
+                      Découvrir
+                      <ChevronRight size={16} />
+                    </button>
+                    <div className="mobile-card-shine" />
                   </div>
-                </div>
-              ))}
-            </div>
-
-            {/* Indicateurs de pagination */}
-            <div className="carousel-indicators">
-              {artistsData.map((_, index) => (
-                <button
-                  key={index}
-                  className={`indicator-dot ${activeIndex === index ? 'active' : ''}`}
-                  onClick={() => scrollToCard(index)}
-                  aria-label={`Aller à l'artiste ${index + 1}`}
-                />
+                </Link>
               ))}
             </div>
           </div>
@@ -332,10 +283,12 @@ export const ProducerArtistsShowcase: React.FC = () => {
         </div>
 
         {/* Indicateur d'interaction (desktop uniquement) */}
-        <div className="interaction-indicator">
-          <MousePointer2 className="indicator-icon" />
-          <span>Survolez une affiche pour en savoir plus</span>
-        </div>
+        {!isMobile && (
+          <div className="interaction-indicator">
+            <MousePointer2 className="indicator-icon" />
+            <span>Survolez une affiche pour en savoir plus</span>
+          </div>
+        )}
       </div>
     </section>
   );

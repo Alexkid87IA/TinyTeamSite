@@ -145,15 +145,8 @@ export const ProducerRealitySection: React.FC = () => {
           </div>
         </div>
 
-        <div className="bottom-message">
-          <h2 className="message-title">
-            <span className="line-1">Vos spectateurs applaudissent.</span>
-            <span className="line-2">Vos billets disparaissent.</span>
-          </h2>
-          <p className="message-subtitle">
-            Programmez sans risque. Réussissez à coup sûr.
-          </p>
-        </div>
+        {/* TITRE SUPPRIMÉ ICI - Plus de duplication ! */}
+        {/* Le titre est maintenant uniquement dans ProducerProofSection */}
       </div>
     </section>
   );

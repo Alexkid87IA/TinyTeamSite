@@ -1,12 +1,14 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import './ContactSection.css';
 
 export const ContactSection = () => {
-  // Fonction pour gérer les liens avec navigation côté client
+  const navigate = useNavigate();
+  
+  // Fonction pour gérer les liens avec React Router (comme dans HeroSection)
   const handleCardClick = (e: React.MouseEvent<HTMLAnchorElement>, path: string) => {
     e.preventDefault();
-    // Navigation avec window.location pour garantir le fonctionnement sur tous les domaines
-    window.location.href = window.location.origin + path;
+    navigate(path);
   };
 
   return (
@@ -48,7 +50,7 @@ export const ContactSection = () => {
           </p>
         </div>
 
-        {/* Cartes de contact - LIENS AVEC GESTION ABSOLUE */}
+        {/* Cartes de contact avec navigation React Router */}
         <div className="contact-cards">
           {/* Carte Artiste */}
           <a 

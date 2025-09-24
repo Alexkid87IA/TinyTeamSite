@@ -3,14 +3,29 @@ import './ProducerArtistsGrid.css';
 
 export const ProducerArtistsGrid = () => {
   const [showPopup, setShowPopup] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
+
+  // Détecter si on est sur mobile
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth <= 768);
+    };
+    
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
 
   const handleContactClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
     e.preventDefault();
     window.location.href = '/contact';
   };
 
-  // Pause animation on hover
+  // Pause animation on hover (desktop uniquement)
   useEffect(() => {
+    if (isMobile) return; // Pas d'effet hover sur mobile
+    
     const tracks = document.querySelectorAll('.carousel-track');
     if (!tracks.length) return;
 
@@ -35,7 +50,7 @@ export const ProducerArtistsGrid = () => {
         track.removeEventListener('mouseleave', handleMouseLeave);
       });
     };
-  }, []);
+  }, [isMobile]);
 
   // Liste des artistes avec leurs images
   const artistPosters = [
@@ -76,7 +91,12 @@ export const ProducerArtistsGrid = () => {
           <div className="carousel-track top-row">
             {topRowPosters.map((artist, index) => (
               <div key={`top-${index}`} className="poster-card">
-                <img src={artist.img} alt={artist.name} loading="lazy" />
+                <img 
+                  src={artist.img} 
+                  alt={artist.name} 
+                  loading="lazy"
+                  decoding="async"
+                />
               </div>
             ))}
           </div>
@@ -85,7 +105,12 @@ export const ProducerArtistsGrid = () => {
           <div className="carousel-track bottom-row">
             {bottomRowPosters.map((artist, index) => (
               <div key={`bottom-${index}`} className="poster-card">
-                <img src={artist.img} alt={artist.name} loading="lazy" />
+                <img 
+                  src={artist.img} 
+                  alt={artist.name} 
+                  loading="lazy"
+                  decoding="async"
+                />
               </div>
             ))}
           </div>

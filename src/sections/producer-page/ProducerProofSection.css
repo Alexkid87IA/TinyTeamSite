@@ -1,9 +1,9 @@
-/* ProducerProofSection.css - Design simplifié et lisible */
+/* ProducerProofSection.css - Design optimisé pour mobile et desktop */
 
 .producer-proof-section {
   min-height: 100vh;
-  background: #000;
-  padding: 100px 20px;
+  background: linear-gradient(180deg, #0a0a1a 0%, #16213e 100%);
+  padding: 80px 20px;
   position: relative;
   overflow: hidden;
   display: flex;
@@ -11,77 +11,175 @@
   justify-content: center;
 }
 
+/* Fond animé subtil */
+.producer-proof-section::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle at 20% 50%, rgba(236, 72, 153, 0.1) 0%, transparent 50%),
+              radial-gradient(circle at 80% 50%, rgba(59, 130, 246, 0.1) 0%, transparent 50%);
+  animation: rotate 30s linear infinite;
+}
+
+@keyframes rotate {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
 .proof-container {
   width: 100%;
-  max-width: 1000px;
+  max-width: 1200px;
   margin: 0 auto;
   position: relative;
   z-index: 10;
 }
 
-/* Header */
+/* ====================================
+   HEADER - TITRE PRINCIPAL
+   ==================================== */
 .proof-header {
   text-align: center;
-  margin-bottom: 80px;
+  margin-bottom: 60px;
 }
 
 .proof-title {
-  display: inline-block;
+  display: block;
   position: relative;
+  width: 100%;
 }
 
 .title-line-1,
 .title-line-2 {
   display: block;
-  font-size: clamp(40px, 7vw, 72px);
+  font-size: clamp(2.5rem, 8vw, 5rem);
   font-weight: 900;
-  line-height: 1;
+  line-height: 1.1;
   letter-spacing: -0.02em;
+  text-align: center;
+  position: relative;
 }
 
 .title-line-1 {
-  color: #fff;
-  margin-bottom: 12px;
+  background: linear-gradient(90deg, #3b82f6, #00ffff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-bottom: 0.2em;
 }
 
 .title-line-2 {
-  background: linear-gradient(90deg, #ec4899, #a855f7, #3b82f6);
+  background: linear-gradient(90deg, #ec4899, #ff00ff);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
   font-style: italic;
 }
 
-/* Liste de comparaisons */
+/* Sous-titre */
+.proof-subtitle {
+  margin-top: 1.5rem;
+  font-size: clamp(1rem, 2.5vw, 1.25rem);
+  color: rgba(255, 255, 255, 0.6);
+  font-weight: 400;
+  line-height: 1.5;
+  text-align: center;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* ====================================
+   CARTES DE STATISTIQUES
+   ==================================== */
+.stats-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+  margin-bottom: 80px;
+}
+
+.stat-card {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.02));
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 20px;
+  padding: 2.5rem 2rem;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeInUp 0.6s ease forwards;
+}
+
+.stat-card:nth-child(1) { animation-delay: 0.1s; }
+.stat-card:nth-child(2) { animation-delay: 0.2s; }
+.stat-card:nth-child(3) { animation-delay: 0.3s; }
+
+@keyframes fadeInUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.stat-card:hover {
+  transform: translateY(-5px);
+  background: linear-gradient(135deg, rgba(236, 72, 153, 0.1), rgba(168, 85, 247, 0.05));
+  border-color: rgba(236, 72, 153, 0.3);
+  box-shadow: 0 10px 30px rgba(236, 72, 153, 0.2);
+}
+
+.stat-number {
+  font-size: clamp(3rem, 6vw, 4rem);
+  font-weight: 900;
+  background: linear-gradient(135deg, #ec4899, #a855f7);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  line-height: 1;
+  margin-bottom: 0.5rem;
+}
+
+.stat-label {
+  font-size: clamp(1rem, 2vw, 1.25rem);
+  color: rgba(255, 255, 255, 0.8);
+  font-weight: 500;
+}
+
+/* ====================================
+   LISTE DE COMPARAISONS
+   ==================================== */
 .comparison-list {
   display: flex;
   flex-direction: column;
-  gap: 24px;
+  gap: 1.5rem;
   margin-bottom: 80px;
+  max-width: 900px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .comparison-item {
   display: grid;
   grid-template-columns: 1fr auto 1fr;
   align-items: center;
-  gap: 30px;
-  padding: 20px;
+  gap: 2rem;
+  padding: 1.5rem;
   background: rgba(255, 255, 255, 0.02);
   border-radius: 16px;
   border: 1px solid rgba(255, 255, 255, 0.05);
-  opacity: 0;
-  transform: translateY(20px);
-  transition: all 0.6s ease;
-}
-
-.comparison-item.visible {
-  opacity: 1;
-  transform: translateY(0);
+  transition: all 0.3s ease;
 }
 
 .comparison-item:hover {
   background: rgba(236, 72, 153, 0.05);
   border-color: rgba(236, 72, 153, 0.2);
+  transform: translateX(5px);
 }
 
 /* Côté problème */
@@ -89,22 +187,24 @@
   display: flex;
   align-items: center;
   justify-content: flex-end;
-  gap: 15px;
+  gap: 1rem;
 }
 
 .problem-text {
-  font-size: clamp(16px, 2vw, 20px);
+  font-size: clamp(0.9rem, 2vw, 1.1rem);
   color: rgba(255, 255, 255, 0.3);
   text-decoration: line-through;
-  text-decoration-color: rgba(236, 72, 153, 0.5);
+  text-decoration-color: rgba(236, 72, 153, 0.6);
   text-decoration-thickness: 2px;
   font-weight: 400;
+  text-align: right;
 }
 
 .cross-icon {
-  color: rgba(236, 72, 153, 0.6);
-  font-size: 24px;
+  color: #ef4444;
+  font-size: 1.5rem;
   font-weight: 700;
+  flex-shrink: 0;
 }
 
 /* Flèche centrale */
@@ -116,7 +216,7 @@
 
 .arrow {
   color: #ec4899;
-  font-size: 28px;
+  font-size: 1.75rem;
   font-weight: 700;
   animation: pulse 2s ease-in-out infinite;
 }
@@ -137,45 +237,53 @@
   display: flex;
   align-items: center;
   justify-content: flex-start;
-  gap: 15px;
+  gap: 1rem;
 }
 
 .check-icon {
   color: #10b981;
-  font-size: 24px;
+  font-size: 1.5rem;
   font-weight: 700;
+  flex-shrink: 0;
 }
 
 .solution-text {
-  font-size: clamp(16px, 2vw, 20px);
+  font-size: clamp(0.9rem, 2vw, 1.1rem);
   color: #fff;
   font-weight: 600;
+  text-align: left;
 }
 
-/* Footer */
+/* ====================================
+   FOOTER
+   ==================================== */
 .proof-footer {
   text-align: center;
 }
 
 .footer-message {
-  margin-bottom: 40px;
+  margin-bottom: 3rem;
 }
 
 .message-main,
 .message-sub {
   display: block;
-  font-size: clamp(24px, 4vw, 36px);
+  font-size: clamp(1.5rem, 4vw, 2.5rem);
   line-height: 1.3;
   font-weight: 900;
+  text-align: center;
 }
 
 .message-main {
   color: #fff;
-  margin-bottom: 8px;
+  margin-bottom: 0.5rem;
 }
 
 .message-sub {
-  color: #ec4899;
+  background: linear-gradient(90deg, #ec4899, #a855f7);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
   font-style: italic;
 }
 
@@ -183,14 +291,15 @@
 .proof-cta {
   display: inline-flex;
   align-items: center;
-  gap: 12px;
-  padding: 20px 40px;
+  justify-content: center;
+  gap: 0.75rem;
+  padding: 1.25rem 2.5rem;
   background: linear-gradient(135deg, rgba(236, 72, 153, 0.1), rgba(168, 85, 247, 0.1));
   border: 2px solid #ec4899;
-  border-radius: 100px;
+  border-radius: 9999px;
   color: #fff;
   text-decoration: none;
-  font-size: 16px;
+  font-size: clamp(0.9rem, 2vw, 1rem);
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.05em;
@@ -225,54 +334,94 @@
 
 .cta-arrow {
   transition: transform 0.3s ease;
+  font-size: 1.25rem;
 }
 
 .proof-cta:hover .cta-arrow {
   transform: translateX(5px);
 }
 
-/* Responsive */
+/* ====================================
+   RESPONSIVE MOBILE
+   ==================================== */
 @media (max-width: 768px) {
   .producer-proof-section {
     padding: 60px 15px;
+    min-height: auto;
   }
   
   .proof-header {
-    margin-bottom: 50px;
+    margin-bottom: 40px;
   }
   
   .title-line-1,
   .title-line-2 {
-    font-size: 36px;
+    font-size: 2.5rem;
+  }
+
+  .proof-subtitle {
+    font-size: 1rem;
+    padding: 0 10px;
+  }
+  
+  .stats-container {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    margin-bottom: 50px;
+  }
+
+  .stat-card {
+    padding: 2rem 1.5rem;
+  }
+  
+  .comparison-list {
+    gap: 1rem;
+    margin-bottom: 50px;
   }
   
   .comparison-item {
     grid-template-columns: 1fr;
-    gap: 20px;
-    padding: 20px;
+    gap: 1rem;
+    padding: 1.25rem;
   }
   
   .problem-side,
   .solution-side {
     justify-content: center;
+    text-align: center;
+  }
+
+  .problem-text,
+  .solution-text {
+    text-align: center;
   }
   
   .arrow-container {
     transform: rotate(90deg);
-  }
-  
-  .problem-text,
-  .solution-text {
-    font-size: 16px;
+    margin: 0.5rem 0;
   }
   
   .message-main,
   .message-sub {
-    font-size: 24px;
+    font-size: 1.75rem;
+    padding: 0 10px;
   }
   
   .proof-cta {
-    padding: 16px 30px;
-    font-size: 14px;
+    padding: 1rem 2rem;
+    font-size: 0.875rem;
+    width: 90%;
+    max-width: 300px;
+  }
+}
+
+@media (min-width: 1920px) {
+  .proof-container {
+    max-width: 1400px;
+  }
+  
+  .title-line-1,
+  .title-line-2 {
+    font-size: 6rem;
   }
 }

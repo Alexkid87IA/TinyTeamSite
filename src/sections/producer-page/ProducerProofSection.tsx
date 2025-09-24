@@ -13,7 +13,7 @@ export const ProducerProofSection: React.FC = () => {
           }
         });
       },
-      { threshold: 0.2 }
+      { threshold: 0.1 }
     );
 
     const section = document.querySelector('.producer-proof-section');
@@ -51,22 +51,33 @@ export const ProducerProofSection: React.FC = () => {
     }
   ];
 
+  // Fonction pour gérer les liens
+  const handleCtaClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    e.preventDefault();
+    window.location.href = window.location.origin + '/contact';
+  };
+
   return (
     <section className="producer-proof-section" id="proof">
       <div className="proof-container">
+        {/* UN SEUL TITRE - PAS DE DUPLICATION */}
         <div className="proof-header">
           <h2 className="proof-title">
-            <span className="title-line-1">On élimine</span>
-            <span className="title-line-2">vos problèmes.</span>
+            <span className="title-line-1">Vos spectateurs applaudissent.</span>
+            <span className="title-line-2">Vos billets disparaissent.</span>
           </h2>
+          <p className="proof-subtitle">
+            Programmez sans risque. Réussissez à coup sûr.
+          </p>
         </div>
 
+        {/* Liste de comparaisons */}
         <div className="comparison-list">
           {comparisons.map((item, index) => (
             <div 
               key={index} 
               className={`comparison-item ${isInView ? 'visible' : ''}`}
-              style={{ animationDelay: `${index * 0.15}s` }}
+              style={{ animationDelay: `${index * 0.1}s` }}
             >
               <div className="problem-side">
                 <span className="problem-text">{item.problem}</span>
@@ -85,13 +96,18 @@ export const ProducerProofSection: React.FC = () => {
           ))}
         </div>
 
+        {/* Footer avec message et CTA */}
         <div className="proof-footer">
           <p className="footer-message">
             <span className="message-main">100% de votre énergie sur votre salle.</span>
             <span className="message-sub">0% sur la logistique.</span>
           </p>
           
-          <a href="/contact" className="proof-cta">
+          <a 
+            href="/contact" 
+            className="proof-cta"
+            onClick={handleCtaClick}
+          >
             <span className="cta-text">Simplifiez-vous la vie</span>
             <span className="cta-arrow">→</span>
           </a>

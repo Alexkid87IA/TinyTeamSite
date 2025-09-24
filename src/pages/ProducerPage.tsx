@@ -4,7 +4,7 @@ import { Footer } from '../components/Footer';
 import { ProducerArtistsGrid } from '../sections/producer-page/ProducerArtistsGrid';
 import { ProducerArtistsShowcase } from '../sections/producer-page/ProducerArtistsShowcase';
 import { ProducerRealitySection } from '../sections/producer-page/ProducerRealitySection';
-import { ProducerProofSection } from '../sections/producer-page/ProducerProofSection';
+import { ProducerProofSection } from '../sections/producer-page/ProducerProofSection';  // Garder l'import original
 import { ProducerFinalCTA } from '../sections/producer-page/ProducerFinalCTA';
 
 export const ProducerPage = () => {
