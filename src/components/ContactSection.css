@@ -186,7 +186,7 @@
 
 /* Texte du titre avec gradient animé */
 .title-text {
-    font-size: 5.5rem; /* Légèrement réduit pour éviter le débordement */
+    font-size: 5.5rem;
     font-weight: 900;
     font-style: italic;
     line-height: 1.2;
@@ -194,14 +194,13 @@
     position: relative;
     display: inline-block;
     text-align: center;
-    white-space: nowrap; /* Force le texte sur une ligne */
-    padding: 0 0.5rem; /* Petit padding pour éviter la troncature */
+    white-space: nowrap; /* Force le texte sur une ligne sur desktop */
+    padding: 0 0.5rem;
 }
 
 .line-1 {
-    display: inline-block; /* Changé de block à inline-block */
+    display: inline-block;
     font-size: 1em;
-    padding-right: 0.5em; /* IMPORTANT: espace après le "?" */
     background: linear-gradient(90deg, 
         #ff00ff 0%, 
         #00ffff 25%, 
@@ -212,7 +211,7 @@
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
-    -moz-background-clip: text; /* Support Firefox */
+    -moz-background-clip: text;
     -moz-text-fill-color: transparent;
     filter: drop-shadow(0 0 60px rgba(236, 72, 153, 0.8));
     animation: 
@@ -267,7 +266,7 @@
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 1.6rem;
-    margin-bottom: 0; /* Retiré le margin-bottom */
+    margin-bottom: 0;
     animation: fadeInUp 1s ease-out 0.8s backwards;
 }
 
@@ -458,15 +457,19 @@
    ==================================== */
 @media (max-width: 768px) {
     .contact-section {
-        padding: 4rem 1rem 5rem; /* Ajusté pour mobile */
+        padding: 4rem 1rem 5rem;
     }
 
     .title-text {
         font-size: 3rem;
+        white-space: normal; /* Permet le centrage naturel sur mobile */
+        padding: 0; /* Retire le padding pour un centrage parfait */
     }
 
     .line-1 {
-        margin-bottom: 0.3em;
+        display: block; /* Block sur mobile pour centrage parfait */
+        padding: 0; /* Retire tout padding */
+        margin-bottom: 0;
     }
 
     .subtitle {

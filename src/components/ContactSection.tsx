@@ -2,6 +2,13 @@ import React from 'react';
 import './ContactSection.css';
 
 export const ContactSection = () => {
+  // Fonction pour gérer les liens avec navigation côté client
+  const handleCardClick = (e: React.MouseEvent<HTMLAnchorElement>, path: string) => {
+    e.preventDefault();
+    // Navigation avec window.location pour garantir le fonctionnement sur tous les domaines
+    window.location.href = window.location.origin + path;
+  };
+
   return (
     <section className="contact-section">
       {/* Effets de fond spectaculaires */}
@@ -41,10 +48,14 @@ export const ContactSection = () => {
           </p>
         </div>
 
-        {/* Cartes de contact - LIENS CORRIGÉS */}
+        {/* Cartes de contact - LIENS AVEC GESTION ABSOLUE */}
         <div className="contact-cards">
           {/* Carte Artiste */}
-          <a href="/artiste" className="contact-card card-artiste">
+          <a 
+            href="/artiste" 
+            className="contact-card card-artiste"
+            onClick={(e) => handleCardClick(e, '/artiste')}
+          >
             <div className="card-shine"></div>
             <div className="card-badge">
               <span className="card-badge-text">Pour les talents</span>
@@ -61,7 +72,11 @@ export const ContactSection = () => {
           </a>
 
           {/* Carte Programmateur */}
-          <a href="/programmateur" className="contact-card card-programmateur">
+          <a 
+            href="/programmateur" 
+            className="contact-card card-programmateur"
+            onClick={(e) => handleCardClick(e, '/programmateur')}
+          >
             <div className="card-shine"></div>
             <div className="card-badge">
               <span className="card-badge-text">Pour les salles</span>
@@ -78,7 +93,11 @@ export const ContactSection = () => {
           </a>
 
           {/* Carte Entreprise */}
-          <a href="/marque" className="contact-card card-entreprise">
+          <a 
+            href="/marque" 
+            className="contact-card card-entreprise"
+            onClick={(e) => handleCardClick(e, '/marque')}
+          >
             <div className="card-shine"></div>
             <div className="card-badge">
               <span className="card-badge-text">Pour les marques</span>
