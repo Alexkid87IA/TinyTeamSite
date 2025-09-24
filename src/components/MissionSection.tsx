@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import './MissionSection.css';
 
 // Types
@@ -118,7 +119,7 @@ const ArrowRight = ({ size = 20 }) => (
 );
 
 // Map des icônes
-const iconMap = {
+const iconMap: { [key: string]: React.FC } = {
   production: StarIcon,
   management: ShieldIcon,
   digital: RocketIcon,
@@ -128,10 +129,21 @@ const iconMap = {
 };
 
 export const MissionSection = () => {
+  const navigate = useNavigate();
   const [activePanel, setActivePanel] = useState<string | null>(null);
 
   const togglePanel = (serviceId: string) => {
     setActivePanel(prevActive => prevActive === serviceId ? null : serviceId);
+  };
+
+  const handleServiceClick = (e: React.MouseEvent, serviceId: string) => {
+    e.preventDefault();
+    navigate(`/services/${serviceId}`);
+  };
+
+  const handleAllServicesClick = (e: React.MouseEvent) => {
+    e.preventDefault();
+    navigate('/services');
   };
 
   return (
@@ -225,7 +237,11 @@ export const MissionSection = () => {
                   <div className="mission-content-inner">
                     <p className="mission-service-story">{service.story}</p>
                     
-                    <a href={`services/${service.id}`} className="mission-service-link">
+                    <a 
+                      href={`/services/${service.id}`} 
+                      className="mission-service-link"
+                      onClick={(e) => handleServiceClick(e, service.id)}
+                    >
                       <span>Découvrir ce service</span>
                       <ArrowRight size={16} />
                     </a>
@@ -242,7 +258,7 @@ export const MissionSection = () => {
             "Six expertises, une vision : sublimer votre talent"
           </p>
           
-          <a href="services" className="mission-cta-button">
+          <a href="/services" className="mission-cta-button" onClick={handleAllServicesClick}>
             <span>Explorer tous nos services</span>
             <ArrowRight />
           </a>

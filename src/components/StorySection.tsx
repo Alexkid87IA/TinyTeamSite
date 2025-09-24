@@ -1,4 +1,5 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import './StorySection.css';
 
 const teamMembers = [
@@ -52,6 +53,13 @@ const ChevronRight = ({ size = 20 }) => (
 );
 
 export const StorySection = () => {
+  const navigate = useNavigate();
+
+  const handleCtaClick = (e: React.MouseEvent) => {
+    e.preventDefault();
+    navigate('/equipe');
+  };
+
   return (
     <section className="story-section">
       {/* Contenu principal */}
@@ -138,7 +146,7 @@ export const StorySection = () => {
             <span className="story-finale-line-2">L'EXCELLENCE</span>
           </div>
           
-          <a href="/equipe" className="story-cta-button">
+          <a href="/equipe" className="story-cta-button" onClick={handleCtaClick}>
             <span>DÉCOUVRIR NOTRE HISTOIRE</span>
             <ChevronRight />
           </a>

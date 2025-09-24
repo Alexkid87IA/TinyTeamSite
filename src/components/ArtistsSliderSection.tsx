@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import './ArtistsSliderSection.css';
 
 // Liste des artistes avec leurs informations de diffusion (Urbain en dernier)
@@ -52,8 +53,8 @@ const artistsData = [
     diffusion: null
   },
   {
-    id: "djamel",
-    name: "Djamel Comedy Club",
+    id: "jamel",
+    name: "Jamel Comedy Club",
     image: "https://26.staticbtf.eno.do/v1/30-default/975e3fdd1700df5c9bd53662949e3fda/media.jpg",
     diffusion: null
   },
@@ -70,6 +71,7 @@ const topRow = [...artistsData.slice(0, 5), ...artistsData.slice(0, 5), ...artis
 const bottomRow = [...artistsData.slice(5, 10), ...artistsData.slice(5, 10), ...artistsData.slice(5, 10)];
 
 export const ArtistsSliderSection = () => {
+  const navigate = useNavigate();
   const [isMobile, setIsMobile] = useState(false);
 
   // Détecter si on est sur mobile
@@ -85,13 +87,15 @@ export const ArtistsSliderSection = () => {
   }, []);
 
   // Fonction pour naviguer vers la page artiste
-  const handleArtistClick = (e, artistId) => {
+  const handleArtistClick = (e: React.MouseEvent, artistId: string) => {
     e.preventDefault();
-    // Pour React Router, utilisez :
-    // navigate(`/artiste/${artistId}`);
-    
-    // Pour une navigation simple :
-    window.location.href = `/artiste/${artistId}`;
+    navigate(`/artiste/${artistId}`);
+  };
+
+  // Fonction pour naviguer vers la page artistes
+  const handleAllArtistsClick = (e: React.MouseEvent) => {
+    e.preventDefault();
+    navigate('/artistes');
   };
 
   // Composant ChevronRight simplifié
@@ -304,7 +308,7 @@ export const ArtistsSliderSection = () => {
 
         {/* CTA Section */}
         <div className="section-cta">
-          <a href="/artistes" className="main-cta-button">
+          <a href="/artistes" className="main-cta-button" onClick={handleAllArtistsClick}>
             <span>Explorer tous nos artistes</span>
             <ChevronRight size={20} />
           </a>
@@ -327,4 +331,4 @@ export const ArtistsSliderSection = () => {
       </div>
     </section>
   );
-}
+};
