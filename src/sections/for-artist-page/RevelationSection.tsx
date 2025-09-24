@@ -47,17 +47,15 @@ export const RevelationSection: React.FC = () => {
             </div>
           </div>
           
-          <div className="transfer-arrow">
-            <svg width="80" height="60" viewBox="0 0 80 60" fill="none">
-              <path 
-                d="M10 30 L60 30 M60 30 L50 20 M60 30 L50 40" 
-                stroke="#ec4899" 
-                strokeWidth="3" 
-                strokeLinecap="round" 
-                strokeLinejoin="round"
-                className="arrow-path"
-              />
-            </svg>
+          <div className="transfer-arrows">
+            {adminTasks.map((_, index) => (
+              <div
+                key={index}
+                className={`arrow ${transferredTasks.includes(index) ? 'active' : ''}`}
+              >
+                →
+              </div>
+            ))}
           </div>
           
           <div className="column right-column">
@@ -66,7 +64,7 @@ export const RevelationSection: React.FC = () => {
               {adminTasks.map((task, index) => (
                 <div 
                   key={index} 
-                  className={`task-item incoming ${transferredTasks.includes(index) ? 'visible' : ''}`}
+                  className={`task-item ${transferredTasks.includes(index) ? 'visible' : ''}`}
                 >
                   {task}
                 </div>
@@ -76,9 +74,7 @@ export const RevelationSection: React.FC = () => {
         </div>
         
         <div className="revelation-result">
-          <p className="result-text">
-            Résultat :
-          </p>
+          <p className="result-text">Résultat :</p>
           <p className="result-highlight">
             VOUS CRÉEZ.
           </p>

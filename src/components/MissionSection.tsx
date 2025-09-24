@@ -225,7 +225,7 @@ export const MissionSection = () => {
                   <div className="mission-content-inner">
                     <p className="mission-service-story">{service.story}</p>
                     
-                    <a href={`/services/${service.id}`} className="mission-service-link">
+                    <a href={`services/${service.id}`} className="mission-service-link">
                       <span>Découvrir ce service</span>
                       <ArrowRight size={16} />
                     </a>
@@ -242,7 +242,7 @@ export const MissionSection = () => {
             "Six expertises, une vision : sublimer votre talent"
           </p>
           
-          <a href="/services" className="mission-cta-button">
+          <a href="services" className="mission-cta-button">
             <span>Explorer tous nos services</span>
             <ArrowRight />
           </a>

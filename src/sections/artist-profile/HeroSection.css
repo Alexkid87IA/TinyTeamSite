@@ -1,0 +1,595 @@
+/* HeroSection.css - Design moderne et élégant inspiré de l'image */
+
+.artist-hero-section {
+    position: relative;
+    min-height: 100vh;
+    padding-top: 80px; /* Espace pour le header fixe */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f172a 100%);
+}
+
+/* Image de fond avec effet parallax */
+.hero-background {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    transform: scale(1.1);
+    transition: transform 10s ease;
+}
+
+.artist-hero-section:hover .hero-background {
+    transform: scale(1.15);
+}
+
+.hero-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 20%;
+    filter: brightness(0.5) contrast(1.2) saturate(0.8);
+}
+
+/* Overlay avec gradient plus sombre pour meilleur contraste */
+.hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+        180deg,
+        rgba(10, 15, 41, 0.6) 0%,
+        rgba(10, 15, 41, 0.75) 30%,
+        rgba(10, 15, 41, 0.9) 70%,
+        rgba(10, 15, 41, 0.98) 100%
+    );
+    z-index: 2;
+}
+
+/* Effet de vignette subtil */
+.hero-vignette {
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(
+        ellipse at center,
+        transparent 0%,
+        transparent 40%,
+        rgba(10, 15, 41, 0.4) 100%
+    );
+    z-index: 3;
+}
+
+/* Particules flottantes */
+.hero-particles {
+    position: absolute;
+    inset: 0;
+    z-index: 4;
+    pointer-events: none;
+}
+
+.particle {
+    position: absolute;
+    width: 2px;
+    height: 2px;
+    background: rgba(236, 72, 153, 0.6);
+    border-radius: 50%;
+    animation: float-particle 20s infinite ease-in-out;
+}
+
+@keyframes float-particle {
+    0%, 100% {
+        transform: translateY(0) translateX(0);
+        opacity: 0;
+    }
+    10% {
+        opacity: 1;
+    }
+    90% {
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(-100vh) translateX(100px);
+    }
+}
+
+/* Contenu principal avec fond sombre flou */
+.hero-content {
+    position: relative;
+    z-index: 10;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 40px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+    background: radial-gradient(
+        ellipse at center,
+        rgba(10, 15, 41, 0.8) 0%,
+        rgba(10, 15, 41, 0.4) 50%,
+        transparent 100%
+    );
+    border-radius: 20px;
+}
+
+/* Nom de l'artiste avec ombre pour lisibilité */
+.artist-name {
+    font-size: clamp(48px, 10vw, 120px);
+    font-weight: 900;
+    line-height: 1;
+    letter-spacing: -0.02em;
+    background: linear-gradient(
+        180deg,
+        #ffffff 0%,
+        #ffffff 50%,
+        rgba(255, 255, 255, 0.9) 100%
+    );
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin: 0;
+    opacity: 0;
+    animation: fadeInScale 1s ease 0.2s forwards;
+    text-shadow: 0 0 40px rgba(236, 72, 153, 0.5), 0 4px 30px rgba(0, 0, 0, 0.9);
+    filter: drop-shadow(0 2px 10px rgba(0, 0, 0, 0.8));
+}
+
+@keyframes fadeInScale {
+    from {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/* Tagline avec fond sombre */
+.artist-tagline {
+    font-size: clamp(16px, 2vw, 22px);
+    font-weight: 400;
+    font-style: italic;
+    color: rgba(255, 255, 255, 0.95);
+    margin: 0;
+    opacity: 0;
+    animation: fadeInUp 1s ease 0.3s forwards;
+    letter-spacing: 0.02em;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.8);
+    padding: 10px 20px;
+    background: rgba(10, 15, 41, 0.4);
+    backdrop-filter: blur(10px);
+    border-radius: 100px;
+    display: inline-block;
+}
+
+.tagline-quote {
+    color: #ec4899;
+    font-weight: 500;
+    font-size: 1.2em;
+}
+
+/* Badge spectacle avec gradient */
+.show-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 28px;
+    background: linear-gradient(135deg, rgba(236, 72, 153, 0.1), rgba(168, 85, 247, 0.1));
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(236, 72, 153, 0.2);
+    border-radius: 100px;
+    opacity: 0;
+    animation: fadeInUp 1s ease 0.4s forwards;
+    position: relative;
+    overflow: hidden;
+}
+
+.show-badge::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(236, 72, 153, 0.1),
+        transparent
+    );
+    animation: shine 3s ease-in-out infinite;
+}
+
+@keyframes shine {
+    0% { transform: translateX(-100%); }
+    100% { transform: translateX(200%); }
+}
+
+.show-badge-label {
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    font-weight: 500;
+}
+
+.show-name {
+    font-size: clamp(20px, 3vw, 28px);
+    font-weight: 800;
+    background: linear-gradient(90deg, #ec4899 0%, #a855f7 50%, #ec4899 100%);
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    animation: gradient-shift 3s ease-in-out infinite;
+}
+
+@keyframes gradient-shift {
+    0% { background-position: 0% center; }
+    50% { background-position: 100% center; }
+    100% { background-position: 0% center; }
+}
+
+/* Badge Diffusion élégant */
+.diffusion-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 24px;
+    background: rgba(236, 72, 153, 0.08);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(236, 72, 153, 0.2);
+    border-radius: 100px;
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 13px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    opacity: 0;
+    animation: fadeInUp 1s ease 0.45s forwards;
+    position: relative;
+    transition: all 0.3s ease;
+}
+
+.diffusion-badge:hover {
+    background: rgba(236, 72, 153, 0.15);
+    transform: translateY(-2px);
+    box-shadow: 0 10px 30px rgba(236, 72, 153, 0.2);
+}
+
+/* Description avec ombre et meilleur contraste */
+.artist-description {
+    font-size: clamp(16px, 1.5vw, 20px);
+    line-height: 1.7;
+    color: rgba(255, 255, 255, 0.95);
+    max-width: 700px;
+    margin: 1rem auto;
+    opacity: 0;
+    animation: fadeInUp 1s ease 0.5s forwards;
+    font-weight: 400;
+    letter-spacing: 0.01em;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.8), 0 4px 20px rgba(10, 15, 41, 0.9);
+    padding: 20px;
+    background: rgba(10, 15, 41, 0.5);
+    backdrop-filter: blur(10px);
+    border-radius: 12px;
+}
+
+/* Section réseaux sociaux et stats moderne */
+.social-stats {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 4rem;
+    margin: 2rem 0;
+    opacity: 0;
+    animation: fadeInUp 1s ease 0.6s forwards;
+}
+
+.social-links {
+    display: flex;
+    gap: 16px;
+}
+
+.social-link {
+    width: 48px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+    color: rgba(255, 255, 255, 0.8);
+    transition: all 0.3s ease;
+    text-decoration: none;
+    position: relative;
+}
+
+.social-link::before {
+    content: '';
+    position: absolute;
+    inset: -1px;
+    background: linear-gradient(135deg, #ec4899, #a855f7);
+    border-radius: 50%;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    z-index: -1;
+}
+
+.social-link:hover {
+    color: white;
+    transform: translateY(-5px) scale(1.1);
+    border-color: transparent;
+}
+
+.social-link:hover::before {
+    opacity: 1;
+}
+
+.stats-row {
+    display: flex;
+    gap: 3rem;
+}
+
+.stat-item {
+    text-align: center;
+}
+
+.stat-value {
+    font-size: clamp(28px, 3vw, 36px);
+    font-weight: 800;
+    background: linear-gradient(180deg, #ffffff, rgba(255, 255, 255, 0.7));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    display: block;
+    line-height: 1;
+}
+
+.stat-label {
+    font-size: 11px;
+    color: rgba(255, 255, 255, 0.5);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-top: 8px;
+    font-weight: 500;
+}
+
+/* Bouton CTA moderne avec animation */
+.hero-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    padding: 16px 36px;
+    background: linear-gradient(135deg, #ec4899, #a855f7);
+    color: white;
+    font-size: 15px;
+    font-weight: 700;
+    border: none;
+    border-radius: 100px;
+    text-decoration: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    opacity: 0;
+    animation: fadeInUp 1s ease 0.7s forwards;
+}
+
+.hero-cta::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.3);
+    transform: translate(-50%, -50%);
+    transition: width 0.6s ease, height 0.6s ease;
+}
+
+.hero-cta:hover::before {
+    width: 300px;
+    height: 300px;
+}
+
+.hero-cta:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 20px 40px rgba(236, 72, 153, 0.4);
+}
+
+/* Indicateur de scroll moderne */
+.scroll-hint {
+    position: absolute;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    opacity: 0;
+    animation: fadeIn 1.5s ease 1s forwards;
+}
+
+.scroll-text {
+    display: block;
+    font-size: 11px;
+    color: rgba(255, 255, 255, 0.4);
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    margin-bottom: 12px;
+    font-weight: 500;
+}
+
+.scroll-line {
+    width: 1px;
+    height: 40px;
+    background: linear-gradient(
+        to bottom,
+        transparent,
+        rgba(255, 255, 255, 0.4),
+        transparent
+    );
+    margin: 0 auto;
+    position: relative;
+}
+
+.scroll-line::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 1px;
+    height: 10px;
+    background: white;
+    animation: scroll-animation 2s ease-in-out infinite;
+}
+
+@keyframes scroll-animation {
+    0% {
+        transform: translateY(0);
+        opacity: 0;
+    }
+    20% {
+        opacity: 1;
+    }
+    80% {
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(30px);
+        opacity: 0;
+    }
+}
+
+/* Animations globales */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Responsive - Mobile First */
+@media (max-width: 768px) {
+    .artist-hero-section {
+        min-height: 100vh;
+        min-height: 100dvh;
+    }
+
+    .hero-content {
+        padding: 0 20px;
+        gap: 1rem;
+    }
+
+    .artist-name {
+        font-size: clamp(40px, 12vw, 60px);
+        line-height: 1.1;
+    }
+
+    .artist-tagline {
+        font-size: 15px;
+        padding: 0 20px;
+    }
+
+    .show-badge {
+        padding: 10px 20px;
+        gap: 8px;
+    }
+
+    .show-badge-label {
+        font-size: 10px;
+    }
+
+    .show-name {
+        font-size: 18px;
+    }
+
+    .diffusion-badge {
+        font-size: 11px;
+        padding: 8px 18px;
+    }
+
+    .artist-description {
+        font-size: 15px;
+        line-height: 1.6;
+        padding: 0 10px;
+    }
+
+    .social-stats {
+        flex-direction: column;
+        gap: 2rem;
+    }
+
+    .social-links {
+        gap: 12px;
+    }
+
+    .social-link {
+        width: 42px;
+        height: 42px;
+    }
+
+    .stats-row {
+        gap: 2.5rem;
+    }
+
+    .stat-value {
+        font-size: 26px;
+    }
+
+    .stat-label {
+        font-size: 10px;
+    }
+
+    .hero-cta {
+        padding: 14px 28px;
+        font-size: 14px;
+        width: auto;
+    }
+
+    .scroll-hint {
+        bottom: 20px;
+    }
+
+    .scroll-text {
+        font-size: 10px;
+    }
+}
+
+/* Tablette */
+@media (min-width: 769px) and (max-width: 1024px) {
+    .hero-content {
+        padding: 0 30px;
+    }
+
+    .artist-name {
+        font-size: 80px;
+    }
+
+    .social-stats {
+        gap: 3rem;
+    }
+}
+
+/* Desktop large */
+@media (min-width: 1440px) {
+    .hero-content {
+        max-width: 1400px;
+    }
+
+    .artist-description {
+        max-width: 800px;
+    }
+}

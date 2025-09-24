@@ -6,8 +6,8 @@ export const artists = [
     tagline: "Le gars contradictoire qui assume ses paradoxes",
     description: "À 37 ans, Urbain incarne cette génération tiraillée entre l'envie de rester rock'n'roll et celle de se ranger. Un tournant s'impose, mais lequel choisir ?",
     longDescription: "Urbain parcourt la France avec ses nouvelles blagues, parce qu'il en a marre de ne les faire que pour des vapoteurs parisiens à trottinettes. Ce type contradictoire qui aime se mettre deux mines par semaine mais fait quand même le Dry January, qui rêve de coucher avec la terre entière mais est en couple depuis 14 ans, qui tente de faire du sport uniquement après s'être enfilé un matelas de fromage.",
-    image: "https://static.eno.do/x/fs-200359-default/9fb343deaad6dbe750cd731b4c0564b8/media.jpg",
-    posterImage: "https://static.eno.do/x/fs-200359-default/9fb343deaad6dbe750cd731b4c0564b8/media.jpg",
+    image: "https://static.eno.do/x/fs-207671-default/a341c6ef1829c317020dc30296639fe4/media.jpg",
+    posterImage: "https://static.eno.do/x/fs-207671-default/a341c6ef1829c317020dc30296639fe4/media.jpg",
     social: {
       instagram: "@urbain_comedy",
       tiktok: "@urbain_official",
@@ -37,7 +37,7 @@ export const artists = [
     type: "Imitateur",
     tagline: "L'original des copies",
     description: "Toujours seul sur scène, mais avec une centaine de voix et de nouveaux sketchs. Le spectacle d'après la fin du monde, avant la fin du monde !",
-    longDescription: "Marc-Antoine Le Bret revient avec SOLO, un spectacle où vous découvrirez ce qui pourrait arriver si le monde tournait à l'envers. Peut-être est-il un imitateur, mais quitte à aller voir une copie, autant aller voir l'original ! Avec sa centaine de voix et ses nouveaux sketchs, il nous offre une vision décalée et hilarante de notre époque.",
+    longDescription: "Marc-Antoine Le Bret revient avec SOLO, un nouveau spectacle. Toujours seul sur scène, mais avec une centaine de voix et de nouveaux sketchs. Dans ce spectacle vous aurez un petit aperçu de ce qui pourrait arriver si le monde tournait à l'envers… C'est le spectacle d'après la fin du monde, avant la fin du monde ! En bien plus drôle ! Marc-Antoine Le Bret est peut-être un imitateur, mais quitte à aller voir une copie, autant aller voir l'original ! Mention : en accord avec Doudoudou Production.",
     image: "https://static.eno.do/x/fs-200360-default/a0c4d924ae52585a517dd76531300e5b/media.jpg",
     posterImage: "https://static.eno.do/x/fs-200360-default/a0c4d924ae52585a517dd76531300e5b/media.jpg",
     social: {
@@ -61,7 +61,8 @@ export const artists = [
       shows: 200,
       cities: 60,
       followers: 250000
-    }
+    },
+    diffusion: "Doudou Production"
   },
   {
     id: "adel",
@@ -101,7 +102,7 @@ export const artists = [
     type: "Humoriste",
     tagline: "Votre dose d'humour et d'amour",
     description: "Après deux shows à guichets fermés et plus de 200 représentations, D'jal revient avec des personnages toujours plus dingues et des situations encore plus folles.",
-    longDescription: "D'jal est de retour avec un nouveau spectacle après avoir conquis des milliers de spectateurs. L'occasion de s'amuser tout en prenant votre dose d'humour et d'amour. Ses personnages dingues et ses situations folles créent une communion unique avec le public, transformant chaque représentation en moment de pure joie collective.",
+    longDescription: "Après deux shows à guichets fermés, plus de 200 représentations et des milliers de spectateurs, D'jal est de retour avec un nouveau spectacle mêlant personnages toujours plus dingues et situations encore plus folles ! L'occasion de s'amuser tout en prenant votre dose d'humour et d'amour. Mention : en accord avec La Tiny Team & Heb.",
     image: "https://static.eno.do/x/fs-200362-default/0743597244e1da871493bfbf5d13b7f7/media.jpg",
     posterImage: "https://static.eno.do/x/fs-200362-default/0743597244e1da871493bfbf5d13b7f7/media.jpg",
     social: {
@@ -133,7 +134,7 @@ export const artists = [
     type: "Stand-up",
     tagline: "Entre marché du dimanche et soirées du samedi",
     description: "À 24 ans, Morgane jette un regard corrosif sur ses ainés sans épargner sa génération. Un humour impertinent qui questionne sa place dans cette société.",
-    longDescription: "Morgane Berling fait le bilan de sa jeune vie avec un humour impertinent et décapant. Partagée entre les soirées du samedi soir et le marché du dimanche matin, elle ne sait plus dans quelle case de la société elle se place. Un seule en scène interprété à la première personne où interviennent toute une galerie de personnages, écrit à quatre mains et deux générations.",
+    longDescription: "Elle a 24 ans et se demande comment elle se positionne dans cette société, sans se priver de nous dire comment elle la perçoit. Avec un humour impertinent Morgane Berling fait le bilan de sa jeune vie : de l'enfance à aujourd'hui. Elle jette un regard corrosif sur ses ainés sans épargner sa génération. Partagée entre les soirées du samedi soir et le marché du dimanche matin, Morgane ne sait plus dans quelle case de la société elle se place. Un « seule en scène », interprété à la première personne et dans lequel interviennent toute une galerie de personnages. Écrit à quatre mains et deux générations, ce spectacle permet à toute la famille de se retrouver autour de souvenirs ou de projections : la vingtaine ! Spectacle présent au festival Off d'Avignon en 2024 et 2025.",
     image: "https://i.imgur.com/munE7s3.jpeg",
     posterImage: "https://i.imgur.com/munE7s3.jpeg",
     social: {
@@ -148,8 +149,11 @@ export const artists = [
     dates: [],
     socialContent: [],
     achievements: [
-      "Prix du jury - Festival Les Cadet Roussel du Rire",
+      "Prix du jury - Festival Les Cadet Roussel du Rire d'Auxerre",
+      "Prix du jury - Festival du Rire d'Yssingeaux",
+      "Prix du Public - Festival D'Un Rire à l'Autre de Pierre-Bénite",
       "Prix du Public - Festival Drôlement Bien de Besançon",
+      "Prix spécial du jury - Festival Rire de Cavaillon",
       "Présente au Festival Off d'Avignon 2024 et 2025"
     ],
     reviews: [],
@@ -157,7 +161,8 @@ export const artists = [
       shows: 80,
       cities: 30,
       followers: 120000
-    }
+    },
+    diffusion: "Les Derniers couchés"
   },
   {
     id: "thomas",
@@ -189,7 +194,8 @@ export const artists = [
       shows: 65,
       cities: 25,
       followers: 95000
-    }
+    },
+    diffusion: "ProdVocation"
   },
   {
     id: "lucie",
@@ -197,7 +203,7 @@ export const artists = [
     type: "Stand-up",
     tagline: "Aussi chaleureux qu'une raclette en plein mois d'août",
     description: "C'est l'histoire d'un nouveau spectacle qui parle de la vie, cette coquine, et de toutes les cases qu'on est censés cocher pour la réussir.",
-    longDescription: "Grosso modum, Lucie te promet un moment aussi chaleureux qu'une raclette en plein mois d'août, aussi doux qu'un agneau ignorant Pâques, aussi léger qu'une plume sous hélium et surtout : la joie de se rencontrer en chair et en os ! Elle décortique avec humour et tendresse toutes les cases qu'on est censés cocher pour réussir sa vie.",
+    longDescription: "C'est l'histoire d'un nouveau spectacle qui parle de la vie, cette coquine, et de toutes les cases qu'on est censés cocher pour la \"réussir\". \"Grosso modum, je te promets\" (comme disait Johnny) : Un moment aussi chaleureux qu'une raclette en plein mois d'août, aussi doux qu'un agneau ignorant Pâques, aussi léger qu'une plume sous hélium et surtout : la joie de se rencontrer en chair et en os !",
     image: "https://static.eno.do/x/fs-200365-default/cda1d9f46d486a0ba2357daa5a79f6bd/media.jpg",
     posterImage: "https://static.eno.do/x/fs-200365-default/cda1d9f46d486a0ba2357daa5a79f6bd/media.jpg",
     social: {
@@ -229,9 +235,9 @@ export const artists = [
     type: "Humoriste",
     tagline: "Et si on ne prenait pas les choses au sérieux ?",
     description: "J'ai toujours eu cette sensation d'être un peu décalé par rapport aux autres. Plus j'avance dans la vie et plus ça se vérifie. J'ai décidé que c'était ok.",
-    longDescription: "Edouard a toujours eu cette sensation d'être un peu décalé par rapport aux autres. Plus il avance dans la vie et plus ça se vérifie. Mais vous savez quoi ? Il a décidé que c'était ok. Avec son énergie, son talent et sa répartie, il vous propose une expérience unique : 1h30 de lâcher prise, pour rire ensemble !",
-    image: "https://static.eno.do/x/fs-200366-default/cdc3aba992ae1735c4a9b7a3fd8befc4/media.jpg",
-    posterImage: "https://static.eno.do/x/fs-200366-default/cdc3aba992ae1735c4a9b7a3fd8befc4/media.jpg",
+    longDescription: "J'ai toujours eu cette sensation d'être un peu décalé par rapport aux autres, plus j'avance dans la vie et plus ça se vérifie. Vous savez quoi? J'ai décidé que c'était ok. Et si on ne prenait pas les choses au sérieux ? Avec son énergie, son talent et sa répartie, Edouard vous propose une expérience unique. 1h30 de lâcher prise, pour rire… ensemble ! Edouard Deloignon est LA nouvelle star de l'humour et cumule plus de 150 millions de vues avec ses vidéos. Auteur: Edouard Deloignon, Jonathan Demayo. Metteur en scène : Nicolas Vital. A partir de 16 ans.",
+    image: "https://static.eno.do/x/fs-207670-default/35f9701247c1480e4a053de7341d2547/media.jpg",
+    posterImage: "https://static.eno.do/x/fs-207670-default/35f9701247c1480e4a053de7341d2547/media.jpg",
     social: {
       instagram: "@edouard_deloignon",
       tiktok: "@edouarddeloignon",
@@ -253,7 +259,8 @@ export const artists = [
       shows: 70,
       cities: 28,
       followers: 85000
-    }
+    },
+    diffusion: "Dan Bolender Production"
   },
   {
     id: "julien-santini",
@@ -261,7 +268,7 @@ export const artists = [
     type: "Humoriste",
     tagline: "Sur scène, tout est possible !",
     description: "Entre Stand-up et humour décalé, Santini jongle entre poésie et audace. Un show inclassable et phénoménal !",
-    longDescription: "Entrer dans l'univers de Santini, c'est découvrir que sur scène tout est possible ! Entre Stand-up et humour décalé, le comédien nous fait part de ses observations et de son parcours, jonglant tout le long du spectacle entre poésie et audace. Ce show est inclassable et phénoménal ! PS : Santini tient à préciser qu'il n'est pas l'auteur de ce pitch.",
+    longDescription: "Entrer dans l'univers de Santini, c'est découvrir que sur scène tout est possible ! Entre Stand-up et humour décalé, le comédien nous fait part de ses observations et de son parcours, jonglant tout le long du spectacle entre poésie et audace. Ce show est inclassable et phénoménal ! PS : Santini tient à préciser qu'il n'est pas l'auteur de ce pitch. Mention : en accord avec La Tiny Team.",
     image: "https://26.staticbtf.eno.do/v1/29-default/caa1da7f867fc1ad334621eba4d80b76/media.jpg",
     posterImage: "https://26.staticbtf.eno.do/v1/29-default/caa1da7f867fc1ad334621eba4d80b76/media.jpg",
     social: {
@@ -325,7 +332,7 @@ export const artists = [
     type: "Duo d'humoristes",
     tagline: "La vraie vie, celle qu'on ne montre pas sur Insta",
     description: "Deux voix, deux parcours, une complicité décapante. Sophie & Alex parlent des étapes de la vie avec une sincérité désarmante et un humour qui fait mouche.",
-    longDescription: "Des spectacles qui parlent des étapes de la vie, y'en a des tonnes. Sophie & Alex, elles, le font avec une authenticité rare. Entre burn-out et culottes filet post-partum, elles transforment les marques de la vie en vannes irrésistibles. Elles se mettent à nu (métaphoriquement) pour raconter la vraie vie, celle qu'on cache sur Instagram. Un duo qui rit de tout sans insulter le premier rang.",
+    longDescription: "Des spectacles qui parlent des étapes de la vie, y'en a des tonnes. Nous, on l'a encore jamais fait. Et puisque l'intérêt d'un pitch c'est de convaincre en quelques mots : On est deux, on est drôles et on n'insulte pas le premier rang. Ce spectacle, c'est nous. Mais c'est sûrement vous aussi. Parce que même si un burn out ou une culotte filet post partum, ça laisse des marques, ça fait aussi de très bonnes vannes. Alors on a décidé de rire de tout et de se mettre à nu (calmez-vous, c'est une métaphore. Après on sait rendre service). C'est juste la vraie vie en fait, celle qu'on montre pas sur Insta. Allez, bisous.",
     image: "https://i.imgur.com/ht3EucF.jpeg",
     posterImage: "https://i.imgur.com/ht3EucF.jpeg",
     social: {

@@ -1,0 +1,220 @@
+/* BookingSection.css - Section de contact épurée */
+
+.artist-booking-section {
+    position: relative;
+    min-height: 100vh;
+    padding: 120px 40px;
+    background: linear-gradient(135deg, #1a0033 0%, #2d1b69 100%);
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Particules de fond */
+.booking-particles {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+}
+
+.particle-dot {
+    position: absolute;
+    width: 3px;
+    height: 3px;
+    background: rgba(255, 255, 255, 0.5);
+    border-radius: 50%;
+    animation: float 20s infinite ease-in-out;
+}
+
+@keyframes float {
+    0%, 100% {
+        opacity: 0.2;
+        transform: translate(0, 0);
+    }
+    50% {
+        opacity: 0.6;
+        transform: translate(var(--tx), var(--ty));
+    }
+}
+
+/* Conteneur principal */
+.booking-container {
+    position: relative;
+    z-index: 10;
+    width: 100%;
+    max-width: 700px;
+    margin: 0 auto;
+}
+
+/* Carte principale */
+.booking-card {
+    padding: 80px 60px;
+    background: rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(20px);
+    border: 2px solid rgba(236, 72, 153, 0.3);
+    border-radius: 32px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Glow effect */
+.card-glow {
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(
+        circle at center,
+        rgba(236, 72, 153, 0.1),
+        transparent 70%
+    );
+    animation: rotate 20s linear infinite;
+}
+
+@keyframes rotate {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+/* Titre */
+.booking-title {
+    font-size: 32px;
+    font-weight: 900;
+    color: white;
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+    margin-bottom: 60px;
+    position: relative;
+}
+
+/* Boutons */
+.booking-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    align-items: center;
+    margin-bottom: 60px;
+}
+
+.btn-contact,
+.btn-email {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    padding: 18px 50px;
+    min-width: 320px;
+    border-radius: 100px;
+    font-size: 16px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.btn-contact {
+    background: linear-gradient(135deg, #ec4899, #a855f7);
+    color: white;
+    border: none;
+}
+
+.btn-contact::before {
+    content: '';
+    position: absolute;
+    inset: -2px;
+    background: linear-gradient(135deg, #ec4899, #a855f7);
+    border-radius: 100px;
+    filter: blur(20px);
+    opacity: 0.5;
+    z-index: -1;
+    transition: opacity 0.3s ease;
+}
+
+.btn-contact:hover {
+    transform: translateY(-3px);
+}
+
+.btn-contact:hover::before {
+    opacity: 0.8;
+}
+
+.btn-email {
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(10px);
+    color: white;
+    border: 2px solid rgba(255, 255, 255, 0.2);
+}
+
+.btn-email:hover {
+    background: rgba(255, 255, 255, 0.1);
+    transform: translateY(-3px);
+    border-color: rgba(255, 255, 255, 0.3);
+}
+
+/* Garantie */
+.booking-guarantee {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 16px;
+    position: relative;
+}
+
+.guarantee-icon {
+    width: 24px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(16, 185, 129, 0.2);
+    border-radius: 50%;
+    color: #10b981;
+}
+
+.guarantee-glow {
+    position: absolute;
+    left: 0;
+    width: 24px;
+    height: 24px;
+    background: #10b981;
+    border-radius: 50%;
+    filter: blur(20px);
+    opacity: 0.5;
+    animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+    0%, 100% { opacity: 0.3; }
+    50% { opacity: 0.6; }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .artist-booking-section {
+        padding: 80px 20px;
+    }
+
+    .booking-card {
+        padding: 50px 30px;
+    }
+
+    .booking-title {
+        font-size: 24px;
+        margin-bottom: 40px;
+    }
+
+    .btn-contact,
+    .btn-email {
+        min-width: 100%;
+        width: 100%;
+    }
+
+    .booking-guarantee {
+        font-size: 14px;
+    }
+}

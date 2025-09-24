@@ -1,212 +1,250 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import './BrandProofSection.css';
+
+interface ProofCard {
+  company: string;
+  eventType: string;
+  stat1Value: string | number;
+  stat1Label: string;
+  stat2Value: string | number;
+  stat2Label: string;
+  outcome: string;
+  emoji: string;
+}
 
 interface BrandProofSectionProps {
   userPath?: 'content' | 'event' | null;
 }
 
 export const BrandProofSection: React.FC<BrandProofSectionProps> = ({ userPath }) => {
-  const [isInView, setIsInView] = useState(false);
-  const [counters, setCounters] = useState<number[]>([0, 0, 0, 0]);
+  const [isVisible, setIsVisible] = useState(false);
+  const [animatedNumbers, setAnimatedNumbers] = useState<{ [key: string]: number }>({});
+  const sectionRef = useRef<HTMLDivElement>(null);
 
+  // Observer pour déclencher les animations
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach(entry => {
-          if (entry.isIntersecting && !isInView) {
-            setIsInView(true);
+          if (entry.isIntersecting) {
+            setIsVisible(true);
           }
         });
       },
-      { threshold: 0.2 }
+      { threshold: 0.1 }
     );
 
-    const section = document.querySelector('.brand-proof-section');
-    if (section) observer.observe(section);
-
-    return () => {
-      if (section) observer.unobserve(section);
-    };
-  }, [isInView]);
-
-  useEffect(() => {
-    if (!isInView) return;
-
-    // Different targets based on path
-    let targets = [0, 0, 0, 0];
-    
-    if (userPath === 'content') {
-      targets = [5000000, 2000000, 50000, 8];
-    } else if (userPath === 'event') {
-      targets = [800, 100, 95, 30];
-    } else {
-      targets = [3000000, 500, 100, 10];
+    if (sectionRef.current) {
+      observer.observe(sectionRef.current);
     }
 
-    // Animate counters
+    return () => {
+      if (sectionRef.current) {
+        observer.unobserve(sectionRef.current);
+      }
+    };
+  }, []);
+
+  // Animation des nombres
+  useEffect(() => {
+    if (!isVisible) return;
+
+    const targets: { [key: string]: number } = {
+      views1: 5.2,
+      views2: 3.8,
+      downloads: 125,
+      roi: 12,
+      attendees: 1200,
+      satisfaction: 100,
+      presence: 98,
+      deals: 45
+    };
+
     const intervals: NodeJS.Timeout[] = [];
-    targets.forEach((target, index) => {
-      const increment = target / 30;
+
+    Object.keys(targets).forEach((key) => {
+      let current = 0;
+      const target = targets[key];
+      const increment = target / 40;
+      
       const interval = setInterval(() => {
-        setCounters(prev => {
-          const newCounters = [...prev];
-          if (newCounters[index] < target) {
-            newCounters[index] = Math.min(newCounters[index] + increment, target);
-          } else {
-            clearInterval(interval);
-          }
-          return newCounters;
-        });
-      }, 50);
+        current += increment;
+        if (current >= target) {
+          current = target;
+          clearInterval(interval);
+        }
+        setAnimatedNumbers(prev => ({ ...prev, [key]: current }));
+      }, 30);
+      
       intervals.push(interval);
     });
 
     return () => intervals.forEach(clearInterval);
-  }, [isInView, userPath]);
+  }, [isVisible]);
 
-  const contentCases = [
+  // Données pour contenu créateur
+  const contentCards: ProofCard[] = [
     {
-      client: "Groupe retail",
-      type: "Campagne TikTok",
-      metric1: `${(counters[0] / 1000000).toFixed(1)}M`,
-      metric1Label: "vues",
-      metric2: "+300%",
-      metric2Label: "engagement",
-      result: "Viralité totale"
+      company: "Groupe Retail Premium",
+      eventType: "Campagne TikTok virale",
+      stat1Value: `${animatedNumbers.views1?.toFixed(1) || '0'}M`,
+      stat1Label: "Vues",
+      stat2Value: "+420%",
+      stat2Label: "Engagement",
+      outcome: "Viral absolu",
+      emoji: "🚀"
     },
     {
-      client: "Marque food",
-      type: "Collab YouTube",
-      metric1: `${(counters[1] / 1000000).toFixed(1)}M`,
-      metric1Label: "vues",
-      metric2: "x10",
-      metric2Label: "ventes",
-      result: "Best seller"
+      company: "Marque Food & Beverage",
+      eventType: "Collab YouTube exclusive",
+      stat1Value: `${animatedNumbers.views2?.toFixed(1) || '0'}M`,
+      stat1Label: "Vues",
+      stat2Value: "x15",
+      stat2Label: "Ventes",
+      outcome: "Rupture stock",
+      emoji: "🔥"
     },
     {
-      client: "App mobile",
-      type: "Challenge viral",
-      metric1: `${Math.floor(counters[2] / 1000)}K`,
-      metric1Label: "téléchargements",
-      metric2: "#1",
-      metric2Label: "trending",
-      result: "Data réelle"
+      company: "App Fintech Innovante",
+      eventType: "Challenge Instagram",
+      stat1Value: `${Math.floor(animatedNumbers.downloads || 0)}K`,
+      stat1Label: "Downloads",
+      stat2Value: "#1",
+      stat2Label: "AppStore",
+      outcome: "Trending mondial",
+      emoji: "📈"
     },
     {
-      client: "E-commerce mode",
-      type: "Stories Instagram",
-      metric1: `x${Math.floor(counters[3])}`,
-      metric1Label: "ROI",
-      metric2: "2000",
-      metric2Label: "commandes",
-      result: "Best seller"
+      company: "E-commerce Fashion",
+      eventType: "Stories & Reels",
+      stat1Value: `x${Math.floor(animatedNumbers.roi || 0)}`,
+      stat1Label: "ROI",
+      stat2Value: "5K+",
+      stat2Label: "Commandes",
+      outcome: "Record battu",
+      emoji: "💎"
     }
   ];
 
-  const eventCases = [
+  // Données pour événements
+  const eventCards: ProofCard[] = [
     {
-      client: "Entreprise CAC40",
-      type: "Convention annuelle",
-      metric1: Math.floor(counters[0]),
-      metric1Label: "personnes",
-      metric2: "+45",
-      metric2Label: "NPS",
-      result: "Standing ovation"
+      company: "Fortune 500 Tech",
+      eventType: "Convention internationale",
+      stat1Value: Math.floor(animatedNumbers.attendees || 0),
+      stat1Label: "Participants",
+      stat2Value: "+68",
+      stat2Label: "NPS Score",
+      outcome: "Standing ovation",
+      emoji: "👏"
     },
     {
-      client: "Scale-up tech",
-      type: "Team building",
-      metric1: `${Math.floor(counters[1])}%`,
-      metric1Label: "satisfaction",
-      metric2: "0",
-      metric2Label: "absents",
-      result: "Équipe soudée"
+      company: "Scale-up Innovante",
+      eventType: "Team building créatif",
+      stat1Value: `${Math.floor(animatedNumbers.satisfaction || 0)}%`,
+      stat1Label: "Satisfaction",
+      stat2Value: "100%",
+      stat2Label: "Présence",
+      outcome: "Équipe galvanisée",
+      emoji: "⚡"
     },
     {
-      client: "Groupe pharma",
-      type: "Séminaire annuel",
-      metric1: `${Math.floor(counters[2])}%`,
-      metric1Label: "présence",
-      metric2: "5★",
-      metric2Label: "notation",
-      result: "Standing ovation"
+      company: "Groupe Pharmaceutique",
+      eventType: "Séminaire stratégique",
+      stat1Value: `${Math.floor(animatedNumbers.presence || 0)}%`,
+      stat1Label: "Engagement",
+      stat2Value: "5★",
+      stat2Label: "Rating",
+      outcome: "Transformation",
+      emoji: "✨"
     },
     {
-      client: "Cabinet conseil",
-      type: "Soirée clients",
-      metric1: Math.floor(counters[3]),
-      metric1Label: "deals",
-      metric2: "100%",
-      metric2Label: "recommandation",
-      result: "Carnet plein"
+      company: "Cabinet Conseil Big 4",
+      eventType: "Soirée clients VIP",
+      stat1Value: Math.floor(animatedNumbers.deals || 0),
+      stat1Label: "Deals",
+      stat2Value: "100%",
+      stat2Label: "Reco",
+      outcome: "Pipeline doublé",
+      emoji: "🎯"
     }
   ];
 
-  const mixedCases = [
-    contentCases[0],
-    contentCases[1],
-    eventCases[0],
-    eventCases[1]
-  ];
+  // Sélection des cartes selon le parcours
+  const mixedCards = [contentCards[0], eventCards[0], contentCards[1], eventCards[1]];
+  
+  const cards = userPath === 'content' ? contentCards :
+                userPath === 'event' ? eventCards :
+                mixedCards;
 
-  let cases = userPath === 'content' ? contentCases : 
-              userPath === 'event' ? eventCases : 
-              mixedCases;
+  // Titre adaptatif
+  const title = userPath === 'content' ? "Ils ont explosé leurs metrics" :
+                userPath === 'event' ? "Ils ont marqué les esprits" :
+                "Résultats qui parlent";
 
-  const title = userPath === 'content' ? "ILS ONT TRANSFORMÉ LEUR CONTENT" :
-                userPath === 'event' ? "ILS ONT MARQUÉ LEUR AUDIENCE" :
-                "ILS NOUS FONT CONFIANCE";
+  const subtitle = userPath === 'content' ? "Des créations qui transforment les marques" :
+                   userPath === 'event' ? "Des événements qui restent gravés" :
+                   "Des succès concrets, des clients ravis";
 
   return (
-    <section className="brand-proof-section">
-      <div className="proof-container">
-        {/* Header */}
-        <div className="proof-header">
-          <h2 className="proof-title">
-            <span className="title-line">{title}</span>
+    <section className="proof-section" ref={sectionRef}>
+      {/* Background animé */}
+      <div className="proof-bg-gradient" />
+      
+      {/* Particules flottantes */}
+      <div className="particle-container">
+        {[...Array(10)].map((_, i) => (
+          <div key={i} className="particle" />
+        ))}
+      </div>
+
+      <div className="proof-content">
+        {/* En-tête */}
+        <div className="proof-heading">
+          <h2 className="proof-main-title">
+            <span className="title-gradient">{title}</span>
           </h2>
-          <p className="proof-subtitle">
-            Des résultats concrets, des clients ravis.
-          </p>
+          <p className="proof-description">{subtitle}</p>
         </div>
 
-        {/* Cases Grid */}
-        <div className="cases-grid">
-          {cases.map((caseItem, index) => (
+        {/* Grille de cartes */}
+        <div className="proof-cards-grid">
+          {cards.map((card, index) => (
             <div 
               key={index}
-              className={`case-card ${isInView ? 'visible' : ''}`}
-              style={{ animationDelay: `${index * 0.2}s` }}
+              className="proof-card"
+              style={{ '--card-delay': `${index * 0.15}s` } as React.CSSProperties}
             >
-              <div className="case-header">
-                <p className="case-client">{caseItem.client}</p>
-                <p className="case-type">{caseItem.type}</p>
+              {/* Header de carte */}
+              <div className="card-company">{card.company}</div>
+              <div className="card-event-type">{card.eventType}</div>
+
+              {/* Statistiques */}
+              <div className="card-stats">
+                <div className="stat-item">
+                  <span className="stat-number">{card.stat1Value}</span>
+                  <span className="stat-label">{card.stat1Label}</span>
+                </div>
+                <div className="stat-divider" />
+                <div className="stat-item">
+                  <span className="stat-number">{card.stat2Value}</span>
+                  <span className="stat-label">{card.stat2Label}</span>
+                </div>
               </div>
 
-              <div className="case-metrics">
-                <div className="metric">
-                  <div className="metric-value">{caseItem.metric1}</div>
-                  <div className="metric-label">{caseItem.metric1Label}</div>
-                </div>
-                <div className="metric-separator">×</div>
-                <div className="metric">
-                  <div className="metric-value">{caseItem.metric2}</div>
-                  <div className="metric-label">{caseItem.metric2Label}</div>
-                </div>
-              </div>
-
-              <div className="case-result">
-                <span className="result-icon">★</span>
-                <span className="result-text">{caseItem.result}</span>
+              {/* Résultat */}
+              <div className="card-outcome">
+                <span className="outcome-emoji">{card.emoji}</span>
+                <span className="outcome-label">{card.outcome}</span>
               </div>
             </div>
           ))}
         </div>
 
-        {/* Footer */}
-        <div className="proof-footer">
-          <p className="footer-note">
-            * Résultats réels, clients anonymisés par confidentialité
+        {/* Disclaimer */}
+        <div className="proof-disclaimer">
+          <p className="disclaimer-text">
+            * Résultats réels de nos clients, détails anonymisés par confidentialité
           </p>
         </div>
       </div>

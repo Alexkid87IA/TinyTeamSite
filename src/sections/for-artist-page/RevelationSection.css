@@ -1,4 +1,4 @@
-/* RevelationSection.css - Transfert de Tâches Minimaliste */
+/* RevelationSection.css - Version corrigée */
 
 .revelation-section {
   min-height: 100vh;
@@ -57,7 +57,7 @@
   letter-spacing: 0.1em;
   opacity: 0;
   animation: fadeInUp 0.6s ease 0.3s forwards;
-  height: 30px; /* Hauteur fixe pour aligner */
+  height: 30px;
 }
 
 .left-column .column-title {
@@ -89,6 +89,7 @@
   align-items: center;
   justify-content: center;
   text-align: center;
+  color: rgba(255, 255, 255, 0.9);
 }
 
 /* Tâches qui se transfèrent */
@@ -114,6 +115,7 @@
   background: rgba(236, 72, 153, 0.1);
   border-color: rgba(236, 72, 153, 0.3);
   color: rgba(255, 255, 255, 0.9);
+  animation: slideIn 0.5s ease forwards;
 }
 
 /* Flèches de transfert */
@@ -152,41 +154,99 @@
   100% { transform: translateX(0) scale(1); }
 }
 
-/* Résultat final */
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Résultat final - Version centrée et embellie */
 .revelation-result {
   text-align: center;
-  opacity: 0;
-  animation: fadeInScale 0.8s ease 3s forwards;
   margin-top: 100px;
+  opacity: 1;
+  visibility: visible;
+  position: relative;
+  z-index: 100;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
 .result-text {
-  font-size: clamp(24px, 3vw, 32px);
-  color: rgba(255, 255, 255, 0.5);
-  font-weight: 300;
-  letter-spacing: 0.05em;
+  font-size: clamp(18px, 2.5vw, 24px);
+  color: rgba(255, 255, 255, 0.4);
+  font-weight: 400;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+  opacity: 1;
+  visibility: visible;
+  display: inline-block;
+  position: relative;
+  white-space: nowrap; /* Force le texte sur une seule ligne */
 }
 
+/* Amélioration visuelle de VOUS CRÉEZ */
 .result-highlight {
-  color: #fff;
-  font-weight: 900;
-  font-size: clamp(60px, 10vw, 120px);
-  display: block;
-  margin-top: 20px;
+  font-weight: 900 !important;
+  font-size: clamp(72px, 12vw, 140px) !important;
+  display: block !important;
+  margin-top: 0;
   text-transform: uppercase;
-  letter-spacing: -0.02em;
-  background: linear-gradient(90deg, #fff, #ec4899, #fff);
-  background-size: 200% 100%;
+  letter-spacing: -0.03em;
+  line-height: 0.9;
+  
+  /* Effet de gradient amélioré */
+  background: linear-gradient(135deg, #ffffff 0%, #ec4899 25%, #ff00ff 50%, #ec4899 75%, #ffffff 100%);
+  background-size: 300% 300%;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
-  animation: 
-    textGlow 3s linear infinite,
-    scaleIn 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55) 3.5s both;
-  text-shadow: 
-    0 0 40px rgba(255, 255, 255, 0.5),
-    0 0 80px rgba(236, 72, 153, 0.3);
-  filter: drop-shadow(0 0 30px rgba(236, 72, 153, 0.6));
+  
+  /* Lueur améliorée */
+  filter: drop-shadow(0 0 40px rgba(236, 72, 153, 0.8))
+          drop-shadow(0 0 80px rgba(255, 0, 255, 0.4));
+  
+  opacity: 1 !important;
+  visibility: visible !important;
+  transform: none !important;
+  position: relative;
+  z-index: 100;
+  
+  /* Animation fluide */
+  animation: gradientShift 4s ease-in-out infinite, pulseGlow 2s ease-in-out infinite alternate;
+}
+
+/* Animation du gradient */
+@keyframes gradientShift {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+/* Animation de pulsation */
+@keyframes pulseGlow {
+  0% {
+    filter: drop-shadow(0 0 40px rgba(236, 72, 153, 0.8))
+            drop-shadow(0 0 80px rgba(255, 0, 255, 0.4));
+  }
+  100% {
+    filter: drop-shadow(0 0 60px rgba(236, 72, 153, 1))
+            drop-shadow(0 0 120px rgba(255, 0, 255, 0.6));
+  }
 }
 
 @keyframes textGlow {
@@ -194,14 +254,14 @@
   100% { background-position: 200% 50%; }
 }
 
-@keyframes scaleIn {
+@keyframes fadeInScale {
   from {
-    transform: scale(0);
     opacity: 0;
+    transform: scale(0.8);
   }
   to {
-    transform: scale(1);
     opacity: 1;
+    transform: scale(1);
   }
 }
 
@@ -217,17 +277,6 @@
   to {
     opacity: 1;
     transform: translateY(0);
-  }
-}
-
-@keyframes fadeInScale {
-  from {
-    opacity: 0;
-    transform: scale(0.8);
-  }
-  to {
-    opacity: 1;
-    transform: scale(1);
   }
 }
 
@@ -253,8 +302,8 @@
     align-items: stretch;
   }
   
-  /* Masquer complètement la flèche sur mobile */
-  .transfer-arrow {
+  /* Masquer les flèches sur mobile */
+  .transfer-arrows {
     display: none !important;
   }
   
@@ -308,15 +357,26 @@
   }
   
   .result-text {
-    font-size: 18px;
-    color: rgba(255, 255, 255, 0.6);
-    margin-bottom: 16px;
+    font-size: 14px;
+    letter-spacing: 0.15em;
+    margin-bottom: 10px;
   }
   
   .result-highlight {
-    font-size: clamp(48px, 12vw, 64px);
+    font-size: clamp(56px, 14vw, 72px) !important;
     font-weight: 900;
-    line-height: 1;
+    line-height: 0.9;
     padding: 0 10px;
+  }
+}
+
+/* Media query pour la réduction des animations */
+@media (prefers-reduced-motion: reduce) {
+  .revelation-section *,
+  .result-highlight {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
   }
 }

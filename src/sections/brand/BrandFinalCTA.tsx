@@ -74,7 +74,7 @@ export const BrandFinalCTA: React.FC<BrandFinalCTAProps> = ({
           headline1: "Réservez maintenant.",
           headline2: "Les dates partent vite.",
           subheadline: "Transformons votre événement en moment mémorable.",
-          buttonText: "RÉSERVER UN ARTISTE",
+          buttonText: "RÉSERVER UN SPECTACLE",
           guarantee: "Devis gratuit sous 24h"
         };
       default:
@@ -154,7 +154,7 @@ export const BrandFinalCTA: React.FC<BrandFinalCTAProps> = ({
         {/* Garantie */}
         {isVisible && (
           <div className="guarantee-wrapper">
-            <div className="guarantee-icon">✓</div>
+            <div className="guarantee-icon">✔</div>
             <p className="guarantee-text">
               <span className="guarantee-highlight">{content.guarantee}</span>
             </p>

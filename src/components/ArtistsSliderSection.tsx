@@ -36,7 +36,7 @@ const artistsData = [
   {
     id: "edouard",
     name: "Edouard Deloignon",
-    image: "https://static.eno.do/x/fs-200366-default/cdc3aba992ae1735c4a9b7a3fd8befc4/media.jpg",
+    image: "https://static.eno.do/x/fs-207670-default/35f9701247c1480e4a053de7341d2547/media.jpg",
     diffusion: "Dan Bolender Production"
   },
   {
@@ -60,7 +60,7 @@ const artistsData = [
   {
     id: "urbain",
     name: "Urbain",
-    image: "https://static.eno.do/x/fs-200359-default/9fb343deaad6dbe750cd731b4c0564b8/media.jpg",
+    image: "https://static.eno.do/x/fs-207671-default/a341c6ef1829c317020dc30296639fe4/media.jpg",
     diffusion: null
   }
 ];

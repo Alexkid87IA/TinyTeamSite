@@ -54,39 +54,11 @@ const ChevronRight = ({ size = 20 }) => (
 export const StorySection = () => {
   return (
     <section className="story-section">
-      {/* Effets de fond spectaculaires */}
-      <div className="story-background">
-        {/* Grille animée */}
-        <div className="story-grid" />
-        
-        {/* Orbes de lumière */}
-        <div className="story-orb story-orb-1" />
-        <div className="story-orb story-orb-2" />
-        <div className="story-orb story-orb-3" />
-        
-        {/* Étoiles scintillantes */}
-        <div className="story-stars">
-          {[...Array(40)].map((_, i) => (
-            <div
-              key={i}
-              className="story-star"
-              style={{
-                left: `${Math.random() * 100}%`,
-                top: `${Math.random() * 100}%`,
-                animationDelay: `${Math.random() * 3}s`
-              }}
-            />
-          ))}
-        </div>
-      </div>
-
       {/* Contenu principal */}
       <div className="story-main-content">
         
-        {/* Header épique - NOUVELLES CLASSES */}
+        {/* Header */}
         <div className="story-header">
-          <div className="story-title-glow" />
-          
           <h2 className="story-title">
             <span className="story-hero-line-1">Notre Force,</span>
             <span className="story-hero-line-2">Notre Team</span>
@@ -104,12 +76,20 @@ export const StorySection = () => {
                 className={`story-team-card story-card-${member.id}`}
                 style={{ '--card-accent': member.color } as React.CSSProperties}
               >
-                <img 
-                  src={member.image} 
-                  alt={`${member.name} ${member.lastName}`} 
-                  className="story-card-image"
-                />
+                {/* Image en background */}
+                <div className="story-card-image-wrapper">
+                  <img 
+                    src={member.image} 
+                    alt={`${member.name} ${member.lastName}`} 
+                    className="story-card-image"
+                    loading="lazy"
+                  />
+                </div>
+                
+                {/* Overlay gradient */}
                 <div className="story-card-overlay" />
+                
+                {/* Contenu toujours visible */}
                 <div className="story-card-content">
                   <h3 className="story-member-name">{member.name}</h3>
                   <h4 className="story-member-lastname">{member.lastName}</h4>
@@ -127,12 +107,20 @@ export const StorySection = () => {
                 className={`story-team-card story-card-${member.id}`}
                 style={{ '--card-accent': member.color } as React.CSSProperties}
               >
-                <img 
-                  src={member.image} 
-                  alt={`${member.name} ${member.lastName}`} 
-                  className="story-card-image"
-                />
+                {/* Image en background */}
+                <div className="story-card-image-wrapper">
+                  <img 
+                    src={member.image} 
+                    alt={`${member.name} ${member.lastName}`} 
+                    className="story-card-image"
+                    loading="lazy"
+                  />
+                </div>
+                
+                {/* Overlay gradient */}
                 <div className="story-card-overlay" />
+                
+                {/* Contenu toujours visible */}
                 <div className="story-card-content">
                   <h3 className="story-member-name">{member.name}</h3>
                   <h4 className="story-member-lastname">{member.lastName}</h4>
