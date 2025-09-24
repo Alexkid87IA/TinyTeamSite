@@ -63,11 +63,11 @@ export const Footer = () => {
             <div className="footer-nav-column">
               <h3 className="footer-nav-title">Services</h3>
               <nav className="footer-nav">
-                <Link to="/services/production">Production artistique</Link>
-                <Link to="/services/management">Management d'artistes</Link>
-                <Link to="/services/digital">Stratégie digitale</Link>
-                <Link to="/services/communication">Communication</Link>
-                <Link to="/services/diffusion">Diffusion & Booking</Link>
+                <Link to="/services">Production artistique</Link>
+                <Link to="/services">Management d'artistes</Link>
+                <Link to="/services">Stratégie digitale</Link>
+                <Link to="/services">Communication</Link>
+                <Link to="/services">Diffusion & Booking</Link>
               </nav>
             </div>
 
@@ -83,9 +83,9 @@ export const Footer = () => {
             <div className="footer-nav-column">
               <h3 className="footer-nav-title">Espace Pro</h3>
               <nav className="footer-nav">
-                <Link to="/je-cherche-une-production">Je cherche une production</Link>
+                <Link to="/artiste">Espace Artiste</Link>
                 <Link to="/programmateur">Programmateurs</Link>
-                <Link to="/entreprises">Entreprises</Link>
+                <Link to="/marque">Entreprises</Link>
               </nav>
             </div>
           </div>
